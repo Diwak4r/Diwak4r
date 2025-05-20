@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwakar Ray Yadav | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: hsl(217, 91%, 60%);
+            --primary-light: hsl(217, 91%, 70%);
+            --primary-dark: hsl(217, 91%, 45%);
+            --accent: hsl(280, 100%, 70%);
+            --background: #050b1f;
+            --text: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --particle-color: rgba(65, 105, 225, 0.7);
+            --connection-color: rgba(65, 105, 225, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Interactive Particle Network Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Glass-morphism Effects */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(65, 105, 225, 0.2);
+        }
+
+        /* Text gradient effect */
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulsing Button */
+        .pulse-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pulse-btn:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 4px;
+            background: rgba(var(--primary), 0.2);
+            animation: pulse-ring 1.5s ease-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+            50%, 100% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+        }
+
+        /* Timeline */
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, var(--primary), var(--accent), transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .timeline-left {
+            left: 0;
+        }
+
+        .timeline-right {
+            left: 50%;
+        }
+
+        .timeline-left::after {
+            right: -10px;
+        }
+
+        .timeline-right::after {
+            left: -10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 15px;
+            }
+            
+            .timeline-left, .timeline-right {
+                left: 0;
+            }
+            
+            .timeline-left::after, .timeline-right::after {
+                left: 10px;
+            }
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 11, 31, 0.95);
+            z-index: 100;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        /* Skill Progress Bar */
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 4px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Form Styling */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(var(--primary-light), 0.3);
+        }
+
+        /* Button Styling */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(var(--primary), 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(var(--primary), 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Glitch Effect for 404 Page */
+        .glitch {
+            position: relative;
+            animation: glitch 1s linear infinite;
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px, 0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px, 0) skew(0deg);
+            }
+            62% {
+                transform: translate(0, 0) skew(5deg);
+            }
+        }
+
+        .glitch:before,
+        .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: var(--background);
+            clip: rect(0, 900px, 0, 0);
+        }
+
+        .glitch:before {
+            left: 2px;
+            text-shadow: 1px 0 blue;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+
+        .glitch:after {
+            left: -2px;
+            text-shadow: -1px 0 red;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% {
+                clip: rect(44px, 9999px, 56px, 0);
+            }
+            20% {
+                clip: rect(12px, 9999px, 76px, 0);
+            }
+            40% {
+                clip: rect(76px, 9999px, 98px, 0);
+            }
+            60% {
+                clip: rect(22px, 9999px, 67px, 0);
+            }
+            80% {
+                clip: rect(93px, 9999px, 32px, 0);
+            }
+            100% {
+                clip: rect(49px, 9999px, 12px, 0);
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% {
+                clip: rect(21px, 9999px, 35px, 0);
+            }
+            20% {
+                clip: rect(79px, 9999px, 12px, 0);
+            }
+            40% {
+                clip: rect(32px, 9999px, 87px, 0);
+            }
+            60% {
+                clip: rect(56px, 9999px, 21px, 0);
+            }
+            80% {
+                clip: rect(12px, 9999px, 78px, 0);
+            }
+            100% {
+                clip: rect(67px, 9999px, 45px, 0);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Image Frame */
+        .profile-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 10px 30px rgba(0, 0, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-frame:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 255, 0.3);
+        }
+
+        .profile-image {
+            border-radius: 12px;
+            object-fit: cover;
+            border: 4px solid var(--background);
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Home section image styling */
+        .home-image-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            overflow: hidden;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            transition: transform 0.3s ease;
+        }
+
+        .home-image-container:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .home-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .home-image:hover {
+            transform: scale(1.1);
+        }
+
+        /* Project image styling */
+        .project-image-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-image:hover {
+            transform: scale(1.1);
+        }
+
+        /* About me image styling */
+        .about-image-container {
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 255, 0.15);
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+
+        .about-image-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            pointer-events: none;
+        }
+
+        /* Interactive elements */
+        .interactive-hover {
+            transition: all 0.3s ease;
+        }
+
+        .interactive-hover:hover {
+            transform: translateY(-5px);
+            filter: brightness(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Network Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 left-0 w-full py-4 z-50" style="background: rgba(5, 11, 31, 0.7); backdrop-filter: blur(10px);">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-bold text-gradient">D.R.Y</a>
+                
+                <div class="hidden md:flex space-x-4">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <button id="mobileMenuBtn" class="md:hidden text-white text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="flex justify-end p-4">
+            <button id="closeMenu" class="text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center justify-center h-full space-y-6">
+            <a href="#home" class="text-xl nav-link mobile-link">Home</a>
+            <a href="#projects" class="text-xl nav-link mobile-link">Projects</a>
+            <a href="#about" class="text-xl nav-link mobile-link">About</a>
+            <a href="#blog" class="text-xl nav-link mobile-link">Blog</a>
+            <a href="#contact" class="text-xl nav-link mobile-link">Contact</a>
+            <a href="#downloads" class="text-xl nav-link mobile-link">Downloads</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col-reverse md:flex-row items-center justify-between">
+                    <div class="md:w-1/2 mt-10 md:mt-0">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                            <span class="text-gradient">WELCOME, I am</span>
+                            <br>Diwakar Ray Yadav
+                        </h1>
+                        <p class="text-lg mb-8">BIT Student & Computer Support Professional with expertise in system administration and technical communication.</p>
+                        <div class="flex space-x-4">
+                            <a href="#projects" class="btn btn-primary pulse-btn">View Portfolio</a>
+                            <a href="#contact" class="btn btn-outline">Contact Me</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center mb-10 md:mb-0">
+                        <!-- Replaced circle div with hexagon-shaped image container -->
+                        <div class="home-image-container interactive-hover">
+                            <img src="images/home.png" alt="Diwakar Ray Yadav" class="home-image" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">
+                    <span class="text-gradient">Projects</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project 1 with added image -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <div class="project-image-container">
+                            <img src="images/police-exam-prep.png" alt="Police Exam Prep" class="project-image" loading="lazy">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Police Exam Prep</h3>
+                        <p class="text-gray-300 mb-4">A comprehensive platform for police examination preparation, offering study materials and practice tests.</p>
+                        <div class="flex justify-between items-center mt-6">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 text-xs rounded bg-blue-900 text-blue-200">Web App</span>
+                                <span class="px-2 py-1 text-xs rounded bg-purple-900 text-purple-200">Education</span>
+                            </div>
+                            <a href="https://project.diwakaryadav.com.np/" target="_blank" class="btn btn-outline text-sm">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 (Coming Soon) -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-2">Portfolio CMS</h3>
+                        <p class="text-gray-300 mb-4">A customizable content management system for creating professional portfolios. Currently under development.</p>
+                        <div class="flex justify-between items-center mt-6">
+                            <div class="flex space-x-2">
+                                <span class="px-2 py-1 text-xs rounded bg-green-900 text-green-200">CMS</span>
+                                <span class="px-2 py-1 text-xs rounded bg-yellow-900 text-yellow-200">Coming Soon</span>
+                            </div>
+                            <button disabled class="btn btn-outline text-sm opacity-50 cursor-not-allowed">Coming Soon</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">
+                    <span class="text-gradient">About Me</span>
+                </h2>
+                
+                <!-- Added About Me image with aesthetic frame -->
+                <div class="about-image-container mb-8 interactive-hover">
+                    <img src="images/aboutme.png" alt="Diwakar Ray Yadav" class="about-image" loading="lazy">
+                    <div class="about-image-frame"></div>
+                </div>
+                
+                <div class="glass-card mb-10 fade-in">
+                    <p class="text-lg">
+                        I am Diwakar Ray Yadav, a BIT student at Himalayan Whitehouse International College with a passion for technology and education. 
+                        Currently working as a Computer Support Professional at MC Group of Companies, I specialize in system administration, 
+                        troubleshooting, and technical communication. My experience as an IT Instructor has honed my ability to explain 
+                        complex technical concepts in accessible ways.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Education -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-graduation-cap mr-3 text-blue-400"></i> Education
+                        </h3>
+                        <ul class="space-y-4">
+                            <li>
+                                <div class="font-semibold">Bachelor of Information Technology (BIT)</div>
+                                <div class="text-sm text-gray-400">Himalayan Whitehouse International College</div>
+                                <div class="text-sm text-gray-400">2024-Present</div>
+                            </li>
+                            <li>
+                                <div class="font-semibold">Diploma in Computer Application</div>
+                                <div class="text-sm text-gray-400">IT Plus Computer Institute</div>
+                                <div class="text-sm text-gray-400">2022-2023</div>
+                            </li>
+                            <li>
+                                <div class="font-semibold">Intermediate (+2) in Science</div>
+                                <div class="text-sm text-gray-400">Shree Mahadev Janata Campus</div>
+                                <div class="text-sm text-gray-400">2021-2023</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Work Experience -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-briefcase mr-3 text-blue-400"></i> Work Experience
+                        </h3>
+                        <ul class="space-y-4">
+                            <li>
+                                <div class="font-semibold">Computer Support</div>
+                                <div class="text-sm text-gray-400">MC Group of Companies</div>
+                                <div class="text-sm text-gray-400">2024-Present</div>
+                            </li>
+                            <li>
+                                <div class="font-semibold">Computer Instructor</div>
+                                <div class="text-sm text-gray-400">Shrestha Computer Training Institute</div>
+                                <div class="text-sm text-gray-400">2023-2024</div>
+                            </li>
+                            <li>
+                                <div class="font-semibold">Computer Instructor</div>
+                                <div class="text-sm text-gray-400">IT Plus Computer Training Centre</div>
+                                <div class="text-sm text-gray-400">2021-2023</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Skills -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-code mr-3 text-blue-400"></i> Skills
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>Microsoft Office Suite</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>Computer Troubleshooting</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>System Administration</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>Data Entry</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>Project Management</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Languages -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-language mr-3 text-blue-400"></i> Languages
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>Nepali</span>
+                                    <span>Native</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>English</span>
+                                    <span>Fluent</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <span>Hindi</span>
+                                    <span>Proficient</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Achievements -->
+                <div class="glass-card mt-8 fade-in interactive-hover">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-trophy mr-3 text-blue-400"></i> Achievements
+                    </h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Certificate from Code Himalayan and Techspire partnered Program "7 Days Cybersecurity Training"</li>
+                        <li>Earned a Diploma in Computer Application with practical skills (2023)</li>
+                        <li>Trained over 30 students as an IT Instructor</li>
+                        <li>Recognized as a quick learner and calm team player</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">
+                    <span class="text-gradient">Blog</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-2">AI and Its Impact on Students</h3>
+                        <p class="text-gray-300 mb-4">
+                            Artificial Intelligence is transforming education in unprecedented ways. From personalized learning paths to automated grading, 
+                            AI tools are changing how students learn and interact with educational content.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">May 15, 2024</span>
+                            <button class="btn btn-outline text-sm show-blog" data-blog="ai-impact">Read More</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 2 -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-2">How to Make a Website in 2025 (No Code)</h3>
+                        <p class="text-gray-300 mb-4">
+                            The web development landscape has evolved significantly, and creating professional websites no longer requires extensive coding knowledge. 
+                            Discover the top no-code platforms and tools that can help you build impressive web presence.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">April 28, 2024</span>
+                            <button class="btn btn-outline text-sm show-blog" data-blog="no-code-website">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">
+                    <span class="text-gradient">Get In Touch</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Contact Form -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4">Send Me a Message</h3>
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <label for="name" class="block mb-2">Name</label>
+                                <input type="text" id="name" class="form-input" placeholder="Your Name" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2">Email</label>
+                                <input type="email" id="email" class="form-input" placeholder="Your Email" required>
+                            </div>
+                            <div>
+                                <label for="subject" class="block mb-2">Subject</label>
+                                <input type="text" id="subject" class="form-input" placeholder="Subject" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block mb-2">Message</label>
+                                <textarea id="message" rows="5" class="form-input" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">Location</h4>
+                                    <p class="text-gray-300">Kathmandu, Nepal</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-300">reachout.diwakar@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-blue-400 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-gray-300">+977 9842612756</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Social Media Links -->
+                            <div class="mt-8">
+                                <h4 class="font-semibold mb-4">Connect With Me</h4>
+                                <div class="flex flex-wrap gap-4">
+                                    <a href="mailto:reachout.diwakar@gmail.com" target="_blank" class="text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-label="Email">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <a href="https://wa.me/9779842612756" target="_blank" class="text-2xl text-gray-300 hover:text-green-400 transition-colors" aria-label="WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/diwakar-ray-yadav-aa3498281/" target="_blank" class="text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-label="LinkedIn">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://github.com/diwak4r" target="_blank" class="text-2xl text-gray-300 hover:text-purple-400 transition-colors" aria-label="GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://x.com/Norwakar" target="_blank" class="text-2xl text-gray-300 hover:text-blue-400 transition-colors" aria-label="X (Twitter)">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/diwak4r/" target="_blank" class="text-2xl text-gray-300 hover:text-pink-400 transition-colors" aria-label="Instagram">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Downloads Section -->
+        <section id="downloads" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">
+                    <span class="text-gradient">Downloads</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Resume Download -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-file-alt mr-3 text-blue-400"></i> Resume
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Download my professional resume to learn more about my skills, experience, and qualifications.
+                        </p>
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-download mr-2"></i> Download Resume
+                        </a>
+                    </div>
+                    
+                    <!-- Portfolio PDF -->
+                    <div class="glass-card fade-in interactive-hover">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-book mr-3 text-blue-400"></i> Portfolio PDF
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Get a comprehensive PDF version of my portfolio with detailed project descriptions and case studies.
+                        </p>
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-download mr-2"></i> Download Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center items-center">
+                <div class="text-center">
+                    <a href="#home" class="text-2xl font-bold text-gradient">D.R.Y</a>
+                    <p class="text-sm text-gray-400 mt-2">© 2024 Diwakar Ray Yadav. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Blog Modal -->
+    <div id="blogModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-900 p-8 rounded-lg max-w-3xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="blogTitle" class="text-2xl font-bold"></h3>
+                <button id="closeBlog" class="text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="blogContent" class="prose prose-invert max-w-none"></div>
+        </div>
+    </div>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    
+    <script>
+        // Defer non-critical JavaScript execution
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#4169e1"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#4169e1",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.8
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            
+            // Fade-in animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMenuBtn = document.getElementById('closeMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.style.display = 'block';
+                setTimeout(() => {
+                    mobileMenu.classList.add('active');
+                }, 10);
+            });
+            
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 400);
+            }
+            
+            closeMenuBtn.addEventListener('click', closeMenu);
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            
+            // Blog modal functionality
+            const blogButtons = document.querySelectorAll('.show-blog');
+            const blogModal = document.getElementById('blogModal');
+            const closeBlog = document.getElementById('closeBlog');
+            const blogTitle = document.getElementById('blogTitle');
+            const blogContent = document.getElementById('blogContent');
+            
+            // Blog content
+            const blogs = {
+                'ai-impact': {
+                    title: 'AI and Its Impact on Students',
+                    content: `
+                        <p>Artificial Intelligence is revolutionizing education in ways we couldn't have imagined just a few years ago. From personalized learning experiences to automated grading systems, AI tools are transforming how students learn and interact with educational content.</p>
+                        
+                        <h4>Personalized Learning</h4>
+                        <p>AI algorithms can analyze a student's performance, identify strengths and weaknesses, and create customized learning paths. This level of personalization was previously impossible at scale, but AI makes it accessible to everyone.</p>
+                        
+                        <h4>Automated Grading</h4>
+                        <p>Teachers spend countless hours grading assignments. AI can automate this process for objective assessments, freeing up educators to focus on more meaningful interactions with students.</p>
+                        
+                        <h4>24/7 Support</h4>
+                        <p>AI-powered chatbots and virtual assistants can provide students with immediate answers to questions, even outside of regular school hours. This constant availability of support helps students overcome obstacles quickly.</p>
+                        
+                        <h4>Ethical Considerations</h4>
+                        <p>While AI offers tremendous benefits, we must also consider the ethical implications. Issues like data privacy, algorithmic bias, and the digital divide need careful attention to ensure AI enhances education for all students equally.</p>
+                        
+                        <h4>The Future</h4>
+                        <p>As AI continues to evolve, we can expect even more innovative applications in education. From virtual reality learning environments to predictive analytics that identify at-risk students before they fall behind, the possibilities are endless.</p>
+                        
+                        <p>The key to successful implementation lies in viewing AI as a tool to enhance human teaching, not replace it. When used thoughtfully, AI can help create more engaging, effective, and equitable educational experiences for all students.</p>
+                    `
+                },
+                'no-code-website': {
+                    title: 'How to Make a Website in 2025 (No Code)',
+                    content: `
+                        <p>The web development landscape has evolved dramatically, and creating professional websites no longer requires extensive coding knowledge. Here's a guide to building impressive websites without writing a single line of code in 2025.</p>
+                        
+                        <h4>No-Code Platforms</h4>
+                        <p>Platforms like Webflow, Wix, and Framer have advanced to the point where they offer design capabilities that rival custom-coded websites. These tools provide intuitive drag-and-drop interfaces with responsive design built-in.</p>
+                        
+                        <h4>AI Website Builders</h4>
+                        <p>The newest generation of website builders use AI to generate entire websites based on your requirements. Simply describe what you want, and the AI creates a customized website that you can then refine.</p>
+                        
+                        <h4>Template Marketplaces</h4>
+                        <p>Premium template marketplaces offer professionally designed website templates that can be customized to your needs. These templates are often created by top designers and include the latest web design trends.</p>
+                        
+                        <h4>Integration Capabilities</h4>
+                        <p>Modern no-code platforms offer robust integration options with payment processors, email marketing tools, CRM systems, and more. This allows you to create fully functional websites with complex features.</p>
+                        
+                        <h4>Custom Domains and Hosting</h4>
+                        <p>Most no-code platforms now offer seamless custom domain connection and reliable hosting, often with built-in CDN capabilities for fast loading times worldwide.</p>
+                        
+                        <h4>SEO and Marketing Tools</h4>
+                        <p>Built-in SEO tools help optimize your website for search engines, while marketing features like pop-ups, forms, and analytics give you everything you need to grow your online presence.</p>
+                        
+                        <p>The democratization of web development through no-code tools means that anyone with a vision can create a professional online presence without technical barriers. Whether you're a small business owner, creative professional, or entrepreneur, these platforms provide the tools you need to succeed online.</p>
+                    `
+                }
+            };
+            
+            blogButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const blogId = button.getAttribute('data-blog');
+                    const blog = blogs[blogId];
+                    
+                    if (blog) {
+                        blogTitle.textContent = blog.title;
+                        blogContent.innerHTML = blog.content;
+                        blogModal.classList.remove('hidden');
+                    }
+                });
+            });
+            
+            closeBlog.addEventListener('click', () => {
+                blogModal.classList.add('hidden');
+            });
+            
+            // Close modal when clicking outside
+            blogModal.addEventListener('click', (e) => {
+                if (e.target === blogModal) {
+                    blogModal.classList.add('hidden');
+                }
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulate form submission
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                
+                setTimeout(() => {
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }, 1500);
+            });
+            
+            // Interactive hover effects for elements
+            const interactiveElements = document.querySelectorAll('.interactive-hover');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Calculate the position relative to the center
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Calculate the tilt angle (max 10 degrees)
+                    const tiltX = ((y - centerY) / centerY) * 5;
+                    const tiltY = ((centerX - x) / centerX) * 5;
+                    
+                    // Apply the transform
+                    this.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    // Reset the transform
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
