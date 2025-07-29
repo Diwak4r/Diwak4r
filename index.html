@@ -143,6 +143,7 @@
             left: 0;
             right: 0;
             background: rgba(254, 250, 224, 0.95);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-light);
             z-index: 1000;
@@ -208,7 +209,20 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-primary);
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-light);
             }
+
+            .nav-links-open {
+                display: flex;
+            }
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -237,6 +251,7 @@
         }
 
         .hero-text h1 {
+            font-size: 3rem; /* Fallback for older browsers */
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
             line-height: 1.2;
@@ -263,6 +278,15 @@
         .hero-image img {
             width: 100%;
             height: auto;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-main-image {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 24px auto 0;
             border-radius: var(--radius);
             box-shadow: var(--shadow-lg);
         }
@@ -333,9 +357,15 @@
             }
         }
 
+        .about-image-container {
+            text-align: center;
+        }
+
         .about-image {
-            width: 100%;
-            border-radius: var(--radius);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
             box-shadow: var(--shadow-md);
         }
 
@@ -515,6 +545,13 @@
     </style>
 </head>
 <body>
+    <!--
+        NOTE FOR THE DEVELOPER:
+        The images in this portfolio have been updated to use the <picture> element
+        for better performance and responsiveness. I've included .webp format placeholders
+        from https://via.placeholder.com/. Please replace these placeholders with your
+        own optimized .webp images for the best results.
+    -->
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -539,7 +576,10 @@
                     <h1 class="font-display">
                         Hello, I'm <span style="color: var(--accent-primary);">Diwakar</span>
                     </h1>
-                    <img src="images/home.png" alt="Home Banner" style="width:100%;max-width:600px;display:block;margin:24px auto 0;" />
+                    <picture>
+                        <source srcset="https://via.placeholder.com/600x400.webp?text=Home+Banner" type="image/webp">
+                        <img src="images/home.png" alt="Home Banner" class="hero-main-image" />
+                    </picture>
 
                     <p class="subtitle">
                         BIT Student & Computer Support Professional with expertise in system administration and technical communication.
@@ -564,8 +604,10 @@
             
             <div class="grid grid-cols-2">
                 <div class="project-card fade-in">
-                   <img src="images/police-exam-prep.png" alt="Police Exam Prep Project" style="width:100%;max-width:350px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);" />
-
+                    <picture>
+                        <source srcset="https://via.placeholder.com/350x200.webp?text=Police+Exam+Prep" type="image/webp">
+                        <img src="images/police-exam-prep.png" alt="Police Exam Prep Project" class="project-image" />
+                    </picture>
                     <div class="project-content">
                         <h3 class="project-title">Police Exam Prep</h3>
                         <p class="project-description">
@@ -608,9 +650,11 @@
             </div>
 
             <div class="about-content">
-                <div class="fade-in">
-                    <img src="images/aboutme.png" alt="About Diwakar Ray Yadav" style="width:180px;border-radius:50%;display:block;margin:16px auto;" />
-
+                <div class="fade-in about-image-container">
+                    <picture>
+                        <source srcset="https://via.placeholder.com/180x180.webp?text=About+Me" type="image/webp">
+                        <img src="images/aboutme.png" alt="About Diwakar Ray Yadav" class="about-image" />
+                    </picture>
                 </div>
                 
                 <div class="fade-in">
@@ -709,7 +753,9 @@
                         <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
                         
                         <div class="contact-item">
-                            <div class="contact-icon">📍</div>
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
                             <div>
                                 <h4 class="font-semibold">Location</h4>
                                 <p class="text-secondary">Kathmandu, Nepal</p>
@@ -717,7 +763,9 @@
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-icon">✉️</div>
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
                             <div>
                                 <h4 class="font-semibold">Email</h4>
                                 <p class="text-secondary">reachout.diwakar@gmail.com</p>
@@ -725,7 +773,9 @@
                         </div>
 
                         <div class="contact-item">
-                            <div class="contact-icon">📱</div>
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
                             <div>
                                 <h4 class="font-semibold">Phone</h4>
                                 <p class="text-secondary">+977 9842612756</p>
@@ -733,12 +783,24 @@
                         </div>
 
                         <div class="social-links">
-                            <a href="mailto:reachout.diwakar@gmail.com" class="social-link" title="Email">✉️</a>
-                            <a href="https://wa.me/9779842612756" class="social-link" title="WhatsApp">💬</a>
-                            <a href="https://www.linkedin.com/in/diwakar-ray-yadav-aa3498281/" class="social-link" title="LinkedIn">💼</a>
-                            <a href="https://github.com/diwak4r" class="social-link" title="GitHub">🐙</a>
-                            <a href="https://x.com/Norwakar" class="social-link" title="Twitter">🐦</a>
-                            <a href="https://www.instagram.com/diwak4r/" class="social-link" title="Instagram">📷</a>
+                            <a href="mailto:reachout.diwakar@gmail.com" class="social-link" title="Email" aria-label="Email">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </a>
+                            <a href="https://wa.me/9779842612756" class="social-link" title="WhatsApp" aria-label="WhatsApp">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/diwakar-ray-yadav-aa3498281/" class="social-link" title="LinkedIn" aria-label="LinkedIn">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
+                            <a href="https://github.com/diwak4r" class="social-link" title="GitHub" aria-label="GitHub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                            <a href="https://x.com/Norwakar" class="social-link" title="Twitter" aria-label="Twitter">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                            </a>
+                            <a href="https://www.instagram.com/diwak4r/" class="social-link" title="Instagram" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -768,7 +830,8 @@
             });
         });
 
-        // Intersection Observer for fade-in animations
+        // Intersection Observer for fade-in animations on scroll
+        // This adds a 'visible' class to elements with the 'fade-in' class when they enter the viewport
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -787,39 +850,47 @@
             observer.observe(el);
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Form submission simulation
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Sending...';
+            const sendingText = 'Sending...';
+            const successMessage = 'Thank you for your message! I will get back to you soon.';
+            const submissionTimeout = 1500;
+
+            submitBtn.textContent = sendingText;
             submitBtn.disabled = true;
             
-            // Simulate form submission
+            // Simulate form submission with a timeout
             setTimeout(() => {
-                alert('Thank you for your message! I will get back to you soon.');
+                alert(successMessage);
                 this.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            }, submissionTimeout);
         });
 
-        // Header background on scroll
+        // Header background change on scroll
+        const header = document.querySelector('.header');
+        const scrollThreshold = 100; // Pixels to scroll before changing header background
+
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
+            if (window.scrollY > scrollThreshold) {
                 header.style.background = 'rgba(254, 250, 224, 0.98)';
             } else {
                 header.style.background = 'rgba(254, 250, 224, 0.95)';
             }
         });
 
-        // Mobile menu functionality (basic implementation)
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-links-open');
         });
     </script>
 </body>
