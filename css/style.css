@@ -22,9 +22,11 @@
 }
 
 [data-theme="dark"] {
-    --bg-primary: #0F172A;
-    --bg-secondary: #1E293B;
-    --text-primary: #F8FAFC;
+    --bg-primary: #121212;
+    /* Neutral Dark */
+    --bg-secondary: #1E1E1E;
+    /* Neutral Dark Gray */
+    --text-primary: #E2E8F0;
     --text-secondary: #CBD5E1;
     --text-muted: #94A3B8;
     --accent-primary: #FB923C;
@@ -33,10 +35,10 @@
     /* Orange-500 */
     --accent-tertiary: #FDBA74;
     /* Orange-300 */
-    --border-light: #334155;
-    --card-bg: #1E293B;
-    --header-bg: rgba(15, 23, 42, 0.95);
-    --header-bg-scroll: rgba(15, 23, 42, 0.98);
+    --border-light: #2D2D2D;
+    --card-bg: #1E1E1E;
+    --header-bg: rgba(18, 18, 18, 0.95);
+    --header-bg-scroll: rgba(18, 18, 18, 0.98);
     --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
