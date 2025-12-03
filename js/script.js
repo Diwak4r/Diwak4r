@@ -55,30 +55,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
 
-// Form submission simulation
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
 
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        const sendingText = 'Sending...';
-        const successMessage = 'Thank you for your message! I will get back to you soon.';
-        const submissionTimeout = 1500;
-
-        submitBtn.textContent = sendingText;
-        submitBtn.disabled = true;
-
-        // Simulate form submission with a timeout
-        setTimeout(() => {
-            alert(successMessage);
-            this.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, submissionTimeout);
-    });
-}
 
 // Header background change on scroll
 const header = document.querySelector('.header');
