@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diwakar Ray Yadav | Portfolio</title>
+    <title>Blog | Diwakar Ray Yadav</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -18,11 +18,10 @@
             <nav class="nav">
                 <a href="index.html" class="logo font-display">Diwakar</a>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="projects.html" class="nav-link">Projects</a></li>
                     <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-
+                    <li><a href="blog.html" class="nav-link active">Blog</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
@@ -50,23 +49,31 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Blog Section -->
+    <section class="section">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text fade-in">
-                    <h1 class="font-display">
-                        Hello, I'm <span style="color: var(--accent-primary);">Diwakar</span>
-                    </h1>
-                    <img src="images/home.webp" alt="Diwakar Ray Yadav" class="hero-main-image" />
+            <div class="text-center mb-8 fade-in">
+                <h2 class="text-4xl font-display font-semibold mb-4">My Blog</h2>
+                <p class="text-xl text-secondary">Thoughts, learnings, and my tech journey</p>
+            </div>
 
-                    <p class="subtitle">
-                        Building robust digital systems and empowering users through technology.
+            <div class="fade-in">
+                <div class="card text-center" style="padding: 4rem 2rem;">
+                    <h3 class="text-2xl font-semibold mb-4">Coming Soon</h3>
+                    <p class="text-secondary mb-6">
+                        I'm currently crafting some interesting articles. Stay tuned!
                     </p>
-                    <div class="hero-buttons">
-                        <a href="projects.html" class="btn btn-primary">View My Work</a>
-                        <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
-                    </div>
+                    <!-- 
+                    TEMPLATE FOR NEW BLOG POST:
+                    <article class="blog-post">
+                        <div class="blog-meta">Date • Category</div>
+                        <h3 class="text-2xl font-semibold mb-2"><a href="#" style="text-decoration: none; color: inherit;">Title</a></h3>
+                        <p class="text-secondary mb-4">
+                            Short excerpt...
+                        </p>
+                        <a href="#" class="btn btn-secondary" style="font-size: 0.875rem; padding: 0.5rem 1rem;">Read More</a>
+                    </article>
+                    -->
                 </div>
             </div>
         </div>

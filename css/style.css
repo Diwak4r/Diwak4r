@@ -88,6 +88,19 @@
     }
 }
 
+/* Blog Styles */
+.blog-post {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.blog-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
 /* Utilities */
 .text-center {
     text-align: center;
