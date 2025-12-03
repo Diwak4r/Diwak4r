@@ -18,12 +18,12 @@
 
 ### 👨‍💻 About Me
 
-I am a **BIT Student** at Himalayan Whitehouse International College and a **Computer Support Professional** based in **Kathmandu, Nepal**. I have a passion for technology, education, and system administration.
+I am a **BIT Student** at Himalayan Whitehouse International College and a **Computer Support Professional** based in **Kathmandu, Nepal**. I have a strong passion for **Artificial Intelligence**, technology, and education.
 
 - 🎓 **Studying**: Bachelor of Information Technology (BIT)
 - 💼 **Working as**: Computer Support Professional at MC Group of Companies
 - 🏫 **Experience**: Former IT Instructor (2+ years)
-- 🔭 **Currently learning**: Web Development (React, Next.js), System Design
+- 🔭 **Currently learning**: AI & Machine Learning, Web Development (React, Next.js)
 
 <br/>
 
