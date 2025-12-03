@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Diwakar Ray Yadav</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .ichigo-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+            opacity: 0.2;
+        }
+
+        .ichigo-pixel {
+            /* Using a CSS-only pixel art representation or placeholder since image gen failed */
+            font-size: 1.5rem;
+            margin-top: -4rem;
+            position: relative;
+            z-index: 10;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .message-bubble {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+            max-width: 400px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .message-bubble::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--border-light) transparent;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <div class="ichigo-container">
+            <div class="error-code">404</div>
+            <div class="ichigo-pixel">
+                <!-- Simple CSS/Text representation of a sleeping character -->
+                ( ˘ ɜ ˘) <sub>zzz</sub>
+                <br>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">*Ichigo is sleeping here*</span>
+            </div>
+        </div>
+
+        <div class="message-bubble fade-in visible">
+            <h2 class="text-2xl font-semibold mb-2">Wrong Turn?</h2>
+            <p class="text-secondary">
+                "Looks like you've wandered into the Garganta. There's nothing here but empty space."
+            </p>
+        </div>
+
+        <a href="index.html" class="btn btn-primary fade-in visible">Return to Soul Society (Home)</a>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
