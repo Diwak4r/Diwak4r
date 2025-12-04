@@ -89,6 +89,16 @@
                                 placeholder="your.email@example.com" required>
                         </div>
                         <div class="form-group">
+                            <label for="purpose" class="form-label">Purpose of Inquiry</label>
+                            <select id="purpose" name="purpose" class="form-select" required>
+                                <option value="" disabled selected>Select a purpose...</option>
+                                <option value="Collaboration on AI Projects">Collaboration on AI Projects</option>
+                                <option value="Hiring / Job Opportunity">Hiring / Job Opportunity</option>
+                                <option value="Freelance Work">Freelance Work</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="subject" class="form-label">Subject</label>
                             <input type="text" id="subject" name="subject" class="form-input"
                                 placeholder="Project Discussion" required>

@@ -12,7 +12,7 @@
 
     <!-- SEO & Open Graph -->
     <meta name="description"
-        content="About Diwakar Ray Yadav - BIT Student, Computer Support Professional, and Tech Enthusiast.">
+        content="About Diwakar Ray Yadav - A tech enthusiast exploring AI, building solutions, and bridging the gap between technology and people.">
     <meta property="og:title" content="About | Diwakar Ray Yadav">
     <meta property="og:description" content="My journey, skills, and vision in technology.">
     <meta property="og:image" content="https://diwakaryadav.com.np/images/aboutme.webp">
@@ -20,6 +20,325 @@
     <!-- Favicon -->
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .profile-card {
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 1.5rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .profile-image-wrapper:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .profile-image-wrapper:hover::before {
+            opacity: 0.1;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-info {
+            text-align: center;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-location {
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-social {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .profile-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .profile-social a:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .about-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .story-card {
+            padding: 2rem;
+        }
+
+        .story-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .story-text p {
+            margin-bottom: 1rem;
+        }
+
+        .story-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-text {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        /* Currently Exploring - Cleaner Version */
+        .exploring-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-secondary) 100%);
+            border-left: 4px solid var(--accent-primary);
+        }
+
+        .exploring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .explore-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .explore-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .explore-icon {
+            font-size: 1.3rem;
+        }
+
+        .explore-text {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Skills & Education Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-card {
+            padding: 1.5rem;
+        }
+
+        .info-card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-item {
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border-light);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-row {
+            margin-bottom: 1rem;
+        }
+
+        .skill-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .skill-bar-outer {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* X Profile CTA */
+        .x-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .x-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .x-cta-icon {
+            font-size: 1.5rem;
+        }
+
+        .x-cta-text {
+            flex: 1;
+        }
+
+        .x-cta-text strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .x-cta-text span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .x-cta-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .x-cta-btn:hover {
+            background: var(--accent-secondary);
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                position: static;
+            }
+
+            .profile-image-wrapper {
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exploring-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .x-cta {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -33,7 +352,6 @@
                     <li><a href="projects.html" class="nav-link">Projects</a></li>
                     <li><a href="about.html" class="nav-link active">About</a></li>
                     <li><a href="blog.html" class="nav-link">Blog</a></li>
-
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
@@ -65,93 +383,168 @@
     <section class="section">
         <div class="container">
             <div class="text-center mb-8 fade-in">
-                <h2 class="text-4xl font-display font-semibold mb-4">About Me</h2>
-                <p class="text-xl text-secondary">My journey, skills, and vision</p>
+                <h1 class="text-4xl font-display font-semibold mb-4">About Me</h1>
+                <p class="text-xl text-secondary">Building the bridge between technology and everyday life</p>
             </div>
 
-            <div class="about-content">
-                <div class="fade-in about-image-container">
-                    <img src="images/aboutme.webp" alt="About Diwakar Ray Yadav" class="about-image" loading="lazy" />
-                    <div class="mt-4">
-                        <h3 class="text-xl font-semibold">Diwakar Ray Yadav</h3>
-                        <p class="text-secondary">Kathmandu, Nepal</p>
+            <div class="about-hero">
+                <!-- Left: Profile Card -->
+                <div class="profile-card card fade-in">
+                    <div class="profile-image-wrapper">
+                        <img src="images/aboutme.webp" alt="Diwakar Ray Yadav" class="profile-image" loading="lazy" />
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="profile-name">Diwakar Ray Yadav</h2>
+                        <p class="profile-location">
+                            <span>📍</span> Kathmandu, Nepal
+                        </p>
+                        <div class="profile-social">
+                            <a href="https://x.com/Norwakar" target="_blank" title="X (Twitter)">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                            </a>
+                            <a href="https://github.com/diwak4r" target="_blank" title="GitHub">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com/in/diwakar-ray-yadav-aa3498281" target="_blank"
+                                title="LinkedIn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="fade-in">
-                    <div class="card mb-6">
-                        <h3 class="text-2xl font-semibold mb-4">The Story</h3>
-                        <p class="text-lg mb-4">
-                            I am a BIT student at Himalayan Whitehouse International College with a deep-rooted passion
-                            for technology. My journey isn't just about coding; it's about solving real-world problems.
-                        </p>
-                        <p class="text-lg mb-4">
-                            Currently serving as a Computer Support Professional at MC Group of Companies, I bridge the
-                            gap between complex systems and end-users. My background as an IT Instructor has taught me
-                            that the best technology is the one that is accessible to everyone.
-                        </p>
-                        <p class="text-lg">
-                            I am driven by the idea of creating digital experiences that are not only functional but
-                            also intuitive and empowering.
-                        </p>
+                <!-- Right: Main Content -->
+                <div class="about-main">
+                    <!-- My Story -->
+                    <div class="card story-card fade-in">
+                        <h3 class="text-2xl font-semibold">My Story</h3>
+                        <div class="story-text">
+                            <p>
+                                I'm a <span class="highlight-text">BIT student</span> at Himalayan Whitehouse
+                                International College with a genuine curiosity for how technology shapes our world. For
+                                me, it's never just been about writing code—it's about solving real problems that
+                                matter.
+                            </p>
+                            <p>
+                                Currently working as a <span class="highlight-text">Computer Support Professional</span>
+                                at MC Group of Companies, I spend my days helping people make sense of complex systems.
+                                My experience as an IT Instructor taught me something important: the best technology is
+                                the kind that empowers everyone, not just the technically savvy.
+                            </p>
+                            <p>
+                                What drives me? Creating digital experiences that feel intuitive, accessible, and
+                                genuinely useful. I believe technology should work for people, not the other way around.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="grid grid-cols-2">
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Education</h3>
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <h4 class="font-semibold">Bachelor of Information Technology</h4>
-                                    <p class="text-secondary">Himalayan Whitehouse International College</p>
-                                    <p class="text-sm text-muted">2024 - Present</p>
-                                </div>
-                                <div class="timeline-item">
-                                    <h4 class="font-semibold">Diploma in Computer Application</h4>
-                                    <p class="text-secondary">IT Plus Computer Institute</p>
-                                    <p class="text-sm text-muted">2022 - 2023</p>
-                                </div>
+                    <!-- Currently Exploring -->
+                    <div class="card exploring-card fade-in">
+                        <h3 class="text-2xl font-semibold mb-2">🚀 Currently Exploring</h3>
+                        <p class="text-secondary">Staying curious and diving into the latest in AI and tech.</p>
+                        <div class="exploring-grid">
+                            <div class="explore-item">
+                                <span class="explore-icon">🤖</span>
+                                <span class="explore-text">Generative AI</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">💬</span>
+                                <span class="explore-text">LLMs</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">🎨</span>
+                                <span class="explore-text">AI Art</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">🔮</span>
+                                <span class="explore-text">Multimodal AI</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">⚡</span>
+                                <span class="explore-text">Automation</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">📰</span>
+                                <span class="explore-text">Tech News</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education & Skills Grid -->
+                    <div class="info-grid">
+                        <!-- Education -->
+                        <div class="card info-card fade-in">
+                            <h3>🎓 Education</h3>
+                            <div class="timeline-item">
+                                <h4 class="font-semibold">Bachelor of Information Technology</h4>
+                                <p class="text-secondary" style="font-size: 0.9rem;">Himalayan Whitehouse International
+                                    College</p>
+                                <p class="text-muted" style="font-size: 0.8rem;">2024 - Present</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-semibold">Diploma in Computer Application</h4>
+                                <p class="text-secondary" style="font-size: 0.9rem;">IT Plus Computer Institute</p>
+                                <p class="text-muted" style="font-size: 0.8rem;">2022 - 2023</p>
                             </div>
                         </div>
 
-                        <div class="card">
-                            <h3 class="text-xl font-semibold mb-4">Expertise</h3>
+                        <!-- Skills -->
+                        <div class="card info-card fade-in">
+                            <h3>💻 Skills</h3>
+                            <div class="skill-row">
+                                <div class="skill-header">
+                                    <span>Technical Support</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-bar-outer">
+                                    <div class="skill-bar-inner" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="skill-header">
+                                    <span>System Administration</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar-outer">
+                                    <div class="skill-bar-inner" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="skill-header">
+                                    <span>Prompt Engineering</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar-outer">
+                                    <div class="skill-bar-inner" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="skill-header">
+                                    <span>Web Development</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="skill-bar-outer">
+                                    <div class="skill-bar-inner" style="width: 80%"></div>
+                                </div>
+                            </div>
 
-                            <!-- Highlighted Skill -->
-                            <div class="skill-item">
-                                <span style="color: var(--accent-primary); font-weight: 700;">Posting on X
-                                    (Twitter)</span>
-                                <span class="font-semibold">100%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress"
-                                    style="width: 100%; background-color: var(--accent-primary);"></div>
-                            </div>
-                            <a href="https://x.com/Norwakar" target="_blank" class="btn btn-secondary"
-                                style="width: 100%; margin-bottom: 1.5rem; margin-top: 0.5rem; font-size: 0.9rem;">
-                                Check my X Profile
-                            </a>
-                            <div class="skill-item">
-                                <span>System Administration</span>
-                                <span class="font-semibold">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-
-                            <div class="skill-item">
-                                <span>Web Development</span>
-                                <span class="font-semibold">80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-
-                            <div class="skill-item">
-                                <span>Technical Support</span>
-                                <span class="font-semibold">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
+                            <!-- X Profile CTA -->
+                            <div class="x-cta">
+                                <span class="x-cta-icon">𝕏</span>
+                                <div class="x-cta-text">
+                                    <strong>Follow my journey</strong>
+                                    <span>Tech thoughts & daily updates</span>
+                                </div>
+                                <a href="https://x.com/Norwakar" target="_blank" class="x-cta-btn">Follow</a>
                             </div>
                         </div>
                     </div>

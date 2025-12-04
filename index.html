@@ -5,30 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diwakar Ray Yadav | Portfolio</title>
+
+    <!-- Preconnect to external resources for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Optimized font loading with display=swap -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- SEO & Open Graph -->
     <meta name="description"
-        content="Portfolio of Diwakar Ray Yadav - BIT Student & Computer Support Professional. Specializing in System Administration and Web Development.">
-    <meta name="keywords" content="Diwakar Ray Yadav, Portfolio, BIT Student, Web Developer, System Admin, Nepal">
+        content="Portfolio of Diwakar Ray Yadav - Exploring Gen-AI & LLMs. Integrating AI into everyday workflows.">
+    <meta name="keywords" content="Diwakar Ray Yadav, Portfolio, Gen-AI, LLMs, AI, Web Developer, Nepal">
     <meta name="author" content="Diwakar Ray Yadav">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://diwakaryadav.com.np/">
     <meta property="og:title" content="Diwakar Ray Yadav | Portfolio">
-    <meta property="og:description" content="Building robust digital systems and empowering users through technology.">
+    <meta property="og:description" content="Exploring Gen-AI & LLMs — Integrating AI into everyday workflows.">
     <meta property="og:image" content="https://diwakaryadav.com.np/images/home.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://diwakaryadav.com.np/">
     <meta property="twitter:title" content="Diwakar Ray Yadav | Portfolio">
-    <meta property="twitter:description"
-        content="Building robust digital systems and empowering users through technology.">
+    <meta property="twitter:description" content="Exploring Gen-AI & LLMs — Integrating AI into everyday workflows.">
     <meta property="twitter:image" content="https://diwakaryadav.com.np/images/home.webp">
 
     <!-- Favicon -->
@@ -47,7 +56,6 @@
                     <li><a href="projects.html" class="nav-link">Projects</a></li>
                     <li><a href="about.html" class="nav-link">About</a></li>
                     <li><a href="blog.html" class="nav-link">Blog</a></li>
-
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
@@ -70,7 +78,7 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" aria-label="Menu">☰</button>
             </nav>
         </div>
     </header>
@@ -83,9 +91,8 @@
                     <h1 class="font-display">
                         Hello, I'm <span style="color: var(--accent-primary);">Diwakar</span>
                     </h1>
-
                     <p class="subtitle">
-                        Building robust digital systems and empowering users through technology.
+                        Exploring Gen-AI & LLMs — Integrating AI into everyday workflows for smarter, efficient outputs.
                     </p>
                     <div class="hero-buttons">
                         <a href="projects.html" class="btn btn-primary pulse">View Work</a>
@@ -93,16 +100,19 @@
                     </div>
                 </div>
 
-                <!-- Hero Gallery (Right Side) -->
+                <!-- Hero Gallery with optimized images -->
                 <div class="hero-gallery fade-in">
                     <div class="gallery-item main">
-                        <img src="images/home.webp" alt="Diwakar Ray Yadav" loading="lazy" />
+                        <img src="images/home.webp" alt="Diwakar Ray Yadav" width="400" height="400" loading="eager"
+                            decoding="async" fetchpriority="high">
                     </div>
                     <div class="gallery-item sub-1">
-                        <img src="images/aboutme.webp" alt="Diwakar Portrait" loading="lazy" />
+                        <img src="images/aboutme.webp" alt="Diwakar Portrait" width="150" height="150" loading="lazy"
+                            decoding="async">
                     </div>
                     <div class="gallery-item sub-2">
-                        <img src="images/casual.webp" alt="Diwakar Casual" loading="lazy" />
+                        <img src="images/casual.webp" alt="Diwakar Casual" width="150" height="150" loading="lazy"
+                            decoding="async">
                     </div>
                 </div>
             </div>

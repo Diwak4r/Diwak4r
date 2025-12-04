@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 Cheat Codes for God-Tier Prompts | Diwakar Ray Yadav</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- SEO & Open Graph -->
+    <meta name="description"
+        content="12 Cheat Codes for God-Tier AI Prompts - Unlock 100% of AI's capability with these practical techniques.">
+    <meta property="og:title" content="12 Cheat Codes for God-Tier Prompts | Diwakar Ray Yadav">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <style>
+        .blog-article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .blog-back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .blog-article-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .blog-article-tag {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .blog-article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .blog-article-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .blog-article-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        .blog-article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-article-content h2 {
+            font-size: 1.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .blog-article-content h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .blog-article-content h4 {
+            font-size: 1.15rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+        }
+
+        .blog-article-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .blog-article-content strong {
+            color: var(--accent-primary);
+        }
+
+        .blog-article-content blockquote {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-style: italic;
+        }
+
+        .blog-article-content ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .blog-article-content ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        .prompt-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-style: normal;
+        }
+
+        @media (max-width: 768px) {
+            .blog-article-title {
+                font-size: 1.75rem;
+            }
+
+            .blog-article-subtitle {
+                font-size: 1rem;
+            }
+
+            .blog-article-content {
+                font-size: 1rem;
+            }
+
+            .blog-article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="projects.html" class="nav-link">Projects</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Article -->
+    <section class="section">
+        <div class="container">
+            <div class="blog-article fade-in">
+                <a href="blog.html" class="blog-back-link">← Back to Blog</a>
+
+                <div class="blog-article-header">
+                    <span class="blog-article-tag">AI & Prompting</span>
+                    <h1 class="blog-article-title font-display">Stop Talking to AI Like a Bot: 12 Cheat Codes for
+                        God-Tier Prompts</h1>
+                    <p class="blog-article-subtitle">Most people use 10% of AI's capability. Here's the playbook to
+                        unlock the other 90%. Source: Researched on the internet.</p>
+                    <div class="blog-article-meta">
+                        <span>📅 December 2024</span>
+                        <span>⏱️ 10 min read</span>
+                        <span>✍️ Diwakar Ray Yadav</span>
+                    </div>
+                </div>
+
+                <div class="blog-article-content">
+                    <p>Let's be real for a second. You've used ChatGPT or Claude. Sometimes it's magic, but a lot of the
+                        time, the output is just… mid. It sounds generic, robotic, or just straight-up hallucinates.</p>
+
+                    <p><strong>The problem isn't the AI. It's your inputs.</strong></p>
+
+                    <p>If you treat AI like a basic Google search, you get basic results. If you treat it like a
+                        creative partner, you get magic.</p>
+
+                    <p>After researching various expert sources online, I've compiled the ultimate cheat sheet for
+                        prompting. This isn't boring theory; these are practical "hacks" you can use today to write
+                        better essays, code faster, or just sound smarter.</p>
+
+                    <p>Here is how to level up your prompt game.</p>
+
+                    <h2>PHASE 1: THE SETUP (Don't Be Lazy)</h2>
+
+                    <p>The biggest mistake people make is lazy prompting—asking for a complex result without giving any
+                        context. AI is a mirror; it reflects the effort you put in.</p>
+
+                    <h3>1. The "World Building" Technique</h3>
+
+                    <p>AI defaults to the most average, generic answer possible because it doesn't know your context.
+                        You need to build the "world" for it first.</p>
+
+                    <h4>The Concept:</h4>
+                    <p>Don't just ask for an outcome. Feed the AI 3–4 distinct "puzzle pieces" of a scenario to force it
+                        into a specific creative lane.</p>
+
+                    <h4>The "Dune" Example:</h4>
+                    <p>If you ask AI for a "big creature in a desert," you'll get a generic giant scorpion.</p>
+
+                    <p>But if you tell it: <em>"Imagine a dry world made of sand. Moisture is scarce. People wear
+                            special suits to survive. What giant creatures live here?"</em></p>
+
+                    <p>Because you built the world, the AI will immediately connect the dots and give you something
+                        specific like "Sandworms." You have to give it the pieces to stitch together.</p>
+
+                    <h3>2. The "Voice Note" Context Dump</h3>
+
+                    <p>Typing out a massive backstory for world-building is tedious. So don't type.</p>
+
+                    <h4>The Hack:</h4>
+                    <p>Open the mobile app, hit the voice-to-text button (not live mode), and just ramble for 20
+                        minutes. Tell the AI everything about your project, your constraints, and your goals. Then, ask
+                        it to structure that messy dump into a usable context file. It's the fastest way to upload your
+                        brain to the AI.</p>
+
+                    <h2>PHASE 2: GETTING WHAT YOU ACTUALLY WANT</h2>
+
+                    <p>Stop getting abstract advice. Here's how to force the AI to be specific.</p>
+
+                    <h3>3. Use "Few-Shot" Examples, Not Instructions</h3>
+
+                    <p>Instead of writing long, complicated paragraphs telling the AI how to behave, just show it.</p>
+
+                    <h4>The Concept:</h4>
+                    <p>Structure your system prompts like simple code using if/else logic and concrete examples.</p>
+
+                    <div class="prompt-box">
+                        <strong>The Practical Prompt:</strong>
+                        "If the user asks for homework help, guide them step-by-step. If the user asks you to write the
+                        whole essay for them, politely decline. Example of a good response: [Insert Example]. Example of
+                        a bad response: [Insert Example]."
+                    </div>
+
+                    <h3>4. Meta-Prompting (Inception Level)</h3>
+
+                    <p>Don't know how to ask for what you want? Ask the AI to write the prompt for you.</p>
+
+                    <h4>The Hack:</h4>
+                    <p>If you want a crazy specific image from Midjourney or a complex web layout, tell ChatGPT your
+                        goal and ask it to generate the technical specifications.</p>
+
+                    <div class="prompt-box">
+                        <strong>The Prompt:</strong>
+                        "I want to build a landing page that looks like Stripe's. Break it down into components and give
+                        me the exact specs for the background gradients and colors so I can build it."
+                    </div>
+
+                    <h3>5. The Multi-Level Persona (Study Mode)</h3>
+
+                    <p>This is essential for students. Don't just ask for an explanation; ask for layers of
+                        understanding.</p>
+
+                    <div class="prompt-box">
+                        <strong>The Prompt:</strong>
+                        "Explain [Quantum Physics] to me in three modes:<br>
+                        1. Like I'm a 5-year-old.<br>
+                        2. Like I'm 15 (plain English, no jargon).<br>
+                        3. Like I'm a 25-year-old physics major (include the math)."
+                    </div>
+
+                    <h2>PHASE 3: THE TRUTH SERUM</h2>
+
+                    <p>AI loves to people-please, which means it sometimes lies to make you happy. Here's how to stop
+                        it.</p>
+
+                    <h3>6. The "Red Pill" Summary Protocol</h3>
+
+                    <p>Standard AI summaries are a boring soup of facts you already know. Dig deeper.</p>
+
+                    <h4>The Protocol:</h4>
+                    <p>When uploading a PDF or book, use this 3-step prompt:</p>
+                    <ol>
+                        <li>"Summarize the main points."</li>
+                        <li>"Give me the 'Red Pill' insights—the controversial or deep ideas in this book that most of
+                            the world doesn't believe."</li>
+                        <li>"Give me actionable evidence for those insights."</li>
+                    </ol>
+
+                    <h3>7. Demand Confidence Scores</h3>
+
+                    <p>To stop hallucinations, force the AI to rate its own certainty.</p>
+
+                    <div class="prompt-box">
+                        <strong>The Hack:</strong>
+                        Add this to your important prompts: "Answer only if you are confident. Provide a confidence
+                        score (0-100%) for every claim you make." If it gives a claim a 60% score, you know to
+                        double-check it.
+                    </div>
+
+                    <h3>8. The Reality Check (Cost Breakdown)</h3>
+
+                    <p>People throw around big numbers without understanding them. Use AI to verify feasibility.</p>
+
+                    <div class="prompt-box">
+                        <strong>The Prompt:</strong>
+                        "People say a AAA game costs $100M to make. Break that down specifically. How much goes to
+                        developers vs. marketing? What are the specific salaries in that budget?"
+                    </div>
+
+                    <h2>PHASE 4: LEVELING UP YOURSELF</h2>
+
+                    <p>Use AI as a brutal coach, not just a homework machine.</p>
+
+                    <h3>9. The "Gap Finder"</h3>
+
+                    <p>We don't know what we don't know. Use AI to find your blind spots.</p>
+
+                    <div class="prompt-box">
+                        <strong>The Prompt:</strong>
+                        "Based on the argument I just made (or everything you know about me), tell me: What are the gaps
+                        in my knowledge? Where is my reasoning flawed? Be brutally honest."
+                    </div>
+
+                    <h3>10. The Personal Learning Algorithm</h3>
+
+                    <p>TikTok's algorithm feeds you entertainment. Use AI to feed you knowledge tailored to your brain.
+                    </p>
+
+                    <div class="prompt-box">
+                        <strong>The Hack:</strong>
+                        "Based on my recent interests in [topic A] and [topic B], what niche concept should I learn
+                        about next that I probably haven't heard of?"
+                    </div>
+
+                    <h2>BONUS ROUND: QUICK HACKS</h2>
+
+                    <h3>11. Erasing the "AI Stains"</h3>
+
+                    <p>AI has "tells"—certain sentence structures that sound robotic.</p>
+
+                    <div class="prompt-box">
+                        <strong>The Fix:</strong>
+                        Tell the prompt: "Avoid sentence structures that set up a statement and then negate it (e.g., 'X
+                        isn't just about Y, it's also about Z'). Use direct, affirmative sentences and vary your
+                        structure."
+                    </div>
+
+                    <h3>12. "Dark Prompting" (Emotional Stakes)</h3>
+
+                    <p>Weirdly, AI sometimes performs better on complex tasks if you add emotional weight or "threats."
+                    </p>
+
+                    <div class="prompt-box">
+                        <strong>The Hack:</strong>
+                        Adding phrases like "This is incredibly important for my career," or conversely, "Take a deep
+                        breath and think step-by-step," can actually improve the quality of the output in complex math
+                        or logic tasks.
+                    </div>
+
+                    <h2>The TL;DR</h2>
+
+                    <p>The gap between people who "get" AI and people who don't is widening rapidly. The difference
+                        isn't coding usage; it's communication.</p>
+
+                    <p><strong>Stop being lazy with your prompts.</strong> Build the world, demand specificity, and use
+                        AI to find the gaps in your own thinking. Start experimenting with these cheat codes today.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

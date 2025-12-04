@@ -4,103 +4,673 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | Diwakar Ray Yadav</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    <title>404 - You've Entered the Void | Diwakar Ray Yadav</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <style>
-        .error-container {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blood-red: #8B0000;
+            --hollow-purple: #4B0082;
+            --void-black: #0a0a0a;
+            --bone-white: #F5F5DC;
+        }
+
+        body {
+            background: var(--void-black);
+            color: var(--bone-white);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .hollow-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        .hollow-cursor::before {
+            content: '👁';
+            font-size: 30px;
+            filter: hue-rotate(280deg) saturate(3);
+            animation: cursorPulse 1s infinite;
+        }
+
+        @keyframes cursorPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        .fog-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .fog {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(75, 0, 130, 0.1) 25%, rgba(139, 0, 0, 0.08) 50%, rgba(75, 0, 130, 0.1) 75%, transparent 100%);
+            animation: fogMove 20s linear infinite;
+        }
+
+        .fog:nth-child(2) {
+            animation-delay: -10s;
+            opacity: 0.5;
+        }
+
+        @keyframes fogMove {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .void-container {
+            position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            z-index: 5;
             padding: 2rem;
         }
 
-        .ichigo-container {
-            position: relative;
-            margin-bottom: 2rem;
+        .hollow-eye {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0;
+            filter: drop-shadow(0 0 10px var(--blood-red));
+            z-index: 2;
+            animation: eyeAppear 4s ease-in-out infinite;
         }
 
-        .error-code {
-            font-size: 8rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            line-height: 1;
-            opacity: 0.2;
-        }
-
-        .ichigo-pixel {
-            /* Using a CSS-only pixel art representation or placeholder since image gen failed */
-            font-size: 1.5rem;
-            margin-top: -4rem;
-            position: relative;
-            z-index: 10;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .message-bubble {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border-light);
-            margin-bottom: 2rem;
-            max-width: 400px;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-        }
-
-        .message-bubble::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 0 10px 10px 10px;
-            border-style: solid;
-            border-color: transparent transparent var(--border-light) transparent;
-        }
-
-        @keyframes float {
+        @keyframes eyeAppear {
 
             0%,
             100% {
-                transform: translateY(0);
+                opacity: 0;
+            }
+
+            40%,
+            60% {
+                opacity: 0.7;
+            }
+        }
+
+        .hollow-404 {
+            font-family: 'Creepster', cursive;
+            font-size: 12rem;
+            color: transparent;
+            background: linear-gradient(180deg, var(--bone-white) 0%, #666 50%, var(--blood-red) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.5), 0 0 40px rgba(75, 0, 130, 0.3);
+            z-index: 10;
+        }
+
+        .hollow-mask-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .hollow-mask {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(ellipse at 30% 30%, var(--bone-white) 0%, #999 40%, #333 100%);
+            border-radius: 50% 50% 45% 45%;
+            position: relative;
+            filter: drop-shadow(0 0 30px rgba(139, 0, 0, 0.5));
+            animation: maskFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes maskFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-3deg);
             }
 
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-20px) rotate(3deg);
+            }
+        }
+
+        .hollow-mask::before,
+        .hollow-mask::after {
+            content: '';
+            position: absolute;
+            background: var(--void-black);
+            border-radius: 50%;
+            box-shadow: inset 0 0 20px var(--blood-red), 0 0 15px var(--blood-red);
+        }
+
+        .hollow-mask::before {
+            width: 35px;
+            height: 45px;
+            top: 35%;
+            left: 22%;
+            animation: eyeGlow 2s ease-in-out infinite;
+        }
+
+        .hollow-mask::after {
+            width: 35px;
+            height: 45px;
+            top: 35%;
+            right: 22%;
+            animation: eyeGlow 2s ease-in-out infinite 0.3s;
+        }
+
+        @keyframes eyeGlow {
+
+            0%,
+            100% {
+                box-shadow: inset 0 0 20px var(--blood-red), 0 0 15px var(--blood-red);
+            }
+
+            50% {
+                box-shadow: inset 0 0 40px var(--blood-red), 0 0 30px var(--blood-red), 0 0 50px var(--hollow-purple);
+            }
+        }
+
+        .mask-mouth {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 35px;
+            background: var(--void-black);
+            border-radius: 0 0 35px 35px;
+            overflow: hidden;
+        }
+
+        .mask-teeth {
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .tooth {
+            width: 7px;
+            height: 12px;
+            background: var(--bone-white);
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+        }
+
+        .void-message {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--blood-red);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.3), inset 0 0 30px rgba(75, 0, 130, 0.1);
+        }
+
+        .void-message h2 {
+            font-family: 'Creepster', cursive;
+            font-size: 2rem;
+            color: var(--blood-red);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--blood-red);
+        }
+
+        .void-message p {
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .escape-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--blood-red);
+            color: var(--bone-white);
+            font-family: 'Creepster', cursive;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .escape-btn:hover {
+            background: var(--blood-red);
+            box-shadow: 0 0 30px var(--blood-red);
+        }
+
+        /* Haunted moving button */
+        .haunted-btn {
+            position: fixed;
+            padding: 0.8rem 1.5rem;
+            background: rgba(139, 0, 0, 0.3);
+            border: 2px solid var(--blood-red);
+            color: var(--bone-white);
+            font-family: 'Creepster', cursive;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 500;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+            white-space: nowrap;
+        }
+
+        .haunted-btn:hover {
+            background: var(--blood-red);
+            box-shadow: 0 0 30px var(--blood-red);
+        }
+
+        .haunted-btn::after {
+            content: ' 👻';
+            animation: ghostWiggle 0.5s infinite;
+        }
+
+        @keyframes ghostWiggle {
+
+            0%,
+            100% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateX(-3px) rotate(-10deg);
+            }
+
+            75% {
+                transform: translateX(3px) rotate(10deg);
+            }
+        }
+
+        .jumpscare-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--void-black);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jumpscare-face {
+            font-size: 20rem;
+            filter: drop-shadow(0 0 50px var(--blood-red)) hue-rotate(280deg);
+            animation: jumpscareShake 0.1s infinite;
+        }
+
+        @keyframes jumpscareShake {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(-10px, 10px) scale(1.1);
+            }
+
+            50% {
+                transform: translate(10px, -10px) scale(0.9);
+            }
+
+            75% {
+                transform: translate(-10px, -10px) scale(1.05);
+            }
+        }
+
+        .glitch {
+            animation: glitch 0.3s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+                filter: hue-rotate(0deg);
+            }
+
+            20% {
+                transform: translate(-3px, 3px);
+                filter: hue-rotate(90deg);
+            }
+
+            40% {
+                transform: translate(3px, -3px);
+                filter: hue-rotate(180deg);
+            }
+
+            60% {
+                transform: translate(-3px, -3px);
+                filter: hue-rotate(270deg);
+            }
+
+            80% {
+                transform: translate(3px, 3px);
+                filter: hue-rotate(360deg);
+            }
+
+            100% {
+                transform: translate(0);
+                filter: hue-rotate(0deg);
+            }
+        }
+
+        .hollow-silhouette {
+            position: fixed;
+            opacity: 0;
+            z-index: 3;
+            font-size: 8rem;
+            filter: blur(2px);
+            color: rgba(75, 0, 130, 0.3);
+        }
+
+        .blood-drip {
+            position: fixed;
+            top: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, var(--blood-red), transparent);
+            border-radius: 0 0 2px 2px;
+            z-index: 4;
+        }
+
+        .reiatsu-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--hollow-purple);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--hollow-purple);
+            z-index: 2;
+            opacity: 0;
+        }
+
+        .warning-text {
+            position: fixed;
+            font-family: 'Creepster', cursive;
+            font-size: 3rem;
+            color: var(--blood-red);
+            opacity: 0;
+            z-index: 100;
+            text-shadow: 0 0 20px var(--blood-red);
+            pointer-events: none;
+        }
+
+        .roar-ring {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border: 3px solid var(--blood-red);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            z-index: 200;
+        }
+
+        @media (max-width: 768px) {
+            .hollow-404 {
+                font-size: 6rem;
+            }
+
+            .hollow-mask {
+                width: 120px;
+                height: 120px;
+            }
+
+            .jumpscare-face {
+                font-size: 12rem;
+            }
+
+            .haunted-btn {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="error-container">
-        <div class="ichigo-container">
-            <div class="error-code">404</div>
-            <div class="ichigo-pixel">
-                <!-- Simple CSS/Text representation of a sleeping character -->
-                ( ˘ ɜ ˘) <sub>zzz</sub>
-                <br>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">*Ichigo is sleeping here*</span>
-            </div>
-        </div>
-
-        <div class="message-bubble fade-in visible">
-            <h2 class="text-2xl font-semibold mb-2">Wrong Turn?</h2>
-            <p class="text-secondary">
-                "Looks like you've wandered into the Garganta. There's nothing here but empty space."
-            </p>
-        </div>
-
-        <a href="index.html" class="btn btn-primary fade-in visible">Return to Soul Society (Home)</a>
+    <div class="hollow-cursor" id="cursor"></div>
+    <div class="fog-container">
+        <div class="fog"></div>
+        <div class="fog"></div>
     </div>
 
-    <script src="js/script.js"></script>
+    <div class="hollow-eye" style="top: 10%; left: 5%;">👁</div>
+    <div class="hollow-eye" style="top: 20%; right: 10%; animation-delay: 1s;">👁</div>
+    <div class="hollow-eye" style="top: 60%; left: 8%; animation-delay: 2s;">👁</div>
+    <div class="hollow-eye" style="top: 80%; right: 15%; animation-delay: 0.5s;">👁</div>
+
+    <div class="hollow-silhouette" id="silhouette1" style="top: 20%; left: -100px;">👻</div>
+    <div class="hollow-silhouette" id="silhouette2" style="bottom: 20%; right: -100px;">💀</div>
+
+    <div class="blood-drip" style="left: 15%;"></div>
+    <div class="blood-drip" style="left: 45%;"></div>
+    <div class="blood-drip" style="left: 75%;"></div>
+
+    <div id="particles-container"></div>
+
+    <div class="warning-text" id="warning1" style="top: 30%; left: 10%;">RUN</div>
+    <div class="warning-text" id="warning2" style="top: 60%; right: 10%;">ESCAPE</div>
+    <div class="warning-text" id="warning3" style="top: 45%; left: 50%; transform: translateX(-50%);">HOLLOW</div>
+
+    <!-- Haunted moving button -->
+    <a href="index.html" class="haunted-btn" id="haunted-btn">Return to Homepage</a>
+
+    <div class="void-container">
+        <div class="hollow-404" id="error-code">404</div>
+        <div class="hollow-mask-container">
+            <div class="hollow-mask" id="mask">
+                <div class="mask-mouth">
+                    <div class="mask-teeth">
+                        <div class="tooth"></div>
+                        <div class="tooth"></div>
+                        <div class="tooth"></div>
+                        <div class="tooth"></div>
+                        <div class="tooth"></div>
+                        <div class="tooth"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="void-message" id="message">
+            <h2>You've Entered the Void...</h2>
+            <p>"The page you seek has been consumed by the Hollows.<br><br><em>Can you feel it? The hunger?</em>"</p>
+            <a href="index.html" class="escape-btn" id="escape-btn">← Escape to Soul Society</a>
+        </div>
+    </div>
+
+    <div class="jumpscare-overlay" id="jumpscare">
+        <div class="jumpscare-face" id="jumpscare-face">👹</div>
+    </div>
+    <div class="roar-ring" id="roar1"></div>
+    <div class="roar-ring" id="roar2"></div>
+    <div class="roar-ring" id="roar3"></div>
+
+    <script>
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Create particles
+        const particlesContainer = document.getElementById('particles-container');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'reiatsu-particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particlesContainer.appendChild(particle);
+        }
+
+        // HAUNTED BUTTON - Runs away from cursor!
+        const hauntedBtn = document.getElementById('haunted-btn');
+        let btnX = Math.random() * (window.innerWidth - 200) + 50;
+        let btnY = Math.random() * (window.innerHeight - 100) + 50;
+        hauntedBtn.style.left = btnX + 'px';
+        hauntedBtn.style.top = btnY + 'px';
+
+        document.addEventListener('mousemove', (e) => {
+            const btnRect = hauntedBtn.getBoundingClientRect();
+            const btnCenterX = btnRect.left + btnRect.width / 2;
+            const btnCenterY = btnRect.top + btnRect.height / 2;
+            const distX = e.clientX - btnCenterX;
+            const distY = e.clientY - btnCenterY;
+            const distance = Math.sqrt(distX * distX + distY * distY);
+
+            if (distance < 150) {
+                const escapeX = btnCenterX - distX * 2;
+                const escapeY = btnCenterY - distY * 2;
+                const newX = Math.max(20, Math.min(window.innerWidth - 200, escapeX));
+                const newY = Math.max(20, Math.min(window.innerHeight - 60, escapeY));
+
+                anime({
+                    targets: hauntedBtn,
+                    left: newX + 'px',
+                    top: newY + 'px',
+                    duration: 300,
+                    easing: 'easeOutBack'
+                });
+            }
+        });
+
+        // Random teleport
+        setInterval(() => {
+            if (Math.random() > 0.5) {
+                const newX = Math.random() * (window.innerWidth - 200) + 20;
+                const newY = Math.random() * (window.innerHeight - 60) + 20;
+                anime({
+                    targets: hauntedBtn,
+                    opacity: [1, 0],
+                    duration: 150,
+                    complete: () => {
+                        hauntedBtn.style.left = newX + 'px';
+                        hauntedBtn.style.top = newY + 'px';
+                        anime({ targets: hauntedBtn, opacity: [0, 1], scale: [0.5, 1], duration: 300, easing: 'easeOutBack' });
+                    }
+                });
+            }
+        }, 4000);
+
+        // Taunt wiggle
+        setInterval(() => {
+            anime({ targets: hauntedBtn, translateX: [0, -10, 10, -10, 10, 0], duration: 500, easing: 'easeInOutQuad' });
+        }, 5000);
+
+        // Anime.js animations
+        anime({ targets: '.reiatsu-particle', opacity: [0, 0.8, 0], translateY: [-50, 50], scale: [0.5, 1.5, 0.5], duration: () => anime.random(3000, 6000), delay: () => anime.random(0, 3000), loop: true, easing: 'easeInOutQuad' });
+        anime({ targets: '.blood-drip', height: ['0vh', '30vh', '0vh'], opacity: [1, 0.8, 0], duration: 4000, delay: anime.stagger(800), loop: true, easing: 'easeInQuad' });
+        anime({ targets: '#silhouette1', translateX: [0, window.innerWidth + 200], opacity: [0, 0.5, 0], duration: 10000, loop: true, easing: 'linear' });
+        anime({ targets: '.hollow-mask', scale: [1, 1.05, 1], duration: 2000, loop: true, easing: 'easeInOutSine' });
+
+        // Warning flashes
+        setInterval(() => {
+            if (Math.random() > 0.6) {
+                const w = ['#warning1', '#warning2', '#warning3'][Math.floor(Math.random() * 3)];
+                anime({ targets: w, opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8], duration: 500 });
+            }
+        }, 2000);
+
+        // Screen shake
+        function screenShake(i = 10) {
+            anime({ targets: 'body', translateX: [{ value: i, duration: 50 }, { value: -i, duration: 50 }, { value: 0, duration: 50 }], easing: 'easeInOutQuad' });
+        }
+
+        // Hollow roar
+        function hollowRoar() {
+            anime({ targets: ['#roar1', '#roar2', '#roar3'], width: ['10px', '200vw'], height: ['10px', '200vh'], opacity: [0.8, 0], duration: 1000, delay: anime.stagger(200), easing: 'easeOutExpo' });
+            screenShake(15);
+        }
+
+        // Jumpscare
+        let jumpscareTriggered = false;
+        let idleTimer;
+
+        function triggerJumpscare() {
+            if (jumpscareTriggered) return;
+            jumpscareTriggered = true;
+            const jumpscare = document.getElementById('jumpscare');
+            hollowRoar();
+            jumpscare.style.display = 'flex';
+            document.body.classList.add('glitch');
+
+            const faces = ['👹', '💀', '👻', '🎭', '😱'];
+            let i = 0;
+            const interval = setInterval(() => { document.getElementById('jumpscare-face').textContent = faces[i++ % 5]; }, 100);
+
+            anime({ targets: '#jumpscare-face', scale: [0.5, 3, 1.5], rotate: [0, 360], duration: 800, easing: 'easeOutElastic(1, .5)' });
+
+            setTimeout(() => {
+                anime({
+                    targets: jumpscare, opacity: [1, 0], duration: 500, complete: () => {
+                        jumpscare.style.display = 'none';
+                        jumpscare.style.opacity = 1;
+                        document.body.classList.remove('glitch');
+                        clearInterval(interval);
+                        setTimeout(() => { jumpscareTriggered = false; }, 10000);
+                    }
+                });
+            }, 1500);
+        }
+
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(triggerJumpscare, 3000);
+        }
+
+        document.addEventListener('mousemove', resetIdleTimer);
+        document.addEventListener('keypress', resetIdleTimer);
+        document.addEventListener('click', resetIdleTimer);
+        resetIdleTimer();
+
+        // Random ambient
+        setInterval(() => { if (Math.random() > 0.85) screenShake(5); }, 4000);
+
+        // Entry animation
+        anime.timeline()
+            .add({ targets: '#error-code', opacity: [0, 1], translateY: [-50, 0], duration: 1000 })
+            .add({ targets: '.hollow-mask-container', opacity: [0, 1], scale: [0.5, 1], duration: 800 }, '-=500')
+            .add({ targets: '.void-message', opacity: [0, 1], translateY: [30, 0], duration: 600 }, '-=300');
+
+        console.log('%c⚠️ A HOLLOW IS WATCHING YOU ⚠️', 'color: #8B0000; font-size: 24px;');
+    </script>
 </body>
 
 </html>

@@ -11,12 +11,130 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- SEO & Open Graph -->
-    <meta name="description" content="Blog of Diwakar Ray Yadav - Thoughts on Tech, Coding, and Life.">
+    <meta name="description" content="Blog posts by Diwakar Ray Yadav - AI tips, tech insights, and more.">
     <meta property="og:title" content="Blog | Diwakar Ray Yadav">
 
     <!-- Favicon -->
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <style>
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        a.blog-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        a.blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card-tag {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            width: fit-content;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .blog-card-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .blog-card-link {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        .coming-soon-card {
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-light);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .coming-soon-content {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .coming-soon-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -61,27 +179,35 @@
     <section class="section">
         <div class="container">
             <div class="text-center mb-8 fade-in">
-                <h2 class="text-4xl font-display font-semibold mb-4">My Blog</h2>
-                <p class="text-xl text-secondary">Thoughts, learnings, and my tech journey</p>
+                <h1 class="text-4xl font-display font-semibold mb-4">Blog</h1>
+                <p class="text-xl text-secondary">Thoughts, tutorials, and insights on AI & technology</p>
             </div>
 
-            <div class="fade-in">
-                <div class="card text-center" style="padding: 4rem 2rem;">
-                    <h3 class="text-2xl font-semibold mb-4">Coming Soon</h3>
-                    <p class="text-secondary mb-6">
-                        I'm currently crafting some interesting articles. Stay tuned!
-                    </p>
-                    <!-- 
-                    TEMPLATE FOR NEW BLOG POST:
-                    <article class="blog-post">
-                        <div class="blog-meta">Date • Category</div>
-                        <h3 class="text-2xl font-semibold mb-2"><a href="#" style="text-decoration: none; color: inherit;">Title</a></h3>
-                        <p class="text-secondary mb-4">
-                            Short excerpt...
+            <div class="blog-grid">
+                <!-- Blog Post 1 - Entire card is clickable -->
+                <a href="blog-prompting-tips.html" class="blog-card fade-in">
+                    <div class="blog-card-image">🤖</div>
+                    <div class="blog-card-content">
+                        <span class="blog-card-tag">AI & Prompting</span>
+                        <h2 class="blog-card-title">Stop Talking to AI Like a Bot: 12 Cheat Codes for God-Tier Prompts
+                        </h2>
+                        <p class="blog-card-excerpt">
+                            Most people use 10% of AI's capability. Here's the playbook to unlock the other 90% with
+                            practical prompting techniques.
                         </p>
-                        <a href="#" class="btn btn-secondary" style="font-size: 0.875rem; padding: 0.5rem 1rem;">Read More</a>
-                    </article>
-                    -->
+                        <div class="blog-card-meta">
+                            <span>📅 December 2024 • 10 min read</span>
+                            <span class="blog-card-link">Read More →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Coming Soon Card -->
+                <div class="coming-soon-card fade-in">
+                    <div class="coming-soon-content">
+                        <div class="coming-soon-icon">✍️</div>
+                        <p class="coming-soon-text">More posts coming soon...</p>
+                    </div>
                 </div>
             </div>
         </div>
