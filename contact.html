@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Contact | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/contact.html">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -70,23 +73,32 @@
             <div class="contact-content">
                 <div class="card fade-in">
                     <h3 class="text-2xl font-semibold mb-6">Send a Message</h3>
-                    <form action="https://formsubmit.co/diwak4r.comp@gmail.com" method="POST">
-                        <!-- Honeypot -->
-                        <input type="text" name="_honey" style="display:none">
-                        <!-- Disable Captcha -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <!-- Next Page -->
-                        <input type="hidden" name="_next" value="https://diwakaryadav.com.np/contact.html">
+                    <form action="https://formsubmit.co/diwak4r.comp@gmail.com" method="POST" id="contact-form">
+                        <!-- Honeypot (spam protection) - bots fill this, humans don't see it -->
+                        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                        <!-- Enable Captcha for additional spam protection -->
+                        <input type="hidden" name="_captcha" value="true">
+                        <!-- Email Subject -->
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Portfolio">
+                        <!-- Email Template -->
+                        <input type="hidden" name="_template" value="table">
+                        <!-- Redirect after submission -->
+                        <input type="hidden" name="_next" value="https://diwakaryadav.com.np/thank-you.html">
+                        <!-- Auto-response (optional) -->
+                        <input type="hidden" name="_autoresponse"
+                            value="Thank you for contacting me! I'll get back to you soon.">
 
                         <div class="form-group">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name"
-                                required>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required
+                                minlength="2" maxlength="100" pattern="[A-Za-z\s\-']+"
+                                title="Please enter a valid name (letters, spaces, hyphens, apostrophes only)"
+                                autocomplete="name">
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" id="email" name="email" class="form-input"
-                                placeholder="your.email@example.com" required>
+                                placeholder="your.email@example.com" required maxlength="254" autocomplete="email">
                         </div>
                         <div class="form-group">
                             <label for="purpose" class="form-label">Purpose of Inquiry</label>
@@ -101,12 +113,13 @@
                         <div class="form-group">
                             <label for="subject" class="form-label">Subject</label>
                             <input type="text" id="subject" name="subject" class="form-input"
-                                placeholder="Project Discussion" required>
+                                placeholder="Project Discussion" required minlength="3" maxlength="200">
                         </div>
                         <div class="form-group">
                             <label for="message" class="form-label">Message</label>
                             <textarea id="message" name="message" rows="5" class="form-input"
-                                placeholder="Tell me about your project..." required></textarea>
+                                placeholder="Tell me about your project..." required minlength="10"
+                                maxlength="5000"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                     </form>
