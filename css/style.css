@@ -670,17 +670,37 @@ body {
     border-top: 1px solid var(--border-light);
 }
 
-/* Animations */
+/* Animations - Progressive Enhancement */
+/* Content visible by default (no JS fallback) */
 .fade-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* Only apply animations when JS is enabled */
+.fade-in.js-enabled {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: opacity, transform;
+    /* GPU acceleration for low-end devices */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
+.fade-in.js-enabled.visible,
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in.js-enabled {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 /* Staggered delays for grid items */

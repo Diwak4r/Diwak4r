@@ -24,6 +24,53 @@
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="css/style.css" as="style">
+
+    <!-- Critical CSS fallback for content visibility -->
+    <style>
+        /* Ensure content is visible by default */
+        .fade-in {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .fade-in.js-enabled {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.js-enabled.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero {
+            padding: 8rem 0 4rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
     <link rel="stylesheet" href="css/style.css">
 
     <!-- SEO & Open Graph -->

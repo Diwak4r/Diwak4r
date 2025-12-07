@@ -8,15 +8,91 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>12 Cheat Codes for God-Tier Prompts | Diwakar Ray Yadav</title>
     <link rel="canonical" href="https://diwakaryadav.com.np/blog-prompting-tips.html">
+
+    <!-- Performance: Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical CSS for immediate content visibility -->
+    <style>
+        /* Prevent flash of invisible content - Content visible by default */
+        .fade-in {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .fade-in.js-enabled {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.js-enabled.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Critical above-the-fold styles */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(254, 250, 224, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .blog-article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #E2E8F0;
+            }
+
+            .header {
+                background: rgba(18, 18, 18, 0.95);
+            }
+        }
+    </style>
+
+    <!-- Fonts with display=swap for fast text rendering -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- SEO & Open Graph -->
     <meta name="description"
         content="12 Cheat Codes for God-Tier AI Prompts - Unlock 100% of AI's capability with these practical techniques.">
     <meta property="og:title" content="12 Cheat Codes for God-Tier Prompts | Diwakar Ray Yadav">
+    <meta property="og:description"
+        content="Most people use 10% of AI's capability. Here's the playbook to unlock the other 90%.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://diwakaryadav.com.np/blog-prompting-tips.html">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
     <link rel="icon"
@@ -208,10 +284,10 @@
     </header>
 
     <!-- Blog Article -->
-    <section class="section">
+    <section class="section" id="blog-content">
         <div class="container">
-            <div class="blog-article fade-in">
-                <a href="blog.html" class="blog-back-link">← Back to Blog</a>
+            <article class="blog-article fade-in" role="article" itemscope itemtype="https://schema.org/BlogPosting">
+                <a href="blog.html" class="blog-back-link" aria-label="Return to blog listing">← Back to Blog</a>
 
                 <div class="blog-article-header">
                     <span class="blog-article-tag">AI & Prompting</span>
@@ -416,7 +492,7 @@
                     <p><strong>Stop being lazy with your prompts.</strong> Build the world, demand specificity, and use
                         AI to find the gaps in your own thinking. Start experimenting with these cheat codes today.</p>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
@@ -427,6 +503,55 @@
         </div>
     </footer>
 
+    <!-- Progressive enhancement: Enable animations only after JS loads -->
+    <script>
+        // Immediately enable JS-based animations only after DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add js-enabled class to fade-in elements for progressive enhancement
+            document.querySelectorAll('.fade-in').forEach(function (el) {
+                el.classList.add('js-enabled');
+                // Force reflow to ensure transition works
+                void el.offsetHeight;
+            });
+
+            // Enhanced Intersection Observer with fallback
+            if ('IntersectionObserver' in window) {
+                var observerOptions = {
+                    threshold: 0.05,
+                    rootMargin: '0px 0px -20px 0px'
+                };
+
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.fade-in.js-enabled').forEach(function (el) {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback: show all content immediately if IntersectionObserver not supported
+                document.querySelectorAll('.fade-in.js-enabled').forEach(function (el) {
+                    el.classList.add('visible');
+                });
+            }
+        });
+
+        // Failsafe: ensure content is visible after 2 seconds regardless
+        setTimeout(function () {
+            document.querySelectorAll('.fade-in').forEach(function (el) {
+                if (!el.classList.contains('visible')) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 2000);
+    </script>
+
+    <!-- Main script with defer -->
     <script src="js/script.js" defer></script>
 </body>
 

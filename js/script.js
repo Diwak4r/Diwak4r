@@ -37,23 +37,65 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Intersection Observer for fade-in animations on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Using progressive enhancement - content is visible by default
+const initFadeAnimations = () => {
+    const fadeElements = document.querySelectorAll('.fade-in');
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+    // Only add animations if user hasn't disabled motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+        // Just ensure all content is visible
+        fadeElements.forEach(el => el.classList.add('visible'));
+        return;
+    }
+
+    // Add js-enabled class for progressive enhancement
+    fadeElements.forEach(el => {
+        if (!el.classList.contains('js-enabled')) {
+            el.classList.add('js-enabled');
+            // Force reflow
+            void el.offsetHeight;
         }
     });
-}, observerOptions);
 
-// Observe all fade-in elements
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
+    // Enhanced observer options for better performance
+    const observerOptions = {
+        threshold: 0.05, // Lower threshold for earlier triggering
+        rootMargin: '0px 0px -20px 0px' // Trigger slightly before element is in view
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once visible
+            }
+        });
+    }, observerOptions);
+
+    // Observe all fade-in elements with js-enabled class
+    document.querySelectorAll('.fade-in.js-enabled').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Failsafe: ensure content is visible after 3 seconds
+    setTimeout(() => {
+        fadeElements.forEach(el => {
+            if (!el.classList.contains('visible')) {
+                el.classList.add('visible');
+            }
+        });
+    }, 3000);
+};
+
+// Initialize fade animations when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFadeAnimations);
+} else {
+    // DOM already loaded
+    initFadeAnimations();
+}
 
 
 

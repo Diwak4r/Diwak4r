@@ -8,6 +8,54 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>About | Diwakar Ray Yadav</title>
     <link rel="canonical" href="https://diwakaryadav.com.np/about.html">
+
+    <!-- Performance: Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical CSS fallback for content visibility -->
+    <style>
+        .fade-in {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .fade-in.js-enabled {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.js-enabled.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+            padding-top: 100px;
+        }
+    </style>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -19,6 +67,9 @@
     <meta property="og:title" content="About | Diwakar Ray Yadav">
     <meta property="og:description" content="My journey, skills, and vision in technology.">
     <meta property="og:image" content="https://diwakaryadav.com.np/images/aboutme.webp">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://diwakaryadav.com.np/about.html">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
     <link rel="icon"
