@@ -96,6 +96,12 @@
     <!-- Favicon -->
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    <!-- Clean URL Cosmetic Fix -->
+    <script>
+        if (window.location.pathname.endsWith('/index.html')) {
+            window.history.replaceState(null, '', '/');
+        }
+    </script>
 </head>
 
 <body>
@@ -103,9 +109,9 @@
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <a href="index.html" class="logo font-display">Diwakar</a>
+                <a href="/" class="logo font-display">Diwakar</a>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="/" class="nav-link active">Home</a></li>
                     <li><a href="projects.html" class="nav-link">Projects</a></li>
                     <li><a href="about.html" class="nav-link">About</a></li>
                     <li><a href="blog.html" class="nav-link">Blog</a></li>
