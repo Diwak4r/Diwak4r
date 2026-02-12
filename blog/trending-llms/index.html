@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Best Trending LLMs & Agent Platforms (Free) | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/blog/trending-llms/">
+
+    <!-- Performance: Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical CSS for immediate content visibility -->
+    <style>
+        /* Prevent flash of invisible content - Content visible by default */
+        .fade-in {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .fade-in.js-enabled {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.js-enabled.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Critical above-the-fold styles */
+        body {
+            font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-optical-sizing: auto;
+            margin: 0;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(254, 250, 224, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .blog-article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #E2E8F0;
+            }
+
+            .header {
+                background: rgba(18, 18, 18, 0.95);
+            }
+        }
+    </style>
+
+    <!-- Google Sans Flex - Premium Variable Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <!-- SEO & Open Graph -->
+    <meta name="description"
+        content="A curated list of the best trending LLMs and AI agent platforms you can use for free — from general agents to data analysis, OCR, and beyond.">
+    <meta property="og:title" content="Best Trending LLMs & Agent Platforms (Free) | Diwakar Ray Yadav">
+    <meta property="og:description"
+        content="14 powerful AI platforms with generous free tiers — agents, reasoning, multimodal, and more.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://diwakaryadav.com.np/blog/trending-llms/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <style>
+        .blog-article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .blog-back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .blog-article-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .blog-article-tag {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .blog-article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .blog-article-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .blog-article-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        .blog-article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-article-content h2 {
+            font-size: 1.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .blog-article-content h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .blog-article-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .blog-article-content strong {
+            color: var(--accent-primary);
+        }
+
+        .blog-article-content blockquote {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-style: italic;
+        }
+
+        /* Platform Cards */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .platform-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-primary);
+        }
+
+        .platform-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: var(--radius-sm);
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .platform-info {
+            flex: 1;
+        }
+
+        .platform-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .platform-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-link {
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .platform-card:hover .platform-link {
+            text-decoration: underline;
+        }
+
+        .category-label {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+        }
+
+        .contribute-box {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, color-mix(in srgb, var(--accent-primary) 8%, var(--bg-secondary)) 100%);
+            border: 2px dashed var(--accent-primary);
+            border-radius: var(--radius);
+            padding: 1.75rem 2rem;
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        .contribute-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contribute-box a {
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .contribute-box a:hover {
+            color: var(--accent-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .blog-article-title {
+                font-size: 1.75rem;
+            }
+
+            .blog-article-subtitle {
+                font-size: 1rem;
+            }
+
+            .blog-article-content {
+                font-size: 1rem;
+            }
+
+            .blog-article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .platform-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .platform-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+
+            .contribute-box {
+                padding: 1.25rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/about/" class="nav-link">About</a></li>
+                    <li><a href="/blog/" class="nav-link active">Blog</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Article -->
+    <section class="section" id="blog-content">
+        <div class="container">
+            <article class="blog-article fade-in" role="article" itemscope itemtype="https://schema.org/BlogPosting">
+                <a href="/blog/" class="blog-back-link" aria-label="Return to blog listing">← Back to Blog</a>
+
+                <div class="blog-article-header">
+                    <span class="blog-article-tag">AI & Tools</span>
+                    <h1 class="blog-article-title font-display">Best Trending LLMs and Agent Platforms (Free, Generous
+                        Limits)</h1>
+                    <p class="blog-article-subtitle">Tested, bookmarked, actually used. 16 AI tools worth your time —
+                        all free.</p>
+                    <div class="blog-article-meta">
+                        <span>📅 February 2026</span>
+                        <span>⏱️ 5 min read</span>
+                        <span>✍️ Diwakar Ray Yadav</span>
+                    </div>
+                </div>
+
+                <div class="blog-article-content">
+                    <p>Look, new AI tools drop every week. Most are repackaged wrappers. Some are straight up vaporware.
+                        But a few? A few are genuinely insane — and completely free to use.</p>
+
+                    <p>I spent the last few weeks going through way too many of these. This is the shortlist that
+                        survived. Each one earned its spot because I either use it regularly or it impressed me enough
+                        to bookmark it on the first try.</p>
+
+                    <p>No rankings. No affiliate nonsense. Just click and try.</p>
+
+                    <h2>🤖 Agents That Actually Do Stuff</h2>
+
+                    <p>Give them a task. Walk away. Come back to results. That's the promise — and these ones actually
+                        deliver.</p>
+
+                    <div class="platform-grid">
+                        <a href="https://manus.im/app" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">🧠</div>
+                            <div class="platform-info">
+                                <span class="category-label">General Agent</span>
+                                <div class="platform-name">Manus AI</div>
+                                <div class="platform-desc">Tell it to research something, plan a trip, or draft a
+                                    report. It figures out the steps on its own. Invite-based but worth the wait.</div>
+                                <span class="platform-link">manus.im/app →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">⚡</div>
+                            <div class="platform-info">
+                                <span class="category-label">Task Executor</span>
+                                <div class="platform-name">Claude</div>
+                                <div class="platform-desc">Best writing quality out there, period. The new task mode
+                                    turns it into a proper workflow engine. My daily driver.</div>
+                                <span class="platform-link">claude.ai/new →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://www.kimi.com/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">🎯</div>
+                            <div class="platform-info">
+                                <span class="category-label">Agentic Execution</span>
+                                <div class="platform-name">Kimi + Agent</div>
+                                <div class="platform-desc">Chain tasks: research → summarize → draft. One prompt, done.
+                                    No setup friction at all.</div>
+                                <span class="platform-link">kimi.com →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://agent.minimax.io/" target="_blank" rel="noopener noreferrer"
+                            class="platform-card">
+                            <div class="platform-icon">🔮</div>
+                            <div class="platform-info">
+                                <span class="category-label">Agent</span>
+                                <div class="platform-name">Minimax Agent</div>
+                                <div class="platform-desc">Surprisingly good at multi-step tasks. Throw something
+                                    complex at it. See what happens.</div>
+                                <span class="platform-link">agent.minimax.io →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <h2>📊 Data, Sheets, Slides — Without the Pain</h2>
+
+                    <p>You know that feeling when you're staring at a spreadsheet and questioning your life choices?
+                        These fix that.</p>
+
+                    <div class="platform-grid">
+                        <a href="https://julius.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">📈</div>
+                            <div class="platform-info">
+                                <span class="category-label">Data Analyst</span>
+                                <div class="platform-name">Julius AI</div>
+                                <div class="platform-desc">Drop a CSV. Ask a question in plain English. Get a chart.
+                                    That's it. That's the whole thing. It's beautiful.</div>
+                                <span class="platform-link">julius.ai →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://shortcut.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">📋</div>
+                            <div class="platform-info">
+                                <span class="category-label">Excel Agent</span>
+                                <div class="platform-name">Shortcut AI</div>
+                                <div class="platform-desc">An AI that lives inside your Excel workflow. Formulas,
+                                    cleaning, analysis — never write VLOOKUP again.</div>
+                                <span class="platform-link">shortcut.ai →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://chat.z.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">📑</div>
+                            <div class="platform-info">
+                                <span class="category-label">Slides • Data • Reports</span>
+                                <div class="platform-name">GLM 5</div>
+                                <div class="platform-desc">Need a slide deck, a data report, or both? One prompt. The
+                                    outputs are surprisingly not terrible.</div>
+                                <span class="platform-link">chat.z.ai →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://skywork.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">☁️</div>
+                            <div class="platform-info">
+                                <span class="category-label">Multimodal • Doc • Sheet • PPT</span>
+                                <div class="platform-name">Skywork</div>
+                                <div class="platform-desc">Docs, sheets, slides — all in one place with AI baked in.
+                                    Like if Google Workspace had a brain transplant.</div>
+                                <span class="platform-link">skywork.ai →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <h2>🧪 The Smart Ones</h2>
+
+                    <p>For when you need actual reasoning, not just vibes. OCR, image understanding, deep thinking.</p>
+
+                    <div class="platform-grid">
+                        <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer"
+                            class="platform-card">
+                            <div class="platform-icon">🔬</div>
+                            <div class="platform-info">
+                                <span class="category-label">OCR • Multimodal • Understanding</span>
+                                <div class="platform-name">AI Studio (Google)</div>
+                                <div class="platform-desc">Best OCR I've seen. Upload an image, a doc, anything — it
+                                    just gets it. Free tier is absurdly generous. Go try it.</div>
+                                <span class="platform-link">aistudio.google.com →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer"
+                            class="platform-card">
+                            <div class="platform-icon">💎</div>
+                            <div class="platform-info">
+                                <span class="category-label">Flash Thinking</span>
+                                <div class="platform-name">Gemini</div>
+                                <div class="platform-desc">Fast. Accurate. Free. The "flash thinking" mode is perfect
+                                    when you need quick answers without the long chain-of-thought wait.</div>
+                                <span class="platform-link">gemini.google.com/app →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer"
+                            class="platform-card">
+                            <div class="platform-icon">🌊</div>
+                            <div class="platform-info">
+                                <span class="category-label">Updated</span>
+                                <div class="platform-name">DeepSeek</div>
+                                <div class="platform-desc">Updated recently. Still free. Still punches way above its
+                                    weight on code and reasoning. Just go.</div>
+                                <span class="platform-link">chat.deepseek.com →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://stepfun.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">⚙️</div>
+                            <div class="platform-info">
+                                <span class="category-label">Fast Reasoning</span>
+                                <div class="platform-name">Stepfun</div>
+                                <div class="platform-desc">Blazing fast. When you don't have time for a 30-second
+                                    thinking pause, this is your go-to.</div>
+                                <span class="platform-link">stepfun.ai →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://grok.x.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">🦊</div>
+                            <div class="platform-info">
+                                <span class="category-label">Reasoning • Web Search</span>
+                                <div class="platform-name">Grok 3</div>
+                                <div class="platform-desc">xAI's free chatbot. Real-time web search, image
+                                    understanding, and zero filter. 100+ messages/hr. Surprisingly fun to use.</div>
+                                <span class="platform-link">grok.x.ai →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://llama.meta.com/playground" target="_blank" rel="noopener noreferrer"
+                            class="platform-card">
+                            <div class="platform-icon">🦙</div>
+                            <div class="platform-info">
+                                <span class="category-label">Open Weight • Code • Reasoning</span>
+                                <div class="platform-name">Llama 4 Playground</div>
+                                <div class="platform-desc">Meta's latest open model in a free playground. Insane at
+                                    code, long-context, and multilingual. No sign-up needed.</div>
+                                <span class="platform-link">llama.meta.com/playground →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <h2>🖥️ Everything Else</h2>
+
+                    <p>AI that takes over your screen, and a place that lets you try literally everything.</p>
+
+                    <div class="platform-grid">
+                        <a href="https://happycapy.ai/app" target="_blank" rel="noopener noreferrer"
+                            class="platform-card">
+                            <div class="platform-icon">🖱️</div>
+                            <div class="platform-info">
+                                <span class="category-label">Agentic Desktop</span>
+                                <div class="platform-name">HappyCapy AI</div>
+                                <div class="platform-desc">Runs in your browser. Clicks things for you. Automates tasks
+                                    on screen. It's like having an intern — except it doesn't take lunch breaks.</div>
+                                <span class="platform-link">happycapy.ai/app →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://arena.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon">🏟️</div>
+                            <div class="platform-info">
+                                <span class="category-label">Images • Text • Code • Video</span>
+                                <div class="platform-name">Arena</div>
+                                <div class="platform-desc">Images, text, code, video — all free, all in one place. Best
+                                    way to compare models side by side before committing to anything.</div>
+                                <span class="platform-link">arena.ai →</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <h2>Honestly?</h2>
+
+                    <p>Stop paying $20/month. Most of these free tiers will cover 90% of what you need. My daily setup:
+                        <strong>Claude</strong> for writing, <strong>Gemini</strong> for quick stuff, <strong>AI
+                            Studio</strong> when I throw images at it, <strong>Julius</strong> for data. That's it.
+                    </p>
+
+                    <p>Open a tab. Try one. Right now. You'll thank yourself later.</p>
+
+                    <div class="contribute-box">
+                        <p>💡 <strong>Know a tool that should be on this list?</strong></p>
+                        <p>This list is alive — I keep updating it. If you've found a free AI tool that's genuinely
+                            good, open an issue or PR on <a href="https://github.com/Diwak4r/Diwak4r" target="_blank"
+                                rel="noopener noreferrer">GitHub</a> and I'll add it.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Progressive enhancement: Enable animations only after JS loads -->
+    <script>
+        // Immediately enable JS-based animations only after DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add js-enabled class to fade-in elements for progressive enhancement
+            document.querySelectorAll('.fade-in').forEach(function (el) {
+                el.classList.add('js-enabled');
+                // Force reflow to ensure transition works
+                void el.offsetHeight;
+            });
+
+            // Enhanced Intersection Observer with fallback
+            if ('IntersectionObserver' in window) {
+                var observerOptions = {
+                    threshold: 0.05,
+                    rootMargin: '0px 0px -20px 0px'
+                };
+
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.fade-in.js-enabled').forEach(function (el) {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback: show all content immediately if IntersectionObserver not supported
+                document.querySelectorAll('.fade-in.js-enabled').forEach(function (el) {
+                    el.classList.add('visible');
+                });
+            }
+        });
+
+        // Failsafe: ensure content is visible after 2 seconds regardless
+        setTimeout(function () {
+            document.querySelectorAll('.fade-in').forEach(function (el) {
+                if (!el.classList.contains('visible')) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 2000);
+    </script>
+
+    <!-- Main script with defer -->
+    <script src="../../js/script.js" defer></script>
+</body>
+
+</html>
