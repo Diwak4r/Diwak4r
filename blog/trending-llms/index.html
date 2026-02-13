@@ -89,7 +89,7 @@
         content="A curated list of the best trending LLMs and AI agent platforms you can use for free — from general agents to data analysis, OCR, and beyond.">
     <meta property="og:title" content="Best Trending LLMs & Agent Platforms (Free) | Diwakar Ray Yadav">
     <meta property="og:description"
-        content="14 powerful AI platforms with generous free tiers — agents, reasoning, multimodal, and more.">
+        content="17 powerful AI platforms with generous free tiers — agents, reasoning, multimodal, and more.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://diwakaryadav.com.np/blog/trending-llms/">
     <meta name="twitter:card" content="summary_large_image">
@@ -220,17 +220,20 @@
         }
 
         .platform-icon {
-            font-size: 2rem;
             flex-shrink: 0;
             width: 48px;
             height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             border-radius: var(--radius-sm);
-            color: white;
-            font-size: 1.5rem;
+            overflow: hidden;
+        }
+
+        .platform-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .platform-info {
@@ -297,6 +300,17 @@
 
         .contribute-box a:hover {
             color: var(--accent-secondary);
+        }
+
+        /* Invert monochrome icons in dark mode */
+        @media (prefers-color-scheme: dark) {
+            .platform-icon .mono-icon {
+                filter: invert(1);
+            }
+        }
+
+        [data-theme="dark"] .platform-icon .mono-icon {
+            filter: invert(1);
         }
 
         @media (max-width: 768px) {
@@ -383,7 +397,7 @@
                     <span class="blog-article-tag">AI & Tools</span>
                     <h1 class="blog-article-title font-display">Best Trending LLMs and Agent Platforms (Free, Generous
                         Limits)</h1>
-                    <p class="blog-article-subtitle">Tested, bookmarked, actually used. 16 AI tools worth your time —
+                    <p class="blog-article-subtitle">Tested, bookmarked, actually used. 17 AI tools worth your time —
                         all free.</p>
                     <div class="blog-article-meta">
                         <span>📅 February 2026</span>
@@ -409,41 +423,52 @@
 
                     <div class="platform-grid">
                         <a href="https://manus.im/app" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">🧠</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/manus.svg"
+                                    alt="Manus AI" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">General Agent</span>
                                 <div class="platform-name">Manus AI</div>
-                                <div class="platform-desc">Tell it to research something, plan a trip, or draft a
-                                    report. It figures out the steps on its own. Invite-based but worth the wait.</div>
+                                <div class="platform-desc">Now part of Meta. Tell it to research, plan a trip, or draft
+                                    a report — it figures out the steps on its own. Cloud Sandbox runs tasks 24/7. Free
+                                    tier with 1T token pool.</div>
                                 <span class="platform-link">manus.im/app →</span>
                             </div>
                         </a>
 
                         <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">⚡</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg"
+                                    alt="Claude" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Task Executor</span>
+                                <span class="category-label">Task Executor • Sonnet 4.5</span>
                                 <div class="platform-name">Claude</div>
-                                <div class="platform-desc">Best writing quality out there, period. The new task mode
-                                    turns it into a proper workflow engine. My daily driver.</div>
+                                <div class="platform-desc">Sonnet 4.5 is free with dynamic limits. Best writing quality
+                                    out there. Computer use, web search, and agentic workflows built in. My daily
+                                    driver.</div>
                                 <span class="platform-link">claude.ai/new →</span>
                             </div>
                         </a>
 
                         <a href="https://www.kimi.com/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">🎯</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kimi-color.svg"
+                                    alt="Kimi" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Agentic Execution</span>
-                                <div class="platform-name">Kimi + Agent</div>
-                                <div class="platform-desc">Chain tasks: research → summarize → draft. One prompt, done.
-                                    No setup friction at all.</div>
+                                <span class="category-label">K2.5 • Agent Swarm</span>
+                                <div class="platform-name">Kimi (K2.5)</div>
+                                <div class="platform-desc">K2.5 with Agent Swarm beta. Chain tasks: research →
+                                    summarize → draft. Plus Docs, Slides, Sheets, Deep Research. No setup friction.
+                                </div>
                                 <span class="platform-link">kimi.com →</span>
                             </div>
                         </a>
 
                         <a href="https://agent.minimax.io/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
-                            <div class="platform-icon">🔮</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/minimax-color.svg"
+                                    alt="Minimax" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Agent</span>
                                 <div class="platform-name">Minimax Agent</div>
@@ -461,7 +486,9 @@
 
                     <div class="platform-grid">
                         <a href="https://julius.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">📈</div>
+                            <div class="platform-icon"><img
+                                    src="https://www.google.com/s2/favicons?domain=julius.ai&sz=128" alt="Julius AI"
+                                    loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Data Analyst</span>
                                 <div class="platform-name">Julius AI</div>
@@ -472,7 +499,9 @@
                         </a>
 
                         <a href="https://shortcut.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">📋</div>
+                            <div class="platform-icon"><img
+                                    src="https://www.google.com/s2/favicons?domain=shortcut.ai&sz=128" alt="Shortcut AI"
+                                    loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Excel Agent</span>
                                 <div class="platform-name">Shortcut AI</div>
@@ -483,18 +512,21 @@
                         </a>
 
                         <a href="https://chat.z.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">📑</div>
+                            <div class="platform-icon"><img src="https://z-cdn.chatglm.cn/z-blog/z-icon.svg" alt="GLM 5"
+                                    loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Slides • Data • Reports</span>
-                                <div class="platform-name">GLM 5</div>
-                                <div class="platform-desc">Need a slide deck, a data report, or both? One prompt. The
-                                    outputs are surprisingly not terrible.</div>
+                                <div class="platform-name">GLM-5 & GLM-4.7 (Z AI)</div>
+                                <div class="platform-desc">Powered by GLM-5 and GLM-4.7. Need a slide deck, a data
+                                    report, or a website? One prompt. Free AI chatbot & agent.</div>
                                 <span class="platform-link">chat.z.ai →</span>
                             </div>
                         </a>
 
                         <a href="https://skywork.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">☁️</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/skywork-color.svg"
+                                    alt="Skywork" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Multimodal • Doc • Sheet • PPT</span>
                                 <div class="platform-name">Skywork</div>
@@ -512,71 +544,100 @@
                     <div class="platform-grid">
                         <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
-                            <div class="platform-icon">🔬</div>
+                            <div class="platform-icon"><img class="mono-icon"
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/aistudio.svg"
+                                    alt="AI Studio" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">OCR • Multimodal • Understanding</span>
+                                <span class="category-label">OCR • Multimodal • Gemini 3</span>
                                 <div class="platform-name">AI Studio (Google)</div>
-                                <div class="platform-desc">Best OCR I've seen. Upload an image, a doc, anything — it
-                                    just gets it. Free tier is absurdly generous. Go try it.</div>
+                                <div class="platform-desc">Now running Gemini 3. Best OCR I've seen. Upload an image, a
+                                    doc,
+                                    anything — it just gets it. Free tier is absurdly generous.</div>
                                 <span class="platform-link">aistudio.google.com →</span>
                             </div>
                         </a>
 
                         <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
-                            <div class="platform-icon">💎</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/gemini-color.svg"
+                                    alt="Gemini" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Flash Thinking</span>
-                                <div class="platform-name">Gemini</div>
-                                <div class="platform-desc">Fast. Accurate. Free. The "flash thinking" mode is perfect
-                                    when you need quick answers without the long chain-of-thought wait.</div>
+                                <span class="category-label">Gemini 3 • Deep Think</span>
+                                <div class="platform-name">Gemini 3</div>
+                                <div class="platform-desc">Gemini 3 Flash is the new default — blazing fast. Deep Think
+                                    mode just launched for heavy scientific reasoning. Still free, still insane.</div>
                                 <span class="platform-link">gemini.google.com/app →</span>
                             </div>
                         </a>
 
                         <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
-                            <div class="platform-icon">🌊</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/deepseek-color.svg"
+                                    alt="DeepSeek" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Updated</span>
+                                <span class="category-label">DeepSeek V3.2</span>
                                 <div class="platform-name">DeepSeek</div>
-                                <div class="platform-desc">Updated recently. Still free. Still punches way above its
-                                    weight on code and reasoning. Just go.</div>
+                                <div class="platform-desc">V3.2 just dropped — enhanced Agent capabilities with
+                                    integrated thinking/reasoning. Still free. On web, app, and API.</div>
                                 <span class="platform-link">chat.deepseek.com →</span>
                             </div>
                         </a>
 
                         <a href="https://stepfun.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">⚙️</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/stepfun-color.svg"
+                                    alt="Stepfun" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Fast Reasoning</span>
+                                <span class="category-label">Step-3.5-Flash</span>
                                 <div class="platform-name">Stepfun</div>
-                                <div class="platform-desc">Blazing fast. When you don't have time for a 30-second
-                                    thinking pause, this is your go-to.</div>
+                                <div class="platform-desc">Step-3.5-Flash is blazing fast. Deep Research beta just
+                                    launched too. Audio/image gen via Step Audio Studio. When you need speed, this is
+                                    it.</div>
                                 <span class="platform-link">stepfun.ai →</span>
                             </div>
                         </a>
 
-                        <a href="https://grok.x.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">🦊</div>
+                        <a href="https://grok.com/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/grok.svg" alt="Grok"
+                                    loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Reasoning • Web Search</span>
-                                <div class="platform-name">Grok 3</div>
-                                <div class="platform-desc">xAI's free chatbot. Real-time web search, image
-                                    understanding, and zero filter. 100+ messages/hr. Surprisingly fun to use.</div>
-                                <span class="platform-link">grok.x.ai →</span>
+                                <span class="category-label">Grok 4 Mini (Free)</span>
+                                <div class="platform-name">Grok 4</div>
+                                <div class="platform-desc">Grok 4 Mini is free (~10 msgs/day). Full Grok 4 + Heavy
+                                    need Premium. Real-time web search, image understanding, native tool use.</div>
+                                <span class="platform-link">grok.com →</span>
                             </div>
                         </a>
 
-                        <a href="https://llama.meta.com/playground" target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.llama.com/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
-                            <div class="platform-icon">🦙</div>
+                            <div class="platform-icon"><img
+                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/meta-color.svg"
+                                    alt="Meta Llama" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Open Weight • Code • Reasoning</span>
-                                <div class="platform-name">Llama 4 Playground</div>
-                                <div class="platform-desc">Meta's latest open model in a free playground. Insane at
-                                    code, long-context, and multilingual. No sign-up needed.</div>
-                                <span class="platform-link">llama.meta.com/playground →</span>
+                                <span class="category-label">Open Weight • Multimodal</span>
+                                <div class="platform-name">Llama 4 (Scout & Maverick)</div>
+                                <div class="platform-desc">Scout (109B) and Maverick (400B) — natively multimodal,
+                                    open-weight models. Try via Meta AI, Llama API, or partner platforms like AWS
+                                    Bedrock.</div>
+                                <span class="platform-link">llama.com →</span>
+                            </div>
+                        </a>
+
+                        <a href="https://dr.miromind.ai/" target="_blank" rel="noopener noreferrer"
+                            class="platform-card">
+                            <div class="platform-icon"><img src="https://miromind.ai/favicon.svg" alt="MiroMind"
+                                    loading="lazy"></div>
+                            <div class="platform-info">
+                                <span class="category-label">Deep Research • Prediction</span>
+                                <div class="platform-name">MiroThinker (MiroMind)</div>
+                                <div class="platform-desc">Open-source deep research agent that scores 80.8% on the
+                                    GAIA benchmark. Thinks in multi-step chains, browses the web, runs code.
+                                    Science-grade reasoning, completely free.</div>
+                                <span class="platform-link">dr.miromind.ai →</span>
                             </div>
                         </a>
                     </div>
@@ -588,23 +649,27 @@
                     <div class="platform-grid">
                         <a href="https://happycapy.ai/app" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
-                            <div class="platform-icon">🖱️</div>
+                            <div class="platform-icon"><img
+                                    src="https://www.google.com/s2/favicons?domain=happycapy.ai&sz=128" alt="HappyCapy"
+                                    loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Agentic Desktop</span>
+                                <span class="category-label">Agent-Native Computer</span>
                                 <div class="platform-name">HappyCapy AI</div>
-                                <div class="platform-desc">Runs in your browser. Clicks things for you. Automates tasks
-                                    on screen. It's like having an intern — except it doesn't take lunch breaks.</div>
+                                <div class="platform-desc">Agent-native computer for developers. Works with Claude
+                                    Code, 150+ AI models, secure sandbox. Let AI agents work for you 24/7.</div>
                                 <span class="platform-link">happycapy.ai/app →</span>
                             </div>
                         </a>
 
                         <a href="https://arena.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon">🏟️</div>
+                            <div class="platform-icon"><img
+                                    src="https://www.google.com/s2/favicons?domain=arena.ai&sz=128" alt="Arena"
+                                    loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Images • Text • Code • Video</span>
                                 <div class="platform-name">Arena</div>
-                                <div class="platform-desc">Images, text, code, video — all free, all in one place. Best
-                                    way to compare models side by side before committing to anything.</div>
+                                <div class="platform-desc">Battle Mode: compare models side by side. ChatGPT, Claude,
+                                    Gemini — all free, crowdsourced benchmarks and leaderboards.</div>
                                 <span class="platform-link">arena.ai →</span>
                             </div>
                         </a>
