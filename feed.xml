@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diwakar Ray Yadav Blog</title>
+    <link>https://diwakaryadav.com.np/blog/</link>
+    <description>AI articles about prompt engineering, free AI tools, LLMs, and automation workflows.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://diwakaryadav.com.np/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>Best Free AI Tools, LLMs, and Agent Platforms in 2026</title>
+      <link>https://diwakaryadav.com.np/blog/trending-llms/</link>
+      <guid>https://diwakaryadav.com.np/blog/trending-llms/</guid>
+      <pubDate>Fri, 13 Feb 2026 00:00:00 GMT</pubDate>
+      <description>A practical list of free AI tools, LLMs, and agent platforms in 2026, including chatbots, OCR tools, research agents, and workflow assistants.</description>
+      <category>AI &amp; Tools</category>
+    </item>
+
+    <item>
+      <title>12 AI Prompting Tips for Better ChatGPT and Claude Results</title>
+      <link>https://diwakaryadav.com.np/blog/prompting-tips/</link>
+      <guid>https://diwakaryadav.com.np/blog/prompting-tips/</guid>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 GMT</pubDate>
+      <description>Learn 12 practical AI prompting tips to get better results from ChatGPT, Claude, and other AI assistants.</description>
+      <category>AI &amp; Prompting</category>
+    </item>
+  </channel>
+</rss>

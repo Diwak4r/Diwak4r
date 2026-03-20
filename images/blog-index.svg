@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Diwakar Ray Yadav AI Blog</title>
+  <desc id="desc">AI blog covering prompt engineering, free AI tools, LLMs, and automation workflows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fefae0"/>
+      <stop offset="100%" stop-color="#f4f3ee"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#d69f7e"/>
+      <stop offset="100%" stop-color="#a98467"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#ffffff" opacity="0.92"/>
+  <rect x="72" y="72" width="1056" height="10" rx="5" fill="url(#accent)"/>
+  <text x="120" y="188" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#a98467">Diwakar Ray Yadav</text>
+  <text x="120" y="284" font-family="Segoe UI, Arial, sans-serif" font-size="66" font-weight="800" fill="#2d3748">AI Blog</text>
+  <text x="120" y="358" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#4a5568">Prompt engineering, free AI tools, LLMs,</text>
+  <text x="120" y="406" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#4a5568">and practical automation workflows.</text>
+  <rect x="120" y="464" width="390" height="52" rx="26" fill="url(#accent)"/>
+  <text x="154" y="499" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">diwakaryadav.com.np/blog</text>
+</svg>

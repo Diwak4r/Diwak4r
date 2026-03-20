@@ -158,13 +158,34 @@ body {
 /* Responsive Grid */
 @media (max-width: 768px) {
 
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
     .grid-cols-2,
     .grid-cols-3 {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 
+    .container {
+        padding: 0 1rem;
+    }
+
     .section {
         padding: 3rem 0;
+    }
+
+    .card,
+    .project-card,
+    .hero-content,
+    .hero-text,
+    .hero-gallery,
+    .contact-content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
     }
 
     .text-4xl {
@@ -388,11 +409,29 @@ body {
     }
 
     .mobile-menu-btn {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex: 0 0 auto;
     }
 
     .theme-toggle {
-        margin-right: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        flex: 0 0 auto;
+    }
+
+    .nav {
+        gap: 0.25rem;
+        justify-content: space-between;
+        min-width: 0;
+    }
+
+    .logo {
+        flex: 1 1 auto;
+        min-width: 0;
     }
 }
 
@@ -427,6 +466,28 @@ body {
 
     .hero-buttons {
         justify-content: center;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(1.8rem, 8.5vw, 2.4rem);
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .hero-text .subtitle {
+        font-size: 1rem;
+        overflow-wrap: anywhere;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 6.5rem 0 3rem;
     }
 }
 
@@ -811,7 +872,7 @@ body {
 /* Mobile Menu Transition */
 @media (max-width: 768px) {
     .nav-links {
-        display: flex;
+        display: none;
         flex-direction: column;
         position: absolute;
         top: 100%;
@@ -830,7 +891,7 @@ body {
     }
 
     .nav-links.nav-links-open {
-        /* Visible state */
+        display: flex;
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
@@ -842,6 +903,19 @@ body {
     margin-bottom: 3rem;
     padding-bottom: 3rem;
     border-bottom: 1px solid var(--border-light);
+}
+
+@media (max-width: 768px) {
+    .blog-card-content,
+    .blog-card-title,
+    .blog-card-excerpt,
+    .blog-card-meta,
+    .blog-article-title,
+    .blog-article-subtitle {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
 }
 
 .blog-meta {

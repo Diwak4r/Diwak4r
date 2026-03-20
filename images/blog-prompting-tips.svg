@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">12 AI Prompting Tips for Better ChatGPT and Claude Results</title>
+  <desc id="desc">A practical guide to AI prompting tips and prompt engineering by Diwakar Ray Yadav.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f4f3ee"/>
+      <stop offset="100%" stop-color="#fefae0"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#a98467"/>
+      <stop offset="100%" stop-color="#d69f7e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="82" width="1040" height="466" rx="30" fill="#ffffff" opacity="0.95"/>
+  <rect x="80" y="82" width="1040" height="12" rx="6" fill="url(#accent)"/>
+  <text x="128" y="170" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#a98467">AI and Prompting</text>
+  <text x="128" y="252" font-family="Segoe UI, Arial, sans-serif" font-size="62" font-weight="800" fill="#2d3748">12 AI Prompting Tips</text>
+  <text x="128" y="322" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700" fill="#2d3748">for Better ChatGPT</text>
+  <text x="128" y="380" font-family="Segoe UI, Arial, sans-serif" font-size="48" font-weight="700" fill="#2d3748">and Claude Results</text>
+  <text x="128" y="458" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#4a5568">Prompt engineering tactics for clearer, more useful AI outputs.</text>
+  <circle cx="980" cy="220" r="110" fill="#d69f7e" opacity="0.16"/>
+  <circle cx="920" cy="392" r="76" fill="#a98467" opacity="0.18"/>
+  <rect x="892" y="454" width="182" height="54" rx="27" fill="url(#accent)"/>
+  <text x="935" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">12 tips</text>
+</svg>

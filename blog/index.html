@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>Blog | Diwakar Ray Yadav</title>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <title>AI Blog, Prompting Tips, and Free AI Tools | Diwakar Ray Yadav</title>
     <link rel="canonical" href="https://diwakaryadav.com.np/blog/">
 
     <!-- Performance: Preconnect to external resources -->
@@ -61,15 +62,57 @@
     <!-- Google Sans Flex - Premium Variable Font -->
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
         rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
+        href="https://diwakaryadav.com.np/feed.xml">
     <link rel="stylesheet" href="../css/style.css">
 
     <!-- SEO & Open Graph -->
-    <meta name="description" content="Blog posts by Diwakar Ray Yadav - AI tips, tech insights, and more.">
-    <meta property="og:title" content="Blog | Diwakar Ray Yadav">
-    <meta property="og:description" content="Thoughts, tutorials, and insights on AI & technology">
+    <meta name="description"
+        content="AI blog by Diwakar Ray Yadav covering prompt engineering, free AI tools, agent platforms, and practical automation workflows.">
+    <meta property="og:title" content="AI Blog, Prompting Tips, and Free AI Tools | Diwakar Ray Yadav">
+    <meta property="og:description"
+        content="Read practical posts about prompt engineering, AI tools, LLMs, and automation workflows.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://diwakaryadav.com.np/blog/">
+    <meta property="og:image" content="https://diwakaryadav.com.np/images/blog-index.svg">
+    <meta property="og:image:alt" content="Diwakar Ray Yadav AI blog">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Blog, Prompting Tips, and Free AI Tools | Diwakar Ray Yadav">
+    <meta name="twitter:description"
+        content="Read practical posts about prompt engineering, AI tools, LLMs, and automation workflows.">
+    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/blog-index.svg">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Diwakar Ray Yadav Blog",
+            "url": "https://diwakaryadav.com.np/blog/",
+            "description": "AI blog with hands-on articles about AI tools, prompt engineering, and automation.",
+            "author": {
+                "@type": "Person",
+                "name": "Diwakar Ray Yadav",
+                "url": "https://diwakaryadav.com.np/about/"
+            },
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "url": "https://diwakaryadav.com.np/blog/trending-llms/",
+                        "name": "Best Free AI Tools, LLMs, and Agent Platforms in 2026"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "url": "https://diwakaryadav.com.np/blog/prompting-tips/",
+                        "name": "12 AI Prompting Tips for Better ChatGPT and Claude Results"
+                    }
+                ]
+            }
+        }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon"
@@ -188,7 +231,14 @@
 
         @media (max-width: 768px) {
             .blog-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .blog-card-title,
+            .blog-card-excerpt,
+            .blog-card-meta {
+                overflow-wrap: anywhere;
+                word-break: break-word;
             }
         }
     </style>
@@ -246,13 +296,13 @@
                     <div class="blog-card-image">🚀</div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Tools</span>
-                        <h2 class="blog-card-title">Best Trending LLMs and Agent Platforms (Free, Generous Limits)
-                        </h2>
+                        <h2 class="blog-card-title">Best Free AI Tools, LLMs, and Agent Platforms in 2026</h2>
                         <p class="blog-card-excerpt">
-                            Tested, bookmarked, actually used. 16 free AI tools worth your time — just click and try.
+                            A practical list of free AI tools, LLMs, and agent platforms that are actually worth
+                            testing in 2026.
                         </p>
                         <div class="blog-card-meta">
-                            <span>📅 February 2026 • 5 min read</span>
+                            <span>📅 <time datetime="2026-02-13">February 2026</time> • 5 min read</span>
                             <span class="blog-card-link">Read More →</span>
                         </div>
                     </div>
@@ -263,14 +313,13 @@
                     <div class="blog-card-image">🤖</div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Prompting</span>
-                        <h2 class="blog-card-title">Stop Talking to AI Like a Bot: 12 Cheat Codes for God-Tier Prompts
-                        </h2>
+                        <h2 class="blog-card-title">12 AI Prompting Tips for Better ChatGPT and Claude Results</h2>
                         <p class="blog-card-excerpt">
-                            Most people use 10% of AI's capability. Here's the playbook to unlock the other 90% with
-                            practical prompting techniques.
+                            A hands-on guide to writing clearer prompts, reducing hallucinations, and getting more
+                            useful AI outputs.
                         </p>
                         <div class="blog-card-meta">
-                            <span>📅 December 2024 • 10 min read</span>
+                            <span>📅 <time datetime="2024-12-01">December 2024</time> • 10 min read</span>
                             <span class="blog-card-link">Read More →</span>
                         </div>
                     </div>

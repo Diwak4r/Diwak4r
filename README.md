@@ -1,45 +1,15 @@
-# Hey, I'm Diwakar 👋
+# Hi, I'm Diwakar
 
-BIT student at Himalayan Whitehouse International College, based in Kathmandu, Nepal.
+I'm a BIT student from Kathmandu, Nepal.
 
-I'm not a senior developer. I'm not an AI expert. I'm someone figuring it out—one project at a time.
+I build practical web projects, explore AI and LLM workflows, and share what I'm learning as I go.
 
----
+I'm interested in:
 
-### Where I'm At
+- AI and automation
+- useful products for learning and everyday work
+- making tech easier for non-technical people
 
-- 🎓 Studying **Bachelor of Information Technology** (2024 - Present)
-- 💼 Working as an **Office Assistant** at MC Group of Companies
-- 📚 Previously taught IT basics for 2+ years
+I'm not a senior engineer or an AI expert. I'm someone learning in public, building real things, and getting better with each project.
 
-### What I'm Exploring
-
-I'm genuinely curious about how AI is changing how we work and learn. Currently digging into:
-
-- Generative AI & LLMs
-- Automation & workflows
-- Making tech accessible to non-technical people
-
-No claims of mastery—just honest exploration.
-
----
-
-### Projects
-
-| Project | What It Is |
-| :--- | :--- |
-| [Pryzmira](https://pryzmira.diwakaryadav.com.np/) | Educational platform for skill development |
-| [Police Exam Prep](https://project.diwakaryadav.com.np/) | Exam preparation tool |
-| [Portfolio](https://diwakaryadav.com.np/) | This site—where I document my journey |
-
----
-
-### Let's Connect
-
-- 📧 [reachout.diwakar@gmail.com](mailto:reachout.diwakar@gmail.com)
-- 🔗 [LinkedIn](https://www.linkedin.com/in/diwakar-ray-yadav-aa3498281/)
-- 𝕏 [@Norwakar](https://x.com/Norwakar)
-
----
-
-<sub>I'll come back stronger.</sub>
+[Portfolio](https://diwakaryadav.com.np/) | [LinkedIn](https://www.linkedin.com/in/diwakar-ray-yadav-aa3498281/) | [X](https://x.com/Norwakar) | [Email](mailto:Diwak4r.comp@gmail.com)
