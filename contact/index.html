@@ -63,12 +63,26 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <!-- SEO & Open Graph -->
-    <meta name="description" content="Contact Diwakar Ray Yadav for web development projects and technical support.">
+    <meta name="description" content="Get in touch with Diwakar Ray Yadav for web development projects, collaborations, and AI opportunities.">
     <meta property="og:title" content="Contact | Diwakar Ray Yadav">
     <meta property="og:description" content="Let's discuss your next project or opportunity.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://diwakaryadav.com.np/contact/">
+    <meta property="og:image" content="https://diwakaryadav.com.np/images/diwakar-portrait.jpg">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact | Diwakar Ray Yadav">
+    <meta name="twitter:description" content="Get in touch with Diwakar Ray Yadav for web development projects and AI opportunities.">
+    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/diwakar-portrait.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Diwakar Ray Yadav",
+        "url": "https://diwakaryadav.com.np/contact/",
+        "description": "Contact form and contact information for Diwakar Ray Yadav."
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon"
@@ -76,6 +90,7 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -109,13 +124,13 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
             </nav>
         </div>
     </header>
 
     <!-- Contact Section -->
-    <section class="section">
+    <section class="section" id="main-content">
         <div class="container">
             <div class="text-center mb-8 fade-in">
                 <h2 class="text-4xl font-display font-semibold mb-4">Get In Touch</h2>
@@ -143,8 +158,8 @@
                         <div class="form-group">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required
-                                minlength="2" maxlength="100" pattern="[A-Za-z\s\-']+"
-                                title="Please enter a valid name (letters, spaces, hyphens, apostrophes only)"
+                                minlength="2" maxlength="100"
+                                title="Please enter your name"
                                 autocomplete="name">
                         </div>
                         <div class="form-group">
@@ -173,7 +188,7 @@
                                 placeholder="Tell me about your project..." required minlength="10"
                                 maxlength="5000"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                     </form>
                 </div>
 

@@ -66,16 +66,6 @@
             padding-top: 80px;
         }
 
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #121212;
-                color: #E2E8F0;
-            }
-
-            .header {
-                background: rgba(18, 18, 18, 0.95);
-            }
-        }
     </style>
 
     <!-- Google Sans Flex - Premium Variable Font -->
@@ -147,7 +137,7 @@
                 "@type": "Person",
                 "name": "Diwakar Ray Yadav",
                 "url": "https://diwakaryadav.com.np/",
-                "image": "https://diwakaryadav.com.np/images/aboutme.webp"
+                "image": "https://diwakaryadav.com.np/images/diwakar-portrait.jpg"
             }
         }
     </script>
@@ -321,6 +311,7 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -353,13 +344,13 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
             </nav>
         </div>
     </header>
 
     <!-- Blog Article -->
-    <section class="section" id="blog-content">
+    <section class="section" id="main-content" role="region" aria-label="Blog article">
         <div class="container">
             <article class="blog-article fade-in" role="article" itemscope itemtype="https://schema.org/BlogPosting">
                 <a href="/blog/" class="blog-back-link" aria-label="Return to blog listing">← Back to Blog</a>
@@ -588,54 +579,6 @@
             <p>&copy; 2026 Diwakar Ray Yadav. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- Progressive enhancement: Enable animations only after JS loads -->
-    <script>
-        // Immediately enable JS-based animations only after DOM is ready
-        document.addEventListener('DOMContentLoaded', function () {
-            // Add js-enabled class to fade-in elements for progressive enhancement
-            document.querySelectorAll('.fade-in').forEach(function (el) {
-                el.classList.add('js-enabled');
-                // Force reflow to ensure transition works
-                void el.offsetHeight;
-            });
-
-            // Enhanced Intersection Observer with fallback
-            if ('IntersectionObserver' in window) {
-                var observerOptions = {
-                    threshold: 0.05,
-                    rootMargin: '0px 0px -20px 0px'
-                };
-
-                var observer = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, observerOptions);
-
-                document.querySelectorAll('.fade-in.js-enabled').forEach(function (el) {
-                    observer.observe(el);
-                });
-            } else {
-                // Fallback: show all content immediately if IntersectionObserver not supported
-                document.querySelectorAll('.fade-in.js-enabled').forEach(function (el) {
-                    el.classList.add('visible');
-                });
-            }
-        });
-
-        // Failsafe: ensure content is visible after 2 seconds regardless
-        setTimeout(function () {
-            document.querySelectorAll('.fade-in').forEach(function (el) {
-                if (!el.classList.contains('visible')) {
-                    el.classList.add('visible');
-                }
-            });
-        }, 2000);
-    </script>
 
     <!-- Main script with defer -->
     <script src="../../js/script.js" defer></script>

@@ -245,6 +245,7 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -277,13 +278,13 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
             </nav>
         </div>
     </header>
 
     <!-- Blog Section -->
-    <section class="section">
+    <section class="section" id="main-content" role="region" aria-label="Blog posts">
         <div class="container">
             <div class="text-center mb-8 fade-in">
                 <h1 class="text-4xl font-display font-semibold mb-4">Blog</h1>
