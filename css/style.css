@@ -525,16 +525,6 @@ body {
     flex-wrap: wrap;
 }
 
-.gdg-watermark {
-    position: absolute;
-    bottom: -1.5rem;
-    right: 0;
-    width: 80px;
-    height: 28px;
-    pointer-events: none;
-    color: var(--text-primary);
-}
-
 /* Skip Navigation (Accessibility) */
 .skip-link {
     position: absolute;
