@@ -953,6 +953,10 @@ body {
     z-index: 1;
 }
 
+.gallery-item.main img {
+    object-position: center top;
+}
+
 /* Sub Image 1 (Top Right - 40%) */
 .gallery-item.sub-1 {
     grid-column: 8 / 13;
