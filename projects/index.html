@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script>
+        (function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();
+    </script>
     <title>Projects | Diwakar Ray Yadav</title>
     <link rel="canonical" href="https://diwakaryadav.com.np/projects/">
 
@@ -156,6 +159,27 @@
             </div>
 
             <div class="grid grid-cols-2">
+                <!-- Project: Nepal AI Gateway -->
+                <div class="project-card fade-in">
+                    <div style="width:100%;height:200px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);display:flex;align-items:center;justify-content:center;">
+                        <span style="font-size:3.5rem;">🧠</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Nepal AI Gateway</h3>
+                        <p class="project-description">
+                            A live experimental project to understand how AI model access, user accounts, usage flow, and backend-connected access can work in a simple product.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">AI/LLM</span>
+                            <span class="tag">Web App</span>
+                            <span class="tag">Active</span>
+                        </div>
+                        <a href="https://ai.diwakaryadav.com.np/" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-primary">View
+                            Project</a>
+                    </div>
+                </div>
+
                 <!-- Project 1: Pryzmira -->
                 <div class="project-card fade-in">
                     <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=600&h=300&fit=crop"
@@ -179,17 +203,12 @@
                     </div>
                 </div>
 
-                <!-- Upcoming: Task Trace -->
-                <div class="project-card fade-in" style="opacity: 0.7; border-style: dashed;">
-                    <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=300&fit=crop"
-                        alt="Task Trace 👀" class="project-image" loading="lazy">
-                    <div class="project-content">
-                        <h3 class="project-title">Task Trace <span style="font-size:1.2em;">👀</span></h3>
-                        <p class="project-description">
-                            👀 A new project in the works. Details coming soon — stay tuned.</p>
-                        <div class="project-tags">
-                            <span class="tag tag-live">Coming Soon</span>
-                        </div>
+                <!-- More Projects Coming Soon -->
+                <div class="project-card fade-in" style="display:flex;align-items:center;justify-content:center;min-height:300px;border:2px dashed var(--border-light);background:var(--bg-secondary);">
+                    <div style="text-align:center;padding:2rem;">
+                        <span style="font-size:3rem;display:block;margin-bottom:1rem;">🚀</span>
+                        <h3 class="project-title">More Projects Coming Soon</h3>
+                        <p class="project-description">Currently building and exploring new ideas.</p>
                     </div>
                 </div>
             </div>

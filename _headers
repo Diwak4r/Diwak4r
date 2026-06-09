@@ -25,8 +25,8 @@
   
   # Cross-Origin policies
   Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: require-corp
-  Cross-Origin-Resource-Policy: same-origin
+  Cross-Origin-Embedder-Policy: credentialless
+  Cross-Origin-Resource-Policy: same-site
 
 /images/*
   # Cache images for 1 year

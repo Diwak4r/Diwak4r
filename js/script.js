@@ -2,19 +2,9 @@
 const themeToggle = document.getElementById('theme-toggle');
 const html = document.documentElement;
 
-// Check for saved theme preference or system preference
-const savedTheme = localStorage.getItem('theme');
-const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-if (savedTheme) {
-    html.setAttribute('data-theme', savedTheme);
-} else if (systemTheme === 'dark') {
-    html.setAttribute('data-theme', 'dark');
-}
-
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
+        const currentTheme = html.getAttribute('data-theme') || 'light';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
         html.setAttribute('data-theme', newTheme);
