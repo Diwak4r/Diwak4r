@@ -52,7 +52,7 @@
 
 /* System-level dark mode support — applies when prefers-color-scheme: dark (before JS toggles data-theme) */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --bg-primary: #121212;
         --bg-secondary: #1E1E1E;
         --text-primary: #E2E8F0;
