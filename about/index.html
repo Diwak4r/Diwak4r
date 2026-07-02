@@ -6,46 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <script>
-        (function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();
-    </script>
     <title>About | Diwakar Ray Yadav</title>
     <link rel="canonical" href="https://diwakaryadav.com.np/about/">
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Performance: Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Critical CSS fallback for content visibility -->
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS: variables, reset, header, layout -->
     <style>
-        .fade-in {
-            opacity: 1 !important;
-            transform: none !important;
+        :root {
+            --bg-primary: #FEFAE0;
+            --bg-secondary: #F4F3EE;
+            --text-primary: #2D3748;
+            --text-secondary: #4A5568;
+            --text-muted: #718096;
+            --accent-primary: #B87A5C;
+            --accent-secondary: #A98467;
+            --border-light: #E2E8F0;
+            --card-bg: #FFFFFF;
+            --header-bg: rgba(254, 250, 224, 0.95);
+            --header-bg-scroll: rgba(254, 250, 224, 0.98);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .fade-in.js-enabled {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --text-primary: #E2E8F0;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent-primary: #FB923C;
+            --accent-secondary: #F97316;
+            --border-light: #2D2D2D;
+            --card-bg: #1E1E1E;
+            --header-bg: rgba(18, 18, 18, 0.95);
+            --header-bg-scroll: rgba(18, 18, 18, 0.98);
         }
 
-        .fade-in.js-enabled.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-optical-sizing: auto;
-            margin: 0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
         }
 
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+        .font-display {
+            font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 600;
         }
 
         .container {
@@ -54,29 +97,91 @@
             padding: 0 1.5rem;
         }
 
-        .section {
-            padding: 5rem 0;
-            padding-top: 100px;
+        .section { padding: 5rem 0; padding-top: 100px; }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--header-bg);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid color-mix(in srgb, var(--border-light) 60%, transparent);
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.925rem;
+        }
+
+        .logo {
+            font-size: 1.375rem;
+            font-weight: 650;
+            color: var(--accent-secondary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
         }
     </style>
 
-    <!-- Google Sans Flex - Premium Variable Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.4a3a12ca.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="../css/style.4a3a12ca.css"></noscript>
 
     <!-- SEO & Open Graph -->
     <meta name="description"
         content="About Diwakar Ray Yadav - A tech enthusiast exploring AI, building solutions, and bridging the gap between technology and people.">
     <meta property="og:title" content="About | Diwakar Ray Yadav">
     <meta property="og:description" content="My journey, skills, and vision in technology.">
-    <meta property="og:image" content="https://diwakaryadav.com.np/images/diwakar-portrait.jpg">
+    <meta property="og:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://diwakaryadav.com.np/about/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About | Diwakar Ray Yadav">
     <meta name="twitter:description" content="BIT student and AI explorer based in Kathmandu, Nepal.">
-    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/diwakar-portrait.jpg">
+    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
 
     <script type="application/ld+json">
     {
@@ -84,7 +189,7 @@
         "@type": "Person",
         "name": "Diwakar Ray Yadav",
         "url": "https://diwakaryadav.com.np/about/",
-        "image": "https://diwakaryadav.com.np/images/diwakar-portrait.jpg",
+        "image": "https://diwakaryadav.com.np/images/hero-800.webp",
         "jobTitle": "BIT Student and AI Explorer",
         "description": "BIT student at Purbanchal University and full-time professional at MC Group of Companies, Kathmandu. Exploring AI tools, automation, and web development.",
         "worksFor": {
@@ -103,10 +208,6 @@
         ]
     }
     </script>
-
-    <!-- Favicon -->
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
 
     <style>
         /* About Page Specific Styles */
@@ -480,7 +581,9 @@
                 <div class="profile-card card fade-in">
                     <div class="profile-image-wrapper">
                         <img src="../images/home.webp" alt="Diwakar Ray Yadav" class="profile-image"
-                            loading="lazy" />
+                            width="600" height="800" loading="lazy" decoding="async"
+                            srcset="../images/home.webp 1200w, ../images/aboutme.webp 1200w"
+                            sizes="(max-width: 768px) 90vw, 33vw" />
                     </div>
                     <div class="profile-info">
                         <h2 class="profile-name">Diwakar Ray Yadav</h2>
@@ -520,14 +623,10 @@
                         <h3 class="text-2xl font-semibold">My Story</h3>
                         <div class="story-text">
                             <p>
-                                I'm a <span class="highlight-text">BIT student</span> at Himalayan Whitehouse
-                                International College, currently in my 4th semester. I work as an <span class="highlight-text">IT Operations + Executive Assistant</span>,
-                                supporting daily office coordination, IT troubleshooting, and executive workflows.
+                                I'm a <span class="highlight-text">BIT student</span> at Himalayan Whitehouse International College and a <span class="highlight-text">full-time professional</span> at MC Group of Companies, Kathmandu — working across IT operations, data analysis, and enterprise reporting.
                             </p>
                             <p>
-                                I'm interested in AI tools, LLMs, and practical automation — not as an expert, but as
-                                someone learning by building real things. I use modern tools seriously and enjoy turning
-                                unclear problems into working steps.
+                                I'm focused on AI tools, automation, and web development. This portfolio is where that work lives.
                             </p>
                         </div>
                     </div>
@@ -573,17 +672,12 @@
                                 <h4 class="font-semibold">Bachelor of Information Technology</h4>
                                 <p style="font-size: 0.9rem; color: var(--text-primary);">Himalayan Whitehouse International
                                     College</p>
-                                <p class="text-muted" style="font-size: 0.8rem;">2024 - Present (4th Semester)</p>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">2024 - Present</p>
                             </div>
                             <div class="timeline-item">
                                 <h4 class="font-semibold">Diploma in Computer Application</h4>
                                 <p style="font-size: 0.9rem; color: var(--text-primary);">IT Plus Computer Institute</p>
                                 <p style="font-size: 0.8rem; color: var(--text-muted);">2022 - 2023</p>
-                            </div>
-                            <div class="timeline-item">
-                                <h4 class="font-semibold">Higher Secondary Education (Science)</h4>
-                                <p class="text-secondary" style="font-size: 0.9rem;">Shree Mahadev Janata Model College, Harion</p>
-                                <p class="text-muted" style="font-size: 0.8rem;">Completed</p>
                             </div>
                         </div>
 
@@ -592,47 +686,47 @@
                             <h3>💻 Skills</h3>
                             <div class="skill-row">
                                 <div class="skill-header">
-                                    <span>Office IT & Executive Support</span>
-                                    <span>90%</span>
+                                    <span>Excel + M365</span>
+                                    <span>80%</span>
                                 </div>
                                 <div class="skill-bar-outer">
-                                    <div class="skill-bar-inner" style="width: 90%"></div>
+                                    <div class="skill-bar-inner" style="width: 80%"></div>
                                 </div>
                             </div>
                             <div class="skill-row">
                                 <div class="skill-header">
-                                    <span>System Administration</span>
-                                    <span>85%</span>
+                                    <span>Git + GitHub</span>
+                                    <span>70%</span>
                                 </div>
                                 <div class="skill-bar-outer">
-                                    <div class="skill-bar-inner" style="width: 85%"></div>
+                                    <div class="skill-bar-inner" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-row">
+                                <div class="skill-header">
+                                    <span>VS Code + Dev Workflow</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="skill-bar-outer">
+                                    <div class="skill-bar-inner" style="width: 70%"></div>
                                 </div>
                             </div>
                             <div class="skill-row">
                                 <div class="skill-header">
                                     <span>Prompt Engineering</span>
-                                    <span>85%</span>
+                                    <span>80%</span>
                                 </div>
                                 <div class="skill-bar-outer">
-                                    <div class="skill-bar-inner" style="width: 85%"></div>
+                                    <div class="skill-bar-inner" style="width: 80%"></div>
                                 </div>
                             </div>
                             <div class="skill-row">
                                 <div class="skill-header">
                                     <span>Web Development</span>
-                                    <span>80%</span>
+                                    <span>50%</span>
                                 </div>
                                 <div class="skill-bar-outer">
-                                    <div class="skill-bar-inner" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-row">
-                                <div class="skill-header">
-                                    <span>AI/LLM Tools</span>
-                                    <span>80%</span>
-                                </div>
-                                <div class="skill-bar-outer">
-                                    <div class="skill-bar-inner" style="width: 80%"></div>
+                                    <div class="skill-bar-inner" style="width: 50%"></div>
                                 </div>
                             </div>
 
@@ -658,7 +752,7 @@
         </div>
     </footer>
 
-    <script src="../js/script.js" defer></script>
+    <script src="../js/script.8687d2a9.js" defer></script>
 </body>
 
 </html>

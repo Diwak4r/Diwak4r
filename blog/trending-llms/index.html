@@ -6,76 +6,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <script>
-        (function(){var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();
-    </script>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <title>Best Free AI Tools, LLMs, and Agent Platforms in 2026 | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/blog/trending-llms/">
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Critical CSS for immediate content visibility -->
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+    <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
+        href="https://diwakaryadav.com.np/feed.xml">
+
+    <!-- Critical CSS: variables, reset, header, article layout -->
     <style>
-        /* Prevent flash of invisible content - Content visible by default */
-        .fade-in {
-            opacity: 1 !important;
-            transform: none !important;
+        :root {
+            --bg-primary: #FEFAE0;
+            --bg-secondary: #F4F3EE;
+            --text-primary: #2D3748;
+            --text-secondary: #4A5568;
+            --text-muted: #718096;
+            --accent-primary: #B87A5C;
+            --accent-secondary: #A98467;
+            --border-light: #E2E8F0;
+            --card-bg: #FFFFFF;
+            --header-bg: rgba(254, 250, 224, 0.95);
+            --header-bg-scroll: rgba(254, 250, 224, 0.98);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .fade-in.js-enabled {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --text-primary: #E2E8F0;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent-primary: #FB923C;
+            --accent-secondary: #F97316;
+            --border-light: #2D2D2D;
+            --card-bg: #1E1E1E;
+            --header-bg: rgba(18, 18, 18, 0.95);
+            --header-bg-scroll: rgba(18, 18, 18, 0.98);
         }
 
-        .fade-in.js-enabled.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Critical above-the-fold styles */
         body {
             font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-optical-sizing: auto;
-            margin: 0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
         }
+
+        .font-display { font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 0; }
+        .blog-article { max-width: 800px; margin: 0 auto; padding-top: 80px; }
 
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            background: var(--header-bg);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid color-mix(in srgb, var(--border-light) 60%, transparent);
             z-index: 1000;
-            background: rgba(254, 250, 224, 0.95);
-            backdrop-filter: blur(10px);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; }
+        .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.925rem; }
+        .logo { font-size: 1.375rem; font-weight: 650; color: var(--accent-secondary); text-decoration: none; letter-spacing: -0.02em; }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--text-primary); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-primary); cursor: pointer; }
+
+        .platform-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
         }
 
-        .section {
-            padding: 5rem 0;
-        }
+        .platform-icon img { width: 100%; height: 100%; object-fit: contain; }
 
-        .blog-article {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 80px;
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .blog-article { padding-top: 60px; }
         }
-
     </style>
 
-    <!-- Google Sans Flex - Premium Variable Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
-        rel="stylesheet">
-    <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
-        href="https://diwakaryadav.com.np/feed.xml">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="../../css/style.css">
+    <!-- Main CSS (loaded asynchronously) -->
+    <link rel="stylesheet" href="../../css/style.4a3a12ca.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="../../css/style.4a3a12ca.css"></noscript>
 
     <!-- SEO & Open Graph -->
     <meta name="author" content="Diwakar Ray Yadav">
@@ -480,8 +541,8 @@
                     <div class="platform-grid">
                         <a href="https://manus.im/app" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/manus.svg"
-                                    alt="Manus AI" loading="lazy"></div>
+                                    src="../../images/icons/ai/manus.svg"
+                                    alt="Manus AI" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">General Agent</span>
                                 <div class="platform-name">Manus AI</div>
@@ -494,8 +555,8 @@
 
                         <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg"
-                                    alt="Claude" loading="lazy"></div>
+                                    src="../../images/icons/ai/claude-color.svg"
+                                    alt="Claude" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Task Executor • Claude 4.6</span>
                                 <div class="platform-name">Claude</div>
@@ -508,8 +569,8 @@
 
                         <a href="https://www.kimi.com/" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kimi-color.svg"
-                                    alt="Kimi" loading="lazy"></div>
+                                    src="../../images/icons/ai/kimi-color.svg"
+                                    alt="Kimi" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Long Context • Agent Workflows</span>
                                 <div class="platform-name">Kimi</div>
@@ -524,8 +585,8 @@
                         <a href="https://agent.minimax.io/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/minimax-color.svg"
-                                    alt="Minimax" loading="lazy"></div>
+                                    src="../../images/icons/ai/minimax-color.svg"
+                                    alt="Minimax" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Agent</span>
                                 <div class="platform-name">Minimax Agent</div>
@@ -538,8 +599,8 @@
                         <a href="https://www.zo.computer/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://www.google.com/s2/favicons?domain=zo.computer&sz=128" alt="Zo"
-                                    loading="lazy"></div>
+                                    src="../../images/icons/ai/zo-computer-favicon.png" alt="Zo"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Agent</span>
                                 <div class="platform-name">Zo</div>
@@ -558,8 +619,8 @@
                     <div class="platform-grid">
                         <a href="https://julius.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://www.google.com/s2/favicons?domain=julius.ai&sz=128" alt="Julius AI"
-                                    loading="lazy"></div>
+                                    src="../../images/icons/ai/julius-ai-favicon.png" alt="Julius AI"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Data Analyst</span>
                                 <div class="platform-name">Julius AI</div>
@@ -571,8 +632,8 @@
 
                         <a href="https://shortcut.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://www.google.com/s2/favicons?domain=shortcut.ai&sz=128" alt="Shortcut AI"
-                                    loading="lazy"></div>
+                                    src="../../images/icons/ai/shortcut-ai-favicon.png" alt="Shortcut AI"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Excel Agent</span>
                                 <div class="platform-name">Shortcut AI</div>
@@ -583,41 +644,39 @@
                         </a>
 
                         <a href="https://chat.z.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon"><img src="https://z-cdn.chatglm.cn/z-blog/z-icon.svg" alt="GLM 5"
-                                    loading="lazy"></div>
+                            <div class="platform-icon"><img src="../../images/icons/ai/z-icon.svg" alt="GLM 5"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Slides • Data • Reports</span>
-                                <div class="platform-name">GLM-5 & GLM-4.7 (Z AI)</div>
+                                <div class="platform-name">GLM-5 (Z.AI)</div>
                                 <div class="platform-desc">Good for slide decks, reports, and general assistant tasks.
                                     Worth checking when you want a free all-rounder with productivity-focused output.</div>
                                 <span class="platform-link">chat.z.ai →</span>
                             </div>
                         </a>
 
-                        <a href="https://skywork.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
-                            <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/skywork-color.svg"
-                                    alt="Skywork" loading="lazy"></div>
+                        <a href="https://openai.com/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                            <div class="platform-icon"><img src="../../images/icons/ai/openai-color.svg" alt="ChatGPT"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Multimodal • Doc • Sheet • PPT</span>
-                                <div class="platform-name">Skywork</div>
-                                <div class="platform-desc">Docs, sheets, slides — all in one place with AI baked in.
-                                    Like if Google Workspace had a brain transplant.</div>
-                                <span class="platform-link">skywork.ai →</span>
+                                <span class="category-label">Chat • Image • Voice • Reasoning</span>
+                                <div class="platform-name">ChatGPT (OpenAI)</div>
+                                <div class="platform-desc">GPT-5-class reasoning, image and voice input, plus a generous free tier. Still the default for most people.</div>
+                                <span class="platform-link">openai.com →</span>
                             </div>
                         </a>
                     </div>
 
-                    <h2>🧪 The Smart Ones</h2>
+                    <h2>🧪 The Reasoning Layer</h2>
 
-                    <p>For when you need actual reasoning, not just vibes. OCR, image understanding, deep thinking.</p>
+                    <p>For when you need actual reasoning, not just vibes. OCR, image understanding, deep thinking, fast second opinions.</p>
 
                     <div class="platform-grid">
                         <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
                             <div class="platform-icon"><img class="mono-icon"
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/aistudio.svg"
-                                    alt="AI Studio" loading="lazy"></div>
+                                    src="../../images/icons/ai/aistudio.svg"
+                                    alt="AI Studio" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">OCR • Multimodal • Gemini 2.5</span>
                                 <div class="platform-name">AI Studio (Google)</div>
@@ -631,8 +690,8 @@
                         <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/gemini-color.svg"
-                                    alt="Gemini" loading="lazy"></div>
+                                    src="../../images/icons/ai/gemini-color.svg"
+                                    alt="Gemini" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Gemini 2.5 • Everyday Assistant</span>
                                 <div class="platform-name">Gemini</div>
@@ -646,8 +705,8 @@
                         <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/deepseek-color.svg"
-                                    alt="DeepSeek" loading="lazy"></div>
+                                    src="../../images/icons/ai/deepseek-color.svg"
+                                    alt="DeepSeek" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Reasoning • Chat</span>
                                 <div class="platform-name">DeepSeek</div>
@@ -658,24 +717,22 @@
                             </div>
                         </a>
 
-                        <a href="https://stepfun.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+                        <a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/stepfun-color.svg"
-                                    alt="Stepfun" loading="lazy"></div>
+                                    src="../../images/icons/ai/openrouter-color.svg"
+                                    alt="OpenRouter" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
-                                <span class="category-label">Fast Chat • Multimodal</span>
-                                <div class="platform-name">Stepfun</div>
-                                <div class="platform-desc">A fast AI platform worth testing if speed matters more than
-                                    brand recognition. Good for quick questions, experiments, and another perspective in
-                                    your tool stack.</div>
-                                <span class="platform-link">stepfun.ai →</span>
+                                <span class="category-label">Model Router • API</span>
+                                <div class="platform-name">OpenRouter</div>
+                                <div class="platform-desc">One API key for dozens of models. Useful for comparing responses and pricing without juggling multiple accounts.</div>
+                                <span class="platform-link">openrouter.ai →</span>
                             </div>
                         </a>
 
                         <a href="https://grok.com/" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/grok.svg" alt="Grok"
-                                    loading="lazy"></div>
+                                    src="../../images/icons/ai/grok.svg" alt="Grok"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Web Search • Multimodal</span>
                                 <div class="platform-name">Grok 4</div>
@@ -689,8 +746,8 @@
                         <a href="https://www.llama.com/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/meta-color.svg"
-                                    alt="Meta Llama" loading="lazy"></div>
+                                    src="../../images/icons/ai/meta-color.svg"
+                                    alt="Meta Llama" width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Open Weight • Multimodal</span>
                                 <div class="platform-name">Llama 4 (Scout & Maverick)</div>
@@ -703,8 +760,8 @@
 
                         <a href="https://dr.miromind.ai/" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
-                            <div class="platform-icon"><img src="https://miromind.ai/favicon.svg" alt="MiroMind"
-                                    loading="lazy"></div>
+                            <div class="platform-icon"><img src="../../images/icons/ai/miromind-favicon.png" alt="MiroMind"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Deep Research • Prediction</span>
                                 <div class="platform-name">MiroThinker (MiroMind)</div>
@@ -724,8 +781,8 @@
                         <a href="https://happycapy.ai/app" target="_blank" rel="noopener noreferrer"
                             class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://www.google.com/s2/favicons?domain=happycapy.ai&sz=128" alt="HappyCapy"
-                                    loading="lazy"></div>
+                                    src="../../images/icons/ai/happycapy-ai-favicon.png" alt="HappyCapy"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Agent-Native Computer</span>
                                 <div class="platform-name">HappyCapy AI</div>
@@ -737,8 +794,8 @@
 
                         <a href="https://arena.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
                             <div class="platform-icon"><img
-                                    src="https://www.google.com/s2/favicons?domain=arena.ai&sz=128" alt="Arena"
-                                    loading="lazy"></div>
+                                    src="../../images/icons/ai/arena-ai-favicon.png" alt="Arena"
+                                    width="48" height="48" loading="lazy"></div>
                             <div class="platform-info">
                                 <span class="category-label">Images • Text • Code • Video</span>
                                 <div class="platform-name">Arena</div>
@@ -751,9 +808,9 @@
 
                     <h2>Honestly?</h2>
 
-                    <p>Stop paying $20/month. Most of these free tiers will cover 90% of what you need. My daily setup:
-                        <strong>Claude</strong> for writing, <strong>Gemini</strong> for quick stuff, <strong>AI
-                            Studio</strong> when I throw images at it, <strong>Julius</strong> for data. That's it.
+                    <p>Most of these free tiers will cover 90% of what you need. My current setup:
+                        <strong>ChatGPT / Claude</strong> for writing and reasoning, <strong>Gemini</strong> for quick lookups, <strong>AI
+                            Studio</strong> for raw model access, <strong>Julius</strong> for data, and <strong>OpenRouter</strong> when I want to compare models without switching tabs. That's it.
                     </p>
 
                     <p>Open a tab. Try one. Right now. You'll thank yourself later.</p>
@@ -789,7 +846,7 @@
     </footer>
 
     <!-- Main script with defer -->
-    <script src="../../js/script.js" defer></script>
+    <script src="../../js/script.8687d2a9.js" defer></script>
 </body>
 
 </html>
