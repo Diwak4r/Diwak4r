@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://www.os.diwakaryadav.com.np/sitemap.xml
