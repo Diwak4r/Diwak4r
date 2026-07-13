@@ -1,0 +1,145 @@
+import type { CSSProperties } from "react";
+import type { Icon } from "@phosphor-icons/react";
+import {
+  Calculator,
+  Compass,
+  Cube,
+  GearSix,
+  MusicNotes,
+  Notebook,
+  Notepad,
+  PaperPlaneTilt,
+  ShareNetwork,
+  SquaresFour,
+  TerminalWindow,
+} from "@phosphor-icons/react";
+import type { AppId } from "./store";
+
+export interface AppDef {
+  id: AppId;
+  /** Label under the desktop icon and in the dock tooltip */
+  name: string;
+  /** Title shown in the window title bar */
+  windowTitle: string;
+  /** Phosphor glyph for the tile; About uses a portrait photo instead */
+  icon: Icon | null;
+  /** CSS gradient for the app tile */
+  tile: string;
+  /** Preferred window size and cascade position (clamped to the desktop) */
+  window: { w: number; h: number; x: number; y: number };
+  /** Desktop icon placement; omit for dock-only apps */
+  desk?: CSSProperties;
+}
+
+export const APPS: AppDef[] = [
+  {
+    id: "about",
+    name: "About Me",
+    windowTitle: "About Me",
+    icon: null,
+    tile: "linear-gradient(145deg, #4d6076, #2b3a4c)",
+    window: { w: 760, h: 540, x: 120, y: 48 },
+    desk: { right: 26, top: 22 },
+  },
+  {
+    id: "projects",
+    name: "Projects",
+    windowTitle: "Projects",
+    icon: SquaresFour,
+    tile: "linear-gradient(145deg, #f7a94b, #e0731d)",
+    window: { w: 700, h: 580, x: 220, y: 84 },
+    desk: { right: 26, top: 124 },
+  },
+  {
+    id: "journal",
+    name: "Journal",
+    windowTitle: "Journal",
+    icon: Notebook,
+    tile: "linear-gradient(145deg, #e7b34a, #c07f12)",
+    window: { w: 560, h: 460, x: 320, y: 120 },
+    desk: { right: 26, top: 226 },
+  },
+  {
+    id: "notes",
+    name: "Notes",
+    windowTitle: "Notes",
+    icon: Notepad,
+    tile: "linear-gradient(145deg, #ffd339, #f8b500)",
+    window: { w: 480, h: 440, x: 380, y: 150 },
+    desk: { right: 26, top: 430 },
+  },
+  {
+    id: "contact",
+    name: "Contact",
+    windowTitle: "New Message",
+    icon: PaperPlaneTilt,
+    tile: "linear-gradient(145deg, #4da3ff, #0b63d8)",
+    window: { w: 560, h: 620, x: 420, y: 60 },
+    desk: { right: 26, top: 328 },
+  },
+  {
+    id: "browser",
+    name: "Browser",
+    windowTitle: "Browser",
+    icon: Compass,
+    tile: "linear-gradient(145deg, #6cc1ff, #1668dc)",
+    window: { w: 980, h: 640, x: 90, y: 40 },
+  },
+  {
+    id: "terminal",
+    name: "Terminal",
+    windowTitle: "diwakar@portfolio",
+    icon: TerminalWindow,
+    tile: "linear-gradient(145deg, #23272f, #0c0e12)",
+    window: { w: 620, h: 420, x: 180, y: 200 },
+    desk: { left: 26, bottom: 118 },
+  },
+  {
+    id: "settings",
+    name: "Settings",
+    windowTitle: "System Settings",
+    icon: GearSix,
+    tile: "linear-gradient(145deg, #9a9aa2, #5c5c64)",
+    window: { w: 660, h: 480, x: 260, y: 140 },
+  },
+  {
+    id: "calculator",
+    name: "Calculator",
+    windowTitle: "Calculator",
+    icon: Calculator,
+    tile: "linear-gradient(145deg, #4a4a4f, #1c1c1f)",
+    window: { w: 300, h: 440, x: 500, y: 90 },
+  },
+  {
+    id: "spotify",
+    name: "Spotify",
+    windowTitle: "Spotify",
+    icon: MusicNotes,
+    tile: "linear-gradient(145deg, #2be08a, #1db954)",
+    window: { w: 760, h: 560, x: 160, y: 70 },
+  },
+  {
+    id: "socials",
+    name: "Socials",
+    windowTitle: "Socials",
+    icon: ShareNetwork,
+    tile: "linear-gradient(145deg, #7d8cff, #4457d6)",
+    window: { w: 520, h: 480, x: 300, y: 110 },
+    desk: { right: 26, top: 534 },
+  },
+  {
+    id: "craft",
+    name: "CraftJS",
+    windowTitle: "CraftJS",
+    icon: Cube,
+    tile: "linear-gradient(145deg, #7bc96f, #3f7d3a)",
+    window: { w: 960, h: 640, x: 80, y: 30 },
+    desk: { left: 26, bottom: 230 },
+  },
+];
+
+export const appById = (id: AppId): AppDef => {
+  const app = APPS.find((a) => a.id === id);
+  if (!app) throw new Error(`Unknown app: ${id}`);
+  return app;
+};

@@ -1,1 +1,5 @@
 .agent/
+node_modules/
+portfolio-os/node_modules/
+portfolio-os/.next/
+.qa-screens/
