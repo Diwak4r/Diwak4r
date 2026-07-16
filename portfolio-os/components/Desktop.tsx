@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { APPS } from "@/lib/apps";
 import { useFocusedWin, useWindows, type AppId, type Win } from "@/lib/store";
@@ -19,24 +19,32 @@ import { childrenOf, useFiles, type DeskItem } from "@/lib/files";
 import Spotlight from "./Spotlight";
 import WifiOverlay from "./WifiOverlay";
 import { BootScreen, LoginScreen } from "./Onboarding";
-import AboutApp from "./apps/AboutApp";
-import ProjectsApp from "./apps/ProjectsApp";
-import JournalApp from "./apps/JournalApp";
-import NotesApp from "./apps/NotesApp";
-import ContactApp from "./apps/ContactApp";
-import TerminalApp from "./apps/TerminalApp";
-import BrowserApp from "./apps/BrowserApp";
-import SettingsApp from "./apps/SettingsApp";
-import CalculatorApp from "./apps/CalculatorApp";
-import SpotifyApp from "./apps/SpotifyApp";
-import SocialsApp from "./apps/SocialsApp";
-import CraftApp from "./apps/CraftApp";
-import FinderApp from "./apps/FinderApp";
-import CodeApp from "./apps/CodeApp";
-import PhotosApp from "./apps/PhotosApp";
-import WeatherApp from "./apps/WeatherApp";
-import WhatsAppApp from "./apps/WhatsAppApp";
-import Launchpad from "./Launchpad";
+
+// Lazy-everything: each app chunks out of the boot bundle.
+const AboutApp = lazy(() => import("./apps/AboutApp"));
+const ProjectsApp = lazy(() => import("./apps/ProjectsApp"));
+const JournalApp = lazy(() => import("./apps/JournalApp"));
+const NotesApp = lazy(() => import("./apps/NotesApp"));
+const ContactApp = lazy(() => import("./apps/ContactApp"));
+const TerminalApp = lazy(() => import("./apps/TerminalApp"));
+const BrowserApp = lazy(() => import("./apps/BrowserApp"));
+const SettingsApp = lazy(() => import("./apps/SettingsApp"));
+const CalculatorApp = lazy(() => import("./apps/CalculatorApp"));
+const SpotifyApp = lazy(() => import("./apps/SpotifyApp"));
+const SocialsApp = lazy(() => import("./apps/SocialsApp"));
+const CraftApp = lazy(() => import("./apps/CraftApp"));
+const FinderApp = lazy(() => import("./apps/FinderApp"));
+const CodeApp = lazy(() => import("./apps/CodeApp"));
+const PhotosApp = lazy(() => import("./apps/PhotosApp"));
+const WeatherApp = lazy(() => import("./apps/WeatherApp"));
+const WhatsAppApp = lazy(() => import("./apps/WhatsAppApp"));
+const Launchpad = lazy(() => import("./Launchpad"));
+
+const APP_SPINNER = (
+  <div className="flex h-full items-center justify-center">
+    <span className="animate-pulse text-[13px] text-white/30">Loading…</span>
+  </div>
+);
 
 /** Content per window instance. Each instance mounts its own component tree
  *  (keyed by winId), so two Terminals have two independent histories. */
@@ -343,11 +351,13 @@ export default function Desktop() {
                     onFocus={() => focus(w.winId)}
                   >
                     <div className="h-full cursor-auto select-text">
-                      {w.kind === "app" && w.appId ? (
-                        APP_RENDER[w.appId](w)
-                      ) : (
-                        <LinkContent url={w.url!} title={w.title} />
-                      )}
+                      <Suspense fallback={APP_SPINNER}>
+                        {w.kind === "app" && w.appId
+                          ? APP_RENDER[w.appId](w)
+                          : w.kind === "link"
+                          ? <LinkContent url={w.url!} title={w.title} />
+                          : null}
+                      </Suspense>
                     </div>
                   </Window>
                 ))}
