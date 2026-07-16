@@ -202,71 +202,52 @@ export const posts = [
   },
 ];
 
-/** Diwakar's picks: each song has 5 clips from its most popular moments. */
-export const playlist: {
+/** Diwakar's picks. Every track has the full song plus "viral cut" clips of
+ *  its loudest moments; artists and covers come from the real files' tags. */
+export interface Track {
+  slug: string;
   title: string;
   artist: string;
   cover: string;
+  /** The complete song */
+  full: string;
+  /** The most-played moments, cut into short parts */
   clips: { label: string; audio: string }[];
-}[] = [
-  {
-    title: "Udi Udi",
-    artist: "Aneesh, Sarkar, Hruday",
-    cover: "/images/music-covers/udi-udi.jpg",
-    clips: [
-      { label: "Part 1", audio: "/audio/udi-udi-1.mp3" },
-      { label: "Part 2", audio: "/audio/udi-udi-2.mp3" },
-      { label: "Part 3", audio: "/audio/udi-udi-3.mp3" },
-      { label: "Part 4", audio: "/audio/udi-udi-4.mp3" },
-      { label: "Part 5", audio: "/audio/udi-udi-5.mp3" },
-    ],
-  },
-  {
-    title: "Sunflower",
-    artist: "Post Malone, Swae Lee",
-    cover: "/images/music-covers/sunflower.jpg",
-    clips: [
-      { label: "Part 1", audio: "/audio/sunflower-1.mp3" },
-      { label: "Part 2", audio: "/audio/sunflower-2.mp3" },
-      { label: "Part 3", audio: "/audio/sunflower-3.mp3" },
-      { label: "Part 4", audio: "/audio/sunflower-4.mp3" },
-      { label: "Part 5", audio: "/audio/sunflower-5.mp3" },
-    ],
-  },
-  {
-    title: "After Hours",
-    artist: "The Weeknd",
-    cover: "/images/music-covers/after-hours.jpg",
-    clips: [
-      { label: "Part 1", audio: "/audio/after-hours-1.mp3" },
-      { label: "Part 2", audio: "/audio/after-hours-2.mp3" },
-      { label: "Part 3", audio: "/audio/after-hours-3.mp3" },
-      { label: "Part 4", audio: "/audio/after-hours-4.mp3" },
-      { label: "Part 5", audio: "/audio/after-hours-5.mp3" },
-    ],
-  },
-  {
-    title: "Reminder",
-    artist: "The Weeknd",
-    cover: "/images/music-covers/reminder.jpg",
-    clips: [
-      { label: "Part 1", audio: "/audio/reminder-1.mp3" },
-      { label: "Part 2", audio: "/audio/reminder-2.mp3" },
-      { label: "Part 3", audio: "/audio/reminder-3.mp3" },
-      { label: "Part 4", audio: "/audio/reminder-4.mp3" },
-      { label: "Part 5", audio: "/audio/reminder-5.mp3" },
-    ],
-  },
-  {
-    title: "Timeless",
-    artist: "The Weeknd, Playboi Carti",
-    cover: "/images/music-covers/timeless.jpg",
-    clips: [
-      { label: "Part 1", audio: "/audio/timeless-1.mp3" },
-      { label: "Part 2", audio: "/audio/timeless-2.mp3" },
-      { label: "Part 3", audio: "/audio/timeless-3.mp3" },
-      { label: "Part 4", audio: "/audio/timeless-4.mp3" },
-      { label: "Part 5", audio: "/audio/timeless-5.mp3" },
-    ],
-  },
+}
+
+const clipsOf = (slug: string, n: number) =>
+  Array.from({ length: n }, (_, i) => ({
+    label: `Part ${i + 1}`,
+    audio: `/audio/${slug}-${i + 1}.mp3`,
+  }));
+
+const track = (slug: string, title: string, artist: string, nClips: number): Track => ({
+  slug,
+  title,
+  artist,
+  cover: `/images/music-covers/${slug}.jpg`,
+  full: `/audio/full/${slug}.mp3`,
+  clips: clipsOf(slug, nClips),
+});
+
+export const playlist: Track[] = [
+  track("udi-udi", "Udi Udi", "Aneesh, Sarkar, Hruday", 5),
+  track("sunflower", "Sunflower", "Post Malone, Swae Lee", 5),
+  track("after-hours", "After Hours", "The Weeknd", 5),
+  track("reminder", "Reminder", "The Weeknd", 5),
+  track("timeless", "Timeless", "The Weeknd, Playboi Carti", 5),
+  track("kanhaiyya", "Kanhaiyya", "Jubin Nautiyal, Shashwat Sachdev", 4),
+  track("aakhri-ishq", "Aakhri Ishq", "Jubin Nautiyal, Shashwat Sachdev", 4),
+  track("gehra-hua", "Gehra Hua", "Arijit Singh, Shashwat Sachdev", 4),
+  track("ishq-jalakar", "Ishq Jalakar (Karvaan)", "Shashwat Sachdev, Shahzad Ali", 4),
+  track("destiny-mann-atkeya", "Destiny (Mann Atkeya)", "Shashwat Sachdev, Token", 4),
+  track("lutt-le-gaya", "Lutt Le Gaya", "Shashwat Sachdev, Simran Choudhary", 3),
+  track("move-yeh-ishq-ishq", "Move (Yeh Ishq Ishq)", "Sonu Nigam, Shashwat Sachdev", 4),
+  track("bhatbhatey-ma", "BHATBHATEY MA", "PURPLE, Gwala$, 4z", 4),
+  track("aaahh-men", "AAAHH MEN!", "Doja Cat", 4),
+  track("sorry", "Sorry", "Justin Bieber", 4),
+  track("gata-only", "Gata Only", "FloyyMenor, Cris MJ", 4),
+  track("gata-only-remix", "Gata Only (Remix)", "FloyyMenor, Ozuna, Anitta", 4),
+  track("me-and-the-devil", "Me and the Devil", "Soap&Skin", 4),
+  track("f1", "F1", "Hans Zimmer", 4),
 ];
