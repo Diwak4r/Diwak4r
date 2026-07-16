@@ -13,7 +13,13 @@ export type AppId =
   | "calculator"
   | "spotify"
   | "socials"
-  | "craft";
+  | "craft"
+  | "finder"
+  | "code"
+  | "photos"
+  | "weather"
+  | "whatsapp"
+  | "launchpad";
 
 export type WinKind = "app" | "link";
 

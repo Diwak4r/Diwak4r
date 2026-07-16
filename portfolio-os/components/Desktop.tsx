@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { APPS } from "@/lib/apps";
 import { useFocusedWin, useWindows, type AppId, type Win } from "@/lib/store";
-import { useSystem, type SettingsPane } from "@/lib/system";
+import { openSettings, useSystem, type SettingsPane } from "@/lib/system";
 import { useIsMobile } from "@/lib/hooks";
 import Wallpaper from "./Wallpaper";
 import MenuBar from "./MenuBar";
@@ -12,7 +12,10 @@ import DesktopIcon, { clearIconPositions } from "./DesktopIcon";
 import Dock from "./Dock";
 import Window from "./Window";
 import LinkContent from "./LinkContent";
-import ContextMenu, { type MenuPosition } from "./ContextMenu";
+import ContextMenu, { type MenuEntry, type MenuPosition } from "./ContextMenu";
+import DeskFileIcon from "./DeskFileIcon";
+import GetInfo from "./GetInfo";
+import { childrenOf, useFiles, type DeskItem } from "@/lib/files";
 import Spotlight from "./Spotlight";
 import WifiOverlay from "./WifiOverlay";
 import { BootScreen, LoginScreen } from "./Onboarding";
@@ -28,6 +31,12 @@ import CalculatorApp from "./apps/CalculatorApp";
 import SpotifyApp from "./apps/SpotifyApp";
 import SocialsApp from "./apps/SocialsApp";
 import CraftApp from "./apps/CraftApp";
+import FinderApp from "./apps/FinderApp";
+import CodeApp from "./apps/CodeApp";
+import PhotosApp from "./apps/PhotosApp";
+import WeatherApp from "./apps/WeatherApp";
+import WhatsAppApp from "./apps/WhatsAppApp";
+import Launchpad from "./Launchpad";
 
 /** Content per window instance. Each instance mounts its own component tree
  *  (keyed by winId), so two Terminals have two independent histories. */
@@ -44,6 +53,12 @@ const APP_RENDER: Record<AppId, (win: Win) => React.ReactNode> = {
   socials: () => <SocialsApp />,
   spotify: () => <SpotifyApp />,
   craft: () => <CraftApp />,
+  finder: (w) => <FinderApp path={w.props?.path as string | undefined} />,
+  code: (w) => <CodeApp fileId={w.props?.fileId as string | undefined} />,
+  photos: () => <PhotosApp />,
+  weather: () => <WeatherApp />,
+  whatsapp: () => <WhatsAppApp />,
+  launchpad: () => <Launchpad />,
 };
 
 type Phase = "boot" | "login" | "desktop";
@@ -67,10 +82,20 @@ export default function Desktop() {
   const grain = useSystem((s) => s.grain);
   const hydrate = useSystem((s) => s.hydrate);
 
+  const files = useFiles((s) => s.items);
+  const hydrateFiles = useFiles((s) => s.hydrate);
+  const createFile = useFiles((s) => s.create);
+  const removeFile = useFiles((s) => s.remove);
+  const duplicateFile = useFiles((s) => s.duplicate);
+  const setFilePos = useFiles((s) => s.setPos);
+
   const [phase, setPhase] = useState<Phase>("boot");
   const [spotlightOpen, setSpotlightOpen] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState<AppId | null>(null);
-  const [menuPos, setMenuPos] = useState<MenuPosition | null>(null);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+  const [renamingId, setRenamingId] = useState<string | null>(null);
+  const [infoItem, setInfoItem] = useState<DeskItem | null>(null);
+  const [menu, setMenu] = useState<{ pos: MenuPosition; entries: MenuEntry[] } | null>(null);
   // Bumping this key remounts the icons, snapping them back to their spots.
   const [tidyKey, setTidyKey] = useState(0);
   const welcomed = useRef(false);
@@ -78,6 +103,7 @@ export default function Desktop() {
   // Restore persisted appearance; skip the boot sequence within a session.
   useEffect(() => {
     hydrate();
+    hydrateFiles();
     if (sessionStorage.getItem(BOOTED_KEY)) setPhase("desktop");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -102,8 +128,12 @@ export default function Desktop() {
       }
       if (e.key !== "Escape") return;
       if (spotlightOpen) return; // Spotlight handles its own Escape
-      if (menuPos) {
-        setMenuPos(null);
+      if (menu) {
+        setMenu(null);
+        return;
+      }
+      if (infoItem) {
+        setInfoItem(null);
         return;
       }
       if (!focused) return;
@@ -113,7 +143,68 @@ export default function Desktop() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [focused, close, menuPos, spotlightOpen, phase]);
+  }, [focused, close, menu, infoItem, spotlightOpen, phase]);
+
+  const deskFiles = childrenOf(files, null);
+
+  const openDeskItem = (item: DeskItem) => {
+    if (item.kind === "folder") openApp("finder", { path: item.id });
+    else openApp("code", { fileId: item.id });
+  };
+
+  /** Lay the user's desktop items back onto a tidy grid, in the given order. */
+  const gridDeskItems = (ordered: DeskItem[]) => {
+    ordered.forEach((item, i) => {
+      setFilePos(item.id, { x: 140 + (i % 6) * 100, y: 90 + Math.floor(i / 6) * 110 });
+    });
+  };
+
+  const surfaceEntries = (pos: MenuPosition): MenuEntry[] => [
+    { label: "New Folder", action: () => setRenamingId(createFile("folder", null, pos)) },
+    { label: "New Text File", action: () => setRenamingId(createFile("file", null, pos)) },
+    { label: "Change Wallpaper", action: () => openSettings("wallpaper"), divider: true },
+    { label: "Change Accent Color", action: () => openSettings("appearance") },
+    {
+      label: "Sort By",
+      divider: true,
+      submenu: [
+        {
+          label: "Name",
+          action: () => gridDeskItems([...deskFiles].sort((a, b) => a.name.localeCompare(b.name))),
+        },
+        {
+          label: "Kind",
+          action: () => gridDeskItems(deskFiles), // childrenOf already sorts folders first
+        },
+      ],
+    },
+    {
+      label: "Tidy Up Icons",
+      action: () => {
+        clearIconPositions();
+        setTidyKey((k) => k + 1);
+        gridDeskItems(deskFiles);
+      },
+    },
+    { label: "Open Terminal Here", action: () => openApp("terminal"), divider: true },
+    { label: "About This Portfolio", action: () => openApp("about") },
+  ];
+
+  const itemEntries = (item: DeskItem): MenuEntry[] => [
+    { label: "Open", action: () => openDeskItem(item) },
+    { label: "Rename", action: () => setRenamingId(item.id), divider: true },
+    { label: "Duplicate", action: () => duplicateFile(item.id) },
+    { label: "Get Info", action: () => setInfoItem(item) },
+    {
+      label: "Move to Trash",
+      divider: true,
+      danger: true,
+      action: () => {
+        removeFile(item.id);
+        setSelectedFile(null);
+      },
+    },
+  ];
 
   const onDesktopContextMenu = (e: React.MouseEvent) => {
     // Only hijack right-click on the desktop surface itself, not on
@@ -121,7 +212,8 @@ export default function Desktop() {
     if (e.target !== e.currentTarget || isMobile) return;
     e.preventDefault();
     const rect = desktopRef.current?.getBoundingClientRect();
-    setMenuPos({ x: e.clientX - (rect?.left ?? 0), y: e.clientY - (rect?.top ?? 0) });
+    const pos = { x: e.clientX - (rect?.left ?? 0), y: e.clientY - (rect?.top ?? 0) };
+    setMenu({ pos, entries: surfaceEntries(pos) });
   };
 
   // macOS selection marquee: driven with direct DOM writes so dragging on the
@@ -130,7 +222,8 @@ export default function Desktop() {
   const onDesktopPointerDown = (e: React.PointerEvent) => {
     if (e.target !== e.currentTarget) return;
     setSelectedIcon(null);
-    setMenuPos(null);
+    setSelectedFile(null);
+    setMenu(null);
     if (isMobile || e.button !== 0) return;
 
     const surface = e.currentTarget as HTMLDivElement;
@@ -200,6 +293,27 @@ export default function Desktop() {
               ))
             )}
 
+            {/* User-created files and folders */}
+            {isMobile === false &&
+              deskFiles.map((item) => (
+                <DeskFileIcon
+                  key={item.id}
+                  item={item}
+                  selected={selectedFile === item.id}
+                  renaming={renamingId === item.id}
+                  onSelect={setSelectedFile}
+                  onOpen={openDeskItem}
+                  onMenu={(it, client) => {
+                    const rect = desktopRef.current?.getBoundingClientRect();
+                    setMenu({
+                      pos: { x: client.x - (rect?.left ?? 0), y: client.y - (rect?.top ?? 0) },
+                      entries: itemEntries(it),
+                    });
+                  }}
+                  onRenamed={() => setRenamingId(null)}
+                />
+              ))}
+
             {/* Selection marquee (hidden until a drag begins) */}
             <div
               ref={marqueeRef}
@@ -241,17 +355,17 @@ export default function Desktop() {
             {/* Wi-Fi off takeover */}
             <AnimatePresence>{!wifiOn && <WifiOverlay />}</AnimatePresence>
 
-            {/* Right-click menu */}
+            {/* Right-click menu (desktop surface or a desktop item) */}
             <AnimatePresence>
-              {menuPos && (
-                <ContextMenu
-                  pos={menuPos}
-                  onClose={() => setMenuPos(null)}
-                  onTidy={() => {
-                    clearIconPositions();
-                    setTidyKey((k) => k + 1);
-                  }}
-                />
+              {menu && (
+                <ContextMenu pos={menu.pos} entries={menu.entries} onClose={() => setMenu(null)} />
+              )}
+            </AnimatePresence>
+
+            {/* Get Info panel */}
+            <AnimatePresence>
+              {infoItem && files[infoItem.id] && (
+                <GetInfo item={files[infoItem.id]} onClose={() => setInfoItem(null)} />
               )}
             </AnimatePresence>
           </div>

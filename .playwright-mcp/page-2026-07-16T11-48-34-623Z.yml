@@ -1,0 +1,142 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - banner [ref=f7e7]:
+      - button "System menu" [ref=f7e9]
+      - generic [ref=f7e12]: GitHub
+      - navigation "Open apps" [ref=f7e13]:
+        - button "About Me" [ref=f7e14]
+        - button "Projects" [ref=f7e15]
+        - button "Journal" [ref=f7e16]
+        - button "Notes" [ref=f7e17]
+        - button "Contact" [ref=f7e18]
+        - button "Browser" [ref=f7e19]
+        - button "Terminal" [ref=f7e20]
+        - button "Settings" [ref=f7e21]
+        - button "Calculator" [ref=f7e22]
+        - button "Spotify" [ref=f7e23]
+        - button "Socials" [ref=f7e24]
+        - button "CraftJS" [ref=f7e25]
+      - generic [ref=f7e26]:
+        - button "GitHub" [ref=f7e27]
+        - button "LinkedIn" [ref=f7e30]
+        - button "X" [ref=f7e33]
+        - button "Spotlight search" [ref=f7e37]
+        - button "Control Center" [ref=f7e43]
+        - generic [ref=f7e48]: Thu, Jul 16 5:33 PM
+    - generic [ref=f7e49]:
+      - button "Open About Me" [ref=f7e50]:
+        - generic [ref=f7e53]: About Me
+      - button "Open Projects" [ref=f7e54]:
+        - generic [ref=f7e62]: Projects
+      - button "Open Journal" [ref=f7e63]:
+        - generic [ref=f7e71]: Journal
+      - button "Open Notes" [ref=f7e72]:
+        - generic [ref=f7e81]: Notes
+      - button "Open Contact" [ref=f7e82]:
+        - generic [ref=f7e88]: Contact
+      - button "Open Terminal" [ref=f7e89]:
+        - generic [ref=f7e90]: ">_"
+        - generic [ref=f7e94]: Terminal
+      - button "Open Socials" [ref=f7e95]:
+        - generic [ref=f7e101]: Socials
+      - button "Open CraftJS" [ref=f7e102]:
+        - generic [ref=f7e111]: CraftJS
+      - dialog "About Me" [ref=f7e112]:
+        - generic [ref=f7e113]:
+          - generic [ref=f7e114]:
+            - generic [ref=f7e115]:
+              - button "Close window" [ref=f7e116]
+              - button "Minimize window" [ref=f7e119]
+              - button "Maximize window" [ref=f7e122]
+            - generic: About Me
+          - generic [ref=f7e128]:
+            - navigation "About sections" [ref=f7e129]:
+              - button "Story" [ref=f7e130]
+              - button "Experience" [ref=f7e133]
+              - button "Skills" [ref=f7e136]
+            - generic [ref=f7e141]:
+              - generic [ref=f7e142]:
+                - img "Portrait of Diwakar Ray Yadav" [ref=f7e143]
+                - generic [ref=f7e144]:
+                  - heading "Diwakar Ray Yadav" [level=1] [ref=f7e145]
+                  - paragraph [ref=f7e146]: AI Growth Strategist at The Mindsnack
+                  - paragraph [ref=f7e147]: Kathmandu, Nepal
+              - generic [ref=f7e150]:
+                - button "GitHub" [ref=f7e151]
+                - button "LinkedIn" [ref=f7e154]
+                - button "X" [ref=f7e157]
+                - button "Instagram" [ref=f7e160]
+              - generic [ref=f7e163]:
+                - paragraph [ref=f7e164]: I build AI infrastructure for people the industry skips. I'm a BIT student in Kathmandu shipping commercial products on the side, because good work shouldn't have to wait for a diploma.
+                - paragraph [ref=f7e165]: "My flagship, Nepal AI Gateway, is a commercial LLM proxy built from scratch. It brings NPR-tiered pricing through eSewa to Nepali developers locked out of international payment rails. Under the hood: a Cloudflare Worker architecture, a security audit that closed real vulnerabilities, and an admin console I designed myself."
+                - paragraph [ref=f7e166]: At The Mindsnack, an official distribution partner of Springbase AI, I run AEO and SEO strategy and redesigned the company's own site from the ground up, based out of The 100 Spaces coworking space in Kathmandu.
+                - paragraph [ref=f7e167]: "The plan is deliberate: Nepal's AI companies first, remote AI roles next, an AI lab after that. Right now I'm rebuilding my fundamentals with CS50P and contributing to open source. No step skipped."
+                - paragraph [ref=f7e168]: Before AI was the job, it was NEPSE trading across multiple Demat and TMS accounts and HikCentral CCTV administration, the unglamorous machinery that keeps an office running. I still call myself an office executive who leverages AI, not a developer. The rest you'd have to find out by working with me.
+              - generic [ref=f7e169]:
+                - heading "Currently exploring" [level=2] [ref=f7e170]
+                - generic [ref=f7e171]:
+                  - generic [ref=f7e172]: AI Agents
+                  - generic [ref=f7e173]: Claude Code
+                  - generic [ref=f7e174]: SEO + AEO
+                  - generic [ref=f7e175]: AI Workflows
+                  - generic [ref=f7e176]: Browser Automation
+                  - generic [ref=f7e177]: Frontend Prototyping
+              - generic [ref=f7e178]:
+                - img "Diwakar, casual" [ref=f7e179]
+                - img "Diwakar" [ref=f7e180]
+      - dialog "GitHub" [ref=f7e189]:
+        - generic [ref=f7e190]:
+          - generic [ref=f7e191]:
+            - generic [ref=f7e192]:
+              - button "Close window" [ref=f7e193]
+              - button "Minimize window" [ref=f7e196]
+              - button "Maximize window" [ref=f7e199]
+            - generic: GitHub
+          - generic [ref=f7e204]:
+            - generic [ref=f7e205]:
+              - generic [ref=f7e206]: github.com/Diwak4r
+              - button "Open in new tab" [ref=f7e210]
+            - generic [ref=f7e214]:
+              - generic [ref=f7e215]:
+                - generic [ref=f7e216]: Live snapshot of GitHub — scroll it, click to visit the real site
+                - button "Open live" [ref=f7e217]
+              - img "Snapshot of GitHub" [ref=f7e221] [cursor=pointer]
+    - navigation "Dock" [ref=f7e234]:
+      - button "Focus About Me" [ref=f7e236]:
+        - generic: About Me
+      - button "Open Projects" [ref=f7e241]:
+        - generic: Projects
+      - button "Open Journal" [ref=f7e250]:
+        - generic: Journal
+      - button "Open Notes" [ref=f7e259]:
+        - generic: Notes
+      - button "Open Contact" [ref=f7e269]:
+        - generic: Contact
+      - button "Open Browser" [ref=f7e276]:
+        - generic: Browser
+      - button "Open Terminal" [ref=f7e298]:
+        - generic [ref=f7e299]: ">_"
+        - generic: Terminal
+      - button "Open Settings" [ref=f7e304]:
+        - generic: Settings
+      - button "Open Calculator" [ref=f7e311]:
+        - generic [ref=f7e312]: "42"
+        - generic: Calculator
+      - button "Open Spotify" [ref=f7e330]:
+        - generic: Spotify
+      - button "Open Socials" [ref=f7e337]:
+        - generic: Socials
+      - button "Open CraftJS" [ref=f7e344]:
+        - generic: CraftJS
+      - button "Open Zo Space" [ref=f7e354]:
+        - generic: Zo Space
+      - button "Open GitHub" [ref=f7e358]:
+        - generic: GitHub
+      - button "Open ChatGPT" [ref=f7e362]:
+        - generic: ChatGPT
+      - button "Open Claude" [ref=f7e366]:
+        - generic: Claude
+      - button "Trash, empty" [ref=f7e371]:
+        - generic: Trash
+  - button "Open Next.js Dev Tools" [ref=f7e381] [cursor=pointer]
+  - alert [ref=f7e385]

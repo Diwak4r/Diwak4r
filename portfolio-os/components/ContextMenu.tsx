@@ -1,33 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
-import { useWindows } from "@/lib/store";
-import { openSettings } from "@/lib/system";
+import { CaretRight } from "@phosphor-icons/react";
 
 export interface MenuPosition {
   x: number;
   y: number;
 }
 
-/** Right-click menu for the desktop surface, mac-style. */
+export interface MenuEntry {
+  label: string;
+  action?: () => void;
+  /** Draws a separator line above this entry */
+  divider?: boolean;
+  /** Nested entries open on hover, mac-style */
+  submenu?: { label: string; action: () => void }[];
+  danger?: boolean;
+}
+
+const itemClass = (danger?: boolean) =>
+  `flex w-full items-center justify-between rounded-md px-2.5 py-1.5 text-left text-[13px] transition-colors hover:bg-(--accent-btn) hover:text-(--accent-contrast) ${
+    danger ? "text-[#ff6961]" : "text-white/85"
+  }`;
+
+/** A macOS-style right-click menu; reused by the desktop, its items, and Finder. */
 export default function ContextMenu({
   pos,
+  entries,
   onClose,
-  onTidy,
 }: {
   pos: MenuPosition;
+  entries: MenuEntry[];
   onClose: () => void;
-  onTidy: () => void;
 }) {
-  const openApp = useWindows((s) => s.openApp);
-
-  const items: { label: string; action: () => void; divider?: boolean }[] = [
-    { label: "About This Portfolio", action: () => openApp("about") },
-    { label: "Change Wallpaper", action: () => openSettings("wallpaper") },
-    { label: "Change Accent Color", action: () => openSettings("appearance") },
-    { label: "Tidy Up Icons", action: onTidy },
-    { label: "Open Terminal Here", action: () => openApp("terminal"), divider: true },
-  ];
+  const [openSub, setOpenSub] = useState<string | null>(null);
 
   return (
     <motion.div
@@ -36,23 +43,50 @@ export default function ContextMenu({
       exit={{ opacity: 0, transition: { duration: 0.08 } }}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
       style={{ left: pos.x, top: pos.y }}
-      className="bar-chrome absolute z-[9999] w-52 origin-top-left rounded-lg border border-white/[0.12] p-1 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+      className="bar-chrome absolute z-[9999] w-56 origin-top-left rounded-lg border border-white/[0.12] p-1 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
       role="menu"
+      onPointerDown={(e) => e.stopPropagation()}
     >
-      {items.map((item) => (
-        <button
-          key={item.label}
-          role="menuitem"
-          onClick={() => {
-            item.action();
-            onClose();
-          }}
-          className={`block w-full rounded-md px-2.5 py-1.5 text-left text-[13px] text-white/85 transition-colors hover:bg-(--accent-btn) hover:text-(--accent-contrast) ${
-            item.divider ? "mt-1 border-t border-white/[0.08] pt-2" : ""
-          }`}
+      {entries.map((entry) => (
+        <div
+          key={entry.label}
+          className={`relative ${entry.divider ? "mt-1 border-t border-white/[0.08] pt-1" : ""}`}
+          onMouseEnter={() => setOpenSub(entry.submenu ? entry.label : null)}
         >
-          {item.label}
-        </button>
+          <button
+            role="menuitem"
+            onClick={() => {
+              if (entry.submenu) return;
+              entry.action?.();
+              onClose();
+            }}
+            className={itemClass(entry.danger)}
+          >
+            {entry.label}
+            {entry.submenu && <CaretRight size={11} weight="bold" className="opacity-60" />}
+          </button>
+
+          {entry.submenu && openSub === entry.label && (
+            <div
+              className="bar-chrome absolute left-[calc(100%-4px)] top-0 w-40 rounded-lg border border-white/[0.12] p-1 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+              role="menu"
+            >
+              {entry.submenu.map((sub) => (
+                <button
+                  key={sub.label}
+                  role="menuitem"
+                  onClick={() => {
+                    sub.action();
+                    onClose();
+                  }}
+                  className={itemClass()}
+                >
+                  {sub.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       ))}
     </motion.div>
   );

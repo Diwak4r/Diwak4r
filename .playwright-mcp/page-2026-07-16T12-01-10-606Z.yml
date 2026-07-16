@@ -1,0 +1,81 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - banner [ref=f9e5]:
+      - button "System menu" [ref=f9e7]
+      - generic [ref=f9e10]: Desktop
+      - navigation "Open apps" [ref=f9e11]:
+        - button "About Me" [ref=f9e12]
+        - button "Projects" [ref=f9e13]
+        - button "Journal" [ref=f9e14]
+        - button "Notes" [ref=f9e15]
+        - button "Contact" [ref=f9e16]
+        - button "Browser" [ref=f9e17]
+        - button "Terminal" [ref=f9e18]
+        - button "Settings" [ref=f9e19]
+        - button "Calculator" [ref=f9e20]
+        - button "Spotify" [ref=f9e21]
+        - button "Socials" [ref=f9e22]
+        - button "CraftJS" [ref=f9e23]
+      - generic [ref=f9e24]:
+        - button "GitHub" [ref=f9e25]
+        - button "LinkedIn" [ref=f9e28]
+        - button "X" [ref=f9e31]
+        - button "Spotlight search" [ref=f9e35]
+        - button "Control Center" [ref=f9e41]
+        - generic [ref=f9e46]: Thu, Jul 16 5:46 PM
+    - generic [ref=f9e47]:
+      - button "Open About Me" [ref=f9e48]:
+        - generic [ref=f9e51]: About Me
+      - button "Open Projects" [ref=f9e52]:
+        - generic [ref=f9e60]: Projects
+      - button "Open Journal" [ref=f9e61]:
+        - generic [ref=f9e69]: Journal
+      - button "Open Notes" [ref=f9e70]:
+        - generic [ref=f9e79]: Notes
+      - button "Open Contact" [ref=f9e80]:
+        - generic [ref=f9e86]: Contact
+      - button "Open Terminal" [ref=f9e87]:
+        - generic [ref=f9e88]: ">_"
+        - generic [ref=f9e92]: Terminal
+      - button "Open Socials" [ref=f9e93]:
+        - generic [ref=f9e99]: Socials
+      - button "Open CraftJS" [ref=f9e100]:
+        - generic [ref=f9e109]: CraftJS
+    - navigation "Dock" [ref=f9e111]:
+      - button "Open About Me" [ref=f9e113]:
+        - generic: About Me
+      - button "Open Projects" [ref=f9e117]:
+        - generic: Projects
+      - button "Open Journal" [ref=f9e126]:
+        - generic: Journal
+      - button "Open Notes" [ref=f9e135]:
+        - generic: Notes
+      - button "Open Contact" [ref=f9e145]:
+        - generic: Contact
+      - button "Open Browser" [ref=f9e152]:
+        - generic: Browser
+      - button "Open Terminal" [ref=f9e174]:
+        - generic [ref=f9e175]: ">_"
+        - generic: Terminal
+      - button "Open Settings" [ref=f9e180]:
+        - generic: Settings
+      - button "Open Calculator" [ref=f9e187]:
+        - generic [ref=f9e188]: "42"
+        - generic: Calculator
+      - button "Open Spotify" [ref=f9e206]:
+        - generic: Spotify
+      - button "Open Socials" [ref=f9e213]:
+        - generic: Socials
+      - button "Open CraftJS" [ref=f9e220]:
+        - generic: CraftJS
+      - button "Open Zo Space" [ref=f9e230]:
+        - generic: Zo Space
+      - button "Open GitHub" [ref=f9e234]:
+        - generic: GitHub
+      - button "Open ChatGPT" [ref=f9e238]:
+        - generic: ChatGPT
+      - button "Open Claude" [ref=f9e242]:
+        - generic: Claude
+      - button "Trash, empty" [ref=f9e247]:
+        - generic: Trash
+  - alert [ref=f9e255]

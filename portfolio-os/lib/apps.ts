@@ -2,16 +2,22 @@ import type { CSSProperties } from "react";
 import type { Icon } from "@phosphor-icons/react";
 import {
   Calculator,
+  CloudSun,
+  CodeSimple,
   Compass,
   Cube,
+  Folder,
   GearSix,
+  MagnifyingGlass,
   MusicNotes,
   Notebook,
   Notepad,
   PaperPlaneTilt,
+  Rabbit,
   ShareNetwork,
   SquaresFour,
   TerminalWindow,
+  WhatsappLogo,
 } from "@phosphor-icons/react";
 import type { AppId } from "./store";
 
@@ -135,6 +141,55 @@ export const APPS: AppDef[] = [
     tile: "linear-gradient(145deg, #7bc96f, #3f7d3a)",
     window: { w: 960, h: 640, x: 80, y: 30 },
     desk: { left: 26, bottom: 230 },
+  },
+  {
+    id: "finder",
+    name: "Finder",
+    windowTitle: "Finder",
+    icon: Folder,
+    tile: "linear-gradient(180deg, #168fd6, #0a5f9c)",
+    window: { w: 700, h: 500, x: 240, y: 110 },
+  },
+  {
+    id: "code",
+    name: "Code",
+    windowTitle: "Code",
+    icon: CodeSimple,
+    tile: "linear-gradient(145deg, #007acc, #00447c)",
+    window: { w: 780, h: 560, x: 200, y: 80 },
+  },
+  {
+    id: "photos",
+    name: "Photos",
+    windowTitle: "Photos",
+    icon: MagnifyingGlass,
+    tile: "linear-gradient(145deg, #ff6b6b, #c0392b)",
+    window: { w: 820, h: 560, x: 180, y: 70 },
+  },
+  {
+    id: "weather",
+    name: "Weather",
+    windowTitle: "Weather",
+    icon: CloudSun,
+    tile:
+      "linear-gradient(160deg, #2980b9, #1a3056)",
+    window: { w: 560, h: 440, x: 320, y: 100 },
+  },
+  {
+    id: "whatsapp",
+    name: "WhatsApp",
+    windowTitle: "WhatsApp",
+    icon: WhatsappLogo,
+    tile: "linear-gradient(145deg, #25d366, #128c7e)",
+    window: { w: 400, h: 580, x: 500, y: 60 },
+  },
+  {
+    id: "launchpad",
+    name: "Launchpad",
+    windowTitle: "Launchpad",
+    icon: Rabbit,
+    tile: "linear-gradient(145deg, #b86ef7, #6e3bb5)",
+    window: { w: 640, h: 440, x: 260, y: 120 },
   },
 ];
 
