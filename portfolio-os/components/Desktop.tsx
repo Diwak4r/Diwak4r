@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { APPS } from "@/lib/apps";
-import { useFocusedWin, useWindows, type AppId } from "@/lib/store";
+import { useFocusedWin, useWindows, type AppId, type Win } from "@/lib/store";
 import { useSystem } from "@/lib/system";
 import { useIsMobile } from "@/lib/hooks";
 import Wallpaper from "./Wallpaper";
@@ -29,19 +29,21 @@ import SpotifyApp from "./apps/SpotifyApp";
 import SocialsApp from "./apps/SocialsApp";
 import CraftApp from "./apps/CraftApp";
 
-const APP_CONTENT: Record<AppId, React.ReactNode> = {
-  about: <AboutApp />,
-  projects: <ProjectsApp />,
-  journal: <JournalApp />,
-  notes: <NotesApp />,
-  contact: <ContactApp />,
-  terminal: <TerminalApp />,
-  browser: <BrowserApp />,
-  settings: <SettingsApp />,
-  calculator: <CalculatorApp />,
-  socials: <SocialsApp />,
-  spotify: <SpotifyApp />,
-  craft: <CraftApp />,
+/** Content per window instance. Each instance mounts its own component tree
+ *  (keyed by winId), so two Terminals have two independent histories. */
+const APP_RENDER: Record<AppId, (win: Win) => React.ReactNode> = {
+  about: () => <AboutApp />,
+  projects: () => <ProjectsApp />,
+  journal: () => <JournalApp />,
+  notes: () => <NotesApp />,
+  contact: () => <ContactApp />,
+  terminal: (w) => <TerminalApp winId={w.winId} />,
+  browser: () => <BrowserApp />,
+  settings: () => <SettingsApp />,
+  calculator: () => <CalculatorApp />,
+  socials: () => <SocialsApp />,
+  spotify: () => <SpotifyApp />,
+  craft: () => <CraftApp />,
 };
 
 type Phase = "boot" | "login" | "desktop";
@@ -51,17 +53,12 @@ const BOOTED_KEY = "dios-booted";
 export default function Desktop() {
   const desktopRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  const windows = useWindows((s) => s.windows);
-  const links = useWindows((s) => s.links);
+  const wins = useWindows((s) => s.wins);
   const openApp = useWindows((s) => s.openApp);
-  const closeApp = useWindows((s) => s.closeApp);
-  const minimizeApp = useWindows((s) => s.minimizeApp);
-  const toggleMaximize = useWindows((s) => s.toggleMaximize);
-  const focusApp = useWindows((s) => s.focusApp);
-  const closeLinkWin = useWindows((s) => s.closeLinkWin);
-  const minimizeLinkWin = useWindows((s) => s.minimizeLinkWin);
-  const toggleMaximizeLinkWin = useWindows((s) => s.toggleMaximizeLinkWin);
-  const focusLinkWin = useWindows((s) => s.focusLinkWin);
+  const close = useWindows((s) => s.close);
+  const minimize = useWindows((s) => s.minimize);
+  const toggleMax = useWindows((s) => s.toggleMax);
+  const focus = useWindows((s) => s.focus);
   const focused = useFocusedWin();
   const tone = useSystem((s) => s.tone);
   const wifiOn = useSystem((s) => s.wifiOn);
@@ -112,12 +109,11 @@ export default function Desktop() {
       if (!focused) return;
       const el = document.activeElement;
       if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return;
-      if (focused.kind === "app") closeApp(focused.id);
-      else closeLinkWin(focused.url);
+      close(focused.winId);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [focused, closeApp, closeLinkWin, menuPos, spotlightOpen, phase]);
+  }, [focused, close, menuPos, spotlightOpen, phase]);
 
   const onDesktopContextMenu = (e: React.MouseEvent) => {
     // Only hijack right-click on the desktop surface itself, not on
@@ -211,53 +207,32 @@ export default function Desktop() {
               aria-hidden
             />
 
-            {/* Windows */}
+            {/* Windows: every instance is independent (apps and link sites) */}
             <AnimatePresence>
               {isMobile !== null &&
-                APPS.filter((app) => windows[app.id].open).map((app) => (
+                Object.values(wins).map((w) => (
                   <Window
-                    key={app.id}
-                    name={app.name}
-                    title={app.windowTitle}
-                    initial={app.window}
-                    z={windows[app.id].z}
-                    minimized={windows[app.id].minimized}
-                    maximized={windows[app.id].maximized}
+                    key={w.winId}
+                    name={w.title}
+                    title={w.title}
+                    initial={w.rect}
+                    z={w.z}
+                    minimized={w.minimized}
+                    maximized={w.maximized}
                     desktopRef={desktopRef}
-                    focused={focused?.kind === "app" && focused.id === app.id}
+                    focused={focused?.winId === w.winId}
                     mobile={isMobile}
-                    onClose={() => closeApp(app.id)}
-                    onMinimize={() => minimizeApp(app.id)}
-                    onToggleMax={() => toggleMaximize(app.id)}
-                    onFocus={() => focusApp(app.id)}
+                    onClose={() => close(w.winId)}
+                    onMinimize={() => minimize(w.winId)}
+                    onToggleMax={() => toggleMax(w.winId)}
+                    onFocus={() => focus(w.winId)}
                   >
                     <div className="h-full cursor-auto select-text">
-                      {APP_CONTENT[app.id]}
-                    </div>
-                  </Window>
-                ))}
-
-              {/* Independent site windows: profiles, projects, tools */}
-              {isMobile !== null &&
-                Object.values(links).map((l) => (
-                  <Window
-                    key={l.url}
-                    name={l.title}
-                    title={l.title}
-                    initial={l.rect}
-                    z={l.z}
-                    minimized={l.minimized}
-                    maximized={l.maximized}
-                    desktopRef={desktopRef}
-                    focused={focused?.kind === "link" && focused.url === l.url}
-                    mobile={isMobile}
-                    onClose={() => closeLinkWin(l.url)}
-                    onMinimize={() => minimizeLinkWin(l.url)}
-                    onToggleMax={() => toggleMaximizeLinkWin(l.url)}
-                    onFocus={() => focusLinkWin(l.url)}
-                  >
-                    <div className="h-full cursor-auto select-text">
-                      <LinkContent url={l.url} title={l.title} />
+                      {w.kind === "app" && w.appId ? (
+                        APP_RENDER[w.appId](w)
+                      ) : (
+                        <LinkContent url={w.url!} title={w.title} />
+                      )}
                     </div>
                   </Window>
                 ))}

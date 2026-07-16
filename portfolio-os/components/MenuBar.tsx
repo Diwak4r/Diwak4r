@@ -107,7 +107,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
   const menuRef = useRef<HTMLDivElement>(null);
   const ccRef = useRef<HTMLDivElement>(null);
 
-  const focusedId = focused?.kind === "app" ? focused.id : null;
+  const focusedId = focused?.kind === "app" ? focused.appId ?? null : null;
   const focusedName =
     focused?.kind === "link"
       ? focused.title

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { appById } from "./apps";
 
 export type AppId =
   | "about"
@@ -14,206 +15,222 @@ export type AppId =
   | "socials"
   | "craft";
 
-export interface WinState {
-  open: boolean;
-  minimized: boolean;
-  maximized: boolean;
-  z: number;
+export type WinKind = "app" | "link";
+
+export interface WinRect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
 }
 
-/** A free-standing window for an external site (profile, project, tool). */
-export interface LinkWin {
-  url: string;
+/** One open window. Every window is an independent instance: the same app
+ *  can be open many times, each with its own content state. */
+export interface Win {
+  winId: string;
+  kind: WinKind;
+  /** kind === "app" */
+  appId?: AppId;
+  /** kind === "link" */
+  url?: string;
   title: string;
+  /** Per-instance parameters (browser start URL, settings pane, finder path…) */
+  props?: Record<string, unknown>;
   minimized: boolean;
   maximized: boolean;
   z: number;
   /** Preferred geometry, cascaded at open time and clamped by the Window. */
-  rect: { x: number; y: number; w: number; h: number };
+  rect: WinRect;
 }
 
-const closed: WinState = { open: false, minimized: false, maximized: false, z: 0 };
+/** macOS caps runaway window spam too, just less politely. */
+const MAX_PER_APP = 8;
 
-interface WindowStore {
-  windows: Record<AppId, WinState>;
-  links: Record<string, LinkWin>;
-  topZ: number;
-  openApp: (id: AppId) => void;
-  closeApp: (id: AppId) => void;
-  minimizeApp: (id: AppId) => void;
-  toggleMaximize: (id: AppId) => void;
-  focusApp: (id: AppId) => void;
-  openLinkWin: (url: string, title: string) => void;
-  closeLinkWin: (url: string) => void;
-  minimizeLinkWin: (url: string) => void;
-  toggleMaximizeLinkWin: (url: string) => void;
-  focusLinkWin: (url: string) => void;
-}
+let seq = 0;
+const nextWinId = (prefix: string) => `${prefix}-${++seq}`;
 
-/** Cascade each new link window down-right so stacks stay readable. */
-const linkRect = (count: number) => ({
-  x: 130 + (count % 5) * 34,
-  y: 56 + (count % 5) * 30,
-  w: 980,
-  h: 620,
+const cascade = (base: WinRect, n: number): WinRect => ({
+  x: base.x + (n % 5) * 34,
+  y: base.y + (n % 5) * 30,
+  w: base.w,
+  h: base.h,
 });
 
+interface WindowStore {
+  wins: Record<string, Win>;
+  topZ: number;
+  /** Focus the app's top window if it has one, otherwise open a new one. */
+  openApp: (id: AppId, props?: Record<string, unknown>) => void;
+  /** Always open another window of the app (up to the per-app cap). */
+  newAppWindow: (id: AppId, props?: Record<string, unknown>) => void;
+  /** Focus the existing window for this URL, or open one. */
+  openLinkWin: (url: string, title: string) => void;
+  close: (winId: string) => void;
+  closeAllOf: (appId: AppId) => void;
+  minimize: (winId: string) => void;
+  toggleMax: (winId: string) => void;
+  focus: (winId: string) => void;
+}
+
+const appWins = (wins: Record<string, Win>, id: AppId): Win[] =>
+  Object.values(wins).filter((w) => w.appId === id);
+
+const topOf = (list: Win[]): Win | null =>
+  list.reduce<Win | null>((top, w) => (top === null || w.z > top.z ? w : top), null);
+
 export const useWindows = create<WindowStore>((set) => ({
-  links: {},
-  windows: {
-    about: { ...closed },
-    projects: { ...closed },
-    journal: { ...closed },
-    notes: { ...closed },
-    contact: { ...closed },
-    terminal: { ...closed },
-    browser: { ...closed },
-    settings: { ...closed },
-    calculator: { ...closed },
-    spotify: { ...closed },
-    socials: { ...closed },
-    craft: { ...closed },
-  },
+  wins: {},
   topZ: 10,
 
-  openApp: (id) =>
+  openApp: (id, props) =>
     set((s) => {
+      const existing = topOf(appWins(s.wins, id));
       const z = s.topZ + 1;
-      return {
-        topZ: z,
-        windows: {
-          ...s.windows,
-          [id]: { ...s.windows[id], open: true, minimized: false, z },
-        },
-      };
-    }),
-
-  closeApp: (id) =>
-    set((s) => ({ windows: { ...s.windows, [id]: { ...closed } } })),
-
-  minimizeApp: (id) =>
-    set((s) => ({
-      windows: { ...s.windows, [id]: { ...s.windows[id], minimized: true } },
-    })),
-
-  toggleMaximize: (id) =>
-    set((s) => {
-      const z = s.topZ + 1;
-      return {
-        topZ: z,
-        windows: {
-          ...s.windows,
-          [id]: {
-            ...s.windows[id],
-            maximized: !s.windows[id].maximized,
-            minimized: false,
-            z,
+      if (existing) {
+        return {
+          topZ: z,
+          wins: {
+            ...s.wins,
+            [existing.winId]: {
+              ...existing,
+              minimized: false,
+              z,
+              ...(props ? { props: { ...existing.props, ...props } } : {}),
+            },
           },
-        },
+        };
+      }
+      const app = appById(id);
+      const winId = nextWinId(id);
+      const win: Win = {
+        winId,
+        kind: "app",
+        appId: id,
+        title: app.windowTitle,
+        props,
+        minimized: false,
+        maximized: false,
+        z,
+        rect: { ...app.window },
       };
+      return { topZ: z, wins: { ...s.wins, [winId]: win } };
     }),
 
-  focusApp: (id) =>
+  newAppWindow: (id, props) =>
     set((s) => {
-      if (s.windows[id].z === s.topZ) return s;
+      const siblings = appWins(s.wins, id);
       const z = s.topZ + 1;
-      return {
-        topZ: z,
-        windows: { ...s.windows, [id]: { ...s.windows[id], z } },
+      if (siblings.length >= MAX_PER_APP) {
+        const top = topOf(siblings)!;
+        return {
+          topZ: z,
+          wins: { ...s.wins, [top.winId]: { ...top, minimized: false, z } },
+        };
+      }
+      const app = appById(id);
+      const winId = nextWinId(id);
+      const win: Win = {
+        winId,
+        kind: "app",
+        appId: id,
+        title: app.windowTitle,
+        props,
+        minimized: false,
+        maximized: false,
+        z,
+        rect: cascade(app.window, siblings.length),
       };
+      return { topZ: z, wins: { ...s.wins, [winId]: win } };
     }),
 
   openLinkWin: (url, title) =>
     set((s) => {
+      const existing = Object.values(s.wins).find((w) => w.kind === "link" && w.url === url);
       const z = s.topZ + 1;
-      const existing = s.links[url];
-      const win: LinkWin = existing
-        ? { ...existing, minimized: false, z }
-        : {
-            url,
-            title,
-            minimized: false,
-            maximized: false,
-            z,
-            rect: linkRect(Object.keys(s.links).length),
-          };
-      return { topZ: z, links: { ...s.links, [url]: win } };
+      if (existing) {
+        return {
+          topZ: z,
+          wins: { ...s.wins, [existing.winId]: { ...existing, minimized: false, z } },
+        };
+      }
+      const linkCount = Object.values(s.wins).filter((w) => w.kind === "link").length;
+      const winId = nextWinId("link");
+      const win: Win = {
+        winId,
+        kind: "link",
+        url,
+        title,
+        minimized: false,
+        maximized: false,
+        z,
+        rect: cascade({ x: 130, y: 56, w: 980, h: 620 }, linkCount),
+      };
+      return { topZ: z, wins: { ...s.wins, [winId]: win } };
     }),
 
-  closeLinkWin: (url) =>
+  close: (winId) =>
     set((s) => {
-      const links = { ...s.links };
-      delete links[url];
-      return { links };
+      const wins = { ...s.wins };
+      delete wins[winId];
+      return { wins };
     }),
 
-  minimizeLinkWin: (url) =>
+  closeAllOf: (appId) =>
+    set((s) => {
+      const wins: Record<string, Win> = {};
+      for (const w of Object.values(s.wins)) {
+        if (w.appId !== appId) wins[w.winId] = w;
+      }
+      return { wins };
+    }),
+
+  minimize: (winId) =>
     set((s) => ({
-      links: { ...s.links, [url]: { ...s.links[url], minimized: true } },
+      wins: { ...s.wins, [winId]: { ...s.wins[winId], minimized: true } },
     })),
 
-  toggleMaximizeLinkWin: (url) =>
+  toggleMax: (winId) =>
     set((s) => {
       const z = s.topZ + 1;
+      const w = s.wins[winId];
       return {
         topZ: z,
-        links: {
-          ...s.links,
-          [url]: {
-            ...s.links[url],
-            maximized: !s.links[url].maximized,
-            minimized: false,
-            z,
-          },
+        wins: {
+          ...s.wins,
+          [winId]: { ...w, maximized: !w.maximized, minimized: false, z },
         },
       };
     }),
 
-  focusLinkWin: (url) =>
+  focus: (winId) =>
     set((s) => {
-      if (s.links[url].z === s.topZ) return s;
+      if (s.wins[winId]?.z === s.topZ) return s;
       const z = s.topZ + 1;
-      return { topZ: z, links: { ...s.links, [url]: { ...s.links[url], z } } };
+      return {
+        topZ: z,
+        wins: { ...s.wins, [winId]: { ...s.wins[winId], z } },
+      };
     }),
 }));
 
-export type FocusedWin =
-  | { kind: "app"; id: AppId }
-  | { kind: "link"; url: string; title: string };
-
-let focusedCache: FocusedWin | null = null;
-
-/** The open, non-minimized window (app or link) with the highest z, or null. */
-export function useFocusedWin(): FocusedWin | null {
+/** How many windows an app has open (cheap, for dock dots). */
+export function useAppWinCount(id: AppId): number {
   return useWindows((s) => {
-    let top: FocusedWin | null = null;
-    let z = 0;
-    for (const id of Object.keys(s.windows) as AppId[]) {
-      const w = s.windows[id];
-      if (w.open && !w.minimized && w.z > z) {
-        z = w.z;
-        top = { kind: "app", id };
-      }
+    let n = 0;
+    for (const key in s.wins) if (s.wins[key].appId === id) n++;
+    return n;
+  });
+}
+
+/** The open, non-minimized window with the highest z, or null.
+ *  Returns the Win object itself; reference-stable while nothing changes. */
+export function useFocusedWin(): Win | null {
+  return useWindows((s) => {
+    let top: Win | null = null;
+    for (const key in s.wins) {
+      const w = s.wins[key];
+      if (!w.minimized && (top === null || w.z > top.z)) top = w;
     }
-    for (const url of Object.keys(s.links)) {
-      const l = s.links[url];
-      if (!l.minimized && l.z > z) {
-        z = l.z;
-        top = { kind: "link", url, title: l.title };
-      }
-    }
-    // Return a stable reference when nothing changed so zustand can bail out.
-    if (
-      top &&
-      focusedCache &&
-      top.kind === focusedCache.kind &&
-      (top.kind === "app"
-        ? top.id === (focusedCache as { id?: AppId }).id
-        : top.url === (focusedCache as { url?: string }).url)
-    ) {
-      return focusedCache;
-    }
-    focusedCache = top;
     return top;
   });
 }
@@ -221,5 +238,5 @@ export function useFocusedWin(): FocusedWin | null {
 /** The focused app id, if the focused window is an app. */
 export function useFocusedApp(): AppId | null {
   const f = useFocusedWin();
-  return f?.kind === "app" ? f.id : null;
+  return f?.kind === "app" ? (f.appId ?? null) : null;
 }

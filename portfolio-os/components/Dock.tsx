@@ -12,7 +12,7 @@ import {
 } from "motion/react";
 import { Trash, type IconWeight } from "@phosphor-icons/react";
 import { APPS, type AppDef } from "@/lib/apps";
-import { useWindows } from "@/lib/store";
+import { useAppWinCount, useWindows } from "@/lib/store";
 import { openLink, useSystem } from "@/lib/system";
 import { ChatGptMark, ClaudeMark, GithubMark, ZoMark } from "./brand/BrandMarks";
 import AppTile from "./AppTile";
@@ -78,14 +78,88 @@ function useMagnify(mouseX: MotionValue<number>, ref: React.RefObject<HTMLElemen
   return useSpring(sizeRaw, { mass: 0.1, stiffness: 220, damping: 16 });
 }
 
+/** Right-click menu on a dock icon: the app's windows, New Window, Close All. */
+function DockAppMenu({ app, onClose }: { app: AppDef; onClose: () => void }) {
+  const windows = useWindows((s) => s.wins);
+  const newAppWindow = useWindows((s) => s.newAppWindow);
+  const focus = useWindows((s) => s.focus);
+  const closeAllOf = useWindows((s) => s.closeAllOf);
+  const own = Object.values(windows).filter((w) => w.appId === app.id);
+
+  useEffect(() => {
+    const onDown = () => onClose();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    // Defer so the opening right-click itself doesn't close it.
+    const t = setTimeout(() => {
+      window.addEventListener("pointerdown", onDown);
+      window.addEventListener("keydown", onKey);
+    }, 0);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
+  const item =
+    "block w-full rounded-md px-2.5 py-1.5 text-left text-[13px] text-white/85 transition-colors hover:bg-(--accent-btn) hover:text-(--accent-contrast)";
+
+  return (
+    <div
+      className="bar-chrome absolute bottom-[calc(100%+14px)] left-1/2 z-50 w-52 -translate-x-1/2 rounded-lg border border-white/[0.12] p-1 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+      role="menu"
+      onPointerDown={(e) => e.stopPropagation()}
+    >
+      {own.map((w, i) => (
+        <button
+          key={w.winId}
+          role="menuitem"
+          className={`${item} truncate`}
+          onClick={() => {
+            focus(w.winId);
+            onClose();
+          }}
+        >
+          {w.title}
+          {own.length > 1 ? ` — ${i + 1}` : ""}
+        </button>
+      ))}
+      {own.length > 0 && <div className="mx-2 my-1 border-t border-white/[0.08]" aria-hidden />}
+      <button
+        role="menuitem"
+        className={item}
+        onClick={() => {
+          newAppWindow(app.id);
+          onClose();
+        }}
+      >
+        New Window
+      </button>
+      {own.length > 0 && (
+        <button
+          role="menuitem"
+          className={item}
+          onClick={() => {
+            closeAllOf(app.id);
+            onClose();
+          }}
+        >
+          Close All
+        </button>
+      )}
+    </div>
+  );
+}
+
 function DockItem({ app, mouseX }: { app: AppDef; mouseX: MotionValue<number> }) {
   const ref = useRef<HTMLButtonElement>(null);
   const reduce = useReducedMotion();
   const base = useSystem((s) => s.dockSize);
   const openApp = useWindows((s) => s.openApp);
-  const isOpen = useWindows((s) => s.windows[app.id].open);
+  const isOpen = useAppWinCount(app.id) > 0;
   const size = useMagnify(mouseX, ref);
   const [scope, animate] = useAnimate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const launch = () => {
     // The classic launch bounce, only when the app isn't already running.
@@ -96,30 +170,40 @@ function DockItem({ app, mouseX }: { app: AppDef; mouseX: MotionValue<number> })
   };
 
   return (
-    <motion.button
-      ref={ref}
-      onClick={launch}
-      style={reduce ? { width: base, height: base } : { width: size, height: size }}
-      className="group relative aspect-square"
-      aria-label={`${isOpen ? "Focus" : "Open"} ${app.name}`}
-    >
-      <span ref={scope} className="block h-full w-full drop-shadow-[0_8px_16px_rgba(0,0,0,0.45)]">
-        <AppTile app={app} />
-      </span>
+    <div className="relative">
+      <motion.button
+        ref={ref}
+        onClick={launch}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          setMenuOpen(true);
+        }}
+        style={reduce ? { width: base, height: base } : { width: size, height: size }}
+        className="group relative aspect-square"
+        aria-label={`${isOpen ? "Focus" : "Open"} ${app.name}`}
+      >
+        <span ref={scope} className="block h-full w-full drop-shadow-[0_8px_16px_rgba(0,0,0,0.45)]">
+          <AppTile app={app} />
+        </span>
 
-      {/* Tooltip */}
-      <span className="dock-tip pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md px-2.5 py-1 text-[12px] text-white/90 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
-        {app.name}
-      </span>
+        {/* Tooltip */}
+        {!menuOpen && (
+          <span className="dock-tip pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md px-2.5 py-1 text-[12px] text-white/90 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
+            {app.name}
+          </span>
+        )}
 
-      {/* Running indicator */}
-      {isOpen && (
-        <span
-          className="absolute -bottom-[7px] left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-white/70"
-          aria-hidden
-        />
-      )}
-    </motion.button>
+        {/* Running indicator */}
+        {isOpen && (
+          <span
+            className="absolute -bottom-[7px] left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-white/70"
+            aria-hidden
+          />
+        )}
+      </motion.button>
+
+      {menuOpen && <DockAppMenu app={app} onClose={() => setMenuOpen(false)} />}
+    </div>
   );
 }
 

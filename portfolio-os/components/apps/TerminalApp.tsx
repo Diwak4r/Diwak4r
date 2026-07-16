@@ -101,13 +101,14 @@ const CHATTY: Record<string, string[]> = {
   "explorer": ["Finder would like a word. try 'open projects'."],
 };
 
-export default function TerminalApp() {
+export default function TerminalApp({ winId }: { winId: string }) {
   const [lines, setLines] = useState<Line[]>(BANNER);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const openApp = useWindows((s) => s.openApp);
-  const closeApp = useWindows((s) => s.closeApp);
+  const newAppWindow = useWindows((s) => s.newAppWindow);
+  const close = useWindows((s) => s.close);
   const setTone = useSystem((s) => s.setTone);
   const setWifi = useSystem((s) => s.setWifi);
 
@@ -166,8 +167,9 @@ export default function TerminalApp() {
       case "open": {
         const id = rest as AppId;
         if (OPENABLE.includes(id)) {
-          openApp(id);
-          return out(`Opening ${id}...`);
+          // Always a fresh window: the terminal is where power users live.
+          newAppWindow(id);
+          return out(`Opening a new ${id} window...`);
         }
         return out(`Unknown app '${rest}'. Apps: ${OPENABLE.join(", ")}`);
       }
@@ -215,7 +217,7 @@ export default function TerminalApp() {
       case "sudo":
         return out("diwakar is not in the sudoers file. This incident will be reported.");
       case "exit":
-        closeApp("terminal");
+        close(winId);
         return [];
       case "":
         return [];
@@ -232,7 +234,9 @@ export default function TerminalApp() {
       setLines([]);
       return;
     }
-    setLines((prev) => [...prev, { kind: "in", text: raw }, ...run(raw)]);
+    // Run outside the updater: commands may open/close windows (store writes).
+    const result = run(raw);
+    setLines((prev) => [...prev, { kind: "in", text: raw }, ...result]);
   };
 
   return (
