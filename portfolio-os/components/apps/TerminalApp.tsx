@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { profile, projects, skillGroups, socials } from "@/lib/content";
 import { APPS } from "@/lib/apps";
 import { useWindows, type AppId } from "@/lib/store";
-import { TONES, useSystem, type ToneId } from "@/lib/system";
+import { openLink, TONES, useSystem, type ToneId } from "@/lib/system";
+import { matchPool } from "@/lib/terminal-commands";
 
 const PROMPT = "diwakar@portfolio ~ %";
 
@@ -57,8 +58,10 @@ const HELP = [
   "theme <color>    change the accent (blue, purple, pink, red, orange, yellow, green, graphite)",
   "wifi <on|off>    toggle the connection",
   "neofetch         system info",
-  "ls, pwd, echo, date, clear (or cls), exit",
-  "…the shell also answers to git, npm, python, vim, ipconfig, ollama, ai. try your luck",
+  "og | zo          visit the classic portfolio / Zo Space",
+  "ls, pwd, echo, date, history, clear (or cls), exit",
+  "…plus 50+ easter eggs: roastme, momo, nepse, valorant, gym, cowsay, fortune,",
+  "   deadline, crush, cgpa, loadshedding… the shell roasts back. try your luck.",
 ];
 
 /** Chatty one-offs: dev-culture commands that answer with personality. */
@@ -104,6 +107,8 @@ const CHATTY: Record<string, string[]> = {
 export default function TerminalApp({ winId }: { winId: string }) {
   const [lines, setLines] = useState<Line[]>(BANNER);
   const [input, setInput] = useState("");
+  const history = useRef<string[]>([]);
+  const histPos = useRef(-1); // -1 = editing a fresh line
   const inputRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const openApp = useWindows((s) => s.openApp);
@@ -139,6 +144,10 @@ export default function TerminalApp({ winId }: { winId: string }) {
       if (chattyKey === "notepad") openApp("notes");
       return out(...CHATTY[chattyKey]);
     }
+
+    // The roast pools: 50+ relatable commands, randomized replies.
+    const roastReply = matchPool(trimmed);
+    if (roastReply) return out(...roastReply);
 
     switch (cmd) {
       case "help":
@@ -199,6 +208,9 @@ export default function TerminalApp({ winId }: { winId: string }) {
         return out(rest);
       case "date":
         return out(new Date().toString());
+      case "history":
+        if (history.current.length === 0) return out("no history yet. type something regrettable first.");
+        return out(...history.current.map((h, i) => `  ${i + 1}  ${h}`));
       case "neofetch":
         return out(
           "OS:        DiwakarOS 2.0 (web)",
@@ -208,6 +220,13 @@ export default function TerminalApp({ winId }: { winId: string }) {
           `Owner:     ${profile.name}`,
           `Location:  ${profile.location}`,
         );
+      case "og":
+      case "classic":
+        openLink("https://www.diwakaryadav.com.np/", "Diwakar Yadav");
+        return out("Opening the classic portfolio...");
+      case "zo":
+        openLink("https://diwak4r.zo.space/", "Zo Space");
+        return out("Opening Zo Space...");
       case "claude":
         return out(
           "Claude Code reporting for duty.",
@@ -229,6 +248,8 @@ export default function TerminalApp({ winId }: { winId: string }) {
   const submit = () => {
     const raw = input;
     setInput("");
+    if (raw.trim()) history.current.push(raw);
+    histPos.current = -1;
     const cmd = raw.trim().toLowerCase();
     if (cmd === "clear" || cmd === "cls") {
       setLines([]);
@@ -237,6 +258,30 @@ export default function TerminalApp({ winId }: { winId: string }) {
     // Run outside the updater: commands may open/close windows (store writes).
     const result = run(raw);
     setLines((prev) => [...prev, { kind: "in", text: raw }, ...result]);
+  };
+
+  /** Arrow-key history, like a real shell. */
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      submit();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const h = history.current;
+      if (h.length === 0) return;
+      histPos.current = histPos.current === -1 ? h.length - 1 : Math.max(0, histPos.current - 1);
+      setInput(h[histPos.current]);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const h = history.current;
+      if (histPos.current === -1) return;
+      histPos.current += 1;
+      if (histPos.current >= h.length) {
+        histPos.current = -1;
+        setInput("");
+      } else {
+        setInput(h[histPos.current]);
+      }
+    }
   };
 
   return (
@@ -263,7 +308,7 @@ export default function TerminalApp({ winId }: { winId: string }) {
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && submit()}
+            onKeyDown={onKeyDown}
             className="min-w-0 flex-1 bg-transparent text-white/90 caret-accent-400 outline-none"
             aria-label="Terminal input"
             autoFocus
