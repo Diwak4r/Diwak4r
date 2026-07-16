@@ -37,11 +37,18 @@ export type WallpaperId =
   | "tahoe-light"
   | "sequoia-sunrise"
   | "sonoma-horizon"
+  | "sonoma-light"
+  | "ventura"
   | "monterey-light"
   | "monterey-classic"
   | "big-sur-day"
   | "big-sur-classic"
-  | "yosemite-classic";
+  | "catalina-day"
+  | "mojave-day"
+  | "sierra"
+  | "yosemite-classic"
+  | "tiger"
+  | "aqua";
 
 export interface WallpaperDef {
   id: WallpaperId;
@@ -53,6 +60,8 @@ export interface WallpaperDef {
   /** Two parallax glow colors (CSS color values) */
   glowA: string;
   glowB: string;
+  /** Settings pane section */
+  group?: "scenes" | "macos";
 }
 
 export const WALLPAPERS: WallpaperDef[] = [
@@ -183,7 +192,69 @@ export const WALLPAPERS: WallpaperDef[] = [
     glowA: "rgb(120 180 230 / 0.4)",
     glowB: "rgb(255 200 130 / 0.25)",
   },
+  {
+    id: "ventura",
+    image: "/images/wallpapers/og/ventura.jpg",
+    label: "Ventura",
+    base: "linear-gradient(180deg, #ffb340 0%, #f07830 55%, #5a2410 100%)",
+    glowA: "rgb(255 170 60 / 0.45)",
+    glowB: "rgb(240 100 50 / 0.3)",
+  },
+  {
+    id: "sonoma-light",
+    image: "/images/wallpapers/og/sonoma-light.jpg",
+    label: "Sonoma",
+    base: "linear-gradient(160deg, #ff7a5c 0%, #8fd14f 60%, #3a7a1e 100%)",
+    glowA: "rgb(160 220 90 / 0.4)",
+    glowB: "rgb(255 130 100 / 0.3)",
+  },
+  {
+    id: "catalina-day",
+    image: "/images/wallpapers/og/catalina-day.jpg",
+    label: "Catalina Day",
+    base: "linear-gradient(180deg, #b9a7c9 0%, #4a5a80 55%, #131a2e 100%)",
+    glowA: "rgb(200 170 220 / 0.35)",
+    glowB: "rgb(90 110 160 / 0.3)",
+  },
+  {
+    id: "mojave-day",
+    image: "/images/wallpapers/og/mojave-day.jpg",
+    label: "Mojave Day",
+    base: "linear-gradient(180deg, #7ab3d9 0%, #d9a05c 55%, #6e3f22 100%)",
+    glowA: "rgb(240 190 120 / 0.4)",
+    glowB: "rgb(120 170 210 / 0.3)",
+  },
+  {
+    id: "sierra",
+    image: "/images/wallpapers/og/sierra.jpg",
+    label: "Sierra",
+    base: "linear-gradient(180deg, #24344e 0%, #c96a3e 55%, #1a1214 100%)",
+    glowA: "rgb(255 140 80 / 0.4)",
+    glowB: "rgb(90 120 170 / 0.3)",
+  },
+  {
+    id: "tiger",
+    image: "/images/wallpapers/og/tiger.jpg",
+    label: "Tiger",
+    base: "linear-gradient(160deg, #4a86d8 0%, #2456a8 55%, #0e2a5e 100%)",
+    glowA: "rgb(110 170 240 / 0.4)",
+    glowB: "rgb(60 110 200 / 0.3)",
+  },
+  {
+    id: "aqua",
+    image: "/images/wallpapers/og/aqua.jpg",
+    label: "Aqua",
+    base: "linear-gradient(160deg, #5a8ad2 0%, #3a62ac 55%, #1c3a74 100%)",
+    glowA: "rgb(130 180 240 / 0.4)",
+    glowB: "rgb(80 120 200 / 0.3)",
+  },
 ];
+
+/* Everything with original Apple artwork sits in the macOS section;
+   the CSS scenes and Dynamic stay together. */
+for (const w of WALLPAPERS) {
+  w.group = w.image?.includes("/og/") ? "macos" : "scenes";
+}
 
 /* ---- System store: appearance, connectivity, in-OS browser ---- */
 

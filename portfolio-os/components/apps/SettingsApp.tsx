@@ -146,9 +146,49 @@ function Appearance() {
   );
 }
 
-function WallpaperPane() {
+function WallpaperGrid({ items }: { items: typeof WALLPAPERS }) {
   const wallpaper = useSystem((s) => s.wallpaper);
   const setWallpaper = useSystem((s) => s.setWallpaper);
+
+  return (
+    <div className="grid grid-cols-2 gap-3 @xl:grid-cols-3">
+      {items.map((w) => (
+        <button
+          key={w.id}
+          onClick={() => setWallpaper(w.id)}
+          aria-pressed={wallpaper === w.id}
+          className={`overflow-hidden rounded-xl border-2 text-left transition-transform hover:scale-[1.02] active:scale-[0.99] ${
+            wallpaper === w.id ? "border-accent-400" : "border-white/10"
+          }`}
+        >
+          {w.image ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={w.image}
+              alt=""
+              className="block aspect-video w-full object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <span
+              className="block aspect-video w-full"
+              style={{
+                background: `radial-gradient(90% 90% at 18% 105%, ${w.glowA}, transparent 70%), radial-gradient(80% 80% at 90% -10%, ${w.glowB}, transparent 70%), ${w.base}`,
+              }}
+            />
+          )}
+          <span className="block px-2.5 py-1.5 text-[12px] text-white/75">
+            {w.label}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function WallpaperPane() {
+  const macos = WALLPAPERS.filter((w) => w.group === "macos");
+  const scenes = WALLPAPERS.filter((w) => w.group !== "macos");
 
   return (
     <div>
@@ -157,38 +197,11 @@ function WallpaperPane() {
         Also available from the desktop: right-click and choose Change Wallpaper.
       </p>
 
-      <div className="grid grid-cols-2 gap-3 @xl:grid-cols-3">
-        {WALLPAPERS.map((w) => (
-          <button
-            key={w.id}
-            onClick={() => setWallpaper(w.id)}
-            aria-pressed={wallpaper === w.id}
-            className={`overflow-hidden rounded-xl border-2 text-left transition-transform hover:scale-[1.02] active:scale-[0.99] ${
-              wallpaper === w.id ? "border-accent-400" : "border-white/10"
-            }`}
-          >
-            {w.image ? (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src={w.image}
-                alt=""
-                className="block aspect-video w-full object-cover"
-                loading="lazy"
-              />
-            ) : (
-              <span
-                className="block aspect-video w-full"
-                style={{
-                  background: `radial-gradient(90% 90% at 18% 105%, ${w.glowA}, transparent 70%), radial-gradient(80% 80% at 90% -10%, ${w.glowB}, transparent 70%), ${w.base}`,
-                }}
-              />
-            )}
-            <span className="block px-2.5 py-1.5 text-[12px] text-white/75">
-              {w.label}
-            </span>
-          </button>
-        ))}
-      </div>
+      <h3 className="mb-2.5 text-[12.5px] font-semibold text-white/55">macOS originals</h3>
+      <WallpaperGrid items={macos} />
+
+      <h3 className="mb-2.5 mt-6 text-[12.5px] font-semibold text-white/55">Scenes</h3>
+      <WallpaperGrid items={scenes} />
     </div>
   );
 }
