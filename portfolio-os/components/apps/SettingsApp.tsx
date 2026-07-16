@@ -1,19 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Desktop as DesktopIconGlyph, Image as ImageIcon, PaintBrushBroad, WifiHigh } from "@phosphor-icons/react";
+import { Desktop as DesktopIconGlyph, Image as ImageIcon, Info, MusicNotes, PaintBrushBroad, SunHorizon, WifiHigh } from "@phosphor-icons/react";
 import {
   TONES,
   WALLPAPERS,
   useSystem,
   type SettingsPane,
 } from "@/lib/system";
+import { profile } from "@/lib/content";
+import { openLink } from "@/lib/system";
 
 const PANES: { id: SettingsPane; label: string; icon: typeof WifiHigh }[] = [
   { id: "appearance", label: "Appearance", icon: PaintBrushBroad },
   { id: "wallpaper", label: "Wallpaper", icon: ImageIcon },
   { id: "desktop", label: "Desktop & Dock", icon: DesktopIconGlyph },
+  { id: "sounds", label: "Sounds", icon: MusicNotes },
+  { id: "nightshift", label: "Night Shift", icon: SunHorizon },
   { id: "wifi", label: "Wi-Fi", icon: WifiHigh },
+  { id: "about", label: "About This Mac", icon: Info },
 ];
 
 /** macOS-style switch: green when on, like the real thing. */
@@ -244,6 +249,71 @@ function WifiPane() {
   );
 }
 
+function SoundsPane() {
+  const sounds = useSystem(s => s.sounds);
+  const setSounds = useSystem(s => s.setSounds);
+  return (
+    <div>
+      <h2 className="text-[15px] font-semibold text-white/90">Sounds</h2>
+      <p className="mb-5 mt-1 text-[12.5px] text-white/50">UI sound effects: window open, close, and the classic Mac startup chime.</p>
+      <div className="space-y-3">
+        <SettingRow title="Play sound effects" detail="A subtle click when windows open and close">
+          <Switch on={sounds} label="Toggle sounds" onChange={setSounds} />
+        </SettingRow>
+      </div>
+    </div>
+  );
+}
+
+function NightShiftPane() {
+  const nightShift = useSystem(s => s.nightShift);
+  const setNightShift = useSystem(s => s.setNightShift);
+
+  return (
+    <div>
+      <h2 className="text-[15px] font-semibold text-white/90">Night Shift</h2>
+      <p className="mb-5 mt-1 text-[12.5px] text-white/50">Warm the display colors. Easier on the eyes in the dark.</p>
+      <div className="space-y-3">
+        <SettingRow title="Color temperature" detail={`${nightShift === 0 ? "Off" : `${Math.round(nightShift * 100)}% warm`}`}>
+          <input type="range" min={0} max={1} step={0.1} value={nightShift} onChange={e => setNightShift(Number(e.target.value))}
+            className="w-36 accent-(--accent-btn)" aria-label="Warmth level" />
+        </SettingRow>
+      </div>
+    </div>
+  );
+}
+
+function AboutPane() {
+  const [uptime, setUptime] = useState(0);
+  useEffect(() => {
+    setUptime(Math.floor((Date.now() - performance.timeOrigin) / 1000));
+    const t = setInterval(() => setUptime(s => s + 1), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  const h = Math.floor(uptime / 3600);
+  const m = Math.floor((uptime % 3600) / 60);
+  const s = uptime % 60;
+
+  return (
+    <div>
+      <h2 className="text-[15px] font-semibold text-white/90">About This Mac</h2>
+      <div className="mt-5 space-y-3">
+        <div className="flex justify-between"><span className="text-[13px] text-white/50">OS</span><span className="text-[13px] text-white/85">DiwakarOS 3.0</span></div>
+        <div className="flex justify-between"><span className="text-[13px] text-white/50">Chip</span><span className="text-[13px] text-white/85">Apple M∞ · fabricated in Kathmandu</span></div>
+        <div className="flex justify-between"><span className="text-[13px] text-white/50">Memory</span><span className="text-[13px] text-white/85">∞ GB unified vibes</span></div>
+        <div className="flex justify-between"><span className="text-[13px] text-white/50">Built with</span><span className="text-[13px] text-white/85">Claude Code + Next.js + caffeine</span></div>
+        <div className="flex justify-between"><span className="text-[13px] text-white/50">Owner</span><span className="text-[13px] text-white/85">{profile.name}</span></div>
+        <div className="flex justify-between"><span className="text-[13px] text-white/50">Uptime</span><span className="text-[13px] tabular-nums text-white/85">{h}h {m}m {s}s</span></div>
+        <div className="mt-4 flex gap-2 pt-3 border-t border-white/[0.08]">
+          <button onClick={() => openLink("https://www.diwakaryadav.com.np/")} className="rounded-lg bg-white/10 px-3 py-1.5 text-[12px] text-white/80 hover:bg-white/20">Classic Portfolio</button>
+          <button onClick={() => openLink("https://diwak4r.zo.space/")} className="rounded-lg bg-white/10 px-3 py-1.5 text-[12px] text-white/80 hover:bg-white/20">Zo Space</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function SettingsApp({ paneProp }: { paneProp?: SettingsPane }) {
   const [pane, setPane] = useState<SettingsPane>(paneProp ?? "appearance");
 
@@ -280,6 +350,9 @@ export default function SettingsApp({ paneProp }: { paneProp?: SettingsPane }) {
           {pane === "appearance" && <Appearance />}
           {pane === "wallpaper" && <WallpaperPane />}
           {pane === "desktop" && <DesktopDockPane />}
+          {pane === "sounds" && <SoundsPane />}
+          {pane === "nightshift" && <NightShiftPane />}
+          {pane === "about" && <AboutPane />}
           {pane === "wifi" && <WifiPane />}
         </div>
       </div>

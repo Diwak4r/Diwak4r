@@ -258,7 +258,7 @@ for (const w of WALLPAPERS) {
 
 /* ---- System store: appearance, connectivity, in-OS browser ---- */
 
-export type SettingsPane = "appearance" | "wallpaper" | "desktop" | "wifi";
+export type SettingsPane = "appearance" | "wallpaper" | "desktop" | "wifi" | "sounds" | "nightshift" | "about";
 
 const TONE_KEY = "dios-tone";
 const WALLPAPER_KEY = "dios-wallpaper";
@@ -267,6 +267,8 @@ const DOCK_SIZE_KEY = "dios-dock-size";
 const MAGNIFY_KEY = "dios-dock-magnify";
 const TRANSPARENCY_KEY = "dios-transparency";
 const GRAIN_KEY = "dios-grain";
+const SOUNDS_KEY = "dios-sounds";
+const NIGHTSHIFT_KEY = "dios-nightshift";
 
 interface SystemStore {
   tone: ToneId;
@@ -280,6 +282,8 @@ interface SystemStore {
   /** Frosted-glass chrome; off = solid surfaces (also a performance boost) */
   transparency: boolean;
   grain: boolean;
+  sounds: boolean;
+  nightShift: number;
   setTone: (t: ToneId) => void;
   setWallpaper: (w: WallpaperId) => void;
   setWifi: (on: boolean) => void;
@@ -288,6 +292,8 @@ interface SystemStore {
   setDockMagnify: (on: boolean) => void;
   setTransparency: (on: boolean) => void;
   setGrain: (on: boolean) => void;
+  setSounds: (on: boolean) => void;
+  setNightShift: (n: number) => void;
   hydrate: () => void;
 }
 
@@ -300,6 +306,8 @@ export const useSystem = create<SystemStore>((set) => ({
   dockMagnify: true,
   transparency: true,
   grain: true,
+  sounds: false,
+  nightShift: 0,
 
   setTone: (tone) => {
     localStorage.setItem(TONE_KEY, tone);
@@ -329,6 +337,14 @@ export const useSystem = create<SystemStore>((set) => ({
   setGrain: (grain) => {
     localStorage.setItem(GRAIN_KEY, grain ? "1" : "0");
     set({ grain });
+  },
+  setSounds: (sounds) => {
+    localStorage.setItem(SOUNDS_KEY, sounds ? "1" : "0");
+    set({ sounds });
+  },
+  setNightShift: (nightShift) => {
+    localStorage.setItem(NIGHTSHIFT_KEY, String(nightShift));
+    set({ nightShift });
   },
   /** Restore persisted appearance after mount (client only). */
   hydrate: () => {

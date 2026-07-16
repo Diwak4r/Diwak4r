@@ -61,10 +61,10 @@ function SystemMenu({ onClose }: { onClose: () => void }) {
     { label: "About This Portfolio", action: () => openApp("about") },
     { label: "System Settings", action: () => openSettings("appearance") },
     { label: "Open Terminal", action: () => openApp("terminal") },
+    { label: "Zo Space", action: () => openLink("https://diwak4r.zo.space/"), divider: true },
     {
       label: "Classic Portfolio Site",
       action: () => openLink("https://www.diwakaryadav.com.np/"),
-      divider: true,
     },
     { label: "View Source on GitHub", action: () => openLink("https://github.com/Diwak4r") },
     { label: "Email Diwakar", action: () => openApp("contact") },

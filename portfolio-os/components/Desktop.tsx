@@ -80,6 +80,7 @@ export default function Desktop() {
   const brightness = useSystem((s) => s.brightness);
   const transparency = useSystem((s) => s.transparency);
   const grain = useSystem((s) => s.grain);
+  const nightShift = useSystem((s) => s.nightShift);
   const hydrate = useSystem((s) => s.hydrate);
 
   const files = useFiles((s) => s.items);
@@ -391,6 +392,14 @@ export default function Desktop() {
           />
         )}
       </AnimatePresence>
+
+      {/* Night Shift warm filter: sits below grain and brightness, above windows */}
+      {nightShift > 0 && (
+        <div className="pointer-events-none fixed inset-0 z-[65]" style={{
+          background: `rgba(255, 170, 80, ${nightShift * 0.4})`,
+          mixBlendMode: "multiply",
+        }} aria-hidden />
+      )}
 
       {/* Film grain sits above everything, below nothing interactive */}
       {grain && <div className="grain pointer-events-none fixed inset-0 z-[110]" aria-hidden />}
