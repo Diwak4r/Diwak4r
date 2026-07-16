@@ -4,7 +4,6 @@ import { useEffect, useRef, type ReactNode, type RefObject } from "react";
 import {
   animate,
   motion,
-  useDragControls,
   useMotionValue,
   useReducedMotion,
 } from "motion/react";
@@ -58,7 +57,6 @@ export default function Window({
   children: ReactNode;
 }) {
   const reduce = useReducedMotion();
-  const dragControls = useDragControls();
 
   // Window geometry lives in motion values so drag and resize never re-render React.
   const x = useMotionValue(initial.x);
@@ -102,6 +100,32 @@ export default function Window({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [maximized, mobile]);
+
+  /** Title-bar drag, done by hand: motion values move, React never re-renders,
+   *  and programmatic geometry animations (maximize/restore) stay untouched. */
+  const startDrag = (e: React.PointerEvent) => {
+    if (maximized || e.button !== 0) return;
+    const desk = desktopRef.current;
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const sx = x.get();
+    const sy = y.get();
+    const deskW = desk?.clientWidth ?? Infinity;
+    const deskH = desk?.clientHeight ?? Infinity;
+    const ww = w.get();
+
+    const move = (ev: PointerEvent) => {
+      // Keep at least a sliver of the title bar reachable on every side.
+      x.set(clamp(sx + ev.clientX - startX, -ww + 80, deskW - 80));
+      y.set(clamp(sy + ev.clientY - startY, 0, deskH - 40));
+    };
+    const up = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+    };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+  };
 
   /** Resize from any edge or corner; left/top edges also shift x/y to keep the opposite edge fixed. */
   const startResize = (edges: { left?: boolean; right?: boolean; top?: boolean; bottom?: boolean }) => (
@@ -185,12 +209,6 @@ export default function Window({
     <motion.section
       role="dialog"
       aria-label={name}
-      drag={!maximized}
-      dragListener={false}
-      dragControls={dragControls}
-      dragMomentum={false}
-      dragElastic={0}
-      dragConstraints={desktopRef}
       onPointerDown={onFocus}
       style={{
         x,
@@ -240,7 +258,7 @@ export default function Window({
       >
         {/* Title bar: drag handle, double-click to zoom */}
         <div
-          onPointerDown={(e) => dragControls.start(e)}
+          onPointerDown={startDrag}
           onDoubleClick={onToggleMax}
           className="relative flex h-10 shrink-0 items-center border-b border-white/[0.06] px-3.5"
         >
