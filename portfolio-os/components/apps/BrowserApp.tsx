@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowSquareOut,
   Article,
@@ -16,7 +16,7 @@ import {
   XLogo,
   type Icon,
 } from "@phosphor-icons/react";
-import { isEmbeddable, useSystem } from "@/lib/system";
+import { isEmbeddable } from "@/lib/system";
 
 interface Bookmark {
   label: string;
@@ -95,11 +95,19 @@ function ExternalCard({ url }: { url: string }) {
 }
 
 /** Safari-style browser window: favorites, and real in-frame browsing for
- *  Diwakar's own sites (the ones whose headers permit embedding). */
-export default function BrowserApp() {
-  const url = useSystem((s) => s.browserUrl);
-  const setBrowserUrl = useSystem((s) => s.setBrowserUrl);
+ *  Diwakar's own sites (the ones whose headers permit embedding).
+ *  Each window keeps its own page, so two Browsers browse independently. */
+export default function BrowserApp({ startUrl }: { startUrl?: string }) {
+  const [url, setBrowserUrl] = useState<string | null>(startUrl ?? null);
   const [loading, setLoading] = useState(false);
+
+  // A later openApp("browser", { url }) retargets this window.
+  useEffect(() => {
+    if (startUrl) {
+      setLoading(isEmbeddable(startUrl));
+      setBrowserUrl(startUrl);
+    }
+  }, [startUrl]);
 
   const open = (next: string) => {
     setLoading(isEmbeddable(next));

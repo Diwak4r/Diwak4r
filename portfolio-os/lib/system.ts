@@ -209,9 +209,6 @@ interface SystemStore {
   /** Frosted-glass chrome; off = solid surfaces (also a performance boost) */
   transparency: boolean;
   grain: boolean;
-  /** null = browser start page */
-  browserUrl: string | null;
-  settingsPane: SettingsPane;
   setTone: (t: ToneId) => void;
   setWallpaper: (w: WallpaperId) => void;
   setWifi: (on: boolean) => void;
@@ -220,8 +217,6 @@ interface SystemStore {
   setDockMagnify: (on: boolean) => void;
   setTransparency: (on: boolean) => void;
   setGrain: (on: boolean) => void;
-  setBrowserUrl: (url: string | null) => void;
-  setSettingsPane: (p: SettingsPane) => void;
   hydrate: () => void;
 }
 
@@ -234,8 +229,6 @@ export const useSystem = create<SystemStore>((set) => ({
   dockMagnify: true,
   transparency: true,
   grain: true,
-  browserUrl: null,
-  settingsPane: "appearance",
 
   setTone: (tone) => {
     localStorage.setItem(TONE_KEY, tone);
@@ -266,9 +259,6 @@ export const useSystem = create<SystemStore>((set) => ({
     localStorage.setItem(GRAIN_KEY, grain ? "1" : "0");
     set({ grain });
   },
-  setBrowserUrl: (browserUrl) => set({ browserUrl }),
-  setSettingsPane: (settingsPane) => set({ settingsPane }),
-
   /** Restore persisted appearance after mount (client only). */
   hydrate: () => {
     const tone = localStorage.getItem(TONE_KEY) as ToneId | null;
@@ -340,8 +330,7 @@ export function openLink(url: string, title?: string) {
   useWindows.getState().openLinkWin(url, title ?? linkTitle(url));
 }
 
-/** Open System Settings on a specific pane. */
+/** Open System Settings on a specific pane (per-window instance prop). */
 export function openSettings(pane: SettingsPane) {
-  useSystem.getState().setSettingsPane(pane);
-  useWindows.getState().openApp("settings");
+  useWindows.getState().openApp("settings", { pane });
 }

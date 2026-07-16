@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { APPS } from "@/lib/apps";
 import { useFocusedWin, useWindows, type AppId, type Win } from "@/lib/store";
-import { useSystem } from "@/lib/system";
+import { useSystem, type SettingsPane } from "@/lib/system";
 import { useIsMobile } from "@/lib/hooks";
 import Wallpaper from "./Wallpaper";
 import MenuBar from "./MenuBar";
@@ -38,8 +38,8 @@ const APP_RENDER: Record<AppId, (win: Win) => React.ReactNode> = {
   notes: () => <NotesApp />,
   contact: () => <ContactApp />,
   terminal: (w) => <TerminalApp winId={w.winId} />,
-  browser: () => <BrowserApp />,
-  settings: () => <SettingsApp />,
+  browser: (w) => <BrowserApp startUrl={w.props?.url as string | undefined} />,
+  settings: (w) => <SettingsApp paneProp={w.props?.pane as SettingsPane | undefined} />,
   calculator: () => <CalculatorApp />,
   socials: () => <SocialsApp />,
   spotify: () => <SpotifyApp />,

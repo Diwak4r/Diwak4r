@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Desktop as DesktopIconGlyph, Image as ImageIcon, PaintBrushBroad, WifiHigh } from "@phosphor-icons/react";
 import {
   TONES,
@@ -230,9 +231,13 @@ function WifiPane() {
   );
 }
 
-export default function SettingsApp() {
-  const pane = useSystem((s) => s.settingsPane);
-  const setPane = useSystem((s) => s.setSettingsPane);
+export default function SettingsApp({ paneProp }: { paneProp?: SettingsPane }) {
+  const [pane, setPane] = useState<SettingsPane>(paneProp ?? "appearance");
+
+  // openSettings("wallpaper") on an already-open window switches its pane.
+  useEffect(() => {
+    if (paneProp) setPane(paneProp);
+  }, [paneProp]);
 
   return (
     <div className="@container min-h-full">
