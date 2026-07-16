@@ -17,6 +17,7 @@ import {
   type Icon,
 } from "@phosphor-icons/react";
 import { isEmbeddable } from "@/lib/system";
+import SiteSnapshot from "../SiteSnapshot";
 
 interface Bookmark {
   label: string;
@@ -68,6 +69,14 @@ function StartPage({ onOpen }: { onOpen: (url: string) => void }) {
 }
 
 function ExternalCard({ url }: { url: string }) {
+  const bookmark = FAVORITES.find((b) => b.url === url);
+
+  return (
+    <SiteSnapshot url={url} title={bookmark?.label ?? prettyUrl(url)} fallback={<ExternalFallback url={url} />} />
+  );
+}
+
+function ExternalFallback({ url }: { url: string }) {
   const bookmark = FAVORITES.find((b) => b.url === url);
   const Icon = bookmark?.icon ?? ArrowSquareOut;
 

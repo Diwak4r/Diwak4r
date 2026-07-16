@@ -10,6 +10,7 @@ import {
 } from "@phosphor-icons/react";
 import { isEmbeddable } from "@/lib/system";
 import { ChatGptMark, ClaudeMark, GithubMark, XMark, ZoMark } from "./brand/BrandMarks";
+import SiteSnapshot from "./SiteSnapshot";
 
 const HOST_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   "github.com": GithubMark,
@@ -78,23 +79,29 @@ export default function LinkContent({ url, title }: { url: string; title: string
             )}
           </>
         ) : (
-          <div className="flex h-full flex-col items-center justify-center gap-1 p-6 text-center">
-            <span className="mb-2 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.06]">
-              <HostIcon className="h-[30px] w-[30px] text-white/85" />
-            </span>
-            <h2 className="text-[15px] font-semibold text-white/90">{title}</h2>
-            <p className="text-[12px] text-white/40">{prettyUrl(url)}</p>
-            <p className="mt-2 max-w-[300px] text-[13px] leading-relaxed text-white/60">
-              This site doesn&apos;t allow embedding inside another page, so it
-              opens in its own tab.
-            </p>
-            <button
-              onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
-              className="mt-4 rounded-lg bg-(--accent-btn) px-4 py-2 text-[13px] font-semibold text-(--accent-contrast) transition hover:brightness-110 active:scale-[0.98]"
-            >
-              Open in New Tab
-            </button>
-          </div>
+          <SiteSnapshot
+            url={url}
+            title={title}
+            fallback={
+              <div className="flex h-full flex-col items-center justify-center gap-1 p-6 text-center">
+                <span className="mb-2 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.06]">
+                  <HostIcon className="h-[30px] w-[30px] text-white/85" />
+                </span>
+                <h2 className="text-[15px] font-semibold text-white/90">{title}</h2>
+                <p className="text-[12px] text-white/40">{prettyUrl(url)}</p>
+                <p className="mt-2 max-w-[300px] text-[13px] leading-relaxed text-white/60">
+                  This site doesn&apos;t allow embedding, and its snapshot is
+                  unavailable right now, so it opens in its own tab.
+                </p>
+                <button
+                  onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
+                  className="mt-4 rounded-lg bg-(--accent-btn) px-4 py-2 text-[13px] font-semibold text-(--accent-contrast) transition hover:brightness-110 active:scale-[0.98]"
+                >
+                  Open in New Tab
+                </button>
+              </div>
+            }
+          />
         )}
       </div>
     </div>
