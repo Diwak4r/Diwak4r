@@ -66,6 +66,22 @@ export default function SpotifyApp() {
     setTime(0);
   }, [song, mode]);
 
+  // Persist the last-played track so the desktop Now-Playing widget can show
+  // it without a shared store. Written only when playback actually starts.
+  // Deps are title/artist primitives so this stays correct even if playlist
+  // entries are ever rebuilt per render.
+  useEffect(() => {
+    if (!playing) return;
+    try {
+      localStorage.setItem(
+        "dios-spotify-last",
+        JSON.stringify({ title: track.title, artist: track.artist })
+      );
+    } catch {
+      /* storage may be unavailable; widget falls back gracefully */
+    }
+  }, [playing, song, track.title, track.artist]);
+
   useEffect(() => {
     if (playing) audioRef.current?.play().catch(() => setPlaying(false));
     else audioRef.current?.pause();

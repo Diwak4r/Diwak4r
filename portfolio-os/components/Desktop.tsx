@@ -18,6 +18,7 @@ import GetInfo from "./GetInfo";
 import { childrenOf, useFiles, type DeskItem } from "@/lib/files";
 import Spotlight from "./Spotlight";
 import WifiOverlay from "./WifiOverlay";
+import DesktopWidgets from "./DesktopWidgets";
 import { BootScreen, LoginScreen } from "./Onboarding";
 
 // Lazy-everything: each app chunks out of the boot bundle.
@@ -274,8 +275,15 @@ export default function Desktop() {
         <>
           <MenuBar onSpotlight={() => setSpotlightOpen(true)} />
 
+          {/* Ambient desktop widgets (calendar + now playing). Additive only;
+              rollback = remove this line + the import above + DesktopWidgets.tsx. */}
+          {isMobile === false && <DesktopWidgets />}
+
           {/* z-10 creates a stacking context so window z-order can grow
-              unbounded without ever covering the dock, menu bar, or grain. */}
+              unbounded without ever covering the dock, menu bar, or grain.
+              DesktopWidgets renders at z-[6] BELOW this container and stays
+              visible only because this container has no background — if a
+              background is ever added here, the widgets must move inside. */}
           <div
             ref={desktopRef}
             className="absolute inset-x-0 bottom-0 top-7 z-10"
@@ -388,20 +396,22 @@ export default function Desktop() {
       )}
 
       {/* Boot and login sit above everything except the grain */}
-      <AnimatePresence mode="wait">
-        {phase === "boot" && (
-          <BootScreen key="boot" onDone={() => setPhase("login")} />
-        )}
-        {phase === "login" && (
-          <LoginScreen
-            key="login"
-            onDone={() => {
-              sessionStorage.setItem(BOOTED_KEY, "1");
-              setPhase("desktop");
-            }}
-          />
-        )}
-      </AnimatePresence>
+      {/* Render boot and login mutually exclusively. Avoid AnimatePresence mode="wait"
+          here: its exit-completion handshake can stall under reduced-motion or
+          throttled rAF, leaving the user frozen on a black screen. The boot
+          screen's own internal fade-out (if it wants one) is independent of this
+          mount swap. */}
+      {phase === "boot" && (
+        <BootScreen onDone={() => setPhase("login")} />
+      )}
+      {phase === "login" && (
+        <LoginScreen
+          onDone={() => {
+            sessionStorage.setItem(BOOTED_KEY, "1");
+            setPhase("desktop");
+          }}
+        />
+      )}
 
       {/* Night Shift warm filter: sits below grain and brightness, above windows */}
       {nightShift > 0 && (

@@ -50,7 +50,7 @@ export interface Win {
 }
 
 /** macOS caps runaway window spam too, just less politely. */
-const MAX_PER_APP = 8;
+const MAX_PER_APP = 3;
 
 let seq = 0;
 const nextWinId = (prefix: string) => `${prefix}-${++seq}`;

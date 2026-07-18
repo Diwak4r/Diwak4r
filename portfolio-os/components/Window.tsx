@@ -221,7 +221,7 @@ export default function Window({
       className="absolute left-0 top-0"
     >
       <motion.div
-        initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.92, y: 16 }}
+        initial={reduce ? { opacity: 1 } : { opacity: 1, scale: 0.92, y: 16 }}
         animate={
           minimized
             ? reduce

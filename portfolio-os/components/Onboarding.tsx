@@ -8,9 +8,24 @@ import { profile } from "@/lib/content";
 export function BootScreen({ onDone }: { onDone: () => void }) {
   const reduce = useReducedMotion();
 
+  // Advance the phase on a setTimeout, not on the bar's onAnimationComplete.
+  // motion's completion callback can strand (backgrounded tab, throttled rAF,
+  // reduced-motion edge cases), leaving the user stuck on a black screen.
+  // Fire once on mount only — onDone is a fresh closure every parent render,
+  // depending on it would re-arm the timer and never let it elapse.
+  //
+  // Timer matches the bar's visual duration (1.6s) exactly: the previous 2s
+  // left a 400ms "bar full, nothing happening" dead gap stacked on top of the
+  // JS download — pure perceived latency with no payoff.
+  useEffect(() => {
+    const ms = reduce ? 400 : 1600;
+    const t = setTimeout(onDone, ms);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <motion.div
-      exit={{ opacity: 0, transition: { duration: 0.4, ease: "easeOut" } }}
       className="absolute inset-0 z-[100] flex flex-col items-center justify-center gap-10 bg-black"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -20,7 +35,6 @@ export function BootScreen({ onDone }: { onDone: () => void }) {
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ duration: reduce ? 0.2 : 1.6, ease: "easeInOut" }}
-          onAnimationComplete={onDone}
           className="h-full rounded-full bg-white"
         />
       </div>
@@ -30,7 +44,6 @@ export function BootScreen({ onDone }: { onDone: () => void }) {
 
 /** macOS login screen over the blurred wallpaper: clock, avatar, one action. */
 export function LoginScreen({ onDone }: { onDone: () => void }) {
-  const reduce = useReducedMotion();
   const [now, setNow] = useState<{ time: string; date: string } | null>(null);
 
   useEffect(() => {
@@ -63,11 +76,6 @@ export function LoginScreen({ onDone }: { onDone: () => void }) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.5 } }}
-      exit={{
-        opacity: 0,
-        scale: reduce ? 1 : 1.05,
-        transition: { duration: 0.45, ease: "easeIn" },
-      }}
       className="absolute inset-0 z-[90] flex flex-col items-center bg-black/30 backdrop-blur-2xl"
     >
       <div className="flex flex-col items-center pt-[12vh] text-center">
