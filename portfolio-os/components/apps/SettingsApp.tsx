@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Desktop as DesktopIconGlyph, Image as ImageIcon, Info, MusicNotes, PaintBrushBroad, SunHorizon, WifiHigh } from "@phosphor-icons/react";
+import { Desktop as DesktopIconGlyph, Image as ImageIcon, Info, Moon, MusicNotes, PaintBrushBroad, Sun, SunHorizon, WifiHigh } from "@phosphor-icons/react";
 import {
   TONES,
   WALLPAPERS,
@@ -121,6 +121,8 @@ function DesktopDockPane() {
 function Appearance() {
   const tone = useSystem((s) => s.tone);
   const setTone = useSystem((s) => s.setTone);
+  const appearance = useSystem((s) => s.appearance);
+  const setAppearance = useSystem((s) => s.setAppearance);
   const current = TONES.find((t) => t.id === tone);
 
   return (
@@ -129,6 +131,30 @@ function Appearance() {
       <p className="mb-5 mt-1 text-[12.5px] text-white/50">
         Highlights, buttons, and the Dynamic wallpaper follow your accent color.
       </p>
+
+      <h3 className="mb-2.5 text-[12.5px] font-semibold text-white/55">Theme</h3>
+      <div className="mb-6 flex gap-2">
+        {(
+          [
+            { id: "light", label: "Light", icon: Sun },
+            { id: "dark", label: "Dark", icon: Moon },
+          ] as const
+        ).map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            onClick={() => setAppearance(id)}
+            aria-pressed={appearance === id}
+            className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-[13px] transition-colors ${
+              appearance === id
+                ? "border-accent-400 bg-accent-500/20 text-accent-200"
+                : "border-white/[0.08] bg-white/[0.04] text-white/60 hover:bg-white/[0.08] hover:text-white/85"
+            }`}
+          >
+            <Icon size={16} weight={appearance === id ? "fill" : "regular"} />
+            {label}
+          </button>
+        ))}
+      </div>
 
       <h3 className="mb-2.5 text-[12.5px] font-semibold text-white/55">Accent color</h3>
       <div className="flex flex-wrap items-center gap-2.5">

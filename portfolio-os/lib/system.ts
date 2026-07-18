@@ -261,6 +261,7 @@ for (const w of WALLPAPERS) {
 export type SettingsPane = "appearance" | "wallpaper" | "desktop" | "wifi" | "sounds" | "nightshift" | "about";
 
 const TONE_KEY = "dios-tone";
+const APPEARANCE_KEY = "dios-appearance";
 const WALLPAPER_KEY = "dios-wallpaper";
 const BRIGHTNESS_KEY = "dios-brightness";
 const DOCK_SIZE_KEY = "dios-dock-size";
@@ -272,6 +273,8 @@ const NIGHTSHIFT_KEY = "dios-nightshift";
 
 interface SystemStore {
   tone: ToneId;
+  /** Light chrome over dark apps, or full dark — the macOS appearance switch */
+  appearance: "dark" | "light";
   wallpaper: WallpaperId;
   wifiOn: boolean;
   /** 0 (darkest) to 1 (full brightness) */
@@ -285,6 +288,7 @@ interface SystemStore {
   sounds: boolean;
   nightShift: number;
   setTone: (t: ToneId) => void;
+  setAppearance: (a: "dark" | "light") => void;
   setWallpaper: (w: WallpaperId) => void;
   setWifi: (on: boolean) => void;
   setBrightness: (b: number) => void;
@@ -299,6 +303,7 @@ interface SystemStore {
 
 export const useSystem = create<SystemStore>((set) => ({
   tone: "blue",
+  appearance: "dark",
   wallpaper: "tahoe-beach-day",
   wifiOn: true,
   brightness: 1,
@@ -312,6 +317,10 @@ export const useSystem = create<SystemStore>((set) => ({
   setTone: (tone) => {
     localStorage.setItem(TONE_KEY, tone);
     set({ tone });
+  },
+  setAppearance: (appearance) => {
+    localStorage.setItem(APPEARANCE_KEY, appearance);
+    set({ appearance });
   },
   setWallpaper: (wallpaper) => {
     localStorage.setItem(WALLPAPER_KEY, wallpaper);
@@ -349,6 +358,7 @@ export const useSystem = create<SystemStore>((set) => ({
   /** Restore persisted appearance after mount (client only). */
   hydrate: () => {
     const tone = localStorage.getItem(TONE_KEY) as ToneId | null;
+    const appearance = localStorage.getItem(APPEARANCE_KEY);
     const wallpaper = localStorage.getItem(WALLPAPER_KEY) as WallpaperId | null;
     const brightness = localStorage.getItem(BRIGHTNESS_KEY);
     const dockSize = localStorage.getItem(DOCK_SIZE_KEY);
@@ -357,6 +367,7 @@ export const useSystem = create<SystemStore>((set) => ({
     const grain = localStorage.getItem(GRAIN_KEY);
     set({
       ...(tone && TONES.some((t) => t.id === tone) ? { tone } : {}),
+      ...(appearance === "light" || appearance === "dark" ? { appearance } : {}),
       ...(wallpaper && WALLPAPERS.some((w) => w.id === wallpaper) ? { wallpaper } : {}),
       ...(brightness !== null ? { brightness: Number(brightness) } : {}),
       ...(dockSize !== null ? { dockSize: Number(dockSize) } : {}),

@@ -87,6 +87,7 @@ export default function Desktop() {
   const focus = useWindows((s) => s.focus);
   const focused = useFocusedWin();
   const tone = useSystem((s) => s.tone);
+  const appearance = useSystem((s) => s.appearance);
   const wifiOn = useSystem((s) => s.wifiOn);
   const brightness = useSystem((s) => s.brightness);
   const transparency = useSystem((s) => s.transparency);
@@ -293,6 +294,7 @@ export default function Desktop() {
   return (
     <div
       data-tone={tone}
+      data-appearance={appearance}
       data-transparency={transparency ? "on" : "off"}
       className="fixed inset-0 select-none overflow-hidden bg-ink-950"
     >

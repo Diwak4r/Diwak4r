@@ -57,6 +57,9 @@ export default function Window({
   children: ReactNode;
 }) {
   const reduce = useReducedMotion();
+  // Chrome surfaces follow the light/dark appearance; app interiors keep
+  // their own dark styling (like macOS apps with a fixed dark UI).
+  const chromeText = { color: "var(--chrome-ink)" } as const;
 
   // Window geometry lives in motion values so drag and resize never re-render React.
   const x = useMotionValue(initial.x);
@@ -195,7 +198,10 @@ export default function Window({
             onMinimize={() => {}}
             onMaximize={() => {}}
           />
-          <span className="absolute inset-x-0 text-center text-[13px] font-medium text-white/80">
+          <span
+            className="absolute inset-x-0 text-center text-[13px] font-medium text-white/80"
+            style={chromeText}
+          >
             {title}
           </span>
         </div>
@@ -273,6 +279,7 @@ export default function Window({
             className={`pointer-events-none absolute inset-x-0 text-center text-[13px] font-medium ${
               focused ? "text-white/80" : "text-white/35"
             }`}
+            style={chromeText}
           >
             {title}
           </span>

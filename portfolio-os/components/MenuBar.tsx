@@ -7,7 +7,9 @@ import {
   Command,
   LinkedinLogo,
   MagnifyingGlass,
+  Moon,
   SlidersHorizontal,
+  Sun,
   WifiHigh,
   WifiSlash,
 } from "@phosphor-icons/react";
@@ -102,6 +104,8 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
   const openApp = useWindows((s) => s.openApp);
   const focused = useFocusedWin();
   const wifiOn = useSystem((s) => s.wifiOn);
+  const appearance = useSystem((s) => s.appearance);
+  const setAppearance = useSystem((s) => s.setAppearance);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ccOpen, setCcOpen] = useState(false);
   const [battOpen, setBattOpen] = useState(false);
@@ -145,6 +149,9 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
     };
   }, [anyOpen, menuOpen, ccOpen, battOpen, calOpen]);
 
+  // Everything in this bar sits on chrome, so it follows the appearance.
+  const ink = { color: "var(--chrome-ink)" } as const;
+
   return (
     <header className="bar-chrome absolute inset-x-0 top-0 z-50 flex h-7 items-center gap-0.5 border-b border-white/[0.08] px-2">
       <div ref={menuRef} className="relative flex items-center">
@@ -156,14 +163,14 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
             menuOpen ? "bg-white/15" : "hover:bg-white/10"
           }`}
         >
-          <Command size={14} weight="bold" className="text-white/90" />
+          <Command size={14} weight="bold" className="text-white/90" style={ink} />
         </button>
         <AnimatePresence>
           {menuOpen && <SystemMenu onClose={() => setMenuOpen(false)} />}
         </AnimatePresence>
       </div>
 
-      <span className="px-2 text-[13px] font-semibold tracking-tight text-white/90">
+      <span className="px-2 text-[13px] font-semibold tracking-tight text-white/90" style={ink}>
         {focusedName}
       </span>
 
@@ -183,6 +190,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
             key={menu}
             onClick={() => openApp(appId)}
             className="rounded px-2 py-0.5 text-[13px] text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+            style={ink}
           >
             {menu}
           </button>
@@ -200,6 +208,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
                 onClick={() => openLink(s.href)}
                 aria-label={s.label}
                 className="text-white/60 transition-colors hover:text-white"
+                style={ink}
               >
                 <Icon className="h-[15px] w-[15px]" />
               </button>
@@ -211,13 +220,22 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
           aria-label="Spotlight search"
           className="text-white/65 transition-colors hover:text-white"
         >
-          <MagnifyingGlass size={15} weight="bold" />
+          <MagnifyingGlass size={15} weight="bold" style={ink} />
         </button>
         {wifiOn ? (
-          <WifiHigh size={16} weight="bold" className="text-white/65" aria-hidden />
+          <WifiHigh size={16} weight="bold" className="text-white/65" style={ink} aria-hidden />
         ) : (
-          <WifiSlash size={16} weight="bold" className="text-white/65" aria-hidden />
+          <WifiSlash size={16} weight="bold" className="text-white/65" style={ink} aria-hidden />
         )}
+        {/* Appearance toggle: light/dark, right after Wi-Fi like on macOS. */}
+        <button
+          onClick={() => setAppearance(appearance === "dark" ? "light" : "dark")}
+          aria-label={appearance === "dark" ? "Switch to light appearance" : "Switch to dark appearance"}
+          className="rounded px-1 py-0.5 text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+          style={ink}
+        >
+          {appearance === "dark" ? <Moon size={15} weight="fill" /> : <Sun size={15} weight="fill" />}
+        </button>
         <div ref={ccRef} className="relative flex items-center">
           <button
             onClick={() => setCcOpen((v) => !v)}
@@ -227,7 +245,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
               ccOpen ? "bg-white/15" : "hover:bg-white/10"
             }`}
           >
-            <SlidersHorizontal size={15} weight="bold" className="text-white/65" />
+            <SlidersHorizontal size={15} weight="bold" className="text-white/65" style={ink} />
           </button>
           <AnimatePresence>
             {ccOpen && <ControlCenter onClose={() => setCcOpen(false)} />}
@@ -242,7 +260,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
             aria-expanded={battOpen}
             className={`rounded px-1 py-0.5 transition-colors ${battOpen ? "bg-white/15" : "hover:bg-white/10"}`}
           >
-            <BatteryFull size={20} className="text-white/65" aria-hidden />
+            <BatteryFull size={20} className="text-white/65" style={ink} aria-hidden />
           </button>
           <AnimatePresence>{battOpen && <BatteryPanel />}</AnimatePresence>
         </div>
@@ -254,6 +272,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
             aria-label="Date and time"
             aria-expanded={calOpen}
             className={`rounded px-1 py-0.5 transition-colors ${calOpen ? "bg-white/15" : "hover:bg-white/10"}`}
+            style={ink}
           >
             <Clock />
           </button>
