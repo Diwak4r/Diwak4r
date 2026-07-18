@@ -40,6 +40,7 @@ const PhotosApp = lazy(() => import("./apps/PhotosApp"));
 const WeatherApp = lazy(() => import("./apps/WeatherApp"));
 const WhatsAppApp = lazy(() => import("./apps/WhatsAppApp"));
 const Launchpad = lazy(() => import("./Launchpad"));
+const TrashApp = lazy(() => import("./apps/TrashApp"));
 
 const APP_SPINNER = (
   <div className="flex h-full items-center justify-center">
@@ -68,6 +69,7 @@ const APP_RENDER: Record<AppId, (win: Win) => React.ReactNode> = {
   weather: () => <WeatherApp />,
   whatsapp: () => <WhatsAppApp />,
   launchpad: () => <Launchpad />,
+  trash: () => <TrashApp />,
 };
 
 type Phase = "boot" | "login" | "desktop";
@@ -128,12 +130,39 @@ export default function Desktop() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
 
-  // Global keys: Cmd/Ctrl+K for Spotlight; Escape closes menus, then windows.
+  // Global keys: Cmd/Ctrl+K Spotlight; Cmd+W close window; Cmd+M minimize;
+  // Cmd+Q quit all windows; Escape closes menus, then the focused window.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-        e.preventDefault();
-        if (phase === "desktop") setSpotlightOpen((v) => !v);
+      const mod = e.metaKey || e.ctrlKey;
+      const el = document.activeElement;
+      const typing = el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement;
+      if (mod) {
+        const k = e.key.toLowerCase();
+        if (k === "k") {
+          e.preventDefault();
+          if (phase === "desktop") setSpotlightOpen((v) => !v);
+          return;
+        }
+        // Don't steal app/window shortcuts while the user is typing in a field.
+        if (typing) return;
+        if (k === "w") {
+          e.preventDefault();
+          if (focused) close(focused.winId);
+          return;
+        }
+        if (k === "m") {
+          e.preventDefault();
+          if (focused) minimize(focused.winId);
+          return;
+        }
+        if (k === "q") {
+          e.preventDefault();
+          for (const w of Object.values(useWindows.getState().wins)) {
+            useWindows.getState().close(w.winId);
+          }
+          return;
+        }
         return;
       }
       if (e.key !== "Escape") return;
@@ -146,14 +175,12 @@ export default function Desktop() {
         setInfoItem(null);
         return;
       }
-      if (!focused) return;
-      const el = document.activeElement;
-      if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return;
+      if (!focused || typing) return;
       close(focused.winId);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [focused, close, menu, infoItem, spotlightOpen, phase]);
+  }, [focused, close, minimize, menu, infoItem, spotlightOpen, phase]);
 
   const deskFiles = childrenOf(files, null);
 

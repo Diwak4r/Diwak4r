@@ -104,8 +104,12 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
   const wifiOn = useSystem((s) => s.wifiOn);
   const [menuOpen, setMenuOpen] = useState(false);
   const [ccOpen, setCcOpen] = useState(false);
+  const [battOpen, setBattOpen] = useState(false);
+  const [calOpen, setCalOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const ccRef = useRef<HTMLDivElement>(null);
+  const battRef = useRef<HTMLDivElement>(null);
+  const calRef = useRef<HTMLDivElement>(null);
 
   const focusedId = focused?.kind === "app" ? focused.appId ?? null : null;
   const focusedName =
@@ -113,17 +117,24 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
       ? focused.title
       : APPS.find((a) => a.id === focusedId)?.name ?? "Desktop";
 
-  // Close the system menu or Control Center on outside click or Escape.
+  const anyOpen = menuOpen || ccOpen || battOpen || calOpen;
+
+  // Close every popover on outside click or Escape.
   useEffect(() => {
-    if (!menuOpen && !ccOpen) return;
+    if (!anyOpen) return;
     const onDown = (e: PointerEvent) => {
-      if (menuOpen && !menuRef.current?.contains(e.target as Node)) setMenuOpen(false);
-      if (ccOpen && !ccRef.current?.contains(e.target as Node)) setCcOpen(false);
+      const t = e.target as Node;
+      if (menuOpen && !menuRef.current?.contains(t)) setMenuOpen(false);
+      if (ccOpen && !ccRef.current?.contains(t)) setCcOpen(false);
+      if (battOpen && !battRef.current?.contains(t)) setBattOpen(false);
+      if (calOpen && !calRef.current?.contains(t)) setCalOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setMenuOpen(false);
         setCcOpen(false);
+        setBattOpen(false);
+        setCalOpen(false);
       }
     };
     window.addEventListener("pointerdown", onDown);
@@ -132,7 +143,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("keydown", onKey);
     };
-  }, [menuOpen, ccOpen]);
+  }, [anyOpen, menuOpen, ccOpen, battOpen, calOpen]);
 
   return (
     <header className="bar-chrome absolute inset-x-0 top-0 z-50 flex h-7 items-center gap-0.5 border-b border-white/[0.08] px-2">
@@ -156,16 +167,24 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
         {focusedName}
       </span>
 
-      {/* The focused app is already named in bold, so skip it here,
-          the way real menu bars never repeat the app name. */}
-      <nav className="hidden items-center gap-0.5 md:flex" aria-label="Open apps">
-        {APPS.filter((app) => app.id !== focusedId).map((app) => (
+      {/* Real macOS menu bar: only the standard menus, never every app.
+          Each opens the app it most plausibly controls. */}
+      <nav className="hidden items-center gap-0.5 md:flex" aria-label="Menus">
+        {(
+          [
+            ["File", "finder"],
+            ["Edit", "notes"],
+            ["View", "photos"],
+            ["Window", focusedId ?? "finder"],
+            ["Help", "about"],
+          ] as const
+        ).map(([menu, appId]) => (
           <button
-            key={app.id}
-            onClick={() => openApp(app.id)}
-            className="rounded px-2 py-0.5 text-[12.5px] text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+            key={menu}
+            onClick={() => openApp(appId)}
+            className="rounded px-2 py-0.5 text-[13px] text-white/80 transition-colors hover:bg-white/10 hover:text-white"
           >
-            {app.name}
+            {menu}
           </button>
         ))}
       </nav>
@@ -214,9 +233,137 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
             {ccOpen && <ControlCenter onClose={() => setCcOpen(false)} />}
           </AnimatePresence>
         </div>
-        <BatteryFull size={20} className="text-white/65" aria-hidden />
-        <Clock />
+
+        {/* Battery: click opens a live battery panel (real level + charging state). */}
+        <div ref={battRef} className="relative flex items-center">
+          <button
+            onClick={() => setBattOpen((v) => !v)}
+            aria-label="Battery status"
+            aria-expanded={battOpen}
+            className={`rounded px-1 py-0.5 transition-colors ${battOpen ? "bg-white/15" : "hover:bg-white/10"}`}
+          >
+            <BatteryFull size={20} className="text-white/65" aria-hidden />
+          </button>
+          <AnimatePresence>{battOpen && <BatteryPanel />}</AnimatePresence>
+        </div>
+
+        {/* Clock: click opens the macOS calendar popup. */}
+        <div ref={calRef} className="relative flex items-center">
+          <button
+            onClick={() => setCalOpen((v) => !v)}
+            aria-label="Date and time"
+            aria-expanded={calOpen}
+            className={`rounded px-1 py-0.5 transition-colors ${calOpen ? "bg-white/15" : "hover:bg-white/10"}`}
+          >
+            <Clock />
+          </button>
+          <AnimatePresence>{calOpen && <CalendarPopup />}</AnimatePresence>
+        </div>
       </div>
     </header>
+  );
+}
+
+/** Live battery panel: reads the Battery Status API, falls back gracefully. */
+function BatteryPanel() {
+  const [info, setInfo] = useState<{ level: number; charging: boolean } | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    const nav = navigator as Navigator & { getBattery?: () => Promise<{ level: number; charging: boolean; addEventListener?: any; removeEventListener?: any }> };
+    if (!nav.getBattery) { setInfo({ level: 0.86, charging: false }); return; }
+    nav.getBattery().then((b) => {
+      if (!alive) return;
+      const update = () => setInfo({ level: b.level, charging: b.charging });
+      update();
+      b.addEventListener?.("levelchange", update);
+      b.addEventListener?.("chargingchange", update);
+    }).catch(() => setInfo({ level: 0.86, charging: false }));
+    return () => { alive = false; };
+  }, []);
+
+  const pct = info ? Math.round(info.level * 100) : 86;
+  const charging = info?.charging ?? false;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96, y: -4 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.1 } }}
+      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+      className="bar-chrome absolute right-0 top-8 z-50 w-56 origin-top-right rounded-lg border border-white/[0.12] p-3 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+      role="menu"
+    >
+      <div className="flex items-center gap-3">
+        <div className="relative h-4 w-8 rounded-[4px] border-2 border-white/60 p-[2px]">
+          <div className={`h-full rounded-[2px] ${charging ? "bg-green-400" : pct < 25 ? "bg-red-400" : "bg-white/85"}`} style={{ width: `${pct}%` }} />
+          <div className="absolute -right-[5px] top-1/2 h-2 w-[3px] -translate-y-1/2 rounded-r-sm bg-white/60" />
+        </div>
+        <div className="text-[13px]">
+          <p className="font-semibold text-white/90">{pct}%</p>
+          <p className="text-[11px] text-white/50">{charging ? "Charging" : "On battery"}</p>
+        </div>
+      </div>
+      <div className="mt-2.5 border-t border-white/[0.08] pt-2.5 text-[11px] text-white/45">
+        Power source: {charging ? "Adapter" : "Battery"}
+      </div>
+    </motion.div>
+  );
+}
+
+/** macOS-style calendar popup on the clock. */
+function CalendarPopup() {
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => {
+    setNow(new Date());
+    const t = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(t);
+  }, []);
+
+  const year = now?.getFullYear() ?? 0;
+  const month = now?.getMonth() ?? 0;
+  const today = now?.getDate() ?? 0;
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const cells: (number | null)[] = [];
+  for (let i = 0; i < firstDay; i++) cells.push(null);
+  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+
+  const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const WEEKDAYS = ["S","M","T","W","T","F","S"];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96, y: -4 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.1 } }}
+      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+      className="bar-chrome absolute right-0 top-8 z-50 w-64 origin-top-right rounded-lg border border-white/[0.12] p-3 shadow-[0_18px_50px_rgba(0,0,0,0.55)]"
+      role="menu"
+    >
+      <p className="mb-2 text-center text-[14px] font-semibold text-white/90">
+        {now ? now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" }) : ""}
+      </p>
+      <div className="mb-1 flex items-center justify-between text-[11px] text-white/50">
+        <span>{MONTHS[month]} {year}</span>
+      </div>
+      <div className="grid grid-cols-7 text-center text-[9px] font-semibold uppercase text-white/35">
+        {WEEKDAYS.map((d, i) => <span key={i}>{d}</span>)}
+      </div>
+      <div className="mt-1 grid grid-cols-7 gap-y-[3px] text-center">
+        {cells.map((d, i) => {
+          const isToday = d === today;
+          return (
+            <span key={i} className="flex justify-center">
+              <span className={`flex h-[18px] w-[18px] items-center justify-center rounded-full text-[10px] tabular-nums ${
+                isToday ? "bg-(--accent-btn) font-semibold text-(--accent-contrast)" : d ? "text-white/75" : ""
+              }`}>
+                {d ?? ""}
+              </span>
+            </span>
+          );
+        })}
+      </div>
+    </motion.div>
   );
 }

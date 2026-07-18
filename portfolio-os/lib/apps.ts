@@ -17,6 +17,7 @@ import {
   ShareNetwork,
   SquaresFour,
   TerminalWindow,
+  Trash,
   WhatsappLogo,
 } from "@phosphor-icons/react";
 import type { AppId } from "./store";
@@ -190,6 +191,14 @@ export const APPS: AppDef[] = [
     icon: Rabbit,
     tile: "linear-gradient(145deg, #b86ef7, #6e3bb5)",
     window: { w: 640, h: 440, x: 260, y: 120 },
+  },
+  {
+    id: "trash",
+    name: "Trash",
+    windowTitle: "Trash",
+    icon: Trash,
+    tile: "linear-gradient(145deg, #6b6b70, #2c2c30)",
+    window: { w: 520, h: 420, x: 360, y: 120 },
   },
 ];
 

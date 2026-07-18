@@ -11,6 +11,8 @@ export interface DeskItem {
   content?: string;
   /** Desktop position (desktop-level items only) */
   pos?: { x: number; y: number };
+  /** When trashed, the timestamp it was moved there (undefined = not trashed) */
+  trashedAt?: number;
   createdAt: number;
   updatedAt: number;
 }
@@ -65,7 +67,12 @@ interface FilesStore {
   hydrate: () => void;
   create: (kind: DeskItem["kind"], parentId: string | null, pos?: { x: number; y: number }) => string;
   rename: (id: string, name: string) => void;
+  /** Move an item (and folder contents) to the Trash — recoverable until emptied. */
   remove: (id: string) => void;
+  /** Bring an item back out of the Trash to the desktop. */
+  restore: (id: string) => void;
+  /** Permanently delete everything in the Trash. */
+  emptyTrash: () => void;
   duplicate: (id: string) => string;
   setPos: (id: string, pos: { x: number; y: number }) => void;
   setContent: (id: string, content: string) => void;
@@ -110,14 +117,42 @@ export const useFiles = create<FilesStore>((set, get) => ({
   remove: (id) =>
     set((s) => {
       const items = { ...s.items };
-      // Folders take their contents with them.
-      const doomed = [id];
-      while (doomed.length) {
-        const cur = doomed.pop()!;
+      // Move to Trash instead of deleting: recoverable until emptied.
+      // Folders take their contents with them (children keep the link).
+      const now = Date.now();
+      const mark = (cur: string) => {
+        if (items[cur]) items[cur] = { ...items[cur], trashedAt: now };
         for (const it of Object.values(items)) {
-          if (it.parentId === cur) doomed.push(it.id);
+          if (it.parentId === cur) mark(it.id);
         }
-        delete items[cur];
+      };
+      mark(id);
+      save(items);
+      return { items };
+    }),
+
+  restore: (id) =>
+    set((s) => {
+      const items = { ...s.items };
+      const clear = (cur: string) => {
+        if (items[cur]) {
+          const { trashedAt: _t, ...rest } = items[cur];
+          items[cur] = { ...rest, updatedAt: Date.now() };
+        }
+        for (const it of Object.values(items)) {
+          if (it.parentId === cur) clear(it.id);
+        }
+      };
+      clear(id);
+      save(items);
+      return { items };
+    }),
+
+  emptyTrash: () =>
+    set((s) => {
+      const items: Record<string, DeskItem> = {};
+      for (const it of Object.values(s.items)) {
+        if (it.trashedAt === undefined) items[it.id] = it;
       }
       save(items);
       return { items };
@@ -162,11 +197,19 @@ export const useFiles = create<FilesStore>((set, get) => ({
     }),
 }));
 
-/** Children of a folder (or the desktop when parentId is null), folders first. */
+/** Children of a folder (or the desktop when parentId is null), folders first.
+ *  Trashed items are hidden everywhere except the Trash window. */
 export function childrenOf(items: Record<string, DeskItem>, parentId: string | null): DeskItem[] {
   return Object.values(items)
-    .filter((i) => i.parentId === parentId)
+    .filter((i) => i.parentId === parentId && i.trashedAt === undefined)
     .sort((a, b) => (a.kind === b.kind ? a.name.localeCompare(b.name) : a.kind === "folder" ? -1 : 1));
+}
+
+/** Everything currently in the Trash, newest first. */
+export function trashedItems(items: Record<string, DeskItem>): DeskItem[] {
+  return Object.values(items)
+    .filter((i) => i.trashedAt !== undefined && i.parentId === null)
+    .sort((a, b) => (b.trashedAt ?? 0) - (a.trashedAt ?? 0));
 }
 
 export function sizeOf(items: Record<string, DeskItem>, item: DeskItem): string {
@@ -174,6 +217,6 @@ export function sizeOf(items: Record<string, DeskItem>, item: DeskItem): string 
     const bytes = new Blob([item.content ?? ""]).size;
     return bytes < 1024 ? `${bytes} bytes` : `${(bytes / 1024).toFixed(1)} KB`;
   }
-  const n = Object.values(items).filter((i) => i.parentId === item.id).length;
+  const n = Object.values(items).filter((i) => i.parentId === item.id && i.trashedAt === undefined).length;
   return `${n} item${n === 1 ? "" : "s"}`;
 }

@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { profile } from "@/lib/content";
 
 /**
- * Desktop widgets: always-visible, ambient cards that make the desktop feel
- * lived-in instead of sparse. Each is self-contained and reads only from
- * things that already exist (no new store). Rollback-safe: this whole file
- * + one render call in Desktop.tsx is the entire surface area.
+ * Desktop widgets: ambient cards pinned to the top-right of the desktop,
+ * below the menu bar — the same place real macOS stacks Notification Center
+ * widgets. Each is self-contained (no new store). Rollback-safe: this file
+ * plus one render call in Desktop.tsx is the whole surface.
  *
- * Kept deliberately static (no entrance animation, no opacity-0) per the
- * "content visible by default" rule, and because the wallpaper must stay
- * static under the backdrop-filter glass (see portfolio-os-performance note).
+ * The calendar/now-playing are static except for ONE cheap, GPU-composited
+ * equalizer animation that only runs while a track is actually playing —
+ * nothing animates over the wallpaper otherwise (see perf constraints).
  */
 
 const MONTHS = [
@@ -20,7 +20,7 @@ const MONTHS = [
 ];
 const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
-/** Compact calendar with today highlighted in the accent color. */
+/** Calendar widget with a real-macOS red weekday header and red today dot. */
 function CalendarWidget() {
   const [now, setNow] = useState<Date | null>(null);
 
@@ -36,7 +36,6 @@ function CalendarWidget() {
   const year = now.getFullYear();
   const month = now.getMonth();
   const today = now.getDate();
-  // Date of the 1st: 0=Sun..6=Sat
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
@@ -50,26 +49,33 @@ function CalendarWidget() {
         <p className="text-[13px] font-semibold text-white/90">
           {MONTHS[month]} <span className="text-white/40">{year}</span>
         </p>
-        <p className="text-[11px] tabular-nums text-white/40">{today}</p>
       </div>
-      <div className="mt-2.5 grid grid-cols-7 gap-y-1 text-center">
+
+      {/* Weekday header: the signature macOS red row */}
+      <div className="mt-2 grid grid-cols-7 rounded-md bg-(--accent-btn)/90 py-[3px] text-center">
         {WEEKDAYS.map((d, i) => (
-          <span key={i} className="text-[9px] font-medium text-white/30">{d}</span>
+          <span key={i} className="text-[8.5px] font-semibold text-(--accent-contrast)">
+            {d}
+          </span>
         ))}
+      </div>
+
+      <div className="mt-1.5 grid grid-cols-7 gap-y-[3px] text-center">
         {cells.map((d, i) => {
           const isToday = d === today;
           return (
-            <span
-              key={i}
-              className={`text-[10px] tabular-nums leading-5 ${
-                isToday
-                  ? "rounded-full bg-(--accent-btn) font-semibold text-(--accent-contrast)"
-                  : d
-                  ? "text-white/70"
-                  : ""
-              }`}
-            >
-              {d ?? ""}
+            <span key={i} className="flex justify-center">
+              <span
+                className={`flex h-[18px] w-[18px] items-center justify-center rounded-full text-[10px] tabular-nums ${
+                  isToday
+                    ? "bg-(--accent-btn) font-semibold text-(--accent-contrast)"
+                    : d
+                    ? "text-white/70"
+                    : ""
+                }`}
+              >
+                {d ?? ""}
+              </span>
             </span>
           );
         })}
@@ -78,9 +84,7 @@ function CalendarWidget() {
   );
 }
 
-/** "Now Playing" card. Reads the same localStorage key SpotifyApp writes its
- *  last-played track to, so it reflects whatever the user actually listened to.
- *  Falls back to a profile tagline when nothing has played yet. */
+/** "Now Playing" card with a live equalizer that only animates while playing. */
 const SPOTIFY_KEY = "dios-spotify-last";
 type LastTrack = { title: string; artist: string } | null;
 
@@ -102,17 +106,25 @@ function NowPlayingWidget() {
     return () => window.removeEventListener("storage", read);
   }, []);
 
+  const playing = track !== null;
+
   return (
     <WidgetShell label="Now Playing">
       <div className="flex items-center gap-2.5">
-        {/* Equalizer bars — static when nothing's playing so there's no
-            always-running animation under the glass chrome (perf note). */}
-        <div className="flex h-8 w-8 shrink-0 items-end justify-center gap-[2px] rounded-md bg-(--accent-btn)/15">
+        {/* Equalizer bars. They animate ONLY while a track is playing —
+            transform/scaleY on the compositor, so no blur repaint under glass. */}
+        <div className="flex h-8 w-8 shrink-0 items-end justify-center gap-[2px] rounded-md bg-(--accent-btn)/15 p-[5px]">
           {[0, 1, 2].map((i) => (
             <span
               key={i}
-              className="w-[3px] rounded-full bg-(--accent-btn)"
-              style={{ height: track ? [10, 16, 7][i] : 6 }}
+              className={`w-[3px] origin-bottom rounded-full bg-(--accent-btn) ${
+                playing ? "eq-bar" : ""
+              }`}
+              style={{
+                height: "100%",
+                animationDelay: playing ? `${i * 0.18}s` : undefined,
+                transform: playing ? undefined : `scaleY(${[0.42, 0.66, 0.3][i]})`,
+              }}
             />
           ))}
         </div>
@@ -133,7 +145,7 @@ function NowPlayingWidget() {
  *  ink surface at low opacity + capped blur + self-colored edge. */
 function WidgetShell({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="w-[200px] rounded-xl border border-white/[0.06] bg-ink-900/55 px-3.5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl">
+    <div className="w-[208px] rounded-xl border border-white/[0.06] bg-ink-900/55 px-3.5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl">
       <p className="mb-2 text-[9px] font-semibold uppercase tracking-wider text-white/30">
         {label}
       </p>
@@ -142,12 +154,13 @@ function WidgetShell({ label, children }: { label: string; children: React.React
   );
 }
 
-/** The widget stack. Fixed to the top-right of the desktop, below the menu bar.
- *  pointer-events-none on the wrapper so it never blocks desktop drag/select;
- *  the widgets themselves are non-interactive (pure ambient display). */
+/** The widget column. Pinned to the top-right of the desktop, a touch further
+ *  in from the edge and below the menu bar — reads as a deliberate column, not
+ *  a floating card. pointer-events-none so it never blocks desktop drag/select;
+ *  the widgets themselves are ambient and non-interactive. */
 export default function DesktopWidgets() {
   return (
-    <div className="pointer-events-none absolute right-4 top-10 z-[6] flex flex-col gap-2.5">
+    <div className="pointer-events-none absolute right-6 top-12 z-[6] flex flex-col gap-3">
       <CalendarWidget />
       <NowPlayingWidget />
     </div>

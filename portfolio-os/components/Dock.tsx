@@ -12,6 +12,7 @@ import {
 } from "motion/react";
 import { Trash, type IconWeight } from "@phosphor-icons/react";
 import { APPS, type AppDef } from "@/lib/apps";
+import { trashedItems, useFiles } from "@/lib/files";
 import { useAppWinCount, useWindows } from "@/lib/store";
 import { openLink, useSystem } from "@/lib/system";
 import { ChatGptMark, ClaudeMark, GithubMark, ZoMark } from "./brand/BrandMarks";
@@ -245,29 +246,36 @@ function LinkItem({ link, mouseX }: { link: QuickLink; mouseX: MotionValue<numbe
   );
 }
 
-/** The classic empty trash can. Magnifies with the dock, wiggles when clicked. */
+/** The Trash can. Opens the Trash window; fills up when it has items. */
 function TrashItem({ mouseX }: { mouseX: MotionValue<number> }) {
   const ref = useRef<HTMLButtonElement>(null);
   const reduce = useReducedMotion();
   const base = useSystem((s) => s.dockSize);
+  const openApp = useWindows((s) => s.openApp);
+  const hasItems = trashedItems(useFiles((s) => s.items)).length > 0;
   const size = useMagnify(mouseX, ref);
   const [scope, animate] = useAnimate();
 
-  const wiggle = () => {
-    if (reduce) return;
-    animate(scope.current, { rotate: [0, -12, 10, -6, 0] }, { duration: 0.4 });
+  const launch = () => {
+    if (!reduce && scope.current) {
+      animate(scope.current, { y: [0, -18, 0, -8, 0] }, { duration: 0.5, ease: "easeOut" });
+    }
+    openApp("trash");
   };
 
   return (
     <motion.button
       ref={ref}
-      onClick={wiggle}
+      onClick={launch}
       style={reduce ? { width: base, height: base } : { width: size, height: size }}
-      aria-label="Trash, empty"
+      aria-label={hasItems ? "Trash, has items" : "Trash, empty"}
       className="group relative flex aspect-square items-center justify-center rounded-[26%] bg-white/[0.09] shadow-[0_8px_20px_rgba(0,0,0,0.35)]"
     >
       <span ref={scope} className="flex h-[55%] w-[55%] items-center justify-center">
-        <Trash className="h-full w-full text-white/70" weight="duotone" />
+        <Trash
+          className={`h-full w-full ${hasItems ? "text-white/90" : "text-white/50"}`}
+          weight={hasItems ? "fill" : "duotone"}
+        />
       </span>
       <span className="dock-tip pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md px-2.5 py-1 text-[12px] text-white/90 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100">
         Trash

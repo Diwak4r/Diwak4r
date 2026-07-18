@@ -156,7 +156,7 @@ function WallpaperGrid({ items }: { items: typeof WALLPAPERS }) {
   const setWallpaper = useSystem((s) => s.setWallpaper);
 
   return (
-    <div className="grid grid-cols-2 gap-3 @xl:grid-cols-3">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {items.map((w) => (
         <button
           key={w.id}
@@ -323,38 +323,38 @@ export default function SettingsApp({ paneProp }: { paneProp?: SettingsPane }) {
   }, [paneProp]);
 
   return (
-    <div className="@container min-h-full">
-      <div className="flex min-h-full flex-col @2xl:flex-row">
-        <nav
-          className="flex gap-1 border-b border-white/[0.06] p-2.5 @2xl:sticky @2xl:top-0 @2xl:w-44 @2xl:shrink-0 @2xl:flex-col @2xl:self-start @2xl:border-b-0 @2xl:p-3"
-          aria-label="Settings sections"
-        >
-          {PANES.map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => setPane(id)}
-              className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-1.5 text-[13px] transition-colors @2xl:flex-none @2xl:justify-start ${
-                pane === id
-                  ? "bg-accent-500/20 text-accent-200"
-                  : "text-white/60 hover:bg-white/[0.06] hover:text-white/85"
-              }`}
-              aria-current={pane === id ? "page" : undefined}
-            >
-              <Icon size={16} weight={pane === id ? "fill" : "regular"} />
-              {label}
-            </button>
-          ))}
-        </nav>
+    <div className="flex h-full min-h-0 flex-col md:flex-row">
+      {/* Section rail: wraps into a grid of chips on narrow windows, a proper
+          sidebar once there's room. */}
+      <nav
+        className="flex shrink-0 flex-wrap gap-1 border-b border-white/[0.06] p-2 md:w-44 md:flex-col md:flex-nowrap md:border-b-0 md:border-r md:p-3"
+        aria-label="Settings sections"
+      >
+        {PANES.map(({ id, label, icon: Icon }) => (
+          <button
+            key={id}
+            onClick={() => setPane(id)}
+            className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-[13px] transition-colors ${
+              pane === id
+                ? "bg-accent-500/20 text-accent-200"
+                : "text-white/60 hover:bg-white/[0.06] hover:text-white/85"
+            }`}
+            aria-current={pane === id ? "page" : undefined}
+          >
+            <Icon size={16} weight={pane === id ? "fill" : "regular"} />
+            {label}
+          </button>
+        ))}
+      </nav>
 
-        <div className="min-w-0 flex-1 p-5 @2xl:p-7">
-          {pane === "appearance" && <Appearance />}
-          {pane === "wallpaper" && <WallpaperPane />}
-          {pane === "desktop" && <DesktopDockPane />}
-          {pane === "sounds" && <SoundsPane />}
-          {pane === "nightshift" && <NightShiftPane />}
-          {pane === "about" && <AboutPane />}
-          {pane === "wifi" && <WifiPane />}
-        </div>
+      <div className="os-scroll min-w-0 flex-1 overflow-y-auto p-4 md:p-6">
+        {pane === "appearance" && <Appearance />}
+        {pane === "wallpaper" && <WallpaperPane />}
+        {pane === "desktop" && <DesktopDockPane />}
+        {pane === "sounds" && <SoundsPane />}
+        {pane === "nightshift" && <NightShiftPane />}
+        {pane === "about" && <AboutPane />}
+        {pane === "wifi" && <WifiPane />}
       </div>
     </div>
   );
