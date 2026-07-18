@@ -1,0 +1,12 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e9]:
+    - generic [ref=f1e10]:
+      - paragraph [ref=f1e11]: Saturday, July 18
+      - paragraph [ref=f1e12]: 11:50 PM
+    - generic [ref=f1e13]:
+      - img "Portrait of Diwakar Ray Yadav" [ref=f1e14]
+      - paragraph [ref=f1e15]: Diwakar Ray Yadav
+      - paragraph [ref=f1e16]: AI Growth Strategist at The Mindsnack
+      - button "Enter Portfolio" [ref=f1e17]
+      - paragraph [ref=f1e18]: or press Enter
+  - alert [ref=f1e8]

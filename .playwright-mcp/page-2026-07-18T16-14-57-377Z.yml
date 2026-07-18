@@ -1,0 +1,145 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e18]:
+      - button "System menu" [ref=e20]
+      - generic [ref=e23]: Photos
+      - navigation "Menus" [ref=e24]:
+        - button "File" [ref=e25]
+        - button "Edit" [ref=e26]
+        - button "View" [ref=e27]
+        - button "Window" [ref=e28]
+        - button "Help" [ref=e29]
+      - generic [ref=e30]:
+        - button "GitHub" [ref=e31]
+        - button "LinkedIn" [ref=e34]
+        - button "X" [ref=e37]
+        - button "Spotlight search" [ref=e41]
+        - button "Control Center" [ref=e47]
+        - generic [ref=e52]: Sat, Jul 18 9:59 PM
+    - generic:
+      - generic:
+        - paragraph: Calendar
+        - generic:
+          - paragraph: July 2026
+        - generic:
+          - generic: S
+          - generic: M
+          - generic: T
+          - generic: W
+          - generic: T
+          - generic: F
+          - generic: S
+        - generic:
+          - generic: "1"
+          - generic: "2"
+          - generic: "3"
+          - generic: "4"
+          - generic: "5"
+          - generic: "6"
+          - generic: "7"
+          - generic: "8"
+          - generic: "9"
+          - generic: "10"
+          - generic: "11"
+          - generic: "12"
+          - generic: "13"
+          - generic: "14"
+          - generic: "15"
+          - generic: "16"
+          - generic: "17"
+          - generic: "18"
+          - generic: "19"
+          - generic: "20"
+          - generic: "21"
+          - generic: "22"
+          - generic: "23"
+          - generic: "24"
+          - generic: "25"
+          - generic: "26"
+          - generic: "27"
+          - generic: "28"
+          - generic: "29"
+          - generic: "30"
+          - generic: "31"
+      - generic:
+        - paragraph: Now Playing
+        - generic:
+          - generic:
+            - paragraph: AI Growth Strategist at The Mindsnack
+            - paragraph: Open Spotify to play
+    - generic [ref=e53]:
+      - button "Open About Me" [ref=e54]:
+        - generic [ref=e57]: About Me
+      - button "Open Projects" [ref=e58]:
+        - generic [ref=e66]: Projects
+      - button "Open Journal" [ref=e67]:
+        - generic [ref=e75]: Journal
+      - button "Open Notes" [ref=e76]:
+        - generic [ref=e79]: Notes
+      - button "Open Contact" [ref=e80]:
+        - generic [ref=e83]: Contact
+      - button "Open Terminal" [ref=e84]:
+        - generic [ref=e87]: Terminal
+      - button "Open Socials" [ref=e88]:
+        - generic [ref=e91]: Socials
+      - button "Open CraftJS" [ref=e92]:
+        - generic [ref=e101]: CraftJS
+      - 'button "Folder: the" [ref=e102]':
+        - generic [ref=e106]: the
+      - dialog "Photos" [ref=e107]:
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - button "Close window" [ref=e111]
+              - button "Minimize window" [ref=e114]
+              - button "Maximize window" [ref=e117]
+            - generic: Photos
+          - generic [ref=e120]: Loading…
+    - navigation "Dock" [ref=e133]:
+      - button "Open About Me" [ref=e135]:
+        - generic: About Me
+      - button "Open Projects" [ref=e139]:
+        - generic: Projects
+      - button "Open Journal" [ref=e148]:
+        - generic: Journal
+      - button "Open Notes" [ref=e157]:
+        - generic: Notes
+      - button "Open Contact" [ref=e161]:
+        - generic: Contact
+      - button "Open Browser" [ref=e165]:
+        - generic: Browser
+      - button "Open Terminal" [ref=e169]:
+        - generic: Terminal
+      - button "Open Settings" [ref=e173]:
+        - generic: Settings
+      - button "Open Calculator" [ref=e177]:
+        - generic: Calculator
+      - button "Open Spotify" [ref=e181]:
+        - generic: Spotify
+      - button "Open Socials" [ref=e185]:
+        - generic: Socials
+      - button "Open CraftJS" [ref=e189]:
+        - generic: CraftJS
+      - button "Open Finder" [ref=e199]:
+        - generic: Finder
+      - button "Open Code" [ref=e203]:
+        - generic: Code
+      - button "Focus Photos" [active] [ref=e210]:
+        - generic: Photos
+      - button "Open Weather" [ref=e215]:
+        - generic: Weather
+      - button "Open WhatsApp" [ref=e222]:
+        - generic: WhatsApp
+      - button "Open Launchpad" [ref=e229]:
+        - generic: Launchpad
+      - button "Open Zo Space" [ref=e236]:
+        - generic: Zo Space
+      - button "Open GitHub" [ref=e240]:
+        - generic: GitHub
+      - button "Open ChatGPT" [ref=e244]:
+        - generic: ChatGPT
+      - button "Open Claude" [ref=e248]:
+        - generic: Claude
+      - button "Trash, empty" [ref=e253]:
+        - generic: Trash
+  - alert [ref=e7]

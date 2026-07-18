@@ -1,0 +1,205 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - banner [ref=f1e5]:
+      - button "System menu" [ref=f1e7]
+      - generic [ref=f1e10]: Code
+      - navigation "Menus" [ref=f1e11]:
+        - button "File" [ref=f1e12]
+        - button "Edit" [ref=f1e13]
+        - button "View" [ref=f1e14]
+        - button "Window" [ref=f1e15]
+        - button "Help" [ref=f1e16]
+      - generic [ref=f1e17]:
+        - button "GitHub" [ref=f1e18]
+        - button "LinkedIn" [ref=f1e21]
+        - button "X" [ref=f1e24]
+        - button "Spotlight search" [ref=f1e28]
+        - button "Control Center" [ref=f1e34]
+        - button "Battery status" [ref=f1e38]
+        - button "Date and time" [ref=f1e42]: Sat, Jul 18 11:08 PM
+    - generic:
+      - generic:
+        - paragraph: Calendar
+        - generic:
+          - paragraph: July 2026
+        - generic:
+          - generic: S
+          - generic: M
+          - generic: T
+          - generic: W
+          - generic: T
+          - generic: F
+          - generic: S
+        - generic:
+          - generic: "1"
+          - generic: "2"
+          - generic: "3"
+          - generic: "4"
+          - generic: "5"
+          - generic: "6"
+          - generic: "7"
+          - generic: "8"
+          - generic: "9"
+          - generic: "10"
+          - generic: "11"
+          - generic: "12"
+          - generic: "13"
+          - generic: "14"
+          - generic: "15"
+          - generic: "16"
+          - generic: "17"
+          - generic: "18"
+          - generic: "19"
+          - generic: "20"
+          - generic: "21"
+          - generic: "22"
+          - generic: "23"
+          - generic: "24"
+          - generic: "25"
+          - generic: "26"
+          - generic: "27"
+          - generic: "28"
+          - generic: "29"
+          - generic: "30"
+          - generic: "31"
+      - generic:
+        - paragraph: Now Playing
+        - generic:
+          - generic:
+            - paragraph: AI Growth Strategist at The Mindsnack
+            - paragraph: Open Spotify to play
+    - generic [ref=f1e43]:
+      - button "Open About Me" [ref=f1e44]:
+        - generic [ref=f1e47]: About Me
+      - button "Open Projects" [ref=f1e48]:
+        - generic [ref=f1e56]: Projects
+      - button "Open Journal" [ref=f1e57]:
+        - generic [ref=f1e65]: Journal
+      - button "Open Notes" [ref=f1e66]:
+        - generic [ref=f1e69]: Notes
+      - button "Open Contact" [ref=f1e70]:
+        - generic [ref=f1e73]: Contact
+      - button "Open Terminal" [ref=f1e74]:
+        - generic [ref=f1e77]: Terminal
+      - button "Open Socials" [ref=f1e78]:
+        - generic [ref=f1e81]: Socials
+      - button "Open CraftJS" [ref=f1e82]:
+        - generic [ref=f1e91]: CraftJS
+      - dialog "Trash" [ref=f1e394]:
+        - generic [ref=f1e395]:
+          - generic [ref=f1e396]:
+            - generic [ref=f1e397]:
+              - button "Close window" [ref=f1e398]
+              - button "Minimize window" [ref=f1e401]
+              - button "Maximize window" [ref=f1e404]
+            - generic: Trash
+          - generic [ref=f1e409]:
+            - generic [ref=f1e411]:
+              - generic [ref=f1e414]: Trash
+              - generic [ref=f1e415]: 0 items
+            - paragraph [ref=f1e420]: Trash is empty
+      - dialog "Finder" [ref=f1e431]:
+        - generic [ref=f1e432]:
+          - generic [ref=f1e433]:
+            - generic [ref=f1e434]:
+              - button "Close window" [ref=f1e435]
+              - button "Minimize window" [ref=f1e438]
+              - button "Maximize window" [ref=f1e441]
+            - generic: Finder
+          - generic [ref=f1e446]:
+            - generic [ref=f1e447]:
+              - button [disabled] [ref=f1e448]
+              - generic [ref=f1e451]: Desktop
+              - button [ref=f1e452]
+              - button [ref=f1e455]
+            - generic [ref=f1e458]:
+              - navigation "Finder sidebar" [ref=f1e459]:
+                - button "Desktop" [ref=f1e460]
+                - button "Documents" [ref=f1e464]
+                - button "Projects" [ref=f1e468]
+                - button "Pictures" [ref=f1e472]
+                - button "Music" [ref=f1e476]
+              - paragraph [ref=f1e481]: Desktop is empty. Right-click the desktop to create a folder or file.
+      - dialog "Code" [ref=f1e492]:
+        - generic [ref=f1e493]:
+          - generic [ref=f1e494]:
+            - generic [ref=f1e495]:
+              - button "Close window" [ref=f1e496]
+              - button "Minimize window" [ref=f1e499]
+              - button "Maximize window" [ref=f1e502]
+            - generic: Code
+          - generic [ref=f1e507]:
+            - generic [ref=f1e508]:
+              - generic [ref=f1e509]:
+                - generic [ref=f1e510]:
+                  - button "Explorer" [ref=f1e511]
+                  - button "Search" [ref=f1e515]
+                  - button "Source Control" [ref=f1e518]
+                  - button "Run and Debug" [ref=f1e521]
+                - generic [ref=f1e524]:
+                  - button "Accounts" [ref=f1e525]
+                  - button "Manage" [ref=f1e528]
+              - generic [ref=f1e531]:
+                - paragraph [ref=f1e532]: Explorer
+                - paragraph [ref=f1e534]: ▾ DIWAKAR-OS
+              - generic [ref=f1e536]:
+                - paragraph [ref=f1e537]: diwakar-os
+                - paragraph [ref=f1e538]: Select a file from the Explorer, or create one on the desktop
+            - generic [ref=f1e539]:
+              - generic [ref=f1e540]:
+                - generic [ref=f1e541]: main
+                - generic [ref=f1e544]: ✕ 0 ⚠ 0
+              - generic [ref=f1e545]:
+                - generic [ref=f1e546]: Plain Text
+                - generic [ref=f1e547]: TypeScript JSX
+                - generic [ref=f1e548]: Prettier
+    - navigation "Dock" [ref=f1e170]:
+      - button "Open About Me" [ref=f1e303]:
+        - generic: About Me
+      - button "Open Projects" [ref=f1e177]:
+        - generic: Projects
+      - button "Open Journal" [ref=f1e186]:
+        - generic: Journal
+      - button "Open Notes" [ref=f1e195]:
+        - generic: Notes
+      - button "Open Contact" [ref=f1e199]:
+        - generic: Contact
+      - button "Open Browser" [ref=f1e203]:
+        - generic: Browser
+      - button "Open Terminal" [ref=f1e207]:
+        - generic: Terminal
+      - button "Open Settings" [ref=f1e211]:
+        - generic: Settings
+      - button "Open Calculator" [ref=f1e215]:
+        - generic: Calculator
+      - button "Open Spotify" [ref=f1e219]:
+        - generic: Spotify
+      - button "Open Socials" [ref=f1e223]:
+        - generic: Socials
+      - button "Open CraftJS" [ref=f1e227]:
+        - generic: CraftJS
+      - button "Focus Finder" [ref=f1e490]:
+        - generic: Finder
+      - button "Focus Code" [active] [ref=f1e559]:
+        - generic: Code
+      - button "Open Photos" [ref=f1e248]:
+        - generic: Photos
+      - button "Open Weather" [ref=f1e252]:
+        - generic: Weather
+      - button "Open WhatsApp" [ref=f1e259]:
+        - generic: WhatsApp
+      - button "Open Launchpad" [ref=f1e266]:
+        - generic: Launchpad
+      - button "Focus Trash" [ref=f1e429]:
+        - generic: Trash
+      - button "Open Zo Space" [ref=f1e280]:
+        - generic: Zo Space
+      - button "Open GitHub" [ref=f1e284]:
+        - generic: GitHub
+      - button "Open ChatGPT" [ref=f1e288]:
+        - generic: ChatGPT
+      - button "Open Claude" [ref=f1e292]:
+        - generic: Claude
+      - button "Trash, empty" [ref=f1e297]:
+        - generic: Trash
+  - alert [ref=f1e302]

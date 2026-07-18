@@ -1,0 +1,183 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e8]:
+      - button "System menu" [ref=e10]
+      - generic [ref=e13]: About Me
+      - navigation "Menus" [ref=e14]:
+        - button "File" [ref=e15]
+        - button "Edit" [ref=e16]
+        - button "View" [ref=e17]
+        - button "Window" [ref=e18]
+        - button "Help" [ref=e19]
+      - generic [ref=e20]:
+        - button "GitHub" [ref=e21]
+        - button "LinkedIn" [ref=e24]
+        - button "X" [ref=e27]
+        - button "Spotlight search" [ref=e31]
+        - button "Switch to dark appearance" [active] [ref=e397]
+        - button "Control Center" [ref=e40]
+        - button "Battery status" [ref=e44]
+        - button "Date and time" [ref=e48]: Sat, Jul 18 11:39 PM
+    - generic:
+      - generic:
+        - paragraph: Calendar
+        - generic:
+          - paragraph: July 2026
+        - generic:
+          - generic: S
+          - generic: M
+          - generic: T
+          - generic: W
+          - generic: T
+          - generic: F
+          - generic: S
+        - generic:
+          - generic: "1"
+          - generic: "2"
+          - generic: "3"
+          - generic: "4"
+          - generic: "5"
+          - generic: "6"
+          - generic: "7"
+          - generic: "8"
+          - generic: "9"
+          - generic: "10"
+          - generic: "11"
+          - generic: "12"
+          - generic: "13"
+          - generic: "14"
+          - generic: "15"
+          - generic: "16"
+          - generic: "17"
+          - generic: "18"
+          - generic: "19"
+          - generic: "20"
+          - generic: "21"
+          - generic: "22"
+          - generic: "23"
+          - generic: "24"
+          - generic: "25"
+          - generic: "26"
+          - generic: "27"
+          - generic: "28"
+          - generic: "29"
+          - generic: "30"
+          - generic: "31"
+      - generic:
+        - paragraph: Now Playing
+        - generic:
+          - generic:
+            - paragraph: AI Growth Strategist at The Mindsnack
+            - paragraph: Open Spotify to play
+    - generic [ref=e49]:
+      - button "Open About Me" [ref=e50]:
+        - generic [ref=e53]: About Me
+      - button "Open Projects" [ref=e54]:
+        - generic [ref=e62]: Projects
+      - button "Open Journal" [ref=e63]:
+        - generic [ref=e71]: Journal
+      - button "Open Notes" [ref=e72]:
+        - generic [ref=e75]: Notes
+      - button "Open Contact" [ref=e76]:
+        - generic [ref=e79]: Contact
+      - button "Open Terminal" [ref=e80]:
+        - generic [ref=e83]: Terminal
+      - button "Open Socials" [ref=e84]:
+        - generic [ref=e87]: Socials
+      - button "Open CraftJS" [ref=e88]:
+        - generic [ref=e97]: CraftJS
+      - 'button "File: index.html" [ref=e395]':
+        - generic [ref=e103]: index.html
+      - dialog "About Me" [ref=e104]:
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - button "Close window" [ref=e108]
+              - button "Minimize window" [ref=e111]
+              - button "Maximize window" [ref=e114]
+            - generic: About Me
+          - generic [ref=e120]:
+            - navigation "About sections" [ref=e121]:
+              - button "Story" [ref=e122]
+              - button "Experience" [ref=e125]
+              - button "Skills" [ref=e128]
+            - generic [ref=e133]:
+              - generic [ref=e134]:
+                - img "Portrait of Diwakar Ray Yadav" [ref=e135]
+                - generic [ref=e136]:
+                  - heading "Diwakar Ray Yadav" [level=1] [ref=e137]
+                  - paragraph [ref=e138]: AI Growth Strategist at The Mindsnack
+                  - paragraph [ref=e139]: Kathmandu, Nepal
+              - generic [ref=e142]:
+                - button "GitHub" [ref=e143]
+                - button "LinkedIn" [ref=e146]
+                - button "X" [ref=e149]
+                - button "Instagram" [ref=e152]
+              - generic [ref=e155]:
+                - paragraph [ref=e156]: I build AI infrastructure for people the industry skips. I'm a BIT student in Kathmandu shipping commercial products on the side, because good work shouldn't have to wait for a diploma.
+                - paragraph [ref=e157]: "My flagship, Nepal AI Gateway, is a commercial LLM proxy built from scratch. It brings NPR-tiered pricing through eSewa to Nepali developers locked out of international payment rails. Under the hood: a Cloudflare Worker architecture, a security audit that closed real vulnerabilities, and an admin console I designed myself."
+                - paragraph [ref=e158]: At The Mindsnack, an official distribution partner of Springbase AI, I run AEO and SEO strategy and redesigned the company's own site from the ground up, based out of The 100 Spaces coworking space in Kathmandu.
+                - paragraph [ref=e159]: "The plan is deliberate: Nepal's AI companies first, remote AI roles next, an AI lab after that. Right now I'm rebuilding my fundamentals with CS50P and contributing to open source. No step skipped."
+                - paragraph [ref=e160]: Before AI was the job, it was NEPSE trading across multiple Demat and TMS accounts and HikCentral CCTV administration, the unglamorous machinery that keeps an office running. I still call myself an office executive who leverages AI, not a developer. The rest you'd have to find out by working with me.
+              - generic [ref=e161]:
+                - heading "Currently exploring" [level=2] [ref=e162]
+                - generic [ref=e163]:
+                  - generic [ref=e164]: AI Agents
+                  - generic [ref=e165]: Claude Code
+                  - generic [ref=e166]: SEO + AEO
+                  - generic [ref=e167]: AI Workflows
+                  - generic [ref=e168]: Browser Automation
+                  - generic [ref=e169]: Frontend Prototyping
+              - generic [ref=e170]:
+                - img "Diwakar, casual" [ref=e171]
+                - img "Diwakar" [ref=e172]
+    - navigation "Dock" [ref=e262]:
+      - button "Focus About Me" [ref=e264]:
+        - generic: About Me
+      - button "Open Projects" [ref=e269]:
+        - generic: Projects
+      - button "Open Journal" [ref=e278]:
+        - generic: Journal
+      - button "Open Notes" [ref=e287]:
+        - generic: Notes
+      - button "Open Contact" [ref=e291]:
+        - generic: Contact
+      - button "Open Browser" [ref=e295]:
+        - generic: Browser
+      - button "Open Terminal" [ref=e299]:
+        - generic: Terminal
+      - button "Open Settings" [ref=e303]:
+        - generic: Settings
+      - button "Open Calculator" [ref=e307]:
+        - generic: Calculator
+      - button "Open Spotify" [ref=e311]:
+        - generic: Spotify
+      - button "Open Socials" [ref=e315]:
+        - generic: Socials
+      - button "Open CraftJS" [ref=e319]:
+        - generic: CraftJS
+      - button "Open Finder" [ref=e329]:
+        - generic: Finder
+      - button "Open Code" [ref=e396]:
+        - generic: Code
+      - button "Open Photos" [ref=e341]:
+        - generic: Photos
+      - button "Open Weather" [ref=e345]:
+        - generic: Weather
+      - button "Open WhatsApp" [ref=e352]:
+        - generic: WhatsApp
+      - button "Open Launchpad" [ref=e359]:
+        - generic: Launchpad
+      - button "Open Trash" [ref=e366]:
+        - generic: Trash
+      - button "Open Zo Space" [ref=e373]:
+        - generic: Zo Space
+      - button "Open GitHub" [ref=e377]:
+        - generic: GitHub
+      - button "Open ChatGPT" [ref=e381]:
+        - generic: ChatGPT
+      - button "Open Claude" [ref=e385]:
+        - generic: Claude
+      - button "Trash, empty" [ref=e390]:
+        - generic: Trash
+  - alert [ref=e7]
