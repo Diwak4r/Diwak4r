@@ -48,11 +48,18 @@ Instead of building generic web templates, I design practical, high-efficiency t
 
 ---
 
-### GitHub Statistics
+### 📈 Activity & Contribution Dashboard
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Diwak4r&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Diwakar's GitHub Stats" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Diwak4r&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=Diwak4r&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Diwakar's GitHub Stats" width="49%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Diwak4r&theme=tokyonight&hide_border=true" alt="Diwakar's GitHub Streak" width="49%" />
+</div>
+
+<br>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Diwak4r&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" width="49%" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Diwak4r&theme=tokyo-night&hide_border=true&area=true" alt="Activity Graph" width="49%" />
 </div>
 
 <br>
