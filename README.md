@@ -1,14 +1,21 @@
-# Hi, I'm Diwakar
+# Diwakar
 
-I'm pursiuing BIT from Kathmandu, Nepal.
+[ Location: Kathmandu, Nepal ]
+[ Status: Building ]
 
-I build practical web projects, explore AI and LLM workflows, and share what I'm learning as I go.
+// Identity
+I construct practical web infrastructure, explore LLM workflows, and document the process. 
+My goal is to abstract complexity, making technology accessible to those who don't speak its language.
 
-I'm interested in:
+// Core Competencies
+— HTML, CSS, JS, Python
+— React, Node.js, Tailwind
+— AI Tooling, LLM Integration
 
-- AI, LLMs and automation
-- useful products for learning and everyday work
-- making tech easier for non-technical people
+// Active Links
+[ Portfolio ] https://diwakaryadav.com.np/
+[ X ] https://x.com/Norwakar
+[ LinkedIn ] https://www.linkedin.com/in/diwak4r
 
-
-[Portfolio](https://diwakaryadav.com.np/) | [LinkedIn](https://www.linkedin.com/in/diwak4r) | [X](https://x.com/Norwakar) | [Email](mailto:Diwak4r.comp@gmail.com)
+// Comm
+Diwak4r.comp@gmail.com
