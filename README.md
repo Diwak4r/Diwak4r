@@ -62,8 +62,3 @@ Instead of building generic web templates, I design practical, high-efficiency t
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=Diwak4r&theme=tokyo-night&hide_border=true&area=true" alt="Activity Graph" width="49%" />
 </div>
 
-<br>
-
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=Diwak4r&label=Profile%20Views&color=007AFF&style=flat-square" alt="Profile Views" />
-</div>
