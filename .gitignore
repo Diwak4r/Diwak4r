@@ -1,6 +1,14 @@
 .agent/
+.agents/
+.workbuddy-ai/
+.workbuddy/
+.task/
 node_modules/
 portfolio-os/node_modules/
 portfolio-os/.next/
 portfolio-os/out/
 .qa-screens/
+.live-qa/
+.playwright-mcp/
+docs/
+*.log

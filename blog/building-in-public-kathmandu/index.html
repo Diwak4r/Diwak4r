@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <title>Building in Public from Kathmandu: One Year of Shipping AI Projects | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/blog/building-in-public-kathmandu/">
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Performance: Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS: prevent invisible content, base layout -->
+    <style>
+        .fade-in { opacity: 1 !important; transform: none !important; }
+        .fade-in.js-enabled { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.js-enabled.visible { opacity: 1; transform: translateY(0); }
+        body { font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-optical-sizing: auto; margin: 0; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(254, 250, 224, 0.95); backdrop-filter: blur(10px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 0; }
+        .blog-article { max-width: 800px; margin: 0 auto; padding-top: 80px; }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
+        href="https://diwakaryadav.com.np/feed.xml">
+
+    <!-- Main CSS (loaded asynchronously) -->
+    <link rel="stylesheet" href="../../css/style.4a3a12ca.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="../../css/style.4a3a12ca.css"></noscript>
+
+    <!-- SEO & Open Graph -->
+    <meta name="author" content="Diwakar Ray Yadav">
+    <meta name="description" content="A year-one retrospective on building and shipping AI projects in public from Kathmandu, with honest lessons on consistency, audience, and shipping ugly.">
+    <meta property="og:title" content="Building in Public from Kathmandu: One Year of Shipping AI Projects">
+    <meta property="og:description" content="A year-one retrospective on building and shipping AI projects in public from Kathmandu, with honest lessons on consistency, audience, and shipping ugly.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://diwakaryadav.com.np/blog/building-in-public-kathmandu/">
+    <meta property="og:image" content="https://diwakaryadav.com.np/images/blog-building-in-public-kathmandu.svg">
+    <meta property="og:image:alt" content="Building in Public from Kathmandu: One Year of Shipping AI Projects">
+    <meta property="article:published_time" content="2026-07-04">
+    <meta property="article:modified_time" content="2026-08-09">
+    <meta property="article:author" content="Diwakar Ray Yadav">
+    <meta property="article:section" content="Builder's Log">
+    <meta property="article:tag" content="building in public AI">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building in Public from Kathmandu: One Year of Shipping AI Projects">
+    <meta name="twitter:description" content="A year-one retrospective on building and shipping AI projects in public from Kathmandu, with honest lessons on consistency, audience, and shipping ugly.">
+    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/blog-building-in-public-kathmandu.svg">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "Building in Public from Kathmandu: One Year of Shipping AI Projects",
+            "alternativeHeadline": "No Silicon Valley zip code, no funding, just a laptop and a habit of shipping. Here is what a year taught me.",
+            "description": "A year-one retrospective on building and shipping AI projects in public from Kathmandu, with honest lessons on consistency, audience, and shipping ugly.",
+            "image": ["https://diwakaryadav.com.np/images/blog-building-in-public-kathmandu.svg"],
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://diwakaryadav.com.np/blog/building-in-public-kathmandu/" },
+            "datePublished": "2026-07-04",
+            "dateModified": "2026-08-09",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "articleSection": "Builder's Log",
+            "keywords": ["building in public AI","indie hacker Nepal","ship AI projects","build in public 2026"],
+            "author": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/about/" },
+            "publisher": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/", "image": "https://diwakaryadav.com.np/images/diwakar-portrait.jpg" }
+        }
+    </script>
+
+    <style>
+        .blog-article { max-width: 800px; margin: 0 auto; }
+        .blog-back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; margin-bottom: 2rem; transition: color 0.3s ease; }
+        .blog-back-link:hover { color: var(--accent-primary); }
+        .blog-article-header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light); }
+        .blog-article-tag { display: inline-block; background: var(--accent-primary); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; margin-bottom: 1rem; }
+        .blog-article-title { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        .blog-article-subtitle { font-size: 1.25rem; color: var(--text-secondary); font-style: italic; }
+        .blog-article-meta { display: flex; gap: 1.5rem; font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem; flex-wrap: wrap; }
+        .blog-article-content { font-size: 1.1rem; line-height: 1.8; }
+        .blog-article-content h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--accent-primary); font-weight: 600; }
+        .blog-article-content h3 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .blog-article-content p { margin-bottom: 1.25rem; }
+        .blog-article-content strong { color: var(--accent-primary); }
+        .blog-article-content ul, .blog-article-content ol { margin: 1rem 0 1.25rem; padding-left: 1.5rem; }
+        .blog-article-content li { margin-bottom: 0.5rem; }
+        .blog-article-content blockquote { background: var(--bg-secondary); border-left: 4px solid var(--accent-primary); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; }
+        .article-support-box { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border-light); border-radius: var(--radius); background: var(--bg-secondary); }
+        .article-support-box p:last-child { margin-bottom: 0; }
+        .article-support-box a { color: var(--accent-primary); font-weight: 600; }
+        @media (max-width: 768px) {
+            .blog-article-title { font-size: 1.75rem; }
+            .blog-article-subtitle { font-size: 1rem; }
+            .blog-article-content { font-size: 1rem; }
+            .blog-article-meta { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/about/" class="nav-link">About</a></li>
+                    <li><a href="/blog/" class="nav-link active">Blog</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                    <li><a href="https://www.os.diwakaryadav.com.np/" class="nav-link" target="_blank" rel="noopener">OS ↗</a></li>
+                    <li><a href="https://diwak4r.zo.space/" class="nav-link" target="_blank" rel="noopener">Zo ↗</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section" id="main-content" role="region" aria-label="Blog article">
+        <div class="container">
+            <article class="blog-article fade-in" role="article" itemscope itemtype="https://schema.org/BlogPosting">
+                <a href="/blog/" class="blog-back-link" aria-label="Return to blog listing">← Back to Blog</a>
+
+                <div class="blog-article-header">
+                    <span class="blog-article-tag">Builder's Log</span>
+                    <h1 class="blog-article-title font-display">Building in Public from Kathmandu: One Year of Shipping AI Projects</h1>
+                    <p class="blog-article-subtitle">No Silicon Valley zip code, no funding, just a laptop and a habit of shipping. Here is what a year taught me.</p>
+                    <div class="blog-article-meta">
+                        <span>📅 2026-07-04</span>
+                        <span>⏱️ 9 min read</span>
+                        <span>✍️ Diwakar Ray Yadav</span>
+                    </div>
+                </div>
+
+                <div class="blog-article-content">
+
+<p>A year ago I made a quiet promise: ship AI projects in public, from Kathmandu, and write down what I learned. No team, no funding, just a laptop and a willingness to look unfinished online. Here is the retro.</p>
+
+<h2>The location was never the limit</h2>
+
+<p>I expected being outside a tech hub to hold me back. It did not. The models, the docs, the communities are all online. The only thing my zip code changed was my time zone and my internet, and I learned to plan around both.</p>
+
+<p>If you are waiting for the "right" city or job to start, that wait is the only thing actually stopping you.</p>
+
+<h2>Ship ugly, then ship again</h2>
+
+<p>My first public project was rough. I almost did not post it. I posted it anyway. The feedback on the rough version taught me more in a day than a month of private polishing. Shipping ugly early is not a excuse for lazy. It is a speed tool.</p>
+
+<blockquote>The gap between a project that exists and one that does not is the only gap that matters. Polish is a later problem.</blockquote>
+
+<h2>Consistency beat talent</h2>
+
+<p>I am not the best coder or writer in any room. But I showed up weekly. A small post every week built an audience that a single perfect essay never would have. People follow the rhythm, not the masterpiece.</p>
+
+<h2>What actually grew my reach</h2>
+
+<p>Not the big launches. The honest notes about what broke and how I fixed it. People trust a builder who admits the error over one who only shares wins. Vulnerability, in public, is a feature, not a risk.</p>
+
+<h2>The hard parts</h2>
+
+<ul>
+<li><strong>Power and internet.</strong> I learned to save work obsessively and keep a backup plan.</li>
+<li><strong>Isolation.</strong> No local peer group for this niche. Online communities became my office.</li>
+<li><strong>Burnout.</strong> Shipping weekly is a marathon. I cut scope hard when energy dropped.</li>
+</ul>
+
+<h2>What I would tell past me</h2>
+
+<p>Start smaller. Post sooner. Care less about likes and more about the log. The portfolio you build by shipping in public is worth more than any certificate, and it compounds while you sleep.</p>
+
+<h2>The next year</h2>
+
+<p>More agents, more local models, more writing. Same rule: build, break, post, repeat. If you are in a small city wondering if you can play, you already can. The only move is to start and stay visible.</p>
+
+<h2>What I actually shipped</h2>
+
+<p>In the year: a local AI notes tool, a small RAG demo on my own docs, a portfolio OS, and a weekly writing habit. None were perfect. All of them exist. The shipping log is the asset, not any single project.</p>
+
+<h2>The tools that kept me going</h2>
+
+<p>A free chatbot for drafting, a free coding assistant for fixes, a local model for private notes. The free stack meant I could keep building through months with no budget. Outsiders underestimate how far zero dollars goes when the habit is strong.</p>
+
+<h2>One mistake that cost me a week</h2>
+
+<p>I waited too long to post a rough project. By the time I shared it, someone else had shipped something close. Now I post at 60 percent. Earlier beats later, every time.</p>
+
+<h2>FAQ</h2>
+
+<h3>Do I need to be in a tech city?</h3>
+<p>No. The work and the audience are online. Your zip code is not the limit. Your consistency is.</p>
+
+<h3>How do I handle slow internet?</h3>
+<p>A local model covers the offline work, and I save constantly. Plan around the weak link instead of fighting it.</p>
+
+<p>The free stack I rely on daily is part of why this stayed sustainable.</p>
+
+                    <div class="article-support-box">
+                        <p><strong>About the author.</strong> Diwakar Ray Yadav writes about AI tools, prompt engineering, and automation from hands-on experiments in Kathmandu. <a href="/about/" rel="author">Read more about Diwakar</a>.</p>
+                    </div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/free-ai-stack/" rel="next">The Free AI Stack: Everything I Use Daily That Costs $0</a></p>
+</div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/ai-myths-tested/" rel="next">AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False</a></p>
+</div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../js/script.8687d2a9.js" defer></script>
+</body>
+
+</html>

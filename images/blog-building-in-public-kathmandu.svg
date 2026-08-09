@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FEFAE0"/>
+  <rect x="0" y="0" width="1200" height="14" fill="#B87A5C"/>
+  <text x="80" y="120" font-size="120" font-family="Segoe UI, Arial, sans-serif">🏔️</text>
+<text x="80" y="174" font-size="46" font-weight="700" fill="#2D3748" font-family="Segoe UI, Arial, sans-serif">Building in Public from</text>
+<text x="80" y="250" font-size="46" font-weight="700" fill="#2D3748" font-family="Segoe UI, Arial, sans-serif">Kathmandu: One Year of</text>
+<text x="80" y="326" font-size="46" font-weight="700" fill="#2D3748" font-family="Segoe UI, Arial, sans-serif">Shipping AI Projects</text>
+  <text x="80" y="560" font-size="30" fill="#A98467" font-family="Segoe UI, Arial, sans-serif">Diwakar Ray Yadav · AI, hands-on</text>
+</svg>

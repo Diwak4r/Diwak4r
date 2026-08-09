@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <title>AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/blog/ai-myths-tested/">
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Performance: Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS: prevent invisible content, base layout -->
+    <style>
+        .fade-in { opacity: 1 !important; transform: none !important; }
+        .fade-in.js-enabled { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.js-enabled.visible { opacity: 1; transform: translateY(0); }
+        body { font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-optical-sizing: auto; margin: 0; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(254, 250, 224, 0.95); backdrop-filter: blur(10px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 0; }
+        .blog-article { max-width: 800px; margin: 0 auto; padding-top: 80px; }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
+        href="https://diwakaryadav.com.np/feed.xml">
+
+    <!-- Main CSS (loaded asynchronously) -->
+    <link rel="stylesheet" href="../../css/style.4a3a12ca.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="../../css/style.4a3a12ca.css"></noscript>
+
+    <!-- SEO & Open Graph -->
+    <meta name="author" content="Diwakar Ray Yadav">
+    <meta name="description" content="Five common AI claims put to a hands-on test, with honest results: which held up, which failed, and what the gap between demo and reality really is.">
+    <meta property="og:title" content="AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False">
+    <meta property="og:description" content="Five common AI claims put to a hands-on test, with honest results: which held up, which failed, and what the gap between demo and reality really is.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://diwakaryadav.com.np/blog/ai-myths-tested/">
+    <meta property="og:image" content="https://diwakaryadav.com.np/images/blog-ai-myths-tested.svg">
+    <meta property="og:image:alt" content="AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False">
+    <meta property="article:published_time" content="2026-07-20">
+    <meta property="article:modified_time" content="2026-08-09">
+    <meta property="article:author" content="Diwakar Ray Yadav">
+    <meta property="article:section" content="AI & Reality">
+    <meta property="article:tag" content="AI myths debunked">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False">
+    <meta name="twitter:description" content="Five common AI claims put to a hands-on test, with honest results: which held up, which failed, and what the gap between demo and reality really is.">
+    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/blog-ai-myths-tested.svg">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False",
+            "alternativeHeadline": "I took five things people say about AI and actually ran them. The results were less flattering than the hype.",
+            "description": "Five common AI claims put to a hands-on test, with honest results: which held up, which failed, and what the gap between demo and reality really is.",
+            "image": ["https://diwakaryadav.com.np/images/blog-ai-myths-tested.svg"],
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://diwakaryadav.com.np/blog/ai-myths-tested/" },
+            "datePublished": "2026-07-20",
+            "dateModified": "2026-08-09",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "articleSection": "AI & Reality",
+            "keywords": ["AI myths debunked","AI claims tested","is AI smarter than humans","AI hype vs reality"],
+            "author": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/about/" },
+            "publisher": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/", "image": "https://diwakaryadav.com.np/images/diwakar-portrait.jpg" }
+        }
+    </script>
+
+    <style>
+        .blog-article { max-width: 800px; margin: 0 auto; }
+        .blog-back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; margin-bottom: 2rem; transition: color 0.3s ease; }
+        .blog-back-link:hover { color: var(--accent-primary); }
+        .blog-article-header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light); }
+        .blog-article-tag { display: inline-block; background: var(--accent-primary); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; margin-bottom: 1rem; }
+        .blog-article-title { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        .blog-article-subtitle { font-size: 1.25rem; color: var(--text-secondary); font-style: italic; }
+        .blog-article-meta { display: flex; gap: 1.5rem; font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem; flex-wrap: wrap; }
+        .blog-article-content { font-size: 1.1rem; line-height: 1.8; }
+        .blog-article-content h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--accent-primary); font-weight: 600; }
+        .blog-article-content h3 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .blog-article-content p { margin-bottom: 1.25rem; }
+        .blog-article-content strong { color: var(--accent-primary); }
+        .blog-article-content ul, .blog-article-content ol { margin: 1rem 0 1.25rem; padding-left: 1.5rem; }
+        .blog-article-content li { margin-bottom: 0.5rem; }
+        .blog-article-content blockquote { background: var(--bg-secondary); border-left: 4px solid var(--accent-primary); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; }
+        .article-support-box { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border-light); border-radius: var(--radius); background: var(--bg-secondary); }
+        .article-support-box p:last-child { margin-bottom: 0; }
+        .article-support-box a { color: var(--accent-primary); font-weight: 600; }
+        @media (max-width: 768px) {
+            .blog-article-title { font-size: 1.75rem; }
+            .blog-article-subtitle { font-size: 1rem; }
+            .blog-article-content { font-size: 1rem; }
+            .blog-article-meta { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/about/" class="nav-link">About</a></li>
+                    <li><a href="/blog/" class="nav-link active">Blog</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                    <li><a href="https://www.os.diwakaryadav.com.np/" class="nav-link" target="_blank" rel="noopener">OS ↗</a></li>
+                    <li><a href="https://diwak4r.zo.space/" class="nav-link" target="_blank" rel="noopener">Zo ↗</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section" id="main-content" role="region" aria-label="Blog article">
+        <div class="container">
+            <article class="blog-article fade-in" role="article" itemscope itemtype="https://schema.org/BlogPosting">
+                <a href="/blog/" class="blog-back-link" aria-label="Return to blog listing">← Back to Blog</a>
+
+                <div class="blog-article-header">
+                    <span class="blog-article-tag">AI & Reality</span>
+                    <h1 class="blog-article-title font-display">AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False</h1>
+                    <p class="blog-article-subtitle">I took five things people say about AI and actually ran them. The results were less flattering than the hype.</p>
+                    <div class="blog-article-meta">
+                        <span>📅 2026-07-20</span>
+                        <span>⏱️ 9 min read</span>
+                        <span>✍️ Diwakar Ray Yadav</span>
+                    </div>
+                </div>
+
+                <div class="blog-article-content">
+
+<p>The internet is full of confident AI claims. I got tired of believing them, so I tested five of the most repeated ones myself. Some held. Most did not survive contact with a real task.</p>
+
+<h2>Claim 1: "AI can write a whole app from one sentence"</h2>
+
+<p>I tried it with a real, moderately complex app idea. Result: it produced a convincing skeleton that broke on the first edge case and had no real architecture. Verdict: false for anything you would actually ship. Great for a prototype you plan to rewrite.</p>
+
+<h2>Claim 2: "AI never makes math errors"</h2>
+
+<p>I fed it twenty word problems with hidden traps. It nailed the simple ones and fumbled three of the tricky ones with total confidence. Verdict: false. It is fluent, not reliable. Always check the numbers.</p>
+
+<h2>Claim 3: "Bigger context means it remembers everything"</h2>
+
+<p>I dropped a long document and asked about a detail buried in the middle. Sometimes it found it, sometimes it quietly used the start and ignored the rest. Verdict: half true. More context helps, but attention is not perfect. Structure your docs.</p>
+
+<h2>Claim 4: "Agents can run your business unattended"</h2>
+
+<p>I let an agent handle a multi-step task with a real account. It completed the happy path and then nearly did something dumb on a surprise input. Verdict: false for unattended. Fine with a human watching. The "set and forget" dream is not here.</p>
+
+<h2>Claim 5: "Local small models are useless"</h2>
+
+<p>I ran a tiny local model on a plain laptop for daily writing and notes. It was slower and less clever than the frontier API, but it did the job and kept my data private. Verdict: false. Underrated for the right tasks.</p>
+
+<blockquote>Three of five claims failed. The pattern is clear: demos show the best case, real work shows the average case, and the average case is where the truth lives.</blockquote>
+
+<h2>What this changes</h2>
+
+<p>Treat every big AI claim as a hypothesis, not a fact. Test it on your actual task before you build on it. The claims that survive your test are the ones worth trusting.</p>
+
+<h2>The one real takeaway</h2>
+
+<p>AI is genuinely useful and genuinely overclaimed at the same time. The skill is not believing less. It is verifying more. A builder who tests beats a believer who repeats, every single time.</p>
+
+<h2>How I actually ran these tests</h2>
+
+<p>None of this was a vibe check. I used the same model and account for each claim, repeated the task three times to rule out luck, and kept the outputs. The point was not to mock the tools. It was to build my own trust instead of borrowing someone else's hype.</p>
+
+<h2>Claim 6: "AI understands what you mean"</h2>
+
+<p>I gave the same vague request two ways. The first got a confident but wrong answer. The second, with one clarifying sentence, got it right. Verdict: it does not read your mind, it reads your words. Clarity is not optional.</p>
+
+<h2>FAQ</h2>
+
+<h3>Does this mean AI is overrated?</h3>
+<p>No. It means specific claims need specific tests. The useful ones survive.</p>
+
+<h3>Should I test every claim myself?</h3>
+<p>Only the ones you plan to build on. For the rest, stay skeptical and move on.</p>
+
+<p>This testing habit is the same one behind a year of shipping in public.</p>
+
+                    <div class="article-support-box">
+                        <p><strong>About the author.</strong> Diwakar Ray Yadav writes about AI tools, prompt engineering, and automation from hands-on experiments in Kathmandu. <a href="/about/" rel="author">Read more about Diwakar</a>.</p>
+                    </div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/building-in-public-kathmandu/" rel="next">Building in Public from Kathmandu: One Year of Shipping AI Projects</a></p>
+</div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/open-vs-closed-models/" rel="next">Open-Weight vs Closed AI Models: Which Should You Actually Use?</a></p>
+</div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../js/script.8687d2a9.js" defer></script>
+</body>
+
+</html>

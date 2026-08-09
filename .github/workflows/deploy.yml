@@ -1,0 +1,52 @@
+# Deploy the MAIN static portfolio (diwakaryadav.com.np) to GitHub Pages.
+#
+# ASSUMPTION — confirm before relying on this:
+#   This repo's `main` branch publishes the ROOT site to GitHub Pages, with the
+#   custom domain diwakaryadav.com.np (CNAME already present at repo root).
+#   DiwakarOS (portfolio-os) is a SEPARATE origin (os.diwakaryadav.com.np) and is
+#   deployed by deploy-os.yml. If your real topology differs (e.g. two repos, or
+#   root published from a `gh-pages` branch), adjust the `on:`/`environment` here.
+name: Deploy main site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-main
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble publishable root site
+        run: |
+          mkdir -p _site
+          for item in *; do
+            case "$item" in
+              portfolio-os|node_modules|.git|.workbuddy-ai|.github|scripts) ;;
+              *) cp -R "$item" "_site/$item" ;;
+            esac
+          done
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

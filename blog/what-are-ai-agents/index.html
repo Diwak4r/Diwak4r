@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <title>AI Agents Are Quietly Breaking the Old 'App' Model | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/blog/what-are-ai-agents/">
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Performance: Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS: prevent invisible content, base layout -->
+    <style>
+        .fade-in { opacity: 1 !important; transform: none !important; }
+        .fade-in.js-enabled { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.js-enabled.visible { opacity: 1; transform: translateY(0); }
+        body { font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-optical-sizing: auto; margin: 0; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(254, 250, 224, 0.95); backdrop-filter: blur(10px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 0; }
+        .blog-article { max-width: 800px; margin: 0 auto; padding-top: 80px; }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
+        href="https://diwakaryadav.com.np/feed.xml">
+
+    <!-- Main CSS (loaded asynchronously) -->
+    <link rel="stylesheet" href="../../css/style.4a3a12ca.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="../../css/style.4a3a12ca.css"></noscript>
+
+    <!-- SEO & Open Graph -->
+    <meta name="author" content="Diwakar Ray Yadav">
+    <meta name="description" content="A plain-language explanation of what AI agents are, how they differ from chatbots, and why they are reshaping how software gets built.">
+    <meta property="og:title" content="AI Agents Are Quietly Breaking the Old 'App' Model">
+    <meta property="og:description" content="A plain-language explanation of what AI agents are, how they differ from chatbots, and why they are reshaping how software gets built.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://diwakaryadav.com.np/blog/what-are-ai-agents/">
+    <meta property="og:image" content="https://diwakaryadav.com.np/images/blog-what-are-ai-agents.svg">
+    <meta property="og:image:alt" content="AI Agents Are Quietly Breaking the Old 'App' Model">
+    <meta property="article:published_time" content="2026-06-10">
+    <meta property="article:modified_time" content="2026-08-09">
+    <meta property="article:author" content="Diwakar Ray Yadav">
+    <meta property="article:section" content="AI & Strategy">
+    <meta property="article:tag" content="what are AI agents">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Agents Are Quietly Breaking the Old 'App' Model">
+    <meta name="twitter:description" content="A plain-language explanation of what AI agents are, how they differ from chatbots, and why they are reshaping how software gets built.">
+    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/blog-what-are-ai-agents.svg">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "AI Agents Are Quietly Breaking the Old 'App' Model",
+            "alternativeHeadline": "We spent a decade building apps with buttons. Agents trade the buttons for goals. That changes everything.",
+            "description": "A plain-language explanation of what AI agents are, how they differ from chatbots, and why they are reshaping how software gets built.",
+            "image": ["https://diwakaryadav.com.np/images/blog-what-are-ai-agents.svg"],
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://diwakaryadav.com.np/blog/what-are-ai-agents/" },
+            "datePublished": "2026-06-10",
+            "dateModified": "2026-08-09",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "articleSection": "AI & Strategy",
+            "keywords": ["what are AI agents","AI agent explained","agents vs chatbots","agentic AI 2026"],
+            "author": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/about/" },
+            "publisher": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/", "image": "https://diwakaryadav.com.np/images/diwakar-portrait.jpg" }
+        }
+    </script>
+
+    <style>
+        .blog-article { max-width: 800px; margin: 0 auto; }
+        .blog-back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; margin-bottom: 2rem; transition: color 0.3s ease; }
+        .blog-back-link:hover { color: var(--accent-primary); }
+        .blog-article-header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light); }
+        .blog-article-tag { display: inline-block; background: var(--accent-primary); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; margin-bottom: 1rem; }
+        .blog-article-title { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        .blog-article-subtitle { font-size: 1.25rem; color: var(--text-secondary); font-style: italic; }
+        .blog-article-meta { display: flex; gap: 1.5rem; font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem; flex-wrap: wrap; }
+        .blog-article-content { font-size: 1.1rem; line-height: 1.8; }
+        .blog-article-content h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--accent-primary); font-weight: 600; }
+        .blog-article-content h3 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .blog-article-content p { margin-bottom: 1.25rem; }
+        .blog-article-content strong { color: var(--accent-primary); }
+        .blog-article-content ul, .blog-article-content ol { margin: 1rem 0 1.25rem; padding-left: 1.5rem; }
+        .blog-article-content li { margin-bottom: 0.5rem; }
+        .blog-article-content blockquote { background: var(--bg-secondary); border-left: 4px solid var(--accent-primary); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; }
+        .article-support-box { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border-light); border-radius: var(--radius); background: var(--bg-secondary); }
+        .article-support-box p:last-child { margin-bottom: 0; }
+        .article-support-box a { color: var(--accent-primary); font-weight: 600; }
+        @media (max-width: 768px) {
+            .blog-article-title { font-size: 1.75rem; }
+            .blog-article-subtitle { font-size: 1rem; }
+            .blog-article-content { font-size: 1rem; }
+            .blog-article-meta { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/about/" class="nav-link">About</a></li>
+                    <li><a href="/blog/" class="nav-link active">Blog</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                    <li><a href="https://www.os.diwakaryadav.com.np/" class="nav-link" target="_blank" rel="noopener">OS ↗</a></li>
+                    <li><a href="https://diwak4r.zo.space/" class="nav-link" target="_blank" rel="noopener">Zo ↗</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section" id="main-content" role="region" aria-label="Blog article">
+        <div class="container">
+            <article class="blog-article fade-in" role="article" itemscope itemtype="https://schema.org/BlogPosting">
+                <a href="/blog/" class="blog-back-link" aria-label="Return to blog listing">← Back to Blog</a>
+
+                <div class="blog-article-header">
+                    <span class="blog-article-tag">AI & Strategy</span>
+                    <h1 class="blog-article-title font-display">AI Agents Are Quietly Breaking the Old 'App' Model</h1>
+                    <p class="blog-article-subtitle">We spent a decade building apps with buttons. Agents trade the buttons for goals. That changes everything.</p>
+                    <div class="blog-article-meta">
+                        <span>📅 2026-06-10</span>
+                        <span>⏱️ 7 min read</span>
+                        <span>✍️ Diwakar Ray Yadav</span>
+                    </div>
+                </div>
+
+                <div class="blog-article-content">
+
+<p>You have heard the word "agent" a hundred times this year. Most explanations make it sound like magic. It is not magic. It is a small, useful shift in how software works, and it is worth understanding clearly.</p>
+
+<h2>A chatbot answers. An agent acts.</h2>
+
+<p>A chatbot takes your question and returns text. An agent takes a goal and does the steps. Book the flight, check the calendar, send the email, report back. The model is no longer just talking. It is operating.</p>
+
+<p>The simplest way I explain it to friends: a chatbot is a librarian, an agent is a junior assistant who can actually go do the errand.</p>
+
+<h2>What is inside an agent</h2>
+
+<p>Strip the hype and an agent is three parts:</p>
+
+<ul>
+<li><strong>A model</strong> that reasons about what to do next.</li>
+<li><strong>Tools</strong> it can call, like a search, a calendar, or code.</li>
+<li><strong>A loop</strong> where it checks the result and decides the next move until the job is done.</li>
+</ul>
+
+<p>That loop is the whole trick. The agent is not one smart answer. It is many small steps with checking in between.</p>
+
+<h2>Why this breaks the old app model</h2>
+
+<p>Old apps were menus. You clicked "export," you clicked "save." The app assumed you wanted exactly those steps. An agent flips it: you state the outcome, and it figures out the steps. The interface stops being a wall of buttons and starts being a sentence.</p>
+
+<blockquote>The button was a crutch for software that could not understand intent. Agents remove the crutch. That is why every app is quietly adding one.</blockquote>
+
+<h2>The honest limits</h2>
+
+<p>Agents are not reliable enough to run wild. They get stuck, they loop, they take a weird path. The good ones show you the plan and let you approve steps. The bad ones just do things and hope.</p>
+
+<p>For anything high-stakes, keep a human in the loop. That is not cowardice. It is how you avoid an agent quietly emailing your whole contact list.</p>
+
+<h2>Where they are already useful</h2>
+
+<p>Research digests, form filling, data cleanup, scheduling, and "watch this and tell me when it changes" tasks. Boring, repeatable, multi-step work is the agent's home. That is exactly the work most people hate.</p>
+
+<h2>What to try</h2>
+
+<p>Do not buy the dream. Pick one annoying weekly task and hand it to an agent tool. If it saves you an hour, that is real. If it needs babysitting the whole time, it was not ready. Either way, now you know.</p>
+
+<h2>A concrete agent walkthrough</h2>
+
+<p>Goal: "Summarize this week's mentions and draft replies." The agent reads your mentions, clusters them by topic, writes a short summary, drafts three reply options, and asks you to approve. You did not click through five screens. You stated an outcome.</p>
+
+<h2>A risks checklist before you let one loose</h2>
+
+<ul>
+<li>Does it show the plan before acting?</li>
+<li>Can it be stopped mid run?</li>
+<li>Is a human approving the risky steps?</li>
+<li>Does it log what it did?</li>
+</ul>
+
+<p>If the answer is no to any of these, keep it on a leash.</p>
+
+<h2>FAQ</h2>
+
+<h3>Are agents the same as automation?</h3>
+<p>Similar, but agents decide steps on the fly. Old automation follows a fixed script.</p>
+
+<h3>Should I build my own?</h3>
+<p>Start with an existing agent tool. Build only when the off the shelf one cannot do your job.</p>
+
+<p>For builders, the coding assistants piece is where agents already pay rent today.</p>
+
+                    <div class="article-support-box">
+                        <p><strong>About the author.</strong> Diwakar Ray Yadav writes about AI tools, prompt engineering, and automation from hands-on experiments in Kathmandu. <a href="/about/" rel="author">Read more about Diwakar</a>.</p>
+                    </div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/best-ai-coding-assistants/" rel="next">I Tested 7 AI Coding Assistants So You Don't Have To</a></p>
+</div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/free-ai-stack/" rel="next">The Free AI Stack: Everything I Use Daily That Costs $0</a></p>
+</div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../js/script.8687d2a9.js" defer></script>
+</body>
+
+</html>

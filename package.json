@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Diwakar Yadav portfolio — main static site (diwakaryadav.com.np) + DiwakarOS (os.diwakaryadav.com.np).",
+  "scripts": {
+    "test:main": "node scripts/verify-main-site.mjs",
+    "test:os": "npm --prefix portfolio-os run test",
+    "test:os:live": "npm --prefix portfolio-os run test:live",
+    "test": "npm run test:main && npm run test:os"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  }
+}

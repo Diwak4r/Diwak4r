@@ -109,8 +109,9 @@ if (header) {
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 
-if (mobileMenuBtn) {
+if (mobileMenuBtn && navLinks) {
     mobileMenuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-links-open');
+        const isOpen = navLinks.classList.toggle('nav-links-open');
+        mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
     });
 }
