@@ -251,6 +251,13 @@ async function auditOnce(docUrl) {
     await ses("Page.navigate", { url: docUrl });
     await cdp.eventOnce("Page.loadEventFired", 30000);
     await sleep(2500);
+    // Wait for web fonts to settle so layout (and therefore tap-target
+    // measurements) are stable rather than mid-font-swap.
+    await ses("Runtime.evaluate", {
+      expression: "((document.fonts && document.fonts.ready) || Promise.resolve())",
+      awaitPromise: true,
+      returnByValue: true,
+    }).catch(() => {});
 
     const evalResp = await ses("Runtime.evaluate", {
       expression: `(function(){
