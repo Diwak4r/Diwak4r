@@ -1,54 +1,45 @@
-# Performance & Quality Audit — main
+# Performance & Quality Audit — main (POST-DEPLOY)
 
 **URL:** https://www.diwakaryadav.com.np/
-**Generated:** 2026-08-10T01:18:11.419Z
+**Generated:** 2026-08-10T02:02:19Z
 **Runs averaged:** 3
 **Engine:** Chromium DevTools Protocol tracing (same measurement path Lighthouse uses)
+**Status:** Deployed — `main` = f995ea68 (CLS fix + a11y tap-target fix)
 
-## Category Scores (0–100)
+## Category Scores (0-100) — before -> after
 
-| Category | Score |
-| --- | --- |
-| Performance | 85 |
-| Accessibility | 85 |
-| Best Practices | 100 |
-| SEO | 100 |
+| Category | Before (baseline) | After (deployed) |
+| --- | --- | --- |
+| Performance | 85 | **100** |
+| Accessibility | 85 | **100** |
+| Best Practices | 100 | 100 |
+| SEO | 100 | 100 |
 
-## Core Web Vitals & Load Metrics (averaged)
+## Core Web Vitals & Load Metrics (averaged, after deploy)
 
 | Metric | Value | Target |
 | --- | --- | --- |
-| First Contentful Paint | 206.235 ms | < 1800 ms |
-| Largest Contentful Paint | 320.833 ms | < 2500 ms |
-| Cumulative Layout Shift | 0.911 | < 0.1 |
+| First Contentful Paint | 544 ms | < 1800 ms |
+| Largest Contentful Paint | 624 ms | < 2500 ms |
+| Cumulative Layout Shift | 0.001 | < 0.1 |
 | Total Blocking Time | 0 ms | < 200 ms |
-| Time to First Byte | 44 ms | < 800 ms |
-| Speed Index (est.) | 281 ms | < 3400 ms |
+| Time to First Byte | 115 ms | < 800 ms |
+| Speed Index (est.) | 596 ms | < 3400 ms |
 
-## Static Quality Findings
+## Static Quality Findings (after deploy)
+- `<h1>` count: 1 ✓
+- viewport / description / canonical meta: present
+- lang: en
+- images: 3 total, 0 missing alt
+- tap targets < 48px: 0 of 16 (was 10 of 16) — fixed
+- HTTPS: yes
 
-- <h1> count: **1** ✓
-- viewport meta: **present**
-- description meta: **present**
-- canonical link: **present**
-- lang attribute: **en**
-- images: **3** total, **0** missing alt
-- tap targets < 48px: **10** of 16
+## Root cause & fix
+The async-CSS trick (`media="print" onload="this.media='all'"`) applied the full page
+layout AFTER first paint, causing a massive reflow (CLS 0.911). Replaced with a normal
+render-blocking `<link rel="stylesheet">` across all 17 site HTML files. Font FOUT
+(`display=swap`) proved negligible, so brand typography is preserved. Local verification
+had CLS 0.899 -> 0.001; now confirmed live at **0.001**, Performance/Accessibility **100**.
 
-**Small tap targets (< 48px) — detail:**
-- `<a>` href="#main-content" — "Skip to main content"
-- `<a>` href="/" — "Diwakar"
-- `<a>` href="/" — "Home"
-- `<a>` href="/projects/" — "Projects"
-- `<a>` href="/about/" — "About"
-- `<a>` href="/blog/" — "Blog"
-- `<a>` href="/contact/" — "Contact"
-- `<a>` href="https://www.os.diwakaryadav.com.np/" — "OS ↗"
-- `<a>` href="https://diwak4r.zo.space/" — "Zo ↗"
-- `<button>` — ""
-
-> Note: This is the LIVE baseline (served from `main`, BEFORE the task-branch fixes deployed).
-> After merging `task/0730_diwakaros-experience`, CLS drops to ~0.001 and a11y to 100.
-
-> Note: Speed Index is estimated from FCP/LCP when frame-level trace 
-> screenshots are unavailable; treat as indicative, not exact.
+> Speed Index is estimated from FCP/LCP when frame-level trace screenshots are
+> unavailable; treat as indicative, not exact.
