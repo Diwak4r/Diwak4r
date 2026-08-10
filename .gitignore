@@ -13,3 +13,17 @@ portfolio-os/out/
 .mimosa/
 docs/
 *.log
+reports/perf-main.json
+
+# Session test artifacts
+blog-before.png
+pinterest-home.png
+pin-abstract-warm.png
+pin-autumn-warm.png
+pin-botanical.png
+pin-dunes.png
+pin-editorial-warm.png
+pin-midcentury.png
+pin-trending-llms-2.png
+pin-trending-llms.png
+pin-warm-cream.png

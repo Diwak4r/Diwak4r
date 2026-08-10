@@ -1,4 +1,9 @@
 node_modules/
 .next/
 out/
+<<<<<<< HEAD
+=======
+.next.bak/
+out.bak/
+>>>>>>> fee8846e (chore: tidy ignores + add OS custom domain + lighthouse utility)
 *.tsbuildinfo
