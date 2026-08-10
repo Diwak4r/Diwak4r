@@ -10,5 +10,6 @@ portfolio-os/out/
 .qa-screens/
 .live-qa/
 .playwright-mcp/
+.mimosa/
 docs/
 *.log

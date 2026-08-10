@@ -45,7 +45,7 @@
 
     <!-- Critical CSS: variables, reset, header, layout -->
     <style>
-        :root {
+        :root, html[data-theme="light"] {
             --bg-primary: #FEFAE0;
             --bg-secondary: #F4F3EE;
             --text-primary: #2D3748;
@@ -127,13 +127,13 @@
         content="Read practical posts about prompt engineering, AI tools, LLMs, and automation workflows.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://diwakaryadav.com.np/blog/">
-    <meta property="og:image" content="https://diwakaryadav.com.np/images/blog-index.svg">
+    <meta property="og:image" content="https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8.jpg">
     <meta property="og:image:alt" content="Diwakar Ray Yadav AI blog">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Blog, Prompting Tips, and Free AI Tools | Diwakar Ray Yadav">
     <meta name="twitter:description"
         content="Read practical posts about prompt engineering, AI tools, LLMs, and automation workflows.">
-    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/blog-index.svg">
+    <meta name="twitter:image" content="https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8.jpg">
 
     <script type="application/ld+json">
         {
@@ -196,10 +196,20 @@
             width: 100%;
             height: 200px;
             background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        a.blog-card:hover .blog-card-image img {
+            transform: scale(1.05);
         }
 
         .blog-card-content {
@@ -344,7 +354,7 @@
             <div class="blog-grid">
                 <!-- Blog Post 2 - Trending LLMs (Newest) -->
                 <a href="trending-llms/" class="blog-card fade-in">
-                    <div class="blog-card-image">🚀</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8.jpg" alt="Abstract warm shapes representing AI and language models" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Tools</span>
                         <h2 class="blog-card-title">Best Free AI Tools, LLMs, and Agent Platforms in 2026</h2>
@@ -361,7 +371,7 @@
 
                 <!-- Blog Post 1 - Prompting Tips -->
                 <a href="prompting-tips/" class="blog-card fade-in">
-                    <div class="blog-card-image">🤖</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/23/03/a6/2303a67089c546ffbfb512fc21bd6958.jpg" alt="Bauhaus sun over horizontal lines representing clean prompt structure" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Prompting</span>
                         <h2 class="blog-card-title">12 AI Prompting Tips for Better ChatGPT and Claude Results</h2>
@@ -378,7 +388,7 @@
 
                 <!-- New Post - Open vs Closed -->
                 <a href="open-vs-closed-models/" class="blog-card fade-in">
-                    <div class="blog-card-image">🔓</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/e4/b7/a1/e4b7a140fe7b7c584b5abeb36372754f.jpg" alt="Sun setting over ocean representing open versus closed AI models" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Strategy</span>
                         <h2 class="blog-card-title">Open-Weight vs Closed AI Models: Which Should You Actually Use?</h2>
@@ -394,7 +404,7 @@
 
                 <!-- New Post - Coding Assistants -->
                 <a href="best-ai-coding-assistants/" class="blog-card fade-in">
-                    <div class="blog-card-image">💻</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/68/1b/6a/681b6ade1c1f80248cf2a0b52a8db937.jpg" alt="Abstract mountain shapes representing AI coding tools" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Tools</span>
                         <h2 class="blog-card-title">I Tested 7 AI Coding Assistants So You Don't Have To</h2>
@@ -410,7 +420,7 @@
 
                 <!-- New Post - Run LLM locally -->
                 <a href="run-llm-locally/" class="blog-card fade-in">
-                    <div class="blog-card-image">💾</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/b5/ce/73/b5ce7371503ba2673115ef209e0e4052.jpg" alt="Potted plant on warm cream background representing local LLM hosting" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Tutorials</span>
                         <h2 class="blog-card-title">How to Run an LLM on a Normal Laptop (No GPU, No PhD)</h2>
@@ -426,7 +436,7 @@
 
                 <!-- New Post - Claude vs ChatGPT vs Gemini -->
                 <a href="claude-vs-chatgpt-vs-gemini/" class="blog-card fade-in">
-                    <div class="blog-card-image">⚖️</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/ba/0e/3d/ba0e3d11749de35d9e869a542caccfa2.jpg" alt="Mountains with red sun representing LLM comparison" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Comparison</span>
                         <h2 class="blog-card-title">Claude vs ChatGPT vs Gemini: 6 Months of Daily Use, Real Differences</h2>
@@ -442,7 +452,7 @@
 
                 <!-- New Post - What are AI agents -->
                 <a href="what-are-ai-agents/" class="blog-card fade-in">
-                    <div class="blog-card-image">🤖</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/f8/ec/8a/f8ec8a634ba7c7db84c1e0de011ec1e0.jpg" alt="Three trees representing AI agents in motion" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Strategy</span>
                         <h2 class="blog-card-title">AI Agents Are Quietly Breaking the Old 'App' Model</h2>
@@ -458,7 +468,7 @@
 
                 <!-- New Post - Free AI stack -->
                 <a href="free-ai-stack/" class="blog-card fade-in">
-                    <div class="blog-card-image">🆓</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/3b/8c/b3/3b8cb33121e1bba3b2fd189404bd65f5.jpg" alt="Botanical illustration representing a free AI tool stack" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Tools</span>
                         <h2 class="blog-card-title">The Free AI Stack: Everything I Use Daily That Costs $0</h2>
@@ -474,7 +484,7 @@
 
                 <!-- New Post - Prompt engineering dead -->
                 <a href="is-prompt-engineering-dead/" class="blog-card fade-in">
-                    <div class="blog-card-image">🪦</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/fc/e0/0a/fce00a744394654ea05c69fa4ca54096.jpg" alt="Quiet autumn landscape with bench representing the end of prompt engineering era" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Prompting</span>
                         <h2 class="blog-card-title">Prompt Engineering Is Dead. Here's What Replaced It</h2>
@@ -490,7 +500,7 @@
 
                 <!-- New Post - Building in public -->
                 <a href="building-in-public-kathmandu/" class="blog-card fade-in">
-                    <div class="blog-card-image">🏔️</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/6e/52/49/6e5249195ddc843b50885dd24e7a515f.jpg" alt="Dunes at golden hour with solitary figure representing building in public from Kathmandu" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">Builder's Log</span>
                         <h2 class="blog-card-title">Building in Public from Kathmandu: One Year of Shipping AI Projects</h2>
@@ -506,7 +516,7 @@
 
                 <!-- New Post - AI myths tested -->
                 <a href="ai-myths-tested/" class="blog-card fade-in">
-                    <div class="blog-card-image">🧪</div>
+                    <div class="blog-card-image"><img src="https://i.pinimg.com/originals/74/5e/83/745e832c4c5e6a34b51815555f3983f2.jpg" alt="Warm sunset illustration representing AI myths put to the test" loading="lazy" onerror="this.style.display='none'"></div>
                     <div class="blog-card-content">
                         <span class="blog-card-tag">AI & Reality</span>
                         <h2 class="blog-card-title">AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False</h2>
