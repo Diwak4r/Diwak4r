@@ -32,7 +32,7 @@ jobs:
           mkdir -p _site
           for item in *; do
             case "$item" in
-              portfolio-os|node_modules|.git|.workbuddy-ai|.github|scripts) ;;
+              portfolio-os|node_modules|.git|.workbuddy-ai|.github|scripts|_site) ;;
               *) cp -R "$item" "_site/$item" ;;
             esac
           done
