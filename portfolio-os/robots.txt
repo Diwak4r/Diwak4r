@@ -1,7 +1,0 @@
-User-Agent: *
-Allow: /
-
-User-Agent: Googlebot
-Allow: /
-
-Sitemap: https://os.diwakaryadav.com.np/sitemap.xml
