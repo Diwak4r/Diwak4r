@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <title>Learn Anything Faster — Feynman Study Coach Prompt | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/prompts/learn-anything-faster/">
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS: variables, reset, header, layout -->
+    <style>
+        :root, html[data-theme="light"] {
+            --bg-primary: #FEFAE0;
+            --bg-secondary: #F4F3EE;
+            --text-primary: #2D3748;
+            --text-secondary: #4A5568;
+            --text-muted: #718096;
+            --accent-primary: #B87A5C;
+            --accent-secondary: #A98467;
+            --border-light: #E2E8F0;
+            --card-bg: #FFFFFF;
+            --header-bg: rgba(254, 250, 224, 0.95);
+            --header-bg-scroll: rgba(254, 250, 224, 0.98);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --text-primary: #E2E8F0;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent-primary: #FB923C;
+            --accent-secondary: #F97316;
+            --border-light: #2D2D2D;
+            --card-bg: #1E1E1E;
+            --header-bg: rgba(18, 18, 18, 0.95);
+            --header-bg-scroll: rgba(18, 18, 18, 0.98);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-optical-sizing: auto;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+        }
+
+        .font-display { font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 0; padding-top: 100px; }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--header-bg);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid color-mix(in srgb, var(--border-light) 60%, transparent);
+            z-index: 1000;
+        }
+
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; }
+        .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.925rem; }
+        .logo { font-size: 1.375rem; font-weight: 650; color: var(--accent-secondary); text-decoration: none; letter-spacing: -0.02em; }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--text-primary); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-primary); cursor: pointer; }
+
+        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu-btn { display: flex; } }
+    </style>
+
+    <link rel="stylesheet" href="../../css/style.4a3a12ca.css">
+    <noscript><link rel="stylesheet" href="../../css/style.4a3a12ca.css"></noscript>
+
+    <!-- SEO & Open Graph -->
+    <meta name="description"
+        content="A copy-paste AI prompt that turns any topic into a Feynman-technique tutoring session: plain explanations, explain-back grading, and adaptive quizzes.">
+    <meta property="og:title" content="Learn Anything Faster — Feynman Study Coach Prompt">
+    <meta property="og:description"
+        content="Paste this prompt, name any topic, and get a full tutor session: plain-language teaching, explain-back grading, and quizzes that adapt to you.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://diwakaryadav.com.np/prompts/learn-anything-faster/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Learn Anything Faster — Feynman Study Coach Prompt">
+    <meta name="twitter:description"
+        content="Paste this prompt, name any topic, and get a full tutor session: plain-language teaching, explain-back grading, and quizzes that adapt to you.">
+    <meta name="twitter:creator" content="@Norwakar">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "Learn Anything Faster — Feynman Study Coach Prompt",
+            "url": "https://diwakaryadav.com.np/prompts/learn-anything-faster/",
+            "description": "A copy-paste AI prompt that turns any topic into a Feynman-technique tutoring session.",
+            "author": {
+                "@type": "Person",
+                "name": "Diwakar Ray Yadav",
+                "url": "https://diwakaryadav.com.np/about/"
+            },
+            "datePublished": "2026-08-21"
+        }
+    </script>
+
+    <style>
+        .prompt-layout {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .prompt-tag {
+            display: inline-block;
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-layout h1 {
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-bottom: 0.75rem;
+        }
+
+        .prompt-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .prompt-section-title {
+            font-size: 1.35rem;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .prompt-uses {
+            list-style: none;
+        }
+
+        .prompt-uses li {
+            padding-left: 1.75rem;
+            position: relative;
+            margin-bottom: 0.6rem;
+            color: var(--text-secondary);
+        }
+
+        .prompt-uses li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .prompt-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .prompt-box pre {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 0.45rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .copy-btn:hover { filter: brightness(1.08); }
+        .copy-btn.copied { background: #2F855A; }
+
+        .how-steps {
+            counter-reset: step;
+            list-style: none;
+        }
+
+        .how-steps li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .how-steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .prompt-actions {
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .prompt-layout h1 { font-size: 1.75rem; }
+            .prompt-box pre { font-size: 0.82rem; }
+            .copy-btn { position: static; margin-bottom: 0.75rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/about/" class="nav-link">About</a></li>
+                    <li><a href="/blog/" class="nav-link">Blog</a></li>
+                    <li><a href="/prompts/" class="nav-link active">Prompts</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                    <li><a href="https://www.os.diwakaryadav.com.np/" class="nav-link" target="_blank" rel="noopener">OS ↗</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Prompt Detail -->
+    <section class="section" id="main-content" role="region" aria-label="Prompt detail">
+        <div class="container">
+            <div class="prompt-layout fade-in">
+                <span class="prompt-tag">🎓 Studying</span>
+                <h1 class="font-display">Learn Anything Faster</h1>
+                <p class="prompt-subtitle">A Feynman-technique study coach in one paste. Name a topic — it teaches,
+                    listens to your explanation, grades it, and quizzes you until it sticks.</p>
+
+                <h2 class="prompt-section-title font-display">What it does</h2>
+                <ul class="prompt-uses">
+                    <li>Explains any topic in plain, jargon-free language with a real example</li>
+                    <li>Makes <em>you</em> explain it back — the fastest way to find out what you don't know</li>
+                    <li>Grades your explanation honestly and re-teaches only the weak parts</li>
+                    <li>Runs a 3-question quiz that gets harder only when you're ready</li>
+                </ul>
+
+                <h2 class="prompt-section-title font-display">The prompt</h2>
+                <div class="prompt-box">
+                    <button class="copy-btn" id="copyBtn" type="button">Copy</button>
+                    <pre id="promptText">You are my study coach. I'm learning: [TOPIC].
+
+Teach me using the Feynman technique:
+
+1. Explain [TOPIC] to me like I'm 12 years old — plain words, no jargon, one concrete example.
+2. Ask me to explain it back in my own words, then wait for my answer.
+3. Grade my explanation: tell me exactly what I got right, what I got wrong, and what I oversimplified.
+4. Re-teach only the parts I got wrong, then quiz me with 3 questions of increasing difficulty.
+
+Rules: keep every message under 200 words. Use analogies from everyday life. If I say "harder", increase the difficulty. If I say "again", re-explain the same idea a different way. Never move on until my explanation is at least 80% correct.</pre>
+                </div>
+
+                <h2 class="prompt-section-title font-display">How to use it</h2>
+                <ol class="how-steps">
+                    <li>Copy the prompt and paste it into ChatGPT, Claude, or Gemini.</li>
+                    <li>Replace <strong>[TOPIC]</strong> with what you're studying — OOP, photosynthesis, SQL joins,
+                        anything.</li>
+                    <li>When it asks, explain the topic back in your own words. Don't skip this — the grading step is
+                        where the learning happens.</li>
+                    <li>Say "harder" when quizzes feel easy, or "again" when an explanation doesn't land.</li>
+                </ol>
+
+                <div class="prompt-actions">
+                    <a href="/prompts/" class="btn btn-secondary">← All Prompts</a>
+                    <a href="https://x.com/intent/tweet?text=I%27m%20using%20this%20Feynman%20study%20coach%20prompt%20by%20%40Norwakar%20—%20paste%20it%2C%20name%20a%20topic%2C%20get%20a%20full%20tutor%20session&url=https://diwakaryadav.com.np/prompts/learn-anything-faster/"
+                        class="btn btn-secondary" target="_blank" rel="noopener">Share on X ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const btn = document.getElementById('copyBtn');
+            const text = document.getElementById('promptText');
+            if (!btn || !text) return;
+            btn.addEventListener('click', function () {
+                const done = function () {
+                    btn.textContent = 'Copied ✓';
+                    btn.classList.add('copied');
+                    setTimeout(function () {
+                        btn.textContent = 'Copy';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text.textContent).then(done).catch(function () {
+                        const r = document.createRange();
+                        r.selectNode(text);
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(r);
+                        document.execCommand('copy');
+                        window.getSelection().removeAllRanges();
+                        done();
+                    });
+                } else {
+                    const ta = document.createElement('textarea');
+                    ta.value = text.textContent;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    done();
+                }
+            });
+        })();
+    </script>
+    <script src="../../js/script.8687d2a9.js" defer></script>
+    <!-- Cloudflare Web Analytics: replace CF_BEACON_TOKEN with your token from dash.cloudflare.com > Web Analytics > Add a site -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"CF_BEACON_TOKEN"}'></script>
+</body>
+
+</html>

@@ -27,3 +27,7 @@ pin-midcentury.png
 pin-trending-llms-2.png
 pin-trending-llms.png
 pin-warm-cream.png
+
+# Agent/tooling session dirs
+.reticle/
+.zcode/

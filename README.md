@@ -6,7 +6,6 @@
 *Kathmandu, Nepal*
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-diwakaryadav.com.np-000000?style=for-the-badge&logo=firefoxbrowser&logoColor=FF7139)](https://diwakaryadav.com.np/)
-[![Zo Space](https://img.shields.io/badge/Zo_Space-diwak4r.zo.space-2B2D42?style=for-the-badge&logo=compass&logoColor=white)](https://diwak4r.zo.space/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-diwak4r-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diwak4r)
 [![X](https://img.shields.io/badge/X-@Norwakar-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Norwakar)
 [![Email](https://img.shields.io/badge/Email-Diwak4r.comp@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Diwak4r.comp@gmail.com)

@@ -2,30 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://diwakaryadav.com.np/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-21</lastmod>
   </url>
   <url>
     <loc>https://diwakaryadav.com.np/about/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-21</lastmod>
   </url>
   <url>
     <loc>https://diwakaryadav.com.np/projects/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/prompts/</loc>
+    <lastmod>2026-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/prompts/learn-anything-faster/</loc>
+    <lastmod>2026-08-21</lastmod>
   </url>
   <url>
     <loc>https://diwakaryadav.com.np/contact/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-21</lastmod>
   </url>
   <url>
     <loc>https://diwakaryadav.com.np/blog/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-21</lastmod>
   </url>
   <url>
     <loc>https://diwakaryadav.com.np/blog/trending-llms/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-21</lastmod>
   </url>
   <url>
     <loc>https://diwakaryadav.com.np/blog/prompting-tips/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-21</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/ai-myths-tested/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/best-ai-coding-assistants/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/building-in-public-kathmandu/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/claude-vs-chatgpt-vs-gemini/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/free-ai-stack/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/is-prompt-engineering-dead/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/open-vs-closed-models/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/run-llm-locally/</loc>
+    <lastmod>2026-07-20</lastmod>
+  </url>
+  <url>
+    <loc>https://diwakaryadav.com.np/blog/what-are-ai-agents/</loc>
+    <lastmod>2026-07-20</lastmod>
   </url>
 </urlset>
