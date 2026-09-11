@@ -1,14 +1,14 @@
-# Deploy the MAIN static portfolio (diwakaryadav.com.np).
+# Deploy the MAIN static portfolio (diwakaryadav.com.np) to GitHub Pages.
 #
-# Two targets:
-#   1. GitHub Pages (build + deploy jobs) — fallback copy, kept for rollback.
-#   2. Cloudflare Workers static assets (deploy-cloudflare job) — THE live host
-#      since 2026-09-11; serves via zone routes on apex+www and applies
-#      `_headers` natively. Requires the CLOUDFLARE_API_TOKEN repo secret
-#      (token with Workers Scripts:Edit + Workers Routes:Edit for this zone);
-#      the job skips itself when the secret is absent.
-#   DiwakarOS (portfolio-os) is a SEPARATE origin (os.diwakaryadav.com.np),
-#   deployed from the diwakaros repo.
+# HOSTING NOTE (2026-09-11): GitHub Pages is the ONLY host by owner decision.
+# Cloudflare Workers hosting was tried and rolled back same day. Consequence:
+# GitHub Pages ignores the root `_headers` file, so the site serves no
+# security headers. If that's ever wanted without leaving GitHub, the only
+# path is a manual Cloudflare dashboard Transform Rule (no repo change).
+#
+# Topology: this repo's `main` publishes the root site with custom domain
+# diwakaryadav.com.np (CNAME at repo root). DiwakarOS (portfolio-os) is a
+# SEPARATE origin (os.diwakaryadav.com.np) deployed from the diwakaros repo.
 name: Deploy main site
 
 on:
@@ -53,17 +53,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-
-  deploy-cloudflare:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Detect Cloudflare token
-        run: echo "HAS_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN != '' }}" >> "$GITHUB_ENV"
-      - name: Deploy to Cloudflare Workers (live host)
-        if: env.HAS_TOKEN == 'true'
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: cloudflare
-          command: deploy --config wrangler.jsonc
