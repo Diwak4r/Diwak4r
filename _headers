@@ -18,7 +18,10 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   
   # Content Security Policy - Strict but allows your resources
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co;
+  # img-src includes i.pinimg.com: blog thumbnails are hotlinked from Pinterest
+  # script/connect include static.cloudflareinsights.com: CF Web Analytics beacon
+  # can be re-added without breaking the policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.pinimg.com; connect-src 'self' https://formsubmit.co https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co;
 
   # Force HTTPS (HSTS)
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

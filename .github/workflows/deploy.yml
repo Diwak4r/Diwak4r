@@ -1,11 +1,14 @@
-# Deploy the MAIN static portfolio (diwakaryadav.com.np) to GitHub Pages.
+# Deploy the MAIN static portfolio (diwakaryadav.com.np).
 #
-# ASSUMPTION — confirm before relying on this:
-#   This repo's `main` branch publishes the ROOT site to GitHub Pages, with the
-#   custom domain diwakaryadav.com.np (CNAME already present at repo root).
-#   DiwakarOS (portfolio-os) is a SEPARATE origin (os.diwakaryadav.com.np) and is
-#   deployed by deploy-os.yml. If your real topology differs (e.g. two repos, or
-#   root published from a `gh-pages` branch), adjust the `on:`/`environment` here.
+# Two targets:
+#   1. GitHub Pages (build + deploy jobs) — fallback copy, kept for rollback.
+#   2. Cloudflare Workers static assets (deploy-cloudflare job) — THE live host
+#      since 2026-09-11; serves via zone routes on apex+www and applies
+#      `_headers` natively. Requires the CLOUDFLARE_API_TOKEN repo secret
+#      (token with Workers Scripts:Edit + Workers Routes:Edit for this zone);
+#      the job skips itself when the secret is absent.
+#   DiwakarOS (portfolio-os) is a SEPARATE origin (os.diwakaryadav.com.np),
+#   deployed from the diwakaros repo.
 name: Deploy main site
 
 on:
@@ -50,3 +53,17 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy-cloudflare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Detect Cloudflare token
+        run: echo "HAS_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN != '' }}" >> "$GITHUB_ENV"
+      - name: Deploy to Cloudflare Workers (live host)
+        if: env.HAS_TOKEN == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: cloudflare
+          command: deploy --config wrangler.jsonc

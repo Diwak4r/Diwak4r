@@ -1,0 +1,31 @@
+// Cloudflare Workers (static assets) deploy config for diwakaryadav.com.np.
+// The asset root is the repo root; .assetsignore (there) excludes everything
+// that is not part of the public site. `_headers` at the asset root is applied
+// to every response natively — that is the whole point of this deploy path,
+// since GitHub Pages ignores `_headers`.
+//
+// Deploy:  npx wrangler deploy --config cloudflare/wrangler.jsonc
+// Rollback: re-point the apex/www DNS records at GitHub Pages
+//   (A @    185.199.108.153 / .109 / .110 / .111, proxied)
+//   (CNAME www -> diwak4r.github.io, proxied)
+{
+  "name": "diwakar-portfolio",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "..",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": true
+  },
+  // Zone routes (not custom domains): the existing proxied DNS records for
+  // apex/www (currently GitHub Pages) keep working as-is; matching requests
+  // are served by this Worker's assets at the edge instead of the origin.
+  // Rollback = remove these routes (or `wrangler delete`) and traffic
+  // immediately falls through to GitHub Pages again.
+  "routes": [
+    { "pattern": "diwakaryadav.com.np/*", "zone_name": "diwakaryadav.com.np" },
+    { "pattern": "www.diwakaryadav.com.np/*", "zone_name": "diwakaryadav.com.np" }
+  ]
+}
