@@ -533,6 +533,41 @@
             transform: scale(1.05);
         }
 
+        /* Card eyebrows, story lede, closing CTA */
+        .card-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .story-lede {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .cta-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            padding: 1.75rem 2rem;
+        }
+
+        .cta-card h3 {
+            margin-bottom: 0.25rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .about-hero {
@@ -560,6 +595,11 @@
             .x-cta {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .cta-card {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -659,9 +699,10 @@
                 <div class="about-main">
                     <!-- My Story -->
                     <div class="card story-card fade-in">
+                        <p class="card-eyebrow">Profile</p>
                         <h3 class="text-2xl font-semibold">My Story</h3>
                         <div class="story-text">
-                            <p>
+                            <p class="story-lede">
                                 I build AI infrastructure for people the industry skips. A <span class="highlight-text">BIT student</span> in Kathmandu, I ship commercial products on the side. Work that doesn't wait for a diploma to matter.
                             </p>
                             <p>
@@ -682,43 +723,12 @@
                         </div>
                     </div>
 
-                    <!-- Currently Exploring -->
-                    <div class="card exploring-card fade-in">
-                        <h3 class="text-2xl font-semibold mb-2">🚀 Currently Exploring</h3>
-                        <p class="text-secondary">Where my head is at right now: real work, not just bookmarks.</p>
-                        <div class="exploring-grid">
-                            <div class="explore-item">
-                                <span class="explore-icon">🤖</span>
-                                <span class="explore-text">AI Agents</span>
-                            </div>
-                            <div class="explore-item">
-                                <span class="explore-icon">⚡</span>
-                                <span class="explore-text">Claude Code</span>
-                            </div>
-                            <div class="explore-item">
-                                <span class="explore-icon">🔎</span>
-                                <span class="explore-text">SEO + AEO</span>
-                            </div>
-                            <div class="explore-item">
-                                <span class="explore-icon">🔄</span>
-                                <span class="explore-text">AI Workflows</span>
-                            </div>
-                            <div class="explore-item">
-                                <span class="explore-icon">🌐</span>
-                                <span class="explore-text">Browser Automation</span>
-                            </div>
-                            <div class="explore-item">
-                                <span class="explore-icon">💻</span>
-                                <span class="explore-text">Frontend Prototyping</span>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Experience & Education Grid -->
                     <div class="info-grid">
                         <!-- Experience -->
                         <div class="card info-card fade-in">
-                            <h3>💼 Experience</h3>
+                            <p class="card-eyebrow">Experience</p>
+                            <h3>Where I've worked</h3>
                             <div class="timeline-item">
                                 <h4 class="font-semibold">Growth Intern</h4>
                                 <p style="font-size: 0.9rem; color: var(--text-primary);">Springbase AI</p>
@@ -751,7 +761,8 @@
 
                         <!-- Education -->
                         <div class="card info-card fade-in">
-                            <h3>🎓 Education</h3>
+                            <p class="card-eyebrow">Education</p>
+                            <h3>Where I studied</h3>
                             <div class="timeline-item">
                                 <h4 class="font-semibold">Bachelor of Information Technology</h4>
                                 <p style="font-size: 0.9rem; color: var(--text-primary);">Himalayan Whitehouse International
@@ -768,7 +779,8 @@
 
                     <!-- Skills -->
                     <div class="card info-card fade-in">
-                        <h3>💻 Skills</h3>
+                        <p class="card-eyebrow">Skills</p>
+                        <h3>What I work with</h3>
                         <div class="skill-cats">
                             <div class="skill-cat">
                                 <h4>AI &amp; LLMs</h4>
@@ -839,6 +851,51 @@
                                     <span class="chip">Admin Coordination</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Currently Exploring -->
+                    <div class="card exploring-card fade-in">
+                        <p class="card-eyebrow">Now</p>
+                        <h3 class="text-2xl font-semibold mb-2">Currently Exploring</h3>
+                        <p class="text-secondary">Where my head is at right now: real work, not just bookmarks.</p>
+                        <div class="exploring-grid">
+                            <div class="explore-item">
+                                <span class="explore-icon">🤖</span>
+                                <span class="explore-text">AI Agents</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">⚡</span>
+                                <span class="explore-text">Claude Code</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">🔎</span>
+                                <span class="explore-text">SEO + AEO</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">🔄</span>
+                                <span class="explore-text">AI Workflows</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">🌐</span>
+                                <span class="explore-text">Browser Automation</span>
+                            </div>
+                            <div class="explore-item">
+                                <span class="explore-icon">💻</span>
+                                <span class="explore-text">Frontend Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="card cta-card fade-in">
+                        <div>
+                            <h3 class="text-2xl font-semibold">The proof is in the work</h3>
+                            <p class="text-secondary">Projects, posts, and everything in between.</p>
+                        </div>
+                        <div class="cta-actions">
+                            <a href="/projects/" class="btn btn-primary">See the work</a>
+                            <a href="/contact/" class="btn btn-secondary">Get in touch</a>
                         </div>
                     </div>
                 </div>
