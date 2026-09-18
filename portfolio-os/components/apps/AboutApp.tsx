@@ -88,17 +88,11 @@ function Story() {
         </div>
       </div>
 
-      <div className="grid max-w-sm grid-cols-2 gap-3">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/diwakar-casual-300.webp"
-          alt="Diwakar, casual"
-          className="aspect-square w-full rounded-xl border border-white/10 object-cover"
-        />
+      <div className="grid max-w-[11rem] grid-cols-1 gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/diwakar-new-300.webp"
-          alt="Diwakar"
+          alt="Diwakar, rear view"
           className="aspect-square w-full rounded-xl border border-white/10 object-cover"
         />
       </div>
