@@ -984,10 +984,10 @@ body {
 /* Sub Image 2 (Bottom Right - 40%) */
 .gallery-item.sub-2 {
     grid-column: 8 / 13;
-    grid-row: 7 / 13;
+    grid-row: 1 / 13;
     z-index: 1;
     border: none;
-    /* Remove border for cleaner look */
+    /* Fill the right column after removing the face-visible portrait. */
 }
 
 /* Responsive Gallery */
