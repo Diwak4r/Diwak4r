@@ -40,7 +40,7 @@ const personJsonLd = {
     "https://www.instagram.com/diwak4r/",
   ],
   jobTitle: "AI & Workflow Intern",
-  worksFor: { "@type": "Organization", name: "The Mindsnack" },
+  worksFor: { "@type": "Organization", name: "Springbase AI" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
