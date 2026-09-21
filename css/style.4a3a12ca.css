@@ -953,6 +953,12 @@ body {
     transition: var(--transition);
 }
 
+.gallery-item picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .gallery-item img {
     width: 100%;
     height: 100%;
