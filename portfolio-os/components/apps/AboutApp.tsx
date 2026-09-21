@@ -36,7 +36,7 @@ function Story() {
       <div className="flex items-center gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/diwakar-portrait.jpg"
+          src="/images/diwakar-avatar.webp"
           alt="Portrait of Diwakar Ray Yadav"
           className="h-24 w-24 shrink-0 rounded-2xl border border-white/10 object-cover object-top"
         />
@@ -91,7 +91,7 @@ function Story() {
       <div className="grid max-w-[11rem] grid-cols-1 gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/diwakar-new-300.webp"
+          src="/images/diwakar-avatar.webp"
           alt="Diwakar, rear view"
           className="aspect-square w-full rounded-xl border border-white/10 object-cover"
         />

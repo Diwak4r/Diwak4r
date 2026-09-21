@@ -89,7 +89,7 @@ export function LoginScreen({ onDone }: { onDone: () => void }) {
       <div className="mt-auto flex flex-col items-center pb-[16vh]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/diwakar-portrait.jpg"
+          src="/images/diwakar-avatar.webp"
           alt={`Portrait of ${profile.name}`}
           className="h-24 w-24 rounded-full border-2 border-white/30 object-cover object-top shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
         />

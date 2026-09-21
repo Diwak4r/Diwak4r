@@ -826,7 +826,7 @@ function renderPost(p) {
             "articleSection": ${JSON.stringify(p.section)},
             "keywords": ${keywordsJson},
             "author": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": ${JSON.stringify(SITE + "/about/")} },
-            "publisher": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": ${JSON.stringify(SITE + "/")}, "image": ${JSON.stringify(SITE + "/images/diwakar-portrait.jpg")} }
+            "publisher": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": ${JSON.stringify(SITE + "/")}, "image": ${JSON.stringify(SITE + "/images/diwakar-avatar.webp")} }
         }
     </script>
 

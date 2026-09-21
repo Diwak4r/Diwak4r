@@ -56,7 +56,7 @@ function Face({
       return (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img
-          src="/images/diwakar-portrait.jpg"
+          src="/images/diwakar-avatar.webp"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-top"
           draggable={false}
