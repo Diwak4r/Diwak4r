@@ -2,7 +2,7 @@
 
 export const profile = {
   name: "Diwakar Ray Yadav",
-  role: "AI Growth Strategist at The Mindsnack",
+  role: "AI Growth Intern at Springbase AI",
   location: "Kathmandu, Nepal",
   email: "diwak4r.comp@gmail.com",
   story: [
