@@ -967,13 +967,13 @@ body {
 
 /* Main Image (Left Side - 60%) */
 .gallery-item.main {
-    grid-column: 1 / 8;
+    grid-column: 1 / 13;
     grid-row: 1 / 13;
     z-index: 1;
 }
 
 .gallery-item.main img {
-    object-position: center top;
+    object-position: center;
 }
 
 /* Sub Image 1 (Top Right - 40%) */
