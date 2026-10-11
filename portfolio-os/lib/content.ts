@@ -8,7 +8,7 @@ export const profile = {
   story: [
     "I build AI infrastructure for people the industry skips. I'm a BIT student in Kathmandu shipping commercial products on the side, because good work shouldn't have to wait for a diploma.",
     "My flagship, Nepal AI Gateway, is a commercial LLM proxy built from scratch. It brings NPR-tiered pricing through eSewa to Nepali developers locked out of international payment rails. Under the hood: a Cloudflare Worker architecture, a security audit that closed real vulnerabilities, and an admin console I designed myself.",
-    "At The Mindsnack, an official distribution partner of Springbase AI, I run AEO and SEO strategy and redesigned the company's own site from the ground up, based out of The 100 Spaces coworking space in Kathmandu.",
+    "Today I'm at Springbase AI, working on growth. Before that, I was at The Mindsnack, an official distribution partner of Springbase AI, where I ran AEO and SEO strategy and redesigned the company's own site from the ground up, based out of The 100 Spaces coworking space in Kathmandu.",
     "The plan is deliberate: Nepal's AI companies first, remote AI roles next, an AI lab after that. Right now I'm rebuilding my fundamentals with CS50P and contributing to open source. No step skipped.",
     "Before AI was the job, it was NEPSE trading across multiple Demat and TMS accounts and HikCentral CCTV administration, the unglamorous machinery that keeps an office running. I still call myself an office executive who leverages AI, not a developer. The rest you'd have to find out by working with me.",
   ],
@@ -31,11 +31,18 @@ export const socials = [
 
 export const experience = [
   {
-    role: "AI & Workflow Intern",
-    org: "The Mindsnack · Springbase AI",
+    role: "Growth Intern",
+    org: "Springbase AI",
     period: "Present",
     detail:
-      "Driving SEO, AEO, and AI-driven workflows to help Springbase AI grow in Nepal.",
+      "Organic growth: community distribution, AI directory listings, content, and referral tracking.",
+  },
+  {
+    role: "AI Growth Strategist",
+    org: "The Mindsnack",
+    period: "2026",
+    detail:
+      "Led AEO and SEO strategy; redesigned the company's site from the ground up.",
   },
   {
     role: "Executive Assistant & IT Operations",
