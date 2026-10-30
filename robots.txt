@@ -1,27 +1,12 @@
-# Robots.txt for diwakaryadav.com.np
-# Security-conscious configuration
+# robots.txt for www.diwakaryadav.com.np
 
-# Allow all legitimate crawlers
 User-agent: *
 Allow: /
-
-# Sitemap location (add when you have one)
-Sitemap: https://diwakaryadav.com.np/sitemap.xml
-
-# Disallow staging/development directories (if any)
 Disallow: /.git/
 Disallow: /.vscode/
 Disallow: /.idea/
-
-# Crawl delay (optional - helps reduce server load)
 Crawl-delay: 1
 
-# Block AI training bots (optional - uncomment if desired)
-# User-agent: GPTBot
-# Disallow: /
-# User-agent: ChatGPT-User
-# Disallow: /
-# User-agent: CCBot
-# Disallow: /
-# User-agent: anthropic-ai
-# Disallow: /
+Sitemap: https://www.diwakaryadav.com.np/sitemap.xml
+
+# A short guide to this site for AI assistants: https://www.diwakaryadav.com.np/llms.txt

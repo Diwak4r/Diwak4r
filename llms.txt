@@ -1,0 +1,44 @@
+# Diwakar Ray Yadav
+
+> BIT student in Kathmandu, Nepal. Growth Intern at Springbase AI. Tests new AI models by building things with them and writes about AI tools, models, and agents in plain English.
+
+Diwakar started in office work (NEPSE share trading and IT support), moved into AI through The Mindsnack, and built Nepal AI Gateway, a free OpenAI-compatible AI API for developers in Nepal that needs no international card. He posts model tests and one-file Three.js builds on X as @Norwakar.
+
+## Pages
+
+- [Diwakar Ray Yadav | Portfolio](https://www.diwakaryadav.com.np/): Portfolio of Diwakar Ray Yadav, BIT student from Nepal and Growth Intern at Springbase AI. Building with LLMs, AI APIs, and modern AI tools.
+- [About](https://www.diwakaryadav.com.np/about/): Diwakar Ray Yadav, a BIT student in Kathmandu, Nepal. Growth Intern at Springbase AI, builder of Nepal AI Gateway, and tests new AI models by building things with them.
+- [Projects](https://www.diwakaryadav.com.np/projects/): Projects by Diwakar Ray Yadav: Nepal AI Gateway, SystemCleaner Pro, File Organizer, and AI builds made while testing new models.
+- [AI Blog, Prompting Tips, and Free AI Tools](https://www.diwakaryadav.com.np/blog/): AI blog by Diwakar Ray Yadav covering prompt engineering, free AI tools, agent platforms, and practical automation workflows.
+- [Contact](https://www.diwakaryadav.com.np/contact/): Get in touch with Diwakar Ray Yadav for web development projects, collaborations, and AI opportunities.
+
+## Blog posts
+
+- [Your AI Coding Agent Needs a Leash: 3 Warnings From October 2026](https://www.diwakaryadav.com.np/blog/ai-agent-security-october-2026/): Three October 2026 stories show why AI coding agents need limits: a model that tried to send data out, a hijacked CLI setup, and attackers using agents.
+- [Apps Are Opening Their Doors to AI Agents: Apple, Walmart, and GitHub in October 2026](https://www.diwakaryadav.com.np/blog/apps-opening-to-ai-agents/): Apple, Walmart, and GitHub opened official doors for AI agents in October 2026. What MCP is, what changes for users, and what builders should do next.
+- [GPT-6, Claude 5.5, Gemini 4: The October 2026 Model Rush, Explained](https://www.diwakaryadav.com.np/blog/october-2026-ai-models/): GPT-6, Claude 5.5 and Gemini 4 all landed within about a month. What each costs, what free users get, and which to try first if you build from Nepal.
+- [Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap](https://www.diwakaryadav.com.np/blog/open-weight-models-october-2026/): DeepSeek V4.1 Flash, GLM-5.3, Kimi K3 and Mistral Large 4: what the October 2026 open models cost, what runs locally, and how to choose one.
+- [10 Unconventional Simple Tool Ideas](https://www.diwakaryadav.com.np/blog/simple-tool-ideas/): 10 unconventional simple tool ideas that solve problems hiding in plain sight - from time awareness to self-knowledge.
+- [AI Myths I Tested: 5 Claims, and 4 Were Flat-Out False](https://www.diwakaryadav.com.np/blog/ai-myths-tested/): Five common AI claims put to a hands-on test, with honest results: which held up, which failed, and what the gap between demo and reality really is.
+- [Building in Public from Kathmandu: One Year of Shipping AI Projects](https://www.diwakaryadav.com.np/blog/building-in-public-kathmandu/): A year-one retrospective on building and shipping AI projects in public from Kathmandu, with honest lessons on consistency, audience, and shipping ugly.
+- [Prompt Engineering Is Dead. Here's What Replaced It](https://www.diwakaryadav.com.np/blog/is-prompt-engineering-dead/): Why classic prompt engineering is fading and what replaced it: context engineering, evaluation, and knowing which model to use.
+- [The Free AI Stack: Everything I Use Daily That Costs $0](https://www.diwakaryadav.com.np/blog/free-ai-stack/): The exact set of free AI tools used daily for writing, coding, research, and image work, with honest notes on where the free tier stops being enough.
+- [AI Agents Are Quietly Breaking the Old 'App' Model](https://www.diwakaryadav.com.np/blog/what-are-ai-agents/): A plain-language explanation of what AI agents are, how they differ from chatbots, and why they are reshaping how software gets built.
+- [Claude vs ChatGPT vs Gemini: 6 Months of Daily Use, Real Differences](https://www.diwakaryadav.com.np/blog/claude-vs-chatgpt-vs-gemini/): A long-term, hands-on comparison of Claude, ChatGPT, and Gemini after six months of daily use, covering writing, coding, search, and honesty.
+- [How to Run an LLM on a Normal Laptop (No GPU, No PhD)](https://www.diwakaryadav.com.np/blog/run-llm-locally/): A beginner-friendly tutorial for running a real LLM on a normal laptop with no graphics card, using Ollama and a quantized model.
+- [I Tested 7 AI Coding Assistants So You Don't Have To](https://www.diwakaryadav.com.np/blog/best-ai-coding-assistants/): A hands-on comparison of 7 AI coding assistants tested on the same real tasks, with honest strengths, weaknesses, and a final verdict.
+- [Open-Weight vs Closed AI Models: Which Should You Actually Use?](https://www.diwakaryadav.com.np/blog/open-vs-closed-models/): A practical decision guide for choosing open-weight vs closed AI models in 2026, based on cost, privacy, control, and what you actually ship.
+- [Best Free AI Tools, LLMs, and Agent Platforms in 2026](https://www.diwakaryadav.com.np/blog/trending-llms/): A practical list of free AI tools, LLMs, and agent platforms in 2026, including chatbots, OCR tools, research agents, and workflow assistants.
+- [12 AI Prompting Tips for Better ChatGPT and Claude Results](https://www.diwakaryadav.com.np/blog/prompting-tips/): Learn 12 practical AI prompting tips to get better results from ChatGPT, Claude, and other AI assistants.
+
+## Projects and profiles
+
+- [Nepal AI Gateway](https://ai.diwakaryadav.com.np/): A free AI API for developers in Nepal, OpenAI-compatible, no card needed.
+- [DiwakarOS](https://www.os.diwakaryadav.com.np/): The macOS-desktop version of this portfolio, running in the browser.
+- [GitHub](https://github.com/Diwak4r): Source code for his projects.
+- [X (@Norwakar)](https://x.com/Norwakar): AI model tests, builds, and news.
+
+## Optional
+
+- [RSS feed](https://www.diwakaryadav.com.np/feed.xml): Latest blog posts.
+- [Sitemap](https://www.diwakaryadav.com.np/sitemap.xml): Every page on the site.

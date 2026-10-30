@@ -1,15 +1,39 @@
-// Theme toggle handler (detection is inline in <head> to prevent flash)
+// Theme toggle handler (detection is inline in <head> to prevent flash).
+// No stored value = follow the system. A click flips what is on screen; the choice is
+// stored only when it differs from the system setting, so clicking back returns to "system".
 const themeToggle = document.getElementById('theme-toggle');
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+function renderedTheme() {
+    const attr = document.documentElement.getAttribute('data-theme');
+    if (attr === 'light' || attr === 'dark') return attr;
+    return systemDark.matches ? 'dark' : 'light';
+}
+
+function applyTheme(stored) {
+    if (stored === 'light' || stored === 'dark') {
+        document.documentElement.setAttribute('data-theme', stored);
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+}
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        const target = renderedTheme() === 'dark' ? 'light' : 'dark';
+        const system = systemDark.matches ? 'dark' : 'light';
+        try {
+            if (target === system) localStorage.removeItem('theme');
+            else localStorage.setItem('theme', target);
+        } catch (e) { /* storage blocked: still switch for this page */ }
+        applyTheme(target === system ? null : target);
     });
 }
+
+// Keep other open tabs in step with a change made in this tab
+window.addEventListener('storage', (event) => {
+    if (event.key === 'theme') applyTheme(event.newValue);
+});
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

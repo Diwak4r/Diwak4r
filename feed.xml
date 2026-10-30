@@ -2,61 +2,142 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Diwakar Ray Yadav Blog</title>
-    <link>https://diwakaryadav.com.np/blog/</link>
-    <description>AI articles about prompt engineering, free AI tools, LLMs, and automation workflows.</description>
+    <link>https://www.diwakaryadav.com.np/blog/</link>
+    <description>What I learn from testing AI tools and building with them.</description>
     <language>en</language>
     <lastBuildDate>Fri, 30 Oct 2026 00:00:00 GMT</lastBuildDate>
-    <atom:link href="https://diwakaryadav.com.np/feed.xml" rel="self" type="application/rss+xml" />
-
-
-    <item>
-      <title>GPT-6, Claude 5.5, Gemini 4: The October 2026 Model Rush, Explained</title>
-      <link>https://diwakaryadav.com.np/blog/october-2026-ai-models/</link>
-      <guid>https://diwakaryadav.com.np/blog/october-2026-ai-models/</guid>
-      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
-      <description>Three labs shipped new model families in about a month. What each one costs, what free users get, and where to start.</description>
-      <category>AI &amp; Models</category>
-    </item>
-
-    <item>
-      <title>Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap</title>
-      <link>https://diwakaryadav.com.np/blog/open-weight-models-october-2026/</link>
-      <guid>https://diwakaryadav.com.np/blog/open-weight-models-october-2026/</guid>
-      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
-      <description>The biggest open models will not fit on your laptop, but their APIs are cheap. What shipped this month and how to pick one.</description>
-      <category>AI &amp; Strategy</category>
-    </item>
+    <atom:link href="https://www.diwakaryadav.com.np/feed.xml" rel="self" type="application/rss+xml" />
 
     <item>
       <title>Your AI Coding Agent Needs a Leash: 3 Warnings From October 2026</title>
-      <link>https://diwakaryadav.com.np/blog/ai-agent-security-october-2026/</link>
-      <guid>https://diwakaryadav.com.np/blog/ai-agent-security-october-2026/</guid>
+      <link>https://www.diwakaryadav.com.np/blog/ai-agent-security-october-2026/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/ai-agent-security-october-2026/</guid>
       <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
-      <description>A model that tried to send data out, a setup script that switched off the sandbox, and attackers running agents. What to lock down.</description>
+      <description>Three October 2026 stories show why AI coding agents need limits: a model that tried to send data out, a hijacked CLI setup, and attackers using agents.</description>
       <category>AI &amp; Security</category>
     </item>
 
     <item>
       <title>Apps Are Opening Their Doors to AI Agents: Apple, Walmart, and GitHub in October 2026</title>
-      <link>https://diwakaryadav.com.np/blog/apps-opening-to-ai-agents/</link>
-      <guid>https://diwakaryadav.com.np/blog/apps-opening-to-ai-agents/</guid>
+      <link>https://www.diwakaryadav.com.np/blog/apps-opening-to-ai-agents/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/apps-opening-to-ai-agents/</guid>
       <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
-      <description>Agents used to click through websites built for people. Now big apps give them official connections, with permissions and spending limits.</description>
+      <description>Apple, Walmart, and GitHub opened official doors for AI agents in October 2026. What MCP is, what changes for users, and what builders should do next.</description>
       <category>AI &amp; Strategy</category>
     </item>
+
     <item>
-      <title>10 Unconventional Simple Tool Ideas That Solve Hidden Problems</title>
-      <link>https://diwakaryadav.com.np/blog/simple-tool-ideas/</link>
-      <guid>https://diwakaryadav.com.np/blog/simple-tool-ideas/</guid>
-      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
-      <description>The best simple tools solve problems people don't even realize they have. Here are 10 ideas that think deeper—beyond the obvious solutions.</description>
+      <title>GPT-6, Claude 5.5, Gemini 4: The October 2026 Model Rush, Explained</title>
+      <link>https://www.diwakaryadav.com.np/blog/october-2026-ai-models/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/october-2026-ai-models/</guid>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <description>GPT-6, Claude 5.5 and Gemini 4 all landed within about a month. What each costs, what free users get, and which to try first if you build from Nepal.</description>
+      <category>AI &amp; Models</category>
+    </item>
+
+    <item>
+      <title>Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap</title>
+      <link>https://www.diwakaryadav.com.np/blog/open-weight-models-october-2026/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/open-weight-models-october-2026/</guid>
+      <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+      <description>DeepSeek V4.1 Flash, GLM-5.3, Kimi K3 and Mistral Large 4: what the October 2026 open models cost, what runs locally, and how to choose one.</description>
+      <category>AI &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>10 Unconventional Simple Tool Ideas</title>
+      <link>https://www.diwakaryadav.com.np/blog/simple-tool-ideas/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/simple-tool-ideas/</guid>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 GMT</pubDate>
+      <description>10 unconventional simple tool ideas that solve problems hiding in plain sight - from time awareness to self-knowledge.</description>
       <category>Ideas &amp; Innovation</category>
     </item>
 
     <item>
+      <title>AI Myths I Tested: 5 Claims, and 4 Were Flat-Out False</title>
+      <link>https://www.diwakaryadav.com.np/blog/ai-myths-tested/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/ai-myths-tested/</guid>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Five common AI claims put to a hands-on test, with honest results: which held up, which failed, and what the gap between demo and reality really is.</description>
+      <category>AI &amp; Reality</category>
+    </item>
+
+    <item>
+      <title>Building in Public from Kathmandu: One Year of Shipping AI Projects</title>
+      <link>https://www.diwakaryadav.com.np/blog/building-in-public-kathmandu/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/building-in-public-kathmandu/</guid>
+      <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+      <description>A year-one retrospective on building and shipping AI projects in public from Kathmandu, with honest lessons on consistency, audience, and shipping ugly.</description>
+      <category>Builder's Log</category>
+    </item>
+
+    <item>
+      <title>Prompt Engineering Is Dead. Here's What Replaced It</title>
+      <link>https://www.diwakaryadav.com.np/blog/is-prompt-engineering-dead/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/is-prompt-engineering-dead/</guid>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Why classic prompt engineering is fading and what replaced it: context engineering, evaluation, and knowing which model to use.</description>
+      <category>AI &amp; Prompting</category>
+    </item>
+
+    <item>
+      <title>The Free AI Stack: Everything I Use Daily That Costs $0</title>
+      <link>https://www.diwakaryadav.com.np/blog/free-ai-stack/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/free-ai-stack/</guid>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
+      <description>The exact set of free AI tools used daily for writing, coding, research, and image work, with honest notes on where the free tier stops being enough.</description>
+      <category>AI &amp; Tools</category>
+    </item>
+
+    <item>
+      <title>AI Agents Are Quietly Breaking the Old 'App' Model</title>
+      <link>https://www.diwakaryadav.com.np/blog/what-are-ai-agents/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/what-are-ai-agents/</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 GMT</pubDate>
+      <description>A plain-language explanation of what AI agents are, how they differ from chatbots, and why they are reshaping how software gets built.</description>
+      <category>AI &amp; Strategy</category>
+    </item>
+
+    <item>
+      <title>Claude vs ChatGPT vs Gemini: 6 Months of Daily Use, Real Differences</title>
+      <link>https://www.diwakaryadav.com.np/blog/claude-vs-chatgpt-vs-gemini/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/claude-vs-chatgpt-vs-gemini/</guid>
+      <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
+      <description>A long-term, hands-on comparison of Claude, ChatGPT, and Gemini after six months of daily use, covering writing, coding, search, and honesty.</description>
+      <category>AI &amp; Comparison</category>
+    </item>
+
+    <item>
+      <title>How to Run an LLM on a Normal Laptop (No GPU, No PhD)</title>
+      <link>https://www.diwakaryadav.com.np/blog/run-llm-locally/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/run-llm-locally/</guid>
+      <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
+      <description>A beginner-friendly tutorial for running a real LLM on a normal laptop with no graphics card, using Ollama and a quantized model.</description>
+      <category>AI &amp; Tutorials</category>
+    </item>
+
+    <item>
+      <title>I Tested 7 AI Coding Assistants So You Don't Have To</title>
+      <link>https://www.diwakaryadav.com.np/blog/best-ai-coding-assistants/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/best-ai-coding-assistants/</guid>
+      <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
+      <description>A hands-on comparison of 7 AI coding assistants tested on the same real tasks, with honest strengths, weaknesses, and a final verdict.</description>
+      <category>AI &amp; Tools</category>
+    </item>
+
+    <item>
+      <title>Open-Weight vs Closed AI Models: Which Should You Actually Use?</title>
+      <link>https://www.diwakaryadav.com.np/blog/open-vs-closed-models/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/open-vs-closed-models/</guid>
+      <pubDate>Sun, 10 May 2026 00:00:00 GMT</pubDate>
+      <description>A practical decision guide for choosing open-weight vs closed AI models in 2026, based on cost, privacy, control, and what you actually ship.</description>
+      <category>AI &amp; Strategy</category>
+    </item>
+
+    <item>
       <title>Best Free AI Tools, LLMs, and Agent Platforms in 2026</title>
-      <link>https://diwakaryadav.com.np/blog/trending-llms/</link>
-      <guid>https://diwakaryadav.com.np/blog/trending-llms/</guid>
+      <link>https://www.diwakaryadav.com.np/blog/trending-llms/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/trending-llms/</guid>
       <pubDate>Fri, 13 Feb 2026 00:00:00 GMT</pubDate>
       <description>A practical list of free AI tools, LLMs, and agent platforms in 2026, including chatbots, OCR tools, research agents, and workflow assistants.</description>
       <category>AI &amp; Tools</category>
@@ -64,8 +145,8 @@
 
     <item>
       <title>12 AI Prompting Tips for Better ChatGPT and Claude Results</title>
-      <link>https://diwakaryadav.com.np/blog/prompting-tips/</link>
-      <guid>https://diwakaryadav.com.np/blog/prompting-tips/</guid>
+      <link>https://www.diwakaryadav.com.np/blog/prompting-tips/</link>
+      <guid>https://www.diwakaryadav.com.np/blog/prompting-tips/</guid>
       <pubDate>Sun, 01 Dec 2024 00:00:00 GMT</pubDate>
       <description>Learn 12 practical AI prompting tips to get better results from ChatGPT, Claude, and other AI assistants.</description>
       <category>AI &amp; Prompting</category>

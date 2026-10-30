@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FEFAE0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="robots" content="noindex, nofollow">
@@ -12,12 +14,12 @@
     <!-- Theme detection early to avoid color flash -->
     <script>
     (function () {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', saved);
+            }
+        } catch (e) {}
     })();
     </script>
 
@@ -60,6 +62,23 @@
             --text-muted: #94A3B8;
             --accent-primary: #FB923C;
             --accent-secondary: #F97316;
+        }
+
+
+        /* system dark (critical) */
+
+        @media (prefers-color-scheme: dark) {
+
+            :root:not([data-theme="light"]) {
+                --bg-primary: #121212;
+                --bg-secondary: #1E1E1E;
+                --text-primary: #E2E8F0;
+                --text-secondary: #CBD5E1;
+                --text-muted: #94A3B8;
+                --accent-primary: #FB923C;
+                --accent-secondary: #F97316;
+            }
+
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -184,6 +203,7 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -223,7 +243,7 @@
     </header>
 
     <!-- Thank You Section -->
-    <section class="thank-you-section">
+    <section class="thank-you-section" id="main-content">
         <div class="thank-you-content fade-in">
             <div class="thank-you-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"

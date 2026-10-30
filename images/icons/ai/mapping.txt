@@ -32,3 +32,11 @@ https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/claudecode-color.svg	i
 https://unpkg.com/simple-icons@16.36.0/icons/apple.svg	images/icons/ai/apple.svg
 https://unpkg.com/simple-icons@16.36.0/icons/github.svg	images/icons/ai/github.svg
 https://unpkg.com/simple-icons@16.36.0/icons/zedindustries.svg	images/icons/ai/zed-si.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/hunyuan-color.svg	images/icons/ai/hunyuan-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/xiaomimimo.svg	images/icons/ai/xiaomimimo.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/longcat-color.svg	images/icons/ai/longcat-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/together-color.svg	images/icons/ai/together-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/sakana-color.svg	images/icons/ai/sakana-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/microsoft-color.svg	images/icons/ai/microsoft-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/internlm-color.svg	images/icons/ai/internlm-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/reve.svg	images/icons/ai/reve.svg

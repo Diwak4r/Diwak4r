@@ -21,7 +21,7 @@ const server = http.createServer((req,res)=>{
 });
 await new Promise((r)=>server.listen(PORT,r));
 
-const routes=["/","/projects/","/about/","/blog/","/blog/ai-myths-tested/","/blog/building-in-public-kathmandu/","/blog/trending-llms/","/blog/prompting-tips/","/contact/","/thank-you/","/404.html"];
+const routes=["/","/projects/","/about/","/blog/","/blog/ai-myths-tested/","/blog/building-in-public-kathmandu/","/blog/trending-llms/","/blog/prompting-tips/","/blog/october-2026-ai-models/","/blog/open-weight-models-october-2026/","/blog/ai-agent-security-october-2026/","/blog/apps-opening-to-ai-agents/","/contact/","/thank-you/","/404.html"];
 const browser=await chromium.launch({headless:true});
 const results=[];const check=(n,p,d="")=>results.push({n,p:Boolean(p),d});
 

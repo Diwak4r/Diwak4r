@@ -7,7 +7,9 @@
     "test:main": "node scripts/verify-main-site.mjs",
     "test:os": "npm --prefix portfolio-os run test",
     "test:os:live": "npm --prefix portfolio-os run test:live",
-    "test": "npm run test:main && npm run test:os"
+    "test": "npm run test:main && npm run test:os",
+    "seo": "node scripts/gen-seo-files.mjs",
+    "test:blogs": "node scripts/verify-blogs.mjs"
   },
   "devDependencies": {
     "playwright": "^1.61.1"
