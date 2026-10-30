@@ -645,13 +645,13 @@ const POSTS = [
 `,
     readNext: [
       { title: "The Free AI Stack: Everything I Use Daily That Costs $0", url: "/blog/free-ai-stack/" },
-      { title: "AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False", url: "/blog/ai-myths-tested/" }
+      { title: "AI Myths I Tested: 5 Claims, and 4 Were Flat-Out False", url: "/blog/ai-myths-tested/" }
     ]
   },
 
   {
     slug: "ai-myths-tested",
-    title: "AI Myths I Tested: 5 Claims, and 3 Were Flat-Out False",
+    title: "AI Myths I Tested: 5 Claims, and 4 Were Flat-Out False",
     subtitle: "I took five things people say about AI and actually ran them. The results were less flattering than the hype.",
     tag: "AI & Reality",
     section: "AI & Reality",
@@ -683,7 +683,7 @@ const POSTS = [
 
 <p>I ran a tiny local model on a plain laptop for daily writing and notes. It was slower and less clever than the frontier API, but it did the job and kept my data private. Verdict: false. Underrated for the right tasks.</p>
 
-<blockquote>Three of five claims failed. The pattern is clear: demos show the best case, real work shows the average case, and the average case is where the truth lives.</blockquote>
+<blockquote>Four of five claims failed. The pattern is clear: demos show the best case, real work shows the average case, and the average case is where the truth lives.</blockquote>
 
 <h2>What this changes</h2>
 
