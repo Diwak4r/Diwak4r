@@ -12,7 +12,7 @@ import {
   UserCircle,
   XLogo,
 } from "@phosphor-icons/react";
-import { education, experience, profile, skillGroups, socials } from "@/lib/content";
+import { education, experience, profile, projects, skillGroups, socials } from "@/lib/content";
 import { openLink } from "@/lib/system";
 
 const TABS = [
@@ -30,7 +30,33 @@ const socialIcons = {
   Instagram: InstagramLogo,
 } as const;
 
+/** A System Settings style group: a rounded inset panel of rows with inset
+ *  separators, the way macOS lays out the About pane. */
+function Group({ title, children }: { title?: string; children: React.ReactNode }) {
+  return (
+    <section>
+      {title && <h2 className="mb-1.5 px-1 text-[12px] font-semibold text-white/50">{title}</h2>}
+      <div className="overflow-hidden rounded-[10px] bg-white/[0.045] [&>*+*]:border-t [&>*+*]:border-white/[0.07]">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-baseline justify-between gap-4 px-3.5 py-2.5 text-[13px]">
+      <span className="shrink-0 text-white/85">{label}</span>
+      <span className="min-w-0 text-right text-white/55">{children}</span>
+    </div>
+  );
+}
+
 function Story() {
+  const current = experience[0];
+  const school = education[0];
+  const flagship = projects.find((p) => p.flagship)!;
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -38,54 +64,56 @@ function Story() {
         <img
           src="/images/diwakar-avatar.webp"
           alt="Portrait of Diwakar Ray Yadav"
+          width={96}
+          height={96}
           className="h-24 w-24 shrink-0 rounded-2xl border border-white/10 object-cover object-top"
         />
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight text-white">
-            {profile.name}
-          </h1>
+        <div className="min-w-0">
+          <h1 className="text-xl font-semibold tracking-tight text-white">{profile.name}</h1>
           <p className="text-[13.5px] text-accent-300">{profile.role}</p>
           <p className="mt-0.5 flex items-center gap-1 text-[12.5px] text-white/55">
             <MapPin size={13} weight="fill" /> {profile.location}
           </p>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            {socials.map((s) => {
+              const Icon = socialIcons[s.label];
+              return (
+                <button
+                  key={s.label}
+                  onClick={() => openLink(s.href)}
+                  aria-label={s.label}
+                  className="rounded-md p-1.5 text-white/60 transition-colors hover:bg-white/[0.08] hover:text-white"
+                >
+                  <Icon size={16} weight="fill" />
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {socials.map((s) => {
-          const Icon = socialIcons[s.label];
-          return (
-            <button
-              key={s.label}
-              onClick={() => openLink(s.href)}
-              className="flex items-center gap-1.5 rounded-lg border border-white/[0.09] bg-white/[0.04] px-2.5 py-1.5 text-[12.5px] text-white/75 transition-colors hover:bg-white/[0.09] hover:text-white"
-            >
-              <Icon size={14} weight="fill" /> {s.label}
-            </button>
-          );
-        })}
-      </div>
+      <p className="max-w-prose text-[15px] leading-relaxed text-white/85">{profile.intro}</p>
+
+      <Group title="Now">
+        <Row label="Working">
+          {current.role}, {current.org}
+        </Row>
+        <Row label="Studying">{school.degree}</Row>
+        <Row label="Building">
+          <button
+            onClick={() => openLink(flagship.href, flagship.name)}
+            className="text-accent-300 transition-colors hover:text-accent-200"
+          >
+            {flagship.name}
+          </button>
+        </Row>
+        <Row label="Exploring">{profile.exploring.join(", ")}</Row>
+      </Group>
 
       <div className="max-w-prose space-y-3 text-[13.5px] leading-relaxed text-white/70">
         {profile.story.map((p) => (
           <p key={p.slice(0, 24)}>{p}</p>
         ))}
-      </div>
-
-      <div>
-        <h2 className="mb-2 text-[12.5px] font-semibold text-white/55">
-          Currently exploring
-        </h2>
-        <div className="flex flex-wrap gap-1.5">
-          {profile.exploring.map((item) => (
-            <span
-              key={item}
-              className="rounded-full border border-accent-500/30 bg-accent-500/10 px-2.5 py-1 text-[12px] text-accent-200"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -93,32 +121,31 @@ function Story() {
 
 function Experience() {
   return (
-    <div className="space-y-8">
-      <div className="space-y-6 border-l border-white/10 pl-4">
+    <div className="space-y-6">
+      <Group title="Work">
         {experience.map((job) => (
-          <div key={job.role}>
-            <h2 className="text-[14px] font-semibold text-white/90">{job.role}</h2>
-            <p className="text-[13px] text-accent-300">{job.org}</p>
-            <p className="mt-0.5 text-[12px] text-white/45">{job.period}</p>
-            <p className="mt-1.5 max-w-prose text-[13px] leading-relaxed text-white/65">
-              {job.detail}
-            </p>
+          <div key={job.role} className="px-3.5 py-3">
+            <div className="flex items-baseline justify-between gap-4">
+              <h3 className="text-[13.5px] font-semibold text-white/90">{job.role}</h3>
+              <span className="shrink-0 text-[12px] tabular-nums text-white/45">{job.period}</span>
+            </div>
+            <p className="text-[12.5px] text-accent-300">{job.org}</p>
+            <p className="mt-1 max-w-prose text-[12.5px] leading-relaxed text-white/60">{job.detail}</p>
           </div>
         ))}
-      </div>
+      </Group>
 
-      <div>
-        <h2 className="mb-3 text-[12.5px] font-semibold text-white/55">Education</h2>
-        <div className="space-y-4 border-l border-white/10 pl-4">
-          {education.map((e) => (
-            <div key={e.degree}>
-              <h3 className="text-[13.5px] font-medium text-white/85">{e.degree}</h3>
-              <p className="text-[12.5px] text-white/55">{e.school}</p>
-              <p className="mt-0.5 text-[12px] text-white/45">{e.period}</p>
+      <Group title="Education">
+        {education.map((e) => (
+          <div key={e.degree} className="px-3.5 py-3">
+            <div className="flex items-baseline justify-between gap-4">
+              <h3 className="text-[13.5px] font-medium text-white/90">{e.degree}</h3>
+              <span className="shrink-0 text-[12px] tabular-nums text-white/45">{e.period}</span>
             </div>
-          ))}
-        </div>
-      </div>
+            <p className="text-[12.5px] text-white/55">{e.school}</p>
+          </div>
+        ))}
+      </Group>
     </div>
   );
 }
@@ -127,19 +154,11 @@ function Skills() {
   return (
     <div className="space-y-5">
       {skillGroups.map((g) => (
-        <div key={g.group}>
-          <h2 className="mb-2 text-[12.5px] font-semibold text-white/55">{g.group}</h2>
-          <div className="flex flex-wrap gap-1.5">
-            {g.items.map((item) => (
-              <span
-                key={item}
-                className="rounded-md border border-white/[0.08] bg-white/[0.05] px-2 py-1 text-[12px] text-white/70"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
+        <Group key={g.group} title={g.group}>
+          <p className="px-3.5 py-2.5 text-[13px] leading-relaxed text-white/75">
+            {g.items.join(" · ")}
+          </p>
+        </Group>
       ))}
     </div>
   );
