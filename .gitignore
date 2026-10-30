@@ -13,7 +13,7 @@ portfolio-os/out/
 .mimosa/
 docs/
 *.log
-reports/perf-main.json
+reports/
 
 # Session test artifacts
 blog-before.png
@@ -31,3 +31,8 @@ pin-warm-cream.png
 # Agent/tooling session dirs
 .reticle/
 .zcode/
+
+# Private audit notes (keep local, never publish)
+overview.md
+codebase-assessment.md
+SECURITY.md
