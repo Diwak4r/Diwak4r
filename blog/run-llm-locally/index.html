@@ -70,7 +70,7 @@
     <meta property="og:image" content="https://i.pinimg.com/originals/b5/ce/73/b5ce7371503ba2673115ef209e0e4052">
     <meta property="og:image:alt" content="How to Run an LLM on a Normal Laptop (No GPU, No PhD)">
     <meta property="article:published_time" content="2026-05-25">
-    <meta property="article:modified_time" content="2026-08-09">
+    <meta property="article:modified_time" content="2026-10-30">
     <meta property="article:author" content="Diwakar Ray Yadav">
     <meta property="article:section" content="AI & Tutorials">
     <meta property="article:tag" content="run LLM locally laptop">
@@ -89,7 +89,7 @@
             "image": ["https://i.pinimg.com/originals/b5/ce/73/b5ce7371503ba2673115ef209e0e4052"],
             "mainEntityOfPage": { "@type": "WebPage", "@id": "https://diwakaryadav.com.np/blog/run-llm-locally/" },
             "datePublished": "2026-05-25",
-            "dateModified": "2026-08-09",
+            "dateModified": "2026-10-30",
             "inLanguage": "en",
             "isAccessibleForFree": true,
             "articleSection": "AI & Tutorials",
@@ -169,55 +169,67 @@
 
                 <div class="blog-article-content">
 
-<p>There is a myth that local AI needs a racing PC with a giant GPU. It does not. I run models on a plain laptop with no graphics card, and you can too. This is the exact path I would give a friend.</p>
+<p>I run AI models on a plain laptop with no graphics card. Setup is one install and two commands.</p>
 
-<h2>Why bother running locally at all</h2>
+<ul class="post-logos" aria-label="Tools in this post">
+    <li><span class="logo-mask" style="--logo: url(../../images/icons/ai/ollama.svg)" aria-hidden="true"></span>Ollama</li>
+    <li><img src="../../images/icons/ai/qwen-color.svg" alt="" width="26" height="26">Qwen</li>
+    <li><img src="../../images/icons/ai/gemma-color.svg" alt="" width="26" height="26">Gemma</li>
+</ul>
 
-<p>Three reasons: your data never leaves the machine, it works with no internet, and once it is set up the cost is zero. For notes, drafts, and private documents, that is a big deal.</p>
+
+<p>A lot of people believe local AI needs a racing PC with a giant GPU. You can do it on the laptop you already have. This is the exact path I would give a friend.</p>
+
+<h2>Why run a model locally</h2>
+
+<p>Your data never leaves the machine, it works with no internet, and once it is set up the cost is zero. For notes, drafts, and private documents, that matters a lot.</p>
+
+<p>I keep a local model for meeting notes and draft ideas. Nothing leaves the laptop, it works on a train with no signal, and there is no bill. For private first drafts, local is the better default.</p>
 
 <h2>Step 1: install Ollama</h2>
 
-<p>Ollama is the easiest on-ramp. On macOS or Linux, one command in the terminal. On Windows, the installer. That is the whole setup. No compiling, no Python environment fights.</p>
+<p>Ollama is the easiest way in. On macOS or Linux, it is one command in the terminal. On Windows, you run the installer. That is the whole setup, with no compiling and no fighting with Python environments.</p>
+
+<figure class="post-figure">
+    <img src="../../images/blog/ollama-download.webp" alt="Ollama download page showing the one-line Windows install command" width="1200" height="744" loading="lazy">
+    <figcaption>The Ollama download page. On Windows, the install is one PowerShell command. Source: <a href="https://ollama.com/download" target="_blank" rel="noopener noreferrer">ollama.com</a></figcaption>
+</figure>
 
 <h2>Step 2: pick a small model</h2>
 
-<p>Do not start with the biggest model. Start with a quantized small one. "Quantized" just means the model is compressed so it fits in normal memory. A 3 to 4 billion parameter model runs fine on most laptops and still writes decent code and answers questions.</p>
+<p>Do not start with the biggest model. Start with a small quantized one. "Quantized" just means the model is compressed so it fits in normal memory. A 3 to 4 billion parameter model runs fine on most laptops and still writes decent code and answers questions.</p>
 
-<p>I usually start people on a small Qwen or Llama build. They are shockingly capable for the size.</p>
+<p>I usually start people on a small Qwen or Gemma 4 build. They do a surprising amount for their size.</p>
 
 <h2>Step 3: run it</h2>
 
-<p>One command pulls the model, and a second starts a chat in your terminal. Type a question. Get an answer. That is a real LLM running on your metal.</p>
+<p>One command pulls the model, and a second starts a chat in your terminal. Type a question and you get an answer. That is a real LLM running on your own hardware.</p>
 
-<h2>Step 4: give it a face</h2>
+<h2>Step 4: give it a chat window</h2>
 
-<p>The terminal is fine, but most people want a chat window. Point a lightweight local UI at the model and you get a private ChatGPT that lives on your machine. No account, no bill.</p>
+<p>The terminal works, but most people want a chat window. Point a lightweight local UI at the model and you get a private ChatGPT that lives on your machine, with no account and no bill.</p>
 
-<h2>How far can a normal laptop go?</h2>
+<h2>Make it faster on weak hardware</h2>
 
-<p>Honest limits: a small model will not beat a frontier API on hard reasoning. It will stall on very long documents. But for daily writing, brainstorming, and coding help, it is more than enough, and it is private.</p>
+<p>You have three levers: pick a smaller quantized model, close other apps to free memory, and use a UI that streams tokens so it feels responsive. The first model you try will feel slow. Size down one step and the difference is large.</p>
+
+<h2>How far a normal laptop can go</h2>
+
+<p>The limits are real. A small model will not beat a frontier API on hard reasoning, and it will stall on very long documents. For daily writing, brainstorming, and coding help, it is more than enough, and it stays private.</p>
 
 <blockquote>I keep a small model running for the 20 little tasks a day. The frontier API handles the few big ones. That split covers almost everything.</blockquote>
 
 <h2>Common mistakes</h2>
 
 <ul>
-<li><strong>Starting too big.</strong> A 70B model will crawl on a laptop. Start small, feel the speed, then size up if you must.</li>
-<li><strong>Skipping quantization.</strong> The compressed version is the difference between usable and frozen.</li>
-<li><strong>Expecting magic.</strong> Local models are great assistants, not oracles.</li>
+<li><strong>Starting too big.</strong> A 70B model will crawl on a laptop. Start small, see how fast it runs, then size up if you need to.</li>
+<li><strong>Skipping quantization.</strong> The compressed version is what decides whether the model is usable or freezes your laptop.</li>
+<li><strong>Expecting too much.</strong> A local model is a helpful assistant. Check its answers on anything important.</li>
 </ul>
 
-<h2>Your next move</h2>
+<h2>Try it tonight</h2>
 
-<p>Install Ollama tonight. Pull one small model. Ask it to summarize something private you would never paste into a web chatbot. That single moment, of it answering with your data never leaving the laptop, is the whole point.</p>
-
-<h2>Tuning for speed on weak hardware</h2>
-
-<p>Three levers: pick a smaller quantized model, close other apps to free memory, and use a UI that streams tokens so it feels responsive. The first model you try will feel slow. Size down one step and the difference is large.</p>
-
-<h2>A real use case</h2>
-
-<p>I keep a local model for meeting notes and draft ideas. Nothing leaves the laptop, it works on a train with no signal, and there is no bill. For private first drafts, local is simply the better default.</p>
+<p>Install Ollama and pull one small model. Then ask it to summarize something private that you would never paste into a web chatbot. Watching it answer while your data stays on the laptop is the best reason to set this up.</p>
 
 <h2>FAQ</h2>
 

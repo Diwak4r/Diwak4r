@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <title>Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap | Diwakar Ray Yadav</title>
+    <link rel="canonical" href="https://diwakaryadav.com.np/blog/open-weight-models-october-2026/">
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Performance: Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS: prevent invisible content, base layout -->
+    <style>
+        .fade-in { opacity: 1 !important; transform: none !important; }
+        .fade-in.js-enabled { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.js-enabled.visible { opacity: 1; transform: translateY(0); }
+        body { font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-optical-sizing: auto; margin: 0; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(254, 250, 224, 0.95); backdrop-filter: blur(10px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 5rem 0; }
+        .blog-article { max-width: 800px; margin: 0 auto; padding-top: 80px; }
+    </style>
+
+    <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
+        href="https://diwakaryadav.com.np/feed.xml">
+
+    <!-- Main CSS (loaded asynchronously) -->
+    <link rel="stylesheet" href="../../css/style.4a3a12ca.css">
+    <noscript><link rel="stylesheet" href="../../css/style.4a3a12ca.css"></noscript>
+
+    <!-- SEO & Open Graph -->
+    <meta name="author" content="Diwakar Ray Yadav">
+    <meta name="description" content="DeepSeek V4.1 Flash, GLM-5.3, Kimi K3 and Mistral Large 4: what the October 2026 open models cost, what runs locally, and how to choose one.">
+    <meta name="keywords" content="open-weight models 2026, DeepSeek V4.1 Flash, GLM-5.3, Kimi K3, Mistral Large 4, Gemma 4, Qwen3.8, cheap AI API Nepal">
+    <meta property="og:title" content="Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap">
+    <meta property="og:description" content="DeepSeek V4.1 Flash, GLM-5.3, Kimi K3 and Mistral Large 4: what the October 2026 open models cost, what runs locally, and how to choose one.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://diwakaryadav.com.np/blog/open-weight-models-october-2026/">
+    <meta property="og:image" content="https://diwakaryadav.com.np/images/blog-open-weight-models-october-2026.svg">
+    <meta property="og:image:alt" content="Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap">
+    <meta property="article:published_time" content="2026-10-30">
+    <meta property="article:modified_time" content="2026-10-30">
+    <meta property="article:author" content="Diwakar Ray Yadav">
+    <meta property="article:section" content="AI & Strategy">
+    <meta property="article:tag" content="open-weight models 2026">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap">
+    <meta name="twitter:description" content="DeepSeek V4.1 Flash, GLM-5.3, Kimi K3 and Mistral Large 4: what the October 2026 open models cost, what runs locally, and how to choose one.">
+    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/blog-open-weight-models-october-2026.svg">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap",
+            "alternativeHeadline": "The biggest open models will not fit on your laptop, but their APIs are cheap. What shipped this month and how I would pick one.",
+            "description": "DeepSeek V4.1 Flash, GLM-5.3, Kimi K3 and Mistral Large 4: what the October 2026 open models cost, what runs locally, and how to choose one.",
+            "image": ["https://diwakaryadav.com.np/images/blog-open-weight-models-october-2026.svg"],
+            "url": "https://diwakaryadav.com.np/blog/open-weight-models-october-2026/",
+            "mainEntityOfPage": { "@type": "WebPage", "@id": "https://diwakaryadav.com.np/blog/open-weight-models-october-2026/" },
+            "datePublished": "2026-10-30",
+            "dateModified": "2026-10-30",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "articleSection": "AI & Strategy",
+            "keywords": ["open-weight models 2026","DeepSeek V4.1 Flash","GLM-5.3","Kimi K3","Mistral Large 4","Gemma 4","Qwen3.8","cheap AI API Nepal"],
+            "author": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/about/" },
+            "publisher": { "@type": "Person", "name": "Diwakar Ray Yadav", "url": "https://diwakaryadav.com.np/", "image": "https://diwakaryadav.com.np/images/diwakar-avatar.webp" }
+        }
+    </script>
+
+    <style>
+        .blog-article { max-width: 800px; margin: 0 auto; }
+        .blog-back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; margin-bottom: 2rem; transition: color 0.3s ease; }
+        .blog-back-link:hover { color: var(--accent-primary); }
+        .blog-article-header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light); }
+        .blog-article-tag { display: inline-block; background: var(--accent-primary); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; margin-bottom: 1rem; }
+        .blog-article-title { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        .blog-article-subtitle { font-size: 1.25rem; color: var(--text-secondary); font-style: italic; }
+        .blog-article-meta { display: flex; gap: 1.5rem; font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem; flex-wrap: wrap; }
+        .blog-article-content { font-size: 1.1rem; line-height: 1.8; }
+        .blog-article-content h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--accent-primary); font-weight: 600; }
+        .blog-article-content h3 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .blog-article-content p { margin-bottom: 1.25rem; }
+        .blog-article-content strong { color: var(--accent-primary); }
+        .blog-article-content ul, .blog-article-content ol { margin: 1rem 0 1.25rem; padding-left: 1.5rem; }
+        .blog-article-content li { margin-bottom: 0.5rem; }
+        .blog-article-content blockquote { background: var(--bg-secondary); border-left: 4px solid var(--accent-primary); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 var(--radius) var(--radius) 0; font-style: italic; }
+        .article-support-box { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--border-light); border-radius: var(--radius); background: var(--bg-secondary); }
+        .article-support-box p:last-child { margin-bottom: 0; }
+        .article-support-box a { color: var(--accent-primary); font-weight: 600; }
+        @media (max-width: 768px) {
+            .blog-article-title { font-size: 1.75rem; }
+            .blog-article-subtitle { font-size: 1rem; }
+            .blog-article-content { font-size: 1rem; }
+            .blog-article-meta { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/about/" class="nav-link">About</a></li>
+                    <li><a href="/blog/" class="nav-link active">Blog</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                    <li><a href="https://www.os.diwakaryadav.com.np/" class="nav-link" target="_blank" rel="noopener">OS ↗</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section" id="main-content" role="region" aria-label="Blog article">
+        <div class="container">
+            <article class="blog-article fade-in" role="article" itemscope itemtype="https://schema.org/BlogPosting">
+                <a href="/blog/" class="blog-back-link" aria-label="Return to blog listing">← Back to Blog</a>
+
+                <div class="blog-article-header">
+                    <span class="blog-article-tag">AI & Strategy</span>
+                    <h1 class="blog-article-title font-display">Open Models in October 2026: DeepSeek, GLM, Kimi, and Mistral Close the Gap</h1>
+                    <p class="blog-article-subtitle">The biggest open models will not fit on your laptop, but their APIs are cheap. What shipped this month and how I would pick one.</p>
+                    <div class="blog-article-meta">
+                        <span>📅 2026-10-30</span>
+                        <span>⏱️ 5 min read</span>
+                        <span>✍️ Diwakar Ray Yadav</span>
+                    </div>
+                </div>
+
+                <div class="blog-article-content">
+
+<p>On October 29, 2026, Mistral put the weights of Mistral Large 4 on Hugging Face. That is a model with about 1 trillion parameters that anyone can download.</p>
+
+<ul class="post-logos" aria-label="Tools in this post">
+    <li><img src="../../images/icons/ai/deepseek-color.svg" alt="" width="26" height="26">DeepSeek</li>
+    <li><img src="../../images/icons/ai/zhipu-color.svg" alt="" width="26" height="26">GLM (Z.ai)</li>
+    <li><img src="../../images/icons/ai/kimi-color.svg" alt="" width="26" height="26">Kimi</li>
+    <li><img src="../../images/icons/ai/mistral-color.svg" alt="" width="26" height="26">Mistral</li>
+    <li><img src="../../images/icons/ai/meta-color.svg" alt="" width="26" height="26">Meta</li>
+    <li><img src="../../images/icons/ai/qwen-color.svg" alt="" width="26" height="26">Qwen</li>
+    <li><img src="../../images/icons/ai/gemma-color.svg" alt="" width="26" height="26">Gemma</li>
+</ul>
+
+
+<p>It was the third big open release this month, after Meta's Muse Spark Open on October 15 and DeepSeek V4.1-Flash-1017 on October 17. In my view, the best open models are now close enough to the closed ones that builders should take them seriously.</p>
+
+<h2>DeepSeek V4.1 Flash: the cheap one to beat</h2>
+
+<p>DeepSeek released V4.1-Flash-1017 on October 17, with weights on Hugging Face under the MIT license. It has 552B backbone parameters, but only about 8B to 16B are active for each token. That is how a model this large can still be fast and cheap to serve.</p>
+
+<p>It has a 1M context window and also powers DeepSeek's own web app. The API costs $0.30 per million input tokens and $1.20 per million output tokens at peak hours, and half that off-peak.</p>
+
+<h2>GLM-5.3 and GLM-5.3 Flash</h2>
+
+<p>Z.ai shipped GLM-5.3 in August: 753B parameters, about 40B active, 1M context, under a custom license. It has been on Amazon Bedrock since October 5, which helps if your team already runs on AWS.</p>
+
+<p>The smaller GLM-5.3 Flash is the one I find more interesting for students. It has 320B total parameters, 18B active, an MIT license, and costs $0.15 input and $0.50 output.</p>
+
+<h2>Kimi K3 and K3.1 Pro</h2>
+
+<p>Moonshot launched Kimi K3 on July 16 with about 2.8 trillion parameters and a 1M context. The weights followed on July 27 under a custom license.</p>
+
+<p>Kimi K3.1 Pro has been on the API since October 23 at $2/$10, and Moonshot has promised the weights by November 4. Until they are actually out, I would treat it as an API model.</p>
+
+<h2>Mistral Large 4 and Meta Muse Spark Open</h2>
+
+<p>Mistral Large 4, nicknamed "Le Chonk", has about 1 trillion parameters with 49B active (52B if you count embeddings), a 1M context, and support for more than 160 languages. It was trained in Europe, went into public preview on October 6, and got its weights on October 29 under a modified MIT license.</p>
+
+<figure class="post-figure">
+    <img src="../../images/blog/huggingface-mistral.webp" alt="Mistral organization page on Hugging Face, where the Large 4 weights are published" width="1200" height="480" loading="lazy">
+    <figcaption>Mistral publishes its open weights, including Large 4, on Hugging Face. Source: <a href="https://huggingface.co/mistralai" target="_blank" rel="noopener noreferrer">huggingface.co</a></figcaption>
+</figure>
+
+<p>On the Artificial Analysis Intelligence Index v5, it scored 26. DeepSeek V4.1 Flash and GLM-5.3 both scored 32. So Mistral's model is open and speaks a lot of languages, but it trails the two Chinese leaders on that index.</p>
+
+<p>Meta's Muse Spark Open came out on October 15: 816B parameters, 42B active, 1M context, a custom Muse license, and a gated download, so you have to request access first.</p>
+
+<h2>Too big for a laptop, cheap through an API</h2>
+
+<p>None of these big models will run on a normal laptop. Even DeepSeek V4.1 Flash, with only 8B to 16B active, still needs all 552B parameters loaded somewhere. That takes server hardware.</p>
+
+<p>So for most builders in Nepal, open weights help in two practical ways. Any provider can host the same weights, so API prices stay low. And you are less locked in: if one host gets expensive or shuts down, the same model can run somewhere else.</p>
+
+<p>Paying is still the hard part without an international card. At $0.15 to $0.30 per million input tokens, though, a small top-up lasts a long time on a student project.</p>
+
+<h2>Small open models you can run yourself</h2>
+
+<p>If you want a model on your own machine, look at the small ones:</p>
+
+<ul>
+<li><strong>Qwen3.8-27B</strong>, under Apache 2.0.</li>
+<li><strong>Google Gemma 4</strong>, in sizes from E2B up to 31B, also under Apache 2.0.</li>
+</ul>
+
+<p>The smallest Gemma 4 sizes are the easiest place to start if your laptop has no big GPU. My guide on <a href="/blog/run-llm-locally/">running an LLM on a normal laptop</a> covers the setup.</p>
+
+<h2>A reason to sandbox your agents</h2>
+
+<p>On October 26, Cohere reported that a Qwen3.8-Flash-Next model tried to upload a test file to a Beijing cloud bucket during a sandboxed security test. It was rare, under 1 in 100,000 calls. Check Point argued it looks more like inconsistent model behavior than a backdoor.</p>
+
+<p>The lesson I take from it is about setup. Any model, open or closed, can do something odd once it has tools. If you run an agent, give it only the files and network access it needs, and log what it does.</p>
+
+<h2>How I would choose</h2>
+
+<ul>
+<li><strong>App on a tight budget:</strong> start with DeepSeek V4.1 Flash or GLM-5.3 Flash through an API. Both are MIT licensed and cheap.</li>
+<li><strong>Already on AWS:</strong> GLM-5.3 is on Bedrock.</li>
+<li><strong>Many languages, or a European model:</strong> Mistral Large 4.</li>
+<li><strong>Offline on your own laptop:</strong> Gemma 4 or Qwen3.8-27B.</li>
+<li><strong>Fine-tuning or shipping weights in a product:</strong> read the license first. MIT and Apache 2.0 are simple. The custom licenses on GLM-5.3, Kimi K3, and Muse Spark Open need a careful read.</li>
+</ul>
+
+<p>For the bigger question of when to pick open or closed at all, see my <a href="/blog/open-vs-closed-models/">open vs closed comparison</a>.</p>
+
+<h2>FAQ</h2>
+
+<h3>Can I run DeepSeek V4.1 Flash on my laptop?</h3>
+<p>No. It has 552B parameters in total, which needs server hardware. Use its API, or run a small model like Gemma 4 or Qwen3.8-27B on your own machine.</p>
+
+<h3>Which of these open models is cheapest to call?</h3>
+<p>GLM-5.3 Flash has the lowest list price at $0.15 input and $0.50 output. DeepSeek V4.1 Flash costs $0.30/$1.20 at peak, but half that off-peak, which brings its input price to $0.15 as well.</p>
+
+                    <div class="article-support-box">
+                        <p><strong>About the author.</strong> Diwakar Ray Yadav writes about AI tools, prompt engineering, and automation from hands-on experiments in Kathmandu. <a href="/about/" rel="author">Read more about Diwakar</a>.</p>
+                    </div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/open-vs-closed-models/" rel="next">Open-Weight vs Closed AI Models: Which Should You Actually Use?</a></p>
+</div>
+<div class="article-support-box">
+    <p><strong>Read next.</strong> <a href="/blog/run-llm-locally/" rel="next">How to Run an LLM on a Normal Laptop (No GPU, No PhD)</a></p>
+</div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../js/script.8687d2a9.js" defer></script>
+    <!-- Cloudflare Web Analytics: replace CF_BEACON_TOKEN with your token from dash.cloudflare.com > Web Analytics > Add a site -->
+</body>
+
+</html>
