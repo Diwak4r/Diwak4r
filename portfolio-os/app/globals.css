@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, var(--font-geist-sans), "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Accent: macOS system blue by default; swapped per tone below */
@@ -143,15 +143,17 @@ body {
   border: 1px solid rgb(255 255 255 / 0.12);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.08),
-    0 32px 90px rgb(0 0 0 / 0.55),
-    0 6px 24px rgb(0 0 0 / 0.35);
+    0 0 0 0.5px rgb(0 0 0 / 0.6),
+    0 2px 6px rgb(0 0 0 / 0.22),
+    0 22px 70px 4px rgb(0 0 0 / 0.5);
 }
 
 .window-chrome[data-focused="false"] {
   background: rgb(30 30 34 / 0.6);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.05),
-    0 16px 48px rgb(0 0 0 / 0.35);
+    0 0 0 0.5px rgb(0 0 0 / 0.45),
+    0 8px 28px rgb(0 0 0 / 0.26);
 }
 
 /* Light appearance: chrome (window glass, menu bar, dock) goes light while
@@ -162,14 +164,16 @@ body {
   border-color: rgb(0 0 0 / 0.08);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.6),
-    0 32px 90px rgb(0 0 0 / 0.3),
-    0 6px 24px rgb(0 0 0 / 0.18);
+    0 0 0 0.5px rgb(0 0 0 / 0.18),
+    0 2px 6px rgb(0 0 0 / 0.1),
+    0 22px 70px 4px rgb(0 0 0 / 0.28);
 }
 [data-appearance="light"] .window-chrome[data-focused="false"] {
   background: rgb(246 246 248 / 0.66);
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.45),
-    0 16px 48px rgb(0 0 0 / 0.2);
+    0 0 0 0.5px rgb(0 0 0 / 0.14),
+    0 8px 28px rgb(0 0 0 / 0.14);
 }
 
 .bar-chrome {
@@ -183,6 +187,34 @@ body {
   background: rgb(46 46 52 / 0.42);
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    inset 0 -1px 0 rgb(255 255 255 / 0.06),
+    0 0 0 0.5px rgb(0 0 0 / 0.35),
+    0 10px 30px rgb(0 0 0 / 0.3);
+}
+
+/* macOS 27 menu bar: no background of its own. Titles float on the wallpaper
+   in white (the wallpapers here are dark-to-mid), with a soft shade so a
+   bright patch of sky never swallows them. */
+.menubar-clear {
+  --chrome-ink: #ffffff;
+  background: transparent;
+  text-shadow: 0 0 6px rgb(0 0 0 / 0.45), 0 1px 1px rgb(0 0 0 / 0.25);
+}
+.menubar-clear svg {
+  filter: drop-shadow(0 0 3px rgb(0 0 0 / 0.4));
+}
+
+/* Desktop widgets: the Liquid Glass widget material, 22px continuous corners. */
+.widget-chrome {
+  background: rgb(36 36 40 / 0.5);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.08),
+    0 6px 20px rgb(0 0 0 / 0.22);
 }
 
 [data-appearance="light"] .bar-chrome {
@@ -205,7 +237,9 @@ body {
 @media (prefers-reduced-transparency: reduce) {
   .window-chrome,
   .bar-chrome,
-  .dock-chrome {
+  .dock-chrome,
+  .widget-chrome,
+  .menubar-clear {
     background: #1c1c1e;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -214,7 +248,9 @@ body {
 
 [data-transparency="off"] .window-chrome,
 [data-transparency="off"] .bar-chrome,
-[data-transparency="off"] .dock-chrome {
+[data-transparency="off"] .dock-chrome,
+[data-transparency="off"] .widget-chrome,
+[data-transparency="off"] .menubar-clear {
   background: #1c1c1e;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -222,8 +258,19 @@ body {
 
 [data-appearance="light"][data-transparency="off"] .window-chrome,
 [data-appearance="light"][data-transparency="off"] .bar-chrome,
-[data-appearance="light"][data-transparency="off"] .dock-chrome {
+[data-appearance="light"][data-transparency="off"] .dock-chrome,
+[data-appearance="light"][data-transparency="off"] .widget-chrome,
+[data-appearance="light"][data-transparency="off"] .menubar-clear {
   background: #f0f0f3;
+}
+[data-transparency="off"] .menubar-clear {
+  text-shadow: none;
+}
+[data-appearance="light"][data-transparency="off"] .menubar-clear {
+  --chrome-ink: #1d1d1f;
+}
+[data-transparency="off"] .menubar-clear svg {
+  filter: none;
 }
 
 /* Thin, quiet scrollbars inside windows */
@@ -272,17 +319,7 @@ body {
   border-bottom: 1px solid rgb(255 255 255 / 0.12);
 }
 
-/* Now Playing equalizer: compositor-only scaleY so it never repaints the
-   glass blur beneath it. Runs only while a track is actually playing. */
-@keyframes eq-bounce {
-  0%, 100% { transform: scaleY(0.3); }
-  50% { transform: scaleY(0.95); }
-}
-.eq-bar {
-  animation: eq-bounce 0.9s ease-in-out infinite;
-}
 @media (prefers-reduced-motion: reduce) {
-  .eq-bar { animation: none; transform: scaleY(0.6); }
   *, *::before, *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;

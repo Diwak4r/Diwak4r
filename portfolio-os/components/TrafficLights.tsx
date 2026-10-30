@@ -46,8 +46,17 @@ export default function TrafficLights({
             key={label}
             onClick={action}
             aria-label={label}
-            className="flex h-3 w-3 items-center justify-center rounded-full border border-black/20 transition-transform active:scale-90"
-            style={{ background: focused ? color : "rgba(255,255,255,0.22)" }}
+            className="flex h-3 w-3 items-center justify-center rounded-full transition-transform active:scale-90"
+            style={{
+              // macOS 27 Liquid Glass lights: a specular highlight on the top
+              // lip, a darker rim, and a faint inner shade at the base.
+              background: focused
+                ? `radial-gradient(circle at 50% 28%, rgb(255 255 255 / 0.55) 0, rgb(255 255 255 / 0) 46%), ${color}`
+                : "radial-gradient(circle at 50% 28%, rgb(255 255 255 / 0.18) 0, rgb(255 255 255 / 0) 46%), rgb(255 255 255 / 0.2)",
+              boxShadow: focused
+                ? "inset 0 0 0 0.5px rgb(0 0 0 / 0.22), inset 0 -1px 1.5px rgb(0 0 0 / 0.18)"
+                : "inset 0 0 0 0.5px rgb(0 0 0 / 0.18)",
+            }}
           >
             <Glyph
               size={8}
