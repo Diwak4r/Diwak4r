@@ -7,12 +7,10 @@ import {
   CaretLeft,
   Cpu,
   GithubLogo,
-  GraduationCap,
   House,
   InstagramLogo,
   LinkedinLogo,
   LockSimple,
-  Waveform,
   XLogo,
   type Icon,
 } from "@phosphor-icons/react";
@@ -28,9 +26,7 @@ interface Bookmark {
 const FAVORITES: Bookmark[] = [
   { label: "Classic Portfolio", url: "https://www.diwakaryadav.com.np/", icon: House },
   { label: "Blog", url: "https://www.diwakaryadav.com.np/blog/", icon: Article },
-  { label: "Police Exam Prep", url: "https://project.diwakaryadav.com.np/", icon: GraduationCap },
   { label: "Nepal AI Gateway", url: "https://ai.diwakaryadav.com.np/", icon: Cpu },
-  { label: "Pryzmira", url: "https://pryzmira.diwakaryadav.com.np/", icon: Waveform },
   { label: "GitHub", url: "https://github.com/Diwak4r", icon: GithubLogo },
   { label: "LinkedIn", url: "https://www.linkedin.com/in/diwak4r/", icon: LinkedinLogo },
   { label: "X", url: "https://x.com/Norwakar", icon: XLogo },

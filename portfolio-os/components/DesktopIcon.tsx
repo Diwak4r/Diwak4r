@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef, type RefObject } from "react";
+import { useEffect, useRef, type CSSProperties, type RefObject } from "react";
 import { motion, useMotionValue, useReducedMotion } from "motion/react";
 import type { AppDef } from "@/lib/apps";
 import { useWindows } from "@/lib/store";
 import AppTile from "./AppTile";
 
-/** Dragged icon offsets, per app, so the desktop remembers your layout. */
-const POS_KEY = "dios-icon-pos";
+/** Dragged icon offsets, per app, so the desktop remembers your layout.
+ *  v2: offsets are relative to the auto-laid column, not the old fixed spots. */
+const POS_KEY = "dios-icon-pos-v2";
 
 type StoredPos = Record<string, { x: number; y: number }>;
 
@@ -34,10 +35,13 @@ export default function DesktopIcon({
   mobile,
   selected = false,
   onSelect,
+  home,
 }: {
   app: AppDef;
   constraintsRef: RefObject<HTMLDivElement | null>;
   mobile: boolean;
+  /** Home spot in the desktop icon column (desktop only) */
+  home?: CSSProperties;
   selected?: boolean;
   onSelect?: (id: AppDef["id"] | null) => void;
 }) {
@@ -50,11 +54,25 @@ export default function DesktopIcon({
   const y = useMotionValue(0);
   useEffect(() => {
     if (mobile) return;
-    const p = readPositions()[app.id];
-    if (p) {
-      x.set(p.x);
-      y.set(p.y);
-    }
+    const restore = () => {
+      const p = readPositions()[app.id];
+      x.set(p?.x ?? 0);
+      y.set(p?.y ?? 0);
+    };
+    restore();
+    // On resize, Motion rescales drag offsets to keep each icon's relative spot
+    // inside the constraints, which shoves the column out of line. The column
+    // re-lays itself from the new height, so put the saved offset back after it.
+    let frame = 0;
+    const onResize = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(restore);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", onResize);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mobile]);
 
@@ -100,7 +118,7 @@ export default function DesktopIcon({
       }}
       onClick={handleClick}
       onDoubleClick={handleDoubleClick}
-      style={mobile ? undefined : { position: "absolute", ...app.desk, x, y }}
+      style={mobile ? undefined : { position: "absolute", ...home, x, y }}
       className="group z-10 flex w-[76px] cursor-default flex-col items-center gap-1.5 outline-none"
       aria-label={`Open ${app.name}`}
       aria-pressed={selected}

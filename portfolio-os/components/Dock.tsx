@@ -15,7 +15,7 @@ import { APPS, type AppDef } from "@/lib/apps";
 import { trashedItems, useFiles } from "@/lib/files";
 import { useAppWinCount, useWindows } from "@/lib/store";
 import { openLink, useSystem } from "@/lib/system";
-import { ChatGptMark, ClaudeMark, GithubMark, ZoMark } from "./brand/BrandMarks";
+import { GithubMark } from "./brand/BrandMarks";
 import AppTile from "./AppTile";
 
 interface QuickLink {
@@ -29,34 +29,16 @@ interface QuickLink {
 /** Web shortcuts: the tools Diwakar actually works in, each in its own window. */
 const QUICK_LINKS: QuickLink[] = [
   {
-    id: "zo-space",
-    label: "Zo Space",
-    url: "https://diwak4r.zo.space/",
-    icon: ZoMark,
-    tile: "linear-gradient(145deg, #7ee0d0, #1f9e8a)",
-  },
-  {
     id: "github",
     label: "GitHub",
     url: "https://github.com/Diwak4r",
     icon: GithubMark,
     tile: "linear-gradient(145deg, #3a3f47, #101215)",
   },
-  {
-    id: "chatgpt",
-    label: "ChatGPT",
-    url: "https://chatgpt.com/",
-    icon: ChatGptMark,
-    tile: "linear-gradient(145deg, #74aa9c, #0f4f43)",
-  },
-  {
-    id: "claude",
-    label: "Claude",
-    url: "https://claude.ai/",
-    icon: ClaudeMark,
-    tile: "linear-gradient(145deg, #d97a5c, #a54a2e)",
-  },
 ];
+
+/** Pinned apps only; the rest live in Launchpad and Spotlight. */
+const DOCK_APPS = APPS.filter((a) => a.dock).sort((a, b) => a.dock! - b.dock!);
 
 const REACH = 150;
 
@@ -295,7 +277,7 @@ function TrashItem({ mouseX }: { mouseX: MotionValue<number> }) {
 
 /** Shrinks the whole dock uniformly to fit the viewport, like real macOS —
  *  never clips or scrolls, no matter how many icons are added. */
-function useFitScale(navRef: React.RefObject<HTMLElement | null>) {
+function useFitScale(navRef: React.RefObject<HTMLElement | null>, items: number) {
   const [scale, setScale] = useState(1);
   const dockSize = useSystem((s) => s.dockSize);
 
@@ -310,7 +292,7 @@ function useFitScale(navRef: React.RefObject<HTMLElement | null>) {
     recompute();
     window.addEventListener("resize", recompute);
     return () => window.removeEventListener("resize", recompute);
-  }, [navRef, dockSize]);
+  }, [navRef, dockSize, items]);
 
   return scale;
 }
@@ -318,7 +300,13 @@ function useFitScale(navRef: React.RefObject<HTMLElement | null>) {
 export default function Dock() {
   const mouseX = useMotionValue<number>(Infinity);
   const navRef = useRef<HTMLElement>(null);
-  const scale = useFitScale(navRef);
+  // Like macOS: an unpinned app shows in the dock while it has windows, so a
+  // minimized window always has a way back.
+  const wins = useWindows((s) => s.wins);
+  const running = APPS.filter(
+    (a) => !a.dock && a.id !== "trash" && Object.values(wins).some((w) => w.appId === a.id)
+  );
+  const scale = useFitScale(navRef, running.length);
 
   return (
     <div className="absolute inset-x-0 bottom-3 z-40 flex justify-center">
@@ -330,7 +318,7 @@ export default function Dock() {
         className="dock-chrome flex items-end gap-2.5 rounded-[26px] border border-white/[0.14] px-3 pb-2 pt-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
         aria-label="Dock"
       >
-        {APPS.map((app) => (
+        {[...DOCK_APPS, ...running].map((app) => (
           <DockItem key={app.id} app={app} mouseX={mouseX} />
         ))}
         <span className="mx-0.5 h-11 w-px self-end bg-white/15" aria-hidden />

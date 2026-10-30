@@ -1,7 +1,8 @@
 "use client";
 
 import { ArrowUpRight, Broom, FolderSimple } from "@phosphor-icons/react";
-import { projects } from "@/lib/content";
+import { projects, worlds } from "@/lib/content";
+import { useWindows } from "@/lib/store";
 import { openLink } from "@/lib/system";
 
 const rowIcons: Record<string, { icon: typeof Broom; tile: string }> = {
@@ -25,9 +26,9 @@ function LiveBadge() {
 }
 
 export default function ProjectsApp() {
+  const openApp = useWindows((s) => s.openApp);
   const featured = projects.find((p) => p.flagship)!;
-  const cards = projects.filter((p) => !p.flagship && p.image);
-  const rows = projects.filter((p) => !p.flagship && !p.image);
+  const rows = projects.filter((p) => !p.flagship);
 
   return (
     <div className="@container space-y-4 p-4 @md:p-6">
@@ -66,43 +67,6 @@ export default function ProjectsApp() {
         </div>
       </article>
 
-      {/* Live products with screenshots */}
-      <div className="grid gap-3 @xl:grid-cols-2">
-        {cards.map((p) => (
-          <button
-            key={p.name}
-            onClick={() => openLink(p.href, p.name)}
-            className="group overflow-hidden rounded-xl border border-white/[0.07] text-left transition-colors hover:bg-white/[0.04]"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={p.image!}
-              alt={`${p.name} website`}
-              className="aspect-video w-full border-b border-white/[0.06] object-cover object-top"
-            />
-            <span className="block space-y-1.5 p-4">
-              <span className="flex items-center gap-2">
-                <span className="flex items-center gap-1 text-[14px] font-semibold text-white/90">
-                  {p.name}
-                  <ArrowUpRight
-                    size={13}
-                    weight="bold"
-                    className="text-accent-300 opacity-0 transition-opacity group-hover:opacity-100"
-                  />
-                </span>
-                {p.live && <LiveBadge />}
-              </span>
-              <span className="block text-[12.5px] leading-relaxed text-white/60">
-                {p.description}
-              </span>
-              <span className="block pt-0.5 text-[11.5px] text-white/40">
-                {p.tags.slice(0, 2).join(" · ")}
-              </span>
-            </span>
-          </button>
-        ))}
-      </div>
-
       {/* Utilities on GitHub */}
       <div className="grid gap-3 @xl:grid-cols-2">
         {rows.map((p) => {
@@ -140,6 +104,38 @@ export default function ProjectsApp() {
           );
         })}
       </div>
+
+      {/* AI builds: each opens in the 3D Worlds app */}
+      <section className="pt-3">
+        <h2 className="text-[14px] font-semibold text-white/90">AI Builds</h2>
+        <p className="mt-0.5 text-[12.5px] text-white/50">
+          Small things I build to see what a new AI model can really do.
+        </p>
+        <div className="mt-3 grid grid-cols-2 gap-3 @xl:grid-cols-4">
+          {worlds.map((w) => (
+            <button
+              key={w.id}
+              onClick={() => openApp("worlds", { world: w.id })}
+              className="group overflow-hidden rounded-xl border border-white/[0.07] text-left transition-colors hover:border-white/[0.16] hover:bg-white/[0.04]"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={w.image}
+                alt={`${w.name}, a 3D world`}
+                width={320}
+                height={200}
+                loading="lazy"
+                className="aspect-[16/10] w-full object-cover"
+                draggable={false}
+              />
+              <span className="block px-3 py-2.5">
+                <span className="block text-[13px] font-semibold text-white/90">{w.name}</span>
+                <span className="block text-[11.5px] text-white/40">{w.tags[1]}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

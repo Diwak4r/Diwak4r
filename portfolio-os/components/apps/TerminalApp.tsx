@@ -58,7 +58,7 @@ const HELP = [
   "theme <color>    change the accent (blue, purple, pink, red, orange, yellow, green, graphite)",
   "wifi <on|off>    toggle the connection",
   "neofetch         system info",
-  "og | zo          visit the classic portfolio / Zo Space",
+  "og               visit the classic portfolio",
   "ls, pwd, echo, date, history, clear (or cls), exit",
   "…plus 50+ easter eggs: roastme, momo, nepse, valorant, gym, cowsay, fortune,",
   "   deadline, crush, cgpa, loadshedding… the shell roasts back. try your luck.",
@@ -90,8 +90,6 @@ const CHATTY: Record<string, string[]> = {
   "vim": ["you are now trapped in vim.", "there is no escape. (jk, this terminal is a web page)"],
   "nano": ["real ones use nano and we respect it."],
   "ai": ["you're literally talking to a website built with AI. it's AI all the way down."],
-  "gpt": ["ChatGPT is in the dock. tell it Diwakar sent you."],
-  "claude code": ["the tool that built this entire desktop. run 'claude' for the lore."],
   "ollama run": ["pulling llama3:70b over Kathmandu hotel wifi...", "ETA: 2027. maybe grab a coffee."],
   "ollama": ["ollama is not installed here, but the vibes are local-first."],
   "dir": ["this is a mac (kind of). try 'ls'. same thing, more expensive."],
@@ -153,9 +151,9 @@ export default function TerminalApp({ winId }: { winId: string }) {
       case "help":
         return out(...HELP);
       case "whoami":
-        return out(`${profile.name} · BIT student & AI implementer, ${profile.location}`);
+        return out(`${profile.name} · BIT student, ${profile.role}, ${profile.location}`);
       case "about":
-        return out(profile.story[0], profile.story[1]);
+        return out(profile.intro);
       case "projects":
         return projects.map((p) => ({
           kind: "out" as const,
@@ -224,15 +222,6 @@ export default function TerminalApp({ winId }: { winId: string }) {
       case "classic":
         openLink("https://www.diwakaryadav.com.np/", "Diwakar Yadav");
         return out("Opening the classic portfolio...");
-      case "zo":
-        openLink("https://diwak4r.zo.space/", "Zo Space");
-        return out("Opening Zo Space...");
-      case "claude":
-        return out(
-          "Claude Code reporting for duty.",
-          "This entire desktop was designed and built with Claude Code.",
-          "Try 'open projects' to see more of what Diwakar ships with AI.",
-        );
       case "sudo":
         return out("diwakar is not in the sudoers file. This incident will be reported.");
       case "exit":
