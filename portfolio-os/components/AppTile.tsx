@@ -21,6 +21,8 @@ const PNG_ICONS: Partial<Record<AppDef["id"], string>> = {
   photos: "/images/icons/photos.png",
   spotify: "/images/icons/spotify.png",
   socials: "/images/icons/messages.png",
+  // A real frame from the game, like the 3D Worlds tile
+  craft: "/images/icons/craftjs.webp",
 };
 
 export default function AppTile({ app }: { app: AppDef }) {
@@ -100,20 +102,6 @@ function Face({
           <span className="absolute left-[18%] top-0 h-[62%] w-[10%] bg-[#c0392b]" />
           <span className="absolute left-[34%] top-[30%] h-[4%] w-[38%] rounded-full bg-[#c9b98a]" />
           <span className="absolute left-[34%] top-[42%] h-[4%] w-[30%] rounded-full bg-[#c9b98a]" />
-        </span>
-      );
-
-    case "craft":
-      // Stacked isometric voxel blocks — an original motif, not Minecraft's textures
-      return (
-        <span className="absolute inset-0 flex items-center justify-center" style={{ background: tile }}>
-          <svg viewBox="0 0 48 48" className="h-[70%] w-[70%]" aria-hidden>
-            <g>
-              <polygon points="24,4 42,14 24,24 6,14" fill="#bdeb8f" />
-              <polygon points="6,14 24,24 24,44 6,34" fill="#5a9c3f" />
-              <polygon points="42,14 24,24 24,44 42,34" fill="#3d7a2a" />
-            </g>
-          </svg>
         </span>
       );
 

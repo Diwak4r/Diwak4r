@@ -139,7 +139,8 @@ const browser = await chromium.launch({ headless: true });
   const trashButton = dock.getByRole("button", { name: /^Trash,/ });
   await trashButton.click();
   check("Trash opens from Dock", await page.getByRole("dialog", { name: "Trash" }).isVisible({ timeout: 5_000 }).catch(() => false));
-  check("All 19 applications opened", opened.length === 18, `${opened.length + 1}/19 including Trash`);
+  const totalApps = appCases.length + 1; // + Trash
+  check(`All ${totalApps} applications opened`, opened.length === appCases.length, `${opened.length + 1}/${totalApps} including Trash`);
   await page.screenshot({ path: path.join(evidenceDir, "05-all-apps-opened.png") });
 
   // Keep a single About window for detailed window behavior.
