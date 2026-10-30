@@ -24,13 +24,16 @@ const appCases = [
   ["Weather", "Weather"],
   ["WhatsApp", "WhatsApp"],
   ["Launchpad", "Launchpad"],
+  ["3D Worlds", "3D Worlds"],
 ];
+// Apps without a pinned Dock icon open from Launchpad instead.
+const launchpadOnly = new Set(["Calculator", "CraftJS", "Code", "Photos", "Weather", "WhatsApp"]);
 
 await fs.mkdir(evidenceDir, { recursive: true });
 
 const results = [];
 const check = (name, pass, detail = "") => results.push({ name, pass: Boolean(pass), detail });
-const issue = (entry) => !entry.url.includes("api.open-meteo.com") && !entry.url.includes("diwak4r.zo.space");
+const issue = (entry) => !entry.url.includes("api.open-meteo.com");
 
 function observe(page, label) {
   const consoleErrors = [];
@@ -120,11 +123,17 @@ const browser = await chromium.launch({ headless: true });
 
   const opened = [];
   for (const [appName, windowTitle] of appCases) {
-    const button = dock.getByRole("button", { name: new RegExp(`(?:Open|Focus) ${appName}$`) }).first();
-    await button.click();
+    const fromLaunchpad = launchpadOnly.has(appName);
+    if (fromLaunchpad) {
+      await dock.getByRole("button", { name: /(?:Open|Focus) Launchpad$/ }).first().click();
+      await page.getByRole("dialog", { name: "Launchpad" }).last()
+        .getByRole("button", { name: appName, exact: true }).click();
+    } else {
+      await dock.getByRole("button", { name: new RegExp(`(?:Open|Focus) ${appName}$`) }).first().click();
+    }
     const dialog = page.getByRole("dialog", { name: windowTitle }).last();
     const visible = await dialog.isVisible({ timeout: 5_000 }).catch(() => false);
-    check(`${appName} opens from Dock`, visible);
+    check(`${appName} opens from ${fromLaunchpad ? "Launchpad" : "Dock"}`, visible);
     if (visible) opened.push(appName);
   }
   const trashButton = dock.getByRole("button", { name: /^Trash,/ });

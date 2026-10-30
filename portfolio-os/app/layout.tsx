@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Diwakar Ray Yadav",
     title: "DiwakarOS | Diwakar Ray Yadav's Interactive Portfolio",
-    description: "Exploring Gen-AI and LLMs. Integrating AI into everyday workflows.",
+    description: "Diwakar's portfolio as a desktop: his story, projects, blog, and 3D worlds you can explore.",
     images: ["/images/hero-800.webp"],
   },
 };

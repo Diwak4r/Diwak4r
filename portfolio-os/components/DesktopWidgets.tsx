@@ -164,9 +164,12 @@ function WidgetShell({ label, children }: { label: string; children: React.React
  *  in from the edge and below the menu bar — reads as a deliberate column, not
  *  a floating card. The column itself ignores input; interactive children opt
  *  back in so Now Playing can launch Spotify without blocking desktop drag. */
-export default function DesktopWidgets() {
+export default function DesktopWidgets({ right }: { right: number }) {
   return (
-    <div className="pointer-events-none absolute right-6 top-6 z-[6] flex flex-col gap-3">
+    <div
+      className="pointer-events-none absolute top-4 z-[6] flex flex-col gap-3"
+      style={{ right }}
+    >
       <CalendarWidget />
       <NowPlayingWidget />
     </div>

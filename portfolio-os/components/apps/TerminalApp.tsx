@@ -58,7 +58,7 @@ const HELP = [
   "theme <color>    change the accent (blue, purple, pink, red, orange, yellow, green, graphite)",
   "wifi <on|off>    toggle the connection",
   "neofetch         system info",
-  "og | zo          visit the classic portfolio / Zo Space",
+  "og               visit the classic portfolio",
   "ls, pwd, echo, date, history, clear (or cls), exit",
   "…plus 50+ easter eggs: roastme, momo, nepse, valorant, gym, cowsay, fortune,",
   "   deadline, crush, cgpa, loadshedding… the shell roasts back. try your luck.",
@@ -153,9 +153,9 @@ export default function TerminalApp({ winId }: { winId: string }) {
       case "help":
         return out(...HELP);
       case "whoami":
-        return out(`${profile.name} · BIT student & AI implementer, ${profile.location}`);
+        return out(`${profile.name} · BIT student, ${profile.role}, ${profile.location}`);
       case "about":
-        return out(profile.story[0], profile.story[1]);
+        return out(profile.intro);
       case "projects":
         return projects.map((p) => ({
           kind: "out" as const,
@@ -224,9 +224,6 @@ export default function TerminalApp({ winId }: { winId: string }) {
       case "classic":
         openLink("https://www.diwakaryadav.com.np/", "Diwakar Yadav");
         return out("Opening the classic portfolio...");
-      case "zo":
-        openLink("https://diwak4r.zo.space/", "Zo Space");
-        return out("Opening Zo Space...");
       case "claude":
         return out(
           "Claude Code reporting for duty.",

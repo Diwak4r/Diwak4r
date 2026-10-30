@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import type { Icon } from "@phosphor-icons/react";
 import {
   Calculator,
@@ -7,6 +6,7 @@ import {
   Compass,
   Cube,
   Folder,
+  GlobeHemisphereWest,
   GearSix,
   MagnifyingGlass,
   MusicNotes,
@@ -34,8 +34,10 @@ export interface AppDef {
   tile: string;
   /** Preferred window size and cascade position (clamped to the desktop) */
   window: { w: number; h: number; x: number; y: number };
-  /** Desktop icon placement; omit for dock-only apps */
-  desk?: CSSProperties;
+  /** Order in the desktop icon column; omit to keep the app off the desktop */
+  desk?: number;
+  /** Order in the dock; omit to keep it out. Every app stays in Launchpad and Spotlight */
+  dock?: number;
 }
 
 export const APPS: AppDef[] = [
@@ -46,7 +48,8 @@ export const APPS: AppDef[] = [
     icon: null,
     tile: "linear-gradient(145deg, #4d6076, #2b3a4c)",
     window: { w: 760, h: 540, x: 120, y: 48 },
-    desk: { right: 26, top: 22 },
+    desk: 1,
+    dock: 3,
   },
   {
     id: "projects",
@@ -55,7 +58,8 @@ export const APPS: AppDef[] = [
     icon: SquaresFour,
     tile: "linear-gradient(145deg, #f7a94b, #e0731d)",
     window: { w: 700, h: 580, x: 220, y: 84 },
-    desk: { right: 26, top: 124 },
+    desk: 2,
+    dock: 4,
   },
   {
     id: "journal",
@@ -64,7 +68,8 @@ export const APPS: AppDef[] = [
     icon: Notebook,
     tile: "linear-gradient(145deg, #e7b34a, #c07f12)",
     window: { w: 560, h: 460, x: 320, y: 120 },
-    desk: { right: 26, top: 226 },
+    desk: 4,
+    dock: 6,
   },
   {
     id: "notes",
@@ -73,7 +78,7 @@ export const APPS: AppDef[] = [
     icon: Notepad,
     tile: "linear-gradient(145deg, #ffd339, #f8b500)",
     window: { w: 480, h: 440, x: 380, y: 150 },
-    desk: { right: 26, top: 430 },
+    dock: 10,
   },
   {
     id: "contact",
@@ -82,7 +87,8 @@ export const APPS: AppDef[] = [
     icon: PaperPlaneTilt,
     tile: "linear-gradient(145deg, #4da3ff, #0b63d8)",
     window: { w: 560, h: 620, x: 420, y: 60 },
-    desk: { right: 26, top: 328 },
+    desk: 5,
+    dock: 7,
   },
   {
     id: "browser",
@@ -91,6 +97,7 @@ export const APPS: AppDef[] = [
     icon: Compass,
     tile: "linear-gradient(145deg, #6cc1ff, #1668dc)",
     window: { w: 980, h: 640, x: 90, y: 40 },
+    dock: 8,
   },
   {
     id: "terminal",
@@ -99,7 +106,8 @@ export const APPS: AppDef[] = [
     icon: TerminalWindow,
     tile: "linear-gradient(145deg, #23272f, #0c0e12)",
     window: { w: 620, h: 420, x: 180, y: 200 },
-    desk: { left: 26, bottom: 118 },
+    desk: 6,
+    dock: 9,
   },
   {
     id: "settings",
@@ -108,6 +116,7 @@ export const APPS: AppDef[] = [
     icon: GearSix,
     tile: "linear-gradient(145deg, #9a9aa2, #5c5c64)",
     window: { w: 660, h: 480, x: 260, y: 140 },
+    dock: 13,
   },
   {
     id: "calculator",
@@ -124,6 +133,7 @@ export const APPS: AppDef[] = [
     icon: MusicNotes,
     tile: "linear-gradient(145deg, #2be08a, #1db954)",
     window: { w: 760, h: 560, x: 160, y: 70 },
+    dock: 11,
   },
   {
     id: "socials",
@@ -132,7 +142,7 @@ export const APPS: AppDef[] = [
     icon: ShareNetwork,
     tile: "linear-gradient(145deg, #7d8cff, #4457d6)",
     window: { w: 520, h: 480, x: 300, y: 110 },
-    desk: { right: 26, top: 534 },
+    dock: 12,
   },
   {
     id: "craft",
@@ -141,7 +151,7 @@ export const APPS: AppDef[] = [
     icon: Cube,
     tile: "linear-gradient(145deg, #7bc96f, #3f7d3a)",
     window: { w: 960, h: 640, x: 80, y: 30 },
-    desk: { left: 26, bottom: 230 },
+    desk: 7,
   },
   {
     id: "finder",
@@ -150,6 +160,7 @@ export const APPS: AppDef[] = [
     icon: Folder,
     tile: "linear-gradient(180deg, #168fd6, #0a5f9c)",
     window: { w: 700, h: 500, x: 240, y: 110 },
+    dock: 1,
   },
   {
     id: "code",
@@ -191,6 +202,17 @@ export const APPS: AppDef[] = [
     icon: Rabbit,
     tile: "linear-gradient(145deg, #b86ef7, #6e3bb5)",
     window: { w: 640, h: 440, x: 260, y: 120 },
+    dock: 2,
+  },
+  {
+    id: "worlds",
+    name: "3D Worlds",
+    windowTitle: "3D Worlds",
+    icon: GlobeHemisphereWest,
+    tile: "linear-gradient(145deg, #c9a46a, #6b4f2a)",
+    window: { w: 980, h: 580, x: 100, y: 16 },
+    desk: 3,
+    dock: 5,
   },
   {
     id: "trash",

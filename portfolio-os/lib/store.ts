@@ -20,7 +20,8 @@ export type AppId =
   | "weather"
   | "whatsapp"
   | "launchpad"
-  | "trash";
+  | "trash"
+  | "worlds";
 
 export type WinKind = "app" | "link";
 

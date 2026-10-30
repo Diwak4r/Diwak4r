@@ -9,7 +9,7 @@ import {
   LockSimple,
 } from "@phosphor-icons/react";
 import { isEmbeddable } from "@/lib/system";
-import { ChatGptMark, ClaudeMark, GithubMark, XMark, ZoMark } from "./brand/BrandMarks";
+import { ChatGptMark, ClaudeMark, GithubMark, XMark } from "./brand/BrandMarks";
 import SiteSnapshot from "./SiteSnapshot";
 
 const HOST_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -19,7 +19,6 @@ const HOST_ICONS: Record<string, React.ComponentType<{ className?: string }>> = 
   "x.com": XMark,
   "chatgpt.com": ChatGptMark,
   "claude.ai": ClaudeMark,
-  "diwak4r.zo.space": ZoMark,
 };
 
 const prettyUrl = (url: string) => {

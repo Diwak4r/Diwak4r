@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { APPS } from "@/lib/apps";
+import AppTile from "./AppTile";
 import { useWindows } from "@/lib/store";
 
 export default function Launchpad() {
@@ -29,8 +30,8 @@ export default function Launchpad() {
           {filtered.map(app => (
             <button key={app.id} onClick={() => openApp(app.id)}
               className="group flex flex-col items-center gap-2 rounded-xl p-3 transition-colors hover:bg-white/[0.08]">
-              <span className="flex h-16 w-16 items-center justify-center rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.4)]" style={{ background: app.tile }}>
-                {app.icon ? <app.icon size={30} weight="fill" className="text-white/90" /> : <span className="text-[24px]">👤</span>}
+              <span className="block h-16 w-16 drop-shadow-[0_6px_10px_rgba(0,0,0,0.35)]">
+                <AppTile app={app} />
               </span>
               <span className="text-[12px] font-medium text-white/85 group-hover:text-white">{app.name}</span>
             </button>

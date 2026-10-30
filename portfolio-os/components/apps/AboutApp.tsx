@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import {
   Briefcase,
   Cpu,
@@ -86,15 +86,6 @@ function Story() {
             </span>
           ))}
         </div>
-      </div>
-
-      <div className="grid max-w-[11rem] grid-cols-1 gap-3">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/diwakar-avatar.webp"
-          alt="Diwakar, rear view"
-          className="aspect-square w-full rounded-xl border border-white/10 object-cover"
-        />
       </div>
     </div>
   );
@@ -183,19 +174,18 @@ export default function AboutApp() {
         </nav>
 
         <div className="min-w-0 flex-1 p-5 @2xl:p-7">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={tab}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.16, ease: "easeOut" }}
-            >
-              {tab === "story" && <Story />}
-              {tab === "experience" && <Experience />}
-              {tab === "skills" && <Skills />}
-            </motion.div>
-          </AnimatePresence>
+          {/* Slide only, never fade from 0: the content is visible even if
+              the animation never runs. */}
+          <motion.div
+            key={tab}
+            initial={{ y: 6 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
+          >
+            {tab === "story" && <Story />}
+            {tab === "experience" && <Experience />}
+            {tab === "skills" && <Skills />}
+          </motion.div>
         </div>
       </div>
     </div>

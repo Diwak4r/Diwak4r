@@ -63,6 +63,18 @@ function Face({
         />
       );
 
+    case "worlds":
+      // The castle itself: the tile is a window onto one of the worlds
+      return (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src="/images/builds/burg-falkenrast.webp"
+          alt=""
+          className="absolute inset-0 h-full w-full scale-[1.35] object-cover object-[50%_40%]"
+          draggable={false}
+        />
+      );
+
     case "projects":
       // A bento grid of mismatched tiles, like a Launchpad shelf of little apps
       return (

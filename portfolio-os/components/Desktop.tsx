@@ -43,6 +43,30 @@ const WeatherApp = lazy(() => import("./apps/WeatherApp"));
 const WhatsAppApp = lazy(() => import("./apps/WhatsAppApp"));
 const Launchpad = lazy(() => import("./Launchpad"));
 const TrashApp = lazy(() => import("./apps/TrashApp"));
+const WorldsApp = lazy(() => import("./apps/WorldsApp"));
+
+/* Desktop icon column, macOS style: top-right, flowing down, then into a new
+   column to the left when the screen is short. The widgets sit left of it. */
+const ICON_EDGE = 20;
+const ICON_TOP = 16;
+const ICON_PITCH = 98; // 64px tile + label + breathing room
+const ICON_COL_W = 92;
+const DOCK_CLEAR = 104; // keep the column above the dock
+const WIDGET_GAP = 14;
+
+function useDeskRows(count: number) {
+  const [rows, setRows] = useState(count);
+  useEffect(() => {
+    const fit = () => {
+      const usable = window.innerHeight - 28 - ICON_TOP - DOCK_CLEAR;
+      setRows(Math.max(1, Math.min(count, Math.floor(usable / ICON_PITCH))));
+    };
+    fit();
+    window.addEventListener("resize", fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [count]);
+  return rows;
+}
 
 const APP_SPINNER = (
   <div className="flex h-full items-center justify-center">
@@ -72,6 +96,7 @@ const APP_RENDER: Record<AppId, (win: Win) => React.ReactNode> = {
   whatsapp: () => <WhatsAppApp />,
   launchpad: () => <Launchpad />,
   trash: () => <TrashApp />,
+  worlds: (w) => <WorldsApp worldId={w.props?.world as string | undefined} />,
 };
 
 type Phase = "boot" | "login" | "desktop";
@@ -299,7 +324,13 @@ export default function Desktop() {
     window.addEventListener("pointerup", up);
   };
 
-  const deskApps = APPS.filter((a) => a.desk);
+  const deskApps = APPS.filter((a) => a.desk).sort((a, b) => a.desk! - b.desk!);
+  const deskRows = useDeskRows(deskApps.length);
+  const deskCols = Math.ceil(deskApps.length / deskRows);
+  const homeOf = (i: number) => ({
+    right: ICON_EDGE + Math.floor(i / deskRows) * ICON_COL_W,
+    top: ICON_TOP + (i % deskRows) * ICON_PITCH,
+  });
 
   return (
     <div
@@ -325,7 +356,9 @@ export default function Desktop() {
             {/* Ambient widgets share the desktop stacking context: they sit
                 above the surface and remain clickable, while windows with z>=10
                 naturally cover them like real desktop content. */}
-            {isMobile === false && <DesktopWidgets />}
+            {isMobile === false && (
+              <DesktopWidgets right={ICON_EDGE + deskCols * ICON_COL_W + WIDGET_GAP} />
+            )}
 
             {/* Icons: scattered on desktop, springboard grid on mobile */}
             {isMobile === null ? null : isMobile ? (
@@ -335,12 +368,13 @@ export default function Desktop() {
                 ))}
               </div>
             ) : (
-              deskApps.map((app) => (
+              deskApps.map((app, i) => (
                 <DesktopIcon
                   key={`${app.id}-${tidyKey}`}
                   app={app}
                   constraintsRef={desktopRef}
                   mobile={false}
+                  home={homeOf(i)}
                   selected={selectedIcon === app.id}
                   onSelect={setSelectedIcon}
                 />

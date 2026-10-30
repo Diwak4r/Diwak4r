@@ -403,7 +403,6 @@ const HOST_TITLES: Record<string, string> = {
   "www.instagram.com": "Instagram",
   "chatgpt.com": "ChatGPT",
   "claude.ai": "Claude",
-  "diwak4r.zo.space": "Zo Space",
   "www.diwakaryadav.com.np": "Diwakar Yadav",
   "diwakaryadav.com.np": "Diwakar Yadav",
   "ai.diwakaryadav.com.np": "Nepal AI Gateway",

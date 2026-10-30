@@ -44,11 +44,9 @@ for (const width of [1440, 1024, 900, 768]) {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   await enter(page);
 
-  // Dock quick links present with original marks (ChatGPT + Zo Space)
-  const zo = page.locator('nav[aria-label="Dock"] button[aria-label="Open Zo Space"]');
-  const chatgpt = page.locator('nav[aria-label="Dock"] button[aria-label="Open ChatGPT"]');
-  check("Zo Space dock icon present", await zo.isVisible().catch(() => false));
-  check("ChatGPT dock icon present", await chatgpt.isVisible().catch(() => false));
+  // Dock quick link present with its original mark
+  const github = page.locator('nav[aria-label="Dock"] button[aria-label="Open GitHub"]');
+  check("GitHub dock icon present", await github.isVisible().catch(() => false));
 
   // Socials app
   await page.locator('nav[aria-label="Dock"] button[aria-label$="Socials"]').first().click();
