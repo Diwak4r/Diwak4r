@@ -41,10 +41,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             target.scrollIntoView({
-                behavior: 'smooth',
+                behavior: reduceMotion ? 'auto' : 'smooth',
                 block: 'start'
             });
+            // Move keyboard focus too, so the next Tab starts inside the target (skip links)
+            if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
         }
     });
 });
