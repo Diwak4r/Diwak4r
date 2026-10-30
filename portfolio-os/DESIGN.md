@@ -30,7 +30,7 @@ is browsable inside this OS through the Browser app.
   routes through it.
 - **Terminal:** help, about, projects, skills, social, contact, whoami,
   open <app>, theme <tone>, wifi <on|off>, ls, pwd, echo, date, neofetch,
-  claude, sudo, clear/cls, exit.
+  sudo, clear/cls, exit.
 
 ## 1. Concept & Structure
 

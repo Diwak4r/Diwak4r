@@ -90,8 +90,6 @@ const CHATTY: Record<string, string[]> = {
   "vim": ["you are now trapped in vim.", "there is no escape. (jk, this terminal is a web page)"],
   "nano": ["real ones use nano and we respect it."],
   "ai": ["you're literally talking to a website built with AI. it's AI all the way down."],
-  "gpt": ["ChatGPT is in the dock. tell it Diwakar sent you."],
-  "claude code": ["the tool that built this entire desktop. run 'claude' for the lore."],
   "ollama run": ["pulling llama3:70b over Kathmandu hotel wifi...", "ETA: 2027. maybe grab a coffee."],
   "ollama": ["ollama is not installed here, but the vibes are local-first."],
   "dir": ["this is a mac (kind of). try 'ls'. same thing, more expensive."],
@@ -224,12 +222,6 @@ export default function TerminalApp({ winId }: { winId: string }) {
       case "classic":
         openLink("https://www.diwakaryadav.com.np/", "Diwakar Yadav");
         return out("Opening the classic portfolio...");
-      case "claude":
-        return out(
-          "Claude Code reporting for duty.",
-          "This entire desktop was designed and built with Claude Code.",
-          "Try 'open projects' to see more of what Diwakar ships with AI.",
-        );
       case "sudo":
         return out("diwakar is not in the sudoers file. This incident will be reported.");
       case "exit":

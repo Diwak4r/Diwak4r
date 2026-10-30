@@ -328,7 +328,7 @@ function AboutPane() {
         <div className="flex justify-between"><span className="text-[13px] text-white/50">OS</span><span className="text-[13px] text-white/85">DiwakarOS 3.0</span></div>
         <div className="flex justify-between"><span className="text-[13px] text-white/50">Chip</span><span className="text-[13px] text-white/85">Apple M∞ · fabricated in Kathmandu</span></div>
         <div className="flex justify-between"><span className="text-[13px] text-white/50">Memory</span><span className="text-[13px] text-white/85">∞ GB unified vibes</span></div>
-        <div className="flex justify-between"><span className="text-[13px] text-white/50">Built with</span><span className="text-[13px] text-white/85">Claude Code + Next.js + caffeine</span></div>
+        <div className="flex justify-between"><span className="text-[13px] text-white/50">Built with</span><span className="text-[13px] text-white/85">Next.js, late nights, and caffeine</span></div>
         <div className="flex justify-between"><span className="text-[13px] text-white/50">Owner</span><span className="text-[13px] text-white/85">{profile.name}</span></div>
         <div className="flex justify-between"><span className="text-[13px] text-white/50">Uptime</span><span className="text-[13px] tabular-nums text-white/85">{h}h {m}m {s}s</span></div>
         <div className="mt-4 flex gap-2 pt-3 border-t border-white/[0.08]">
