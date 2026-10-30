@@ -92,8 +92,8 @@ function WorldView({ world, onBack }: { world: World; onBack: () => void }) {
           title={world.name}
           onLoad={() => setLoading(false)}
           sandbox={world.sandbox}
-          allow="pointer-lock; fullscreen; autoplay; gamepad; focus-without-user-activation 'none'"
-          allowFullScreen
+          // Pointer lock comes from the sandbox flag, not from `allow`.
+          allow="fullscreen; autoplay; gamepad"
           className="h-full w-full border-0"
         />
         {loading && (
