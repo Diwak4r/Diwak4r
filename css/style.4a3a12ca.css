@@ -51,7 +51,7 @@
 
 /* System-level dark mode support — applies when prefers-color-scheme: dark (before JS toggles data-theme) */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --bg-primary: #121212;
         --bg-secondary: #1E1E1E;
         --text-primary: #E2E8F0;
@@ -593,8 +593,23 @@ body {
     transform: scale(1.02);
 }
 
+/* Cards in a row share one height; the button sits at the bottom of each card
+   so buttons line up even when descriptions differ in length. */
+.project-card {
+    display: flex;
+    flex-direction: column;
+}
+
 .project-content {
     padding: 1.25rem 1.5rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-content > .btn {
+    margin-top: auto;
+    align-self: flex-start;
 }
 
 .project-title {
@@ -673,13 +688,13 @@ body {
 /* Contact Section */
 .contact-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 4rem;
 }
 
 @media (max-width: 768px) {
     .contact-content {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 2rem;
     }
 }
@@ -1021,4 +1036,66 @@ body {
         display: none;
         /* Hide extra images on mobile to save space, or remove this line to show all */
     }
+}
+
+/* Blog visuals: brand logo rows and screenshot figures */
+.post-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    list-style: none;
+}
+
+.post-logos li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.post-logos img {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.post-figure {
+    margin: 2rem 0;
+}
+
+.post-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-light);
+}
+
+.post-figure figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.post-figure figcaption a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* One-color logos: drawn as a mask filled with the text colour, so they fit both themes */
+.logo-mask {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    background-color: var(--text-primary);
+    -webkit-mask: var(--logo) center / contain no-repeat;
+    mask: var(--logo) center / contain no-repeat;
 }

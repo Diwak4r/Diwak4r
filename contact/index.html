@@ -109,12 +109,12 @@
         .theme-toggle { background: none; border: none; cursor: pointer; color: var(--text-primary); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-primary); cursor: pointer; }
 
-        .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-content { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: flex; }
-            .contact-content { grid-template-columns: 1fr; gap: 2rem; }
+            .contact-content { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
         }
     </style>
 

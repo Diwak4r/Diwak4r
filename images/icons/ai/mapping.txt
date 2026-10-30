@@ -15,4 +15,20 @@ https://unpkg.com/@lobehub/icons-static-svg@latest/icons/grok.svg	images/icons/a
 https://unpkg.com/@lobehub/icons-static-svg@latest/icons/meta-color.svg	images/icons/ai/meta-color.svg
 https://miromind.ai/favicon.svg	None
 https://www.google.com/s2/favicons?domain=happycapy.ai&sz=128	images/icons/ai/happycapy-ai-favicon.png
-https://www.google.com/s2/favicons?domain=arena.ai&sz=128	images/icons/ai/arena-ai-favicon.png
+https://www.google.com/s2/favicons?domain=arena.ai&sz=128	images/icons/ai/arena-ai-favicon.pnghttps://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/mistral-color.svg	images/icons/ai/mistral-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/qwen-color.svg	images/icons/ai/qwen-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/anthropic.svg	images/icons/ai/anthropic.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/cursor.svg	images/icons/ai/cursor.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/githubcopilot.svg	images/icons/ai/githubcopilot.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/windsurf.svg	images/icons/ai/windsurf.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/cline.svg	images/icons/ai/cline.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/ollama.svg	images/icons/ai/ollama.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/gemma-color.svg	images/icons/ai/gemma-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/mcp.svg	images/icons/ai/mcp.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/huggingface-color.svg	images/icons/ai/huggingface-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/cohere-color.svg	images/icons/ai/cohere-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/zhipu-color.svg	images/icons/ai/zhipu-color.svg
+https://unpkg.com/@lobehub/icons-static-svg@1.101.0/icons/claudecode-color.svg	images/icons/ai/claudecode-color.svg
+https://unpkg.com/simple-icons@16.36.0/icons/apple.svg	images/icons/ai/apple.svg
+https://unpkg.com/simple-icons@16.36.0/icons/github.svg	images/icons/ai/github.svg
+https://unpkg.com/simple-icons@16.36.0/icons/zedindustries.svg	images/icons/ai/zed-si.svg
