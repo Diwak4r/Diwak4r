@@ -4,20 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FEFAE0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>About | Diwakar Ray Yadav</title>
-    <link rel="canonical" href="https://diwakaryadav.com.np/about/">
+    <link rel="canonical" href="https://www.diwakaryadav.com.np/about/">
 
     <!-- Theme detection early to avoid color flash -->
     <script>
     (function () {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', saved);
+            }
+        } catch (e) {}
     })();
     </script>
 
@@ -59,7 +61,7 @@
             --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
             --radius: 10px;
             --radius-sm: 6px;
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         [data-theme="dark"] {
@@ -74,6 +76,27 @@
             --card-bg: #1E1E1E;
             --header-bg: rgba(18, 18, 18, 0.95);
             --header-bg-scroll: rgba(18, 18, 18, 0.98);
+        }
+
+
+        /* system dark (critical) */
+
+        @media (prefers-color-scheme: dark) {
+
+            :root:not([data-theme="light"]) {
+                --bg-primary: #121212;
+                --bg-secondary: #1E1E1E;
+                --text-primary: #E2E8F0;
+                --text-secondary: #CBD5E1;
+                --text-muted: #94A3B8;
+                --accent-primary: #FB923C;
+                --accent-secondary: #F97316;
+                --border-light: #2D2D2D;
+                --card-bg: #1E1E1E;
+                --header-bg: rgba(18, 18, 18, 0.95);
+                --header-bg-scroll: rgba(18, 18, 18, 0.98);
+            }
+
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -175,21 +198,21 @@
         content="Diwakar Ray Yadav, a BIT student in Kathmandu, Nepal. Growth Intern at Springbase AI, builder of Nepal AI Gateway, and tests new AI models by building things with them.">
     <meta property="og:title" content="About | Diwakar Ray Yadav">
     <meta property="og:description" content="BIT student and Growth Intern at Springbase AI in Kathmandu. Built Nepal AI Gateway and tests new AI models by building things with them.">
-    <meta property="og:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
+    <meta property="og:image" content="https://www.diwakaryadav.com.np/images/hero-800.webp">
     <meta property="og:type" content="profile">
-    <meta property="og:url" content="https://diwakaryadav.com.np/about/">
+    <meta property="og:url" content="https://www.diwakaryadav.com.np/about/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About | Diwakar Ray Yadav">
     <meta name="twitter:description" content="BIT student and Growth Intern at Springbase AI in Kathmandu. Built Nepal AI Gateway and tests new AI models by building things with them.">
-    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
+    <meta name="twitter:image" content="https://www.diwakaryadav.com.np/images/hero-800.webp">
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Diwakar Ray Yadav",
-        "url": "https://diwakaryadav.com.np/about/",
-        "image": "https://diwakaryadav.com.np/images/hero-800.webp",
+        "url": "https://www.diwakaryadav.com.np/about/",
+        "image": "https://www.diwakaryadav.com.np/images/hero-800.webp",
         "jobTitle": "Growth Intern",
         "description": "BIT student and Growth Intern at Springbase AI in Kathmandu, Nepal. Built Nepal AI Gateway, an AI API for Nepali developers that needs no international card.",
         "worksFor": {
@@ -297,7 +320,7 @@
             border-radius: 50%;
             background: var(--bg-secondary);
             color: var(--text-primary);
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
         }
 
         .profile-social a:hover {
@@ -360,7 +383,7 @@
             padding: 0.75rem 1rem;
             background: var(--bg-primary);
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
         }
 
         .explore-item:hover {
@@ -497,7 +520,7 @@
             border: 1px solid var(--border-light);
             border-radius: 20px;
             color: var(--text-secondary);
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
         }
 
         .chip:hover {
@@ -514,7 +537,7 @@
             background: var(--bg-secondary);
             border-radius: var(--radius);
             margin-top: 1.5rem;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
         }
 
         .x-cta:hover {
@@ -548,7 +571,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
         }
 
         .x-cta-btn:hover {

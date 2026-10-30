@@ -4,23 +4,25 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FEFAE0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="referrer" content="strict-origin-when-cross-origin">
  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
  <title>Best Free AI Tools, LLMs, and Agent Platforms in 2026 | Diwakar Ray Yadav</title>
- <link rel="canonical" href="https://diwakaryadav.com.np/blog/trending-llms/">
+ <link rel="canonical" href="https://www.diwakaryadav.com.np/blog/trending-llms/">
 
  <!-- Theme detection early to avoid color flash -->
  <script>
- (function () {
- const savedTheme = localStorage.getItem('theme');
- if (savedTheme) {
- document.documentElement.setAttribute('data-theme', savedTheme);
- } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
- document.documentElement.setAttribute('data-theme', 'dark');
- }
- })();
- </script>
+    (function () {
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', saved);
+            }
+        } catch (e) {}
+    })();
+    </script>
 
  <!-- Favicons -->
  <link rel="icon" href="/favicon.ico" sizes="any">
@@ -41,7 +43,7 @@
  rel="stylesheet">
  </noscript>
  <link rel="alternate" type="application/rss+xml" title="Diwakar Ray Yadav Blog RSS Feed"
- href="https://diwakaryadav.com.np/feed.xml">
+ href="https://www.diwakaryadav.com.np/feed.xml">
 
  <!-- Critical CSS: variables, reset, header, article layout -->
  <style>
@@ -62,7 +64,7 @@
  --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
  --radius: 10px;
  --radius-sm: 6px;
- --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+ --transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
  }
 
  [data-theme="dark"] {
@@ -77,6 +79,27 @@
  --card-bg: #1E1E1E;
  --header-bg: rgba(18, 18, 18, 0.95);
  --header-bg-scroll: rgba(18, 18, 18, 0.98);
+ }
+
+
+ /* system dark (critical) */
+
+ @media (prefers-color-scheme: dark) {
+
+     :root:not([data-theme="light"]) {
+     --bg-primary: #121212;
+     --bg-secondary: #1E1E1E;
+     --text-primary: #E2E8F0;
+     --text-secondary: #CBD5E1;
+     --text-muted: #94A3B8;
+     --accent-primary: #FB923C;
+     --accent-secondary: #F97316;
+     --border-light: #2D2D2D;
+     --card-bg: #1E1E1E;
+     --header-bg: rgba(18, 18, 18, 0.95);
+     --header-bg-scroll: rgba(18, 18, 18, 0.98);
+     }
+
  }
 
  * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -146,8 +169,8 @@
  <meta property="og:description"
  content="A practical list of free AI tools and agent platforms with generous free tiers, reviewed for 2026.">
  <meta property="og:type" content="article">
- <meta property="og:url" content="https://diwakaryadav.com.np/blog/trending-llms/">
- <meta property="og:image" content="https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8">
+ <meta property="og:url" content="https://www.diwakaryadav.com.np/blog/trending-llms/">
+ <meta property="og:image" content="https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8.jpg">
  <meta property="og:image:alt" content="Best free AI tools, LLMs, and agent platforms in 2026">
  <meta property="article:published_time" content="2026-02-13">
  <meta property="article:modified_time" content="2026-10-30">
@@ -161,7 +184,7 @@
  <meta name="twitter:title" content="Best Free AI Tools, LLMs, and Agent Platforms in 2026">
  <meta name="twitter:description"
  content="A practical list of free AI tools and agent platforms with generous free tiers, reviewed for 2026.">
- <meta name="twitter:image" content="https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8">
+ <meta name="twitter:image" content="https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8.jpg">
 
  <script type="application/ld+json">
  {
@@ -170,11 +193,11 @@
  "headline": "Best Free AI Tools, LLMs, and Agent Platforms in 2026",
  "description": "A practical list of free AI tools, LLMs, and agent platforms in 2026, including chatbots, OCR tools, research agents, and workflow assistants.",
  "image": [
- "https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8"
+ "https://i.pinimg.com/originals/2c/52/5f/2c525f08e83bb1a1989df8fd69ecf5f8.jpg"
  ],
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://diwakaryadav.com.np/blog/trending-llms/"
+ "@id": "https://www.diwakaryadav.com.np/blog/trending-llms/"
  },
  "datePublished": "2026-02-13",
  "dateModified": "2026-10-30",
@@ -191,13 +214,13 @@
  "author": {
  "@type": "Person",
  "name": "Diwakar Ray Yadav",
- "url": "https://diwakaryadav.com.np/about/"
+ "url": "https://www.diwakaryadav.com.np/about/"
  },
  "publisher": {
  "@type": "Person",
  "name": "Diwakar Ray Yadav",
- "url": "https://diwakaryadav.com.np/",
- "image": "https://diwakaryadav.com.np/images/diwakar-avatar.webp"
+ "url": "https://www.diwakaryadav.com.np/",
+ "image": "https://www.diwakaryadav.com.np/images/diwakar-avatar.webp"
  }
  }
  </script>
@@ -316,7 +339,7 @@
  display: flex;
  align-items: flex-start;
  gap: 1rem;
- transition: all 0.3s ease;
+ transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
  text-decoration: none;
  color: inherit;
  }
@@ -513,9 +536,9 @@
  <span class="blog-article-tag">AI & Tools</span>
  <h1 class="blog-article-title font-display">Best Free AI Tools, LLMs, and Agent Platforms in 2026
  </h1>
- <p class="blog-article-subtitle">Reviewed in March 2026, model names updated in October 2026. 18 AI tools worth testing with free access
+ <p class="blog-article-subtitle">Reviewed in March 2026, model names updated in October 2026. 29 AI tools worth testing with free access
  or generous free tiers.</p>
- <p class="freshness-note">Updated October 2026: model names now match the latest releases (Claude Sonnet 5.5, GPT-6, Gemini 3.8 Flash and Gemini 4 Argon, DeepSeek V4.1 Flash 1017, Grok 4.7, GLM-5.3). The Llama 4 card is now a Muse Spark card, because Meta AI runs on Muse Spark. Zo's free plan is now a 14-day trial. Updated April 2026: added Zo. Tool names, free plans, and limits move fast. Double-check the official
+ <p class="freshness-note">Updated October 2026: model names now match the latest releases (Claude Sonnet 5.5, GPT-6, Gemini 3.8 Flash and Gemini 4 Argon, DeepSeek V4.1 Flash 1017, Grok 4.7, GLM-5.3). The Llama 4 card is now a Muse Spark card, because Meta AI runs on Muse Spark. Zo's free plan is now a 14-day trial. The AI studios section was added in October 2026. Updated April 2026: added Zo. Tool names, free plans, and limits move fast. Double-check the official
  site before you depend on any single feature.</p>
  <div class="blog-article-meta">
  <span>📅 February 2026</span>
@@ -525,8 +548,8 @@
  </div>
 
  <div class="blog-article-content">
- <p>I spent the last few weeks going through way too many AI tools. These 18 made the cut, and
- every one of them is free to use or has a generous free tier.</p>
+ <p>I spent the last few weeks going through way too many AI tools. These 29 made the cut, and
+ almost all of them are free to use or have a generous free tier. Each card says when one does not.</p>
 
  <p>New AI tools come out every week. Most are repackaged wrappers, and some are plain vaporware.
  Each tool here earned its spot because I either use it regularly or it impressed me enough to
@@ -804,6 +827,173 @@
  <div class="platform-desc">Battle Mode lets you compare models like ChatGPT, Claude,
  and Gemini side by side. It is free, with crowdsourced benchmarks and leaderboards.</div>
  <span class="platform-link">arena.ai →</span>
+ </div>
+ </a>
+ </div>
+
+ <h2>AI studios I open every day</h2>
+
+ <p>When you build alone, nobody tells you which new model is worth your time. So I keep the
+ official playground of each lab in one bookmark folder, and I can test a new model the day it
+ drops. Two of my daily ones, Google AI Studio and DeepSeek, are already covered above. These are
+ the rest.</p>
+
+ <div class="platform-grid">
+ <a href="https://aistudio.tencent.ai/" target="_blank" rel="noopener noreferrer"
+ class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/hunyuan-color.svg"
+ alt="Hy AI Studio" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Model Playground • Hy3</span>
+ <div class="platform-name">Hy AI Studio (Tencent)</div>
+ <div class="platform-desc">Tencent's official playground for its Hy models, which used to be
+ called Hunyuan. It has chat with Hy3 and a separate 3D Studio, so you can try Tencent's
+ newest models before you touch the API.</div>
+ <span class="platform-link">aistudio.tencent.ai →</span>
+ </div>
+ </a>
+
+ <a href="https://studio.stepfun.com/" target="_blank" rel="noopener noreferrer"
+ class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/stepfun-color.svg"
+ alt="StepFun" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Model Playground • Step 5 Preview</span>
+ <div class="platform-name">AI Studio (StepFun)</div>
+ <div class="platform-desc">StepFun's browser studio for trying Step models with no code,
+ with templates for small apps. The flagship is Step 5 Preview with a 1M-token context.
+ Usage runs on StepFun account credits.</div>
+ <span class="platform-link">studio.stepfun.com →</span>
+ </div>
+ </a>
+
+ <a href="https://aistudio.xiaomimimo.com/" target="_blank" rel="noopener noreferrer"
+ class="platform-card">
+ <div class="platform-icon"><img class="mono-icon"
+ src="../../images/icons/ai/xiaomimimo.svg"
+ alt="Xiaomi MiMo" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Model Playground • MiMo-V2.6</span>
+ <div class="platform-name">Xiaomi MiMo Studio</div>
+ <div class="platform-desc">Xiaomi's official chat for its MiMo models. You can talk to
+ MiMo-V2.6-Pro and MiMo-V2.6-Flash, with deep thinking, web search, and image input.</div>
+ <span class="platform-link">aistudio.xiaomimimo.com →</span>
+ </div>
+ </a>
+
+ <a href="https://longcat.chat/" target="_blank" rel="noopener noreferrer" class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/longcat-color.svg"
+ alt="LongCat" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Chat • LongCat-2.5-Preview</span>
+ <div class="platform-name">LongCat AI (Meituan)</div>
+ <div class="platform-desc">Meituan's chat app for its LongCat models. LongCat-2.5-Preview
+ has a 1M-token context, and the app has modes for thinking, search, images, video, and
+ deep research.</div>
+ <span class="platform-link">longcat.chat →</span>
+ </div>
+ </a>
+
+ <a href="https://console.mistral.ai/" target="_blank" rel="noopener noreferrer"
+ class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/mistral-color.svg"
+ alt="Mistral AI" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Developer Console • Mistral Large 4</span>
+ <div class="platform-name">AI Studio (Mistral AI)</div>
+ <div class="platform-desc">Mistral's developer console, with a Playground to test prompts
+ and compare models before you call the API. Free mode is on by default, with usage and
+ rate limits.</div>
+ <span class="platform-link">console.mistral.ai →</span>
+ </div>
+ </a>
+
+ <a href="https://chat.together.ai/" target="_blank" rel="noopener noreferrer"
+ class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/together-color.svg"
+ alt="Together AI" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Open Models • GLM-5.3</span>
+ <div class="platform-name">Together Chat</div>
+ <div class="platform-desc">Together AI's chat app for open-weight models, with web search
+ and a reasoning setting. It launched free with daily credits, and GLM-5.3 is the featured
+ model right now.</div>
+ <span class="platform-link">chat.together.ai →</span>
+ </div>
+ </a>
+
+ <a href="https://chat.sakana.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/sakana-color.svg"
+ alt="Sakana AI" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Chat • Namazu</span>
+ <div class="platform-name">Sakana Chat (Sakana AI)</div>
+ <div class="platform-desc">Sakana AI's free chat app, built on its Namazu models tuned for
+ Japanese users, with web search built in. For now it only works from inside Japan.</div>
+ <span class="platform-link">chat.sakana.ai →</span>
+ </div>
+ </a>
+
+ <a href="https://app.reve.com/" target="_blank" rel="noopener noreferrer" class="platform-card">
+ <div class="platform-icon"><img class="mono-icon"
+ src="../../images/icons/ai/reve.svg"
+ alt="Reve" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Image Model • Reve 2.1</span>
+ <div class="platform-name">Reve</div>
+ <div class="platform-desc">An app for creating and editing images, now on Reve 2.1, which
+ renders at native 4K. The free plan covers image generation and edits you ask for in
+ chat.</div>
+ <span class="platform-link">app.reve.com →</span>
+ </div>
+ </a>
+
+ <a href="https://playground.microsoft.ai/" target="_blank" rel="noopener noreferrer"
+ class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/microsoft-color.svg"
+ alt="Microsoft AI" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Model Playground • MAI-Thinking-1</span>
+ <div class="platform-name">MAI Playground (Microsoft AI)</div>
+ <div class="platform-desc">Microsoft AI's free playground for its own MAI models:
+ MAI-Thinking-1 for reasoning, MAI-Image-2.6 for images, MAI-Voice-2.1 for speech, and
+ MAI-Transcribe-2 for transcripts. A Microsoft account is all you need.</div>
+ <span class="platform-link">playground.microsoft.ai →</span>
+ </div>
+ </a>
+
+ <a href="https://discovery.intern-ai.org.cn/chat" target="_blank" rel="noopener noreferrer"
+ class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/internlm-color.svg"
+ alt="Intern InkStone" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Science Workspace • Intern-S2</span>
+ <div class="platform-name">Intern InkStone (Shanghai AI Lab)</div>
+ <div class="platform-desc">Shanghai AI Lab's research workspace that links science models,
+ agents, and data, now with Intern-S2. Researchers get monthly credits during the testing
+ phase.</div>
+ <span class="platform-link">discovery.intern-ai.org.cn →</span>
+ </div>
+ </a>
+
+ <a href="https://chat.qwen.ai/" target="_blank" rel="noopener noreferrer" class="platform-card">
+ <div class="platform-icon"><img
+ src="../../images/icons/ai/qwen-color.svg"
+ alt="Qwen" width="48" height="48" loading="lazy"></div>
+ <div class="platform-info">
+ <span class="category-label">Chat • Qwen3.8-Max</span>
+ <div class="platform-name">Qwen Studio (Alibaba)</div>
+ <div class="platform-desc">Alibaba's free chat app for the Qwen models, including the
+ flagship Qwen3.8-Max. It is free to use and open to everyone.</div>
+ <span class="platform-link">chat.qwen.ai →</span>
  </div>
  </a>
  </div>

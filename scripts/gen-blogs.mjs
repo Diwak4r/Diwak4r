@@ -1,7 +1,12 @@
 // Blog generator for diwakaryadav.com.np
-// Emits 10 SEO-optimized blog HTML files + 10 on-brand OG SVG cards.
+// Emits SEO-optimized blog HTML files + on-brand OG SVG cards.
 // Reuses the existing prompting-tips template scaffold.
-import { writeFileSync, mkdirSync } from "node:fs";
+//
+// The published HTML in blog/<slug>/index.html is now the source of truth: those posts
+// were rewritten, fact-checked, and given images after this script first made them, so the
+// POSTS data below is out of date. This script only creates posts that do not exist yet.
+// To overwrite an existing post on purpose, run: node scripts/gen-blogs.mjs --force <slug>
+import { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -10,7 +15,7 @@ const ROOT = join(__dirname, "..");
 const BLOG_DIR = join(ROOT, "blog");
 const IMG_DIR = join(ROOT, "images");
 
-const SITE = "https://diwakaryadav.com.np";
+const SITE = "https://www.diwakaryadav.com.np";
 const MODIFIED = "2026-08-09";
 
 // ---------------------------------------------------------------------------
@@ -976,11 +981,18 @@ function escapeXml(s) {
 // Emit
 // ---------------------------------------------------------------------------
 mkdirSync(IMG_DIR, { recursive: true });
+const forceIdx = process.argv.indexOf("--force");
+const forced = new Set(forceIdx > -1 ? process.argv.slice(forceIdx + 1) : []);
 let count = 0;
 for (const p of POSTS) {
   const dir = join(BLOG_DIR, p.slug);
+  const page = join(dir, "index.html");
+  if (existsSync(page) && !forced.has(p.slug)) {
+    console.log(`skip blog/${p.slug}/ (already published; use --force ${p.slug} to overwrite)`);
+    continue;
+  }
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, "index.html"), renderPost(p), "utf8");
+  writeFileSync(page, renderPost(p), "utf8");
   writeFileSync(join(IMG_DIR, `blog-${p.slug}.svg`), renderOg(p), "utf8");
   count++;
   console.log(`wrote blog/${p.slug}/index.html + images/blog-${p.slug}.svg`);

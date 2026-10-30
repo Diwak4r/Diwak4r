@@ -4,20 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FEFAE0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Projects | Diwakar Ray Yadav</title>
-    <link rel="canonical" href="https://diwakaryadav.com.np/projects/">
+    <link rel="canonical" href="https://www.diwakaryadav.com.np/projects/">
 
     <!-- Theme detection early to avoid color flash -->
     <script>
     (function () {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', saved);
+            }
+        } catch (e) {}
     })();
     </script>
 
@@ -59,7 +61,7 @@
             --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
             --radius: 10px;
             --radius-sm: 6px;
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         [data-theme="dark"] {
@@ -74,6 +76,27 @@
             --card-bg: #1E1E1E;
             --header-bg: rgba(18, 18, 18, 0.95);
             --header-bg-scroll: rgba(18, 18, 18, 0.98);
+        }
+
+
+        /* system dark (critical) */
+
+        @media (prefers-color-scheme: dark) {
+
+            :root:not([data-theme="light"]) {
+                --bg-primary: #121212;
+                --bg-secondary: #1E1E1E;
+                --text-primary: #E2E8F0;
+                --text-secondary: #CBD5E1;
+                --text-muted: #94A3B8;
+                --accent-primary: #FB923C;
+                --accent-secondary: #F97316;
+                --border-light: #2D2D2D;
+                --card-bg: #1E1E1E;
+                --header-bg: rgba(18, 18, 18, 0.95);
+                --header-bg-scroll: rgba(18, 18, 18, 0.98);
+            }
+
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -158,24 +181,24 @@
     <noscript><link rel="stylesheet" href="../css/style.4a3a12ca.css"></noscript>
 
     <!-- SEO & Open Graph -->
-    <meta name="description" content="Featured projects by Diwakar Ray Yadav: Nepal AI Gateway, SystemCleaner Pro, and File Organizer.">
+    <meta name="description" content="Projects by Diwakar Ray Yadav: Nepal AI Gateway, SystemCleaner Pro, File Organizer, and AI builds made while testing new models.">
     <meta property="og:title" content="Projects | Diwakar Ray Yadav">
     <meta property="og:description" content="Nepal AI Gateway, SystemCleaner Pro, and File Organizer. AI tools, automation, and web work.">
-    <meta property="og:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
+    <meta property="og:image" content="https://www.diwakaryadav.com.np/images/hero-800.webp">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://diwakaryadav.com.np/projects/">
+    <meta property="og:url" content="https://www.diwakaryadav.com.np/projects/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Projects | Diwakar Ray Yadav">
     <meta name="twitter:description" content="Nepal AI Gateway, SystemCleaner Pro, and File Organizer. AI tools, automation, and web work.">
-    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
+    <meta name="twitter:image" content="https://www.diwakaryadav.com.np/images/hero-800.webp">
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": "Projects by Diwakar Ray Yadav",
-        "description": "Featured projects by Diwakar Ray Yadav: Nepal AI Gateway, SystemCleaner Pro, and File Organizer.",
-        "url": "https://diwakaryadav.com.np/projects/",
+        "description": "Projects by Diwakar Ray Yadav: Nepal AI Gateway, SystemCleaner Pro, File Organizer, and AI builds made while testing new models.",
+        "url": "https://www.diwakaryadav.com.np/projects/",
         "numberOfItems": 3,
         "itemListElement": [
             {

@@ -21,7 +21,7 @@
     --radius: 10px;
     --radius-sm: 6px;
     --radius-lg: 16px;
-    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1098,4 +1098,91 @@ body {
     background-color: var(--text-primary);
     -webkit-mask: var(--logo) center / contain no-repeat;
     mask: var(--logo) center / contain no-repeat;
+}
+
+/* Theme: color-scheme keeps scrollbars and form controls in step with the page */
+:root {
+    color-scheme: light dark;
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+/* Show the moon icon when the page follows a dark system setting */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .sun-icon {
+        display: none;
+    }
+
+    :root:not([data-theme="light"]) .moon-icon {
+        display: block;
+    }
+}
+
+/* Web Interface Guidelines fixes */
+.form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    font-size: 0.925rem;
+    font-family: inherit;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+}
+
+/* 16px inputs on phones stop iOS Safari from zooming in on focus */
+@media (max-width: 768px) {
+    .form-input,
+    .form-select {
+        font-size: 1rem;
+    }
+}
+
+a,
+button,
+input,
+select,
+textarea,
+label {
+    touch-action: manipulation;
+}
+
+html {
+    -webkit-tap-highlight-color: color-mix(in srgb, var(--accent-primary) 20%, transparent);
+}
+
+h1,
+h2,
+h3 {
+    text-wrap: balance;
+}
+
+/* Keep anchored sections clear of the fixed header */
+section[id],
+h2[id],
+h3[id] {
+    scroll-margin-top: 96px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

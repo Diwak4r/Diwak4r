@@ -4,20 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FEFAE0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Contact | Diwakar Ray Yadav</title>
-    <link rel="canonical" href="https://diwakaryadav.com.np/contact/">
+    <link rel="canonical" href="https://www.diwakaryadav.com.np/contact/">
 
     <!-- Theme detection early to avoid color flash -->
     <script>
     (function () {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', saved);
+            }
+        } catch (e) {}
     })();
     </script>
 
@@ -59,7 +61,7 @@
             --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
             --radius: 10px;
             --radius-sm: 6px;
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         [data-theme="dark"] {
@@ -74,6 +76,27 @@
             --card-bg: #1E1E1E;
             --header-bg: rgba(18, 18, 18, 0.95);
             --header-bg-scroll: rgba(18, 18, 18, 0.98);
+        }
+
+
+        /* system dark (critical) */
+
+        @media (prefers-color-scheme: dark) {
+
+            :root:not([data-theme="light"]) {
+                --bg-primary: #121212;
+                --bg-secondary: #1E1E1E;
+                --text-primary: #E2E8F0;
+                --text-secondary: #CBD5E1;
+                --text-muted: #94A3B8;
+                --accent-primary: #FB923C;
+                --accent-secondary: #F97316;
+                --border-light: #2D2D2D;
+                --card-bg: #1E1E1E;
+                --header-bg: rgba(18, 18, 18, 0.95);
+                --header-bg-scroll: rgba(18, 18, 18, 0.98);
+            }
+
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -126,19 +149,19 @@
     <meta property="og:title" content="Contact | Diwakar Ray Yadav">
     <meta property="og:description" content="Let's discuss your next project or opportunity.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://diwakaryadav.com.np/contact/">
-    <meta property="og:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
+    <meta property="og:url" content="https://www.diwakaryadav.com.np/contact/">
+    <meta property="og:image" content="https://www.diwakaryadav.com.np/images/hero-800.webp">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact | Diwakar Ray Yadav">
     <meta name="twitter:description" content="Get in touch with Diwakar Ray Yadav for web development projects and AI opportunities.">
-    <meta name="twitter:image" content="https://diwakaryadav.com.np/images/hero-800.webp">
+    <meta name="twitter:image" content="https://www.diwakaryadav.com.np/images/hero-800.webp">
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "ContactPage",
         "name": "Contact Diwakar Ray Yadav",
-        "url": "https://diwakaryadav.com.np/contact/",
+        "url": "https://www.diwakaryadav.com.np/contact/",
         "description": "Contact form and contact information for Diwakar Ray Yadav."
     }
     </script>
@@ -206,7 +229,7 @@
                         <!-- Email Template -->
                         <input type="hidden" name="_template" value="table">
                         <!-- Redirect after submission -->
-                        <input type="hidden" name="_next" value="https://diwakaryadav.com.np/thank-you/">
+                        <input type="hidden" name="_next" value="https://www.diwakaryadav.com.np/thank-you/">
                         <!-- Auto-response (optional) -->
                         <input type="hidden" name="_autoresponse"
                             value="Thank you for contacting me! I'll get back to you soon.">
@@ -221,12 +244,12 @@
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" id="email" name="email" class="form-input"
-                                placeholder="your.email@example.com" required maxlength="254" autocomplete="email">
+                                placeholder="your.email@example.com" required maxlength="254" autocomplete="email" spellcheck="false">
                         </div>
                         <div class="form-group">
                             <label for="purpose" class="form-label">Purpose of Inquiry</label>
                             <select id="purpose" name="purpose" class="form-select" required>
-                                <option value="" disabled selected>Select a purpose...</option>
+                                <option value="" disabled selected>Select a purpose…</option>
                                 <option value="Collaboration on AI Projects">Collaboration on AI Projects</option>
                                 <option value="Hiring / Job Opportunity">Hiring / Job Opportunity</option>
                                 <option value="Freelance Work">Freelance Work</option>
@@ -236,13 +259,13 @@
                         <div class="form-group">
                             <label for="subject" class="form-label">Subject</label>
                             <input type="text" id="subject" name="subject" class="form-input"
-                                placeholder="Project Discussion" required minlength="3" maxlength="200">
+                                placeholder="Project Discussion" required minlength="3" maxlength="200" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="message" class="form-label">Message</label>
                             <textarea id="message" name="message" rows="5" class="form-input"
-                                placeholder="Tell me about your project..." required minlength="10"
-                                maxlength="5000"></textarea>
+                                placeholder="Tell me about your project…" required minlength="10"
+                                maxlength="5000" autocomplete="off"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                     </form>
