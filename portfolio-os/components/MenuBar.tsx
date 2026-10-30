@@ -153,7 +153,7 @@ export default function MenuBar({ onSpotlight }: { onSpotlight: () => void }) {
   const ink = { color: "var(--chrome-ink)" } as const;
 
   return (
-    <header className="bar-chrome absolute inset-x-0 top-0 z-50 flex h-7 items-center gap-0.5 border-b border-white/[0.08] px-2">
+    <header className="menubar-clear absolute inset-x-0 top-0 z-50 flex h-7 items-center gap-0.5 px-2">
       <div ref={menuRef} className="relative flex items-center">
         <button
           onClick={() => setMenuOpen((v) => !v)}

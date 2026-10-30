@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { profile } from "@/lib/content";
+import { playlist } from "@/lib/content";
 import { useWindows } from "@/lib/store";
 
 /**
@@ -10,9 +10,9 @@ import { useWindows } from "@/lib/store";
  * widgets. Each is self-contained (no new store). Rollback-safe: this file
  * plus one render call in Desktop.tsx is the whole surface.
  *
- * The calendar/now-playing are static except for ONE cheap, GPU-composited
- * equalizer animation that only runs while a track is actually playing —
- * nothing animates over the wallpaper otherwise (see perf constraints).
+ * Both widgets are static: nothing animates over the wallpaper (see perf
+ * constraints). They copy the macOS 27 widget look: Liquid Glass material,
+ * 22px corners, no label row.
  */
 
 const MONTHS = [
@@ -34,6 +34,7 @@ function CalendarWidget() {
 
   if (!now) return <WidgetShell label="Calendar">{null}</WidgetShell>;
 
+
   const year = now.getFullYear();
   const month = now.getMonth();
   const today = now.getDate();
@@ -46,33 +47,26 @@ function CalendarWidget() {
 
   return (
     <WidgetShell label="Calendar">
-      <div className="flex items-baseline justify-between">
-        <p className="text-[13px] font-semibold text-white/90">
-          {MONTHS[month]} <span className="text-white/40">{year}</span>
-        </p>
-      </div>
+      <p className="text-[11px] font-bold uppercase tracking-[0.02em] text-[#ff453a]">
+        {MONTHS[month]}
+      </p>
 
-      {/* Weekday header: the signature macOS red row */}
-      <div className="mt-2 grid grid-cols-7 rounded-md bg-(--accent-btn)/90 py-[3px] text-center">
+      <div className="mt-1.5 grid grid-cols-7 text-center">
         {WEEKDAYS.map((d, i) => (
-          <span key={i} className="text-[8.5px] font-semibold text-(--accent-contrast)">
+          <span key={i} className="text-[9px] font-semibold text-white/45">
             {d}
           </span>
         ))}
       </div>
 
-      <div className="mt-1.5 grid grid-cols-7 gap-y-[3px] text-center">
+      <div className="mt-1 grid grid-cols-7 gap-y-[2px] text-center">
         {cells.map((d, i) => {
           const isToday = d === today;
           return (
             <span key={i} className="flex justify-center">
               <span
-                className={`flex h-[18px] w-[18px] items-center justify-center rounded-full text-[10px] tabular-nums ${
-                  isToday
-                    ? "bg-(--accent-btn) font-semibold text-(--accent-contrast)"
-                    : d
-                    ? "text-white/70"
-                    : ""
+                className={`flex h-[17px] w-[17px] items-center justify-center rounded-full text-[10px] font-medium tabular-nums ${
+                  isToday ? "bg-[#ff453a] font-semibold text-white" : "text-white/90"
                 }`}
               >
                 {d ?? ""}
@@ -108,40 +102,41 @@ function NowPlayingWidget() {
     return () => window.removeEventListener("storage", read);
   }, []);
 
-  const playing = track !== null;
+
+  const cover = playlist.find((t) => t.title === track?.title)?.cover;
 
   return (
     <WidgetShell label="Now Playing">
       <button
         onClick={() => openApp("spotify")}
-        className="pointer-events-auto flex w-full items-center gap-2.5 rounded-md text-left outline-offset-4 transition active:scale-[0.98]"
-        aria-label="Open Spotify"
+        className="pointer-events-auto flex w-full items-center gap-2.5 rounded-lg text-left outline-offset-4"
+        aria-label={track ? `Open Spotify, last played ${track.title}` : "Open Spotify"}
       >
-        {/* Equalizer bars. They animate ONLY while a track is playing —
-            transform/scaleY on the compositor, so no blur repaint under glass. */}
-        <div className="flex h-8 w-8 shrink-0 items-end justify-center gap-[2px] rounded-md bg-(--accent-btn)/15 p-[5px]">
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className={`w-[3px] origin-bottom rounded-full bg-(--accent-btn) ${
-                playing ? "eq-bar" : ""
-              }`}
-              style={{
-                height: "100%",
-                animationDelay: playing ? `${i * 0.18}s` : undefined,
-                transform: playing ? undefined : `scaleY(${[0.42, 0.66, 0.3][i]})`,
-              }}
-            />
-          ))}
-        </div>
-        <div className="min-w-0">
-          <p className="truncate text-[12.5px] font-medium text-white/90">
-            {track?.title ?? profile.role}
-          </p>
-          <p className="truncate text-[11px] text-white/45">
+        {cover ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={cover}
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 shrink-0 rounded-lg object-cover shadow-[0_1px_3px_rgb(0_0_0/0.35)]"
+            draggable={false}
+          />
+        ) : (
+          <span className="flex h-11 w-11 shrink-0 items-end justify-center gap-[2px] rounded-lg bg-white/[0.08] p-2.5" aria-hidden>
+            {[0.42, 0.66, 0.3].map((h, i) => (
+              <span key={i} className="w-[3px] rounded-full bg-white/50" style={{ height: `${h * 100}%` }} />
+            ))}
+          </span>
+        )}
+        <span className="min-w-0">
+          <span className="block truncate text-[12.5px] font-semibold text-white/95">
+            {track?.title ?? "Nothing playing"}
+          </span>
+          <span className="block truncate text-[11px] text-white/55">
             {track ? track.artist : "Open Spotify to play"}
-          </p>
-        </div>
+          </span>
+        </span>
       </button>
     </WidgetShell>
   );
@@ -151,12 +146,9 @@ function NowPlayingWidget() {
  *  ink surface at low opacity + capped blur + self-colored edge. */
 function WidgetShell({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="w-[208px] rounded-xl border border-white/[0.06] bg-ink-900/55 px-3.5 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl">
-      <p className="mb-2 text-[9px] font-semibold uppercase tracking-wider text-white/30">
-        {label}
-      </p>
+    <section aria-label={label} className="widget-chrome w-[172px] rounded-[22px] p-3.5">
       {children}
-    </div>
+    </section>
   );
 }
 
