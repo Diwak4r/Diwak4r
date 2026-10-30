@@ -96,7 +96,12 @@ const APP_RENDER: Record<AppId, (win: Win) => React.ReactNode> = {
   whatsapp: () => <WhatsAppApp />,
   launchpad: () => <Launchpad />,
   trash: () => <TrashApp />,
-  worlds: (w) => <WorldsApp worldId={w.props?.world as string | undefined} />,
+  worlds: (w) => (
+    <WorldsApp
+      worldId={w.props?.world as string | undefined}
+      request={w.props?.request as number | undefined}
+    />
+  ),
 };
 
 type Phase = "boot" | "login" | "desktop";

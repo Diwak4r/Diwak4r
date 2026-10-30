@@ -52,7 +52,10 @@ function observe(page, label) {
 }
 
 async function clearExperienceState(page) {
+  // Init scripts run in every frame; the sandboxed 3D world frames have no
+  // storage, so only touch it in the top page.
   await page.addInitScript(() => {
+    if (window.top !== window) return;
     sessionStorage.clear();
     localStorage.removeItem("dios-experience-coach-seen");
   });
@@ -143,6 +146,23 @@ const browser = await chromium.launch({ headless: true });
   check(`All ${totalApps} applications opened`, opened.length === appCases.length, `${opened.length + 1}/${totalApps} including Trash`);
   await page.screenshot({ path: path.join(evidenceDir, "05-all-apps-opened.png") });
 
+  // Reopening the same world from Projects after going back to the gallery
+  // must show that world again, not leave the window on the gallery.
+  {
+    const projectsWin = page.getByRole("dialog", { name: "Projects" }).last();
+    const worldsWin = page.getByRole("dialog", { name: "3D Worlds" }).last();
+    const openBurg = async () => {
+      await dock.getByRole("button", { name: /(?:Open|Focus) Projects$/ }).first().click();
+      await projectsWin.getByRole("button", { name: /Burg Falkenrast/ }).click();
+    };
+    await openBurg();
+    const first = await worldsWin.getByRole("button", { name: "All worlds" }).isVisible({ timeout: 5_000 }).catch(() => false);
+    await worldsWin.getByRole("button", { name: "All worlds" }).click();
+    await openBurg();
+    const again = await worldsWin.getByRole("button", { name: "All worlds" }).isVisible({ timeout: 5_000 }).catch(() => false);
+    check("Same world reopens from Projects after going back", first && again, `first=${first} again=${again}`);
+  }
+
   // Keep a single About window for detailed window behavior.
   await page.keyboard.press("Control+Q");
   await page.waitForTimeout(400);
@@ -232,7 +252,9 @@ const browser = await chromium.launch({ headless: true });
 for (const width of [1440, 1280, 1024, 900, 820, 768]) {
   const context = await browser.newContext({ viewport: { width, height: 900 } });
   const page = await context.newPage();
-  await page.addInitScript(() => sessionStorage.setItem("dios-booted", "1"));
+  await page.addInitScript(() => {
+    if (window.top === window) sessionStorage.setItem("dios-booted", "1");
+  });
   await page.goto(baseURL, { waitUntil: "networkidle" });
   const dock = page.locator('nav[aria-label="Dock"]');
   await dock.waitFor({ state: "visible", timeout: 8_000 });
