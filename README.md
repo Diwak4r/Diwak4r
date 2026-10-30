@@ -1,11 +1,11 @@
 <div align="center">
 
-# Diwakar Yadav
+# Diwakar Ray Yadav
 
-**BIT Student • AI Systems & Web OS Engineer**  
-*Kathmandu, Nepal*
+BIT student in Kathmandu. I test new AI models by building things with them.
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-diwakaryadav.com.np-000000?style=for-the-badge&logo=firefoxbrowser&logoColor=FF7139)](https://diwakaryadav.com.np/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-diwakaryadav.com.np-000000?style=for-the-badge&logo=firefoxbrowser&logoColor=FF7139)](https://www.diwakaryadav.com.np/)
+[![DiwakarOS](https://img.shields.io/badge/DiwakarOS-desktop%20version-000000?style=for-the-badge&logo=apple&logoColor=white)](https://www.os.diwakaryadav.com.np/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-diwak4r-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diwak4r)
 [![X](https://img.shields.io/badge/X-@Norwakar-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Norwakar)
 [![Email](https://img.shields.io/badge/Email-Diwak4r.comp@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Diwak4r.comp@gmail.com)
@@ -14,41 +14,35 @@
 
 ---
 
-### About Me
+### Hi, I'm Diwakar
 
-I am a Bachelor in Information Technology (BIT) student based in Kathmandu, Nepal. My engineering focus sits at the intersection of **Agentic AI Architecture**, **Web-Based Operating Systems**, and **Low-Level Systems Optimization**. 
+My first job had nothing to do with AI. I worked in an office in Kathmandu, handling NEPSE share trading and keeping the CCTV system running. Then AI came along. I started tinkering with it, and I never really stopped.
 
-Instead of building generic web templates, I design practical, high-efficiency tools that bridge complex technical concepts with intuitive user experiences.
-
----
-
-### Key Engineering Pillars
-
-#### 🤖 Agentic AI & LLM Workflows
-- **Pryzmira**: Building personal writing voice AI using Groq, Next.js 16, and Supabase to capture syntactic fingerprints.
-- **Agent Orchestration**: Actively building with and exploring frameworks like CrewAI, LangGraph, LiteLLM, PydanticAI, and Chroma vector search.
-
-#### 💻 Interactive Web Environments
-- **DiwakarOS**: Designed and developed a full-fledged macOS desktop experience inside the browser built with React, Next.js, and Tailwind CSS.
-
-#### ⚙️ Systems & Hardware Craftsmanship
-- **SystemCleanerPro**: Engineered a 3-tiered Windows optimization utility in PowerShell & Batch that replaces proprietary cleaners transparently.
-- **IoT Hardware**: Built an ESP32 WROOM-32 automated pill dispenser hardware system.
+Today I study BIT, work as a Growth Intern at Springbase AI, and contribute to open source. On the side, I'm learning Python through CS50P. When a new AI model drops, I build something with it and share it on [X](https://x.com/Norwakar).
 
 ---
 
-### Technical Stack & Ecosystem
+### Things I've built
 
-| Domain | Technologies & Tools |
-| :--- | :--- |
-| **Languages** | `JavaScript` `TypeScript` `Python` `C++` `HTML5` `CSS3` |
-| **Frameworks** | `React` `Next.js 16` `Node.js` `Tailwind CSS` |
-| **AI & Data** | `OpenAI API` `Groq` `LangChain` `LiteLLM` `ChromaDB` `Supabase` |
-| **Tools & OS** | `Git` `GitHub CLI` `PowerShell` `Figma` `Vercel` `ESP32` |
+- **[Nepal AI Gateway](https://ai.diwakaryadav.com.np/)**: a free AI API for developers in Nepal. Most of us don't have international cards, so this one needs none.
+- **[DiwakarOS](https://www.os.diwakaryadav.com.np/)**: my portfolio as a macOS desktop that runs in the browser.
+- **AI builds**: small 3D worlds, each one a single web page.
+  [Burg Falkenrast](https://burg-falkenrast.netlify.app/) (a castle that builds itself stone by stone),
+  [Olympus](https://olympus-acropolis.netlify.app/),
+  [Endless Rail](https://endless-rail-diwak4r.netlify.app/),
+  [Desert Storm](https://magical-moxie-45d3e3.netlify.app/).
+- **[SystemCleaner Pro](https://github.com/Diwak4r/SystemCleanerPro)**: a Windows cleanup script that came out of real IT support work.
+- **[File Organizer](https://github.com/Diwak4r/File-Organizer)**: my second-semester project, and the one that taught me how automation works.
 
 ---
 
-### 📈 Activity & Contribution Dashboard
+### What I work with
+
+HTML, CSS & JavaScript · Three.js · React & Next.js · Cloudflare Workers · Supabase · PowerShell · Git & GitHub · Python (learning)
+
+---
+
+### Activity
 
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=Diwak4r&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Diwakar's GitHub Stats" width="49%" />
@@ -61,4 +55,3 @@ Instead of building generic web templates, I design practical, high-efficiency t
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Diwak4r&layout=compact&theme=tokyonight&hide_border=true" alt="Top Languages" width="49%" />
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=Diwak4r&theme=tokyo-night&hide_border=true&area=true" alt="Activity Graph" width="49%" />
 </div>
-
