@@ -115,7 +115,9 @@ export default function ProjectsApp() {
           {worlds.map((w) => (
             <button
               key={w.id}
-              onClick={() => openApp("worlds", { world: w.id })}
+              // A fresh request value lets the same world reopen after
+              // the window went back to its gallery.
+              onClick={() => openApp("worlds", { world: w.id, request: Date.now() })}
               className="group overflow-hidden rounded-xl border border-white/[0.07] text-left transition-colors hover:border-white/[0.16] hover:bg-white/[0.04]"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}

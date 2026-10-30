@@ -5,16 +5,17 @@ import { ArrowSquareOut, CaretLeft } from "@phosphor-icons/react";
 import { worlds, type World } from "@/lib/content";
 
 /** The 3D worlds from the classic site, explorable right inside a window. */
-export default function WorldsApp({ worldId }: { worldId?: string }) {
+export default function WorldsApp({ worldId, request }: { worldId?: string; request?: number }) {
   const [current, setCurrent] = useState<World | null>(
     () => worlds.find((w) => w.id === worldId) ?? null
   );
 
-  // Opening a specific world from Projects reuses this window.
+  // Opening a specific world from Projects reuses this window. `request`
+  // changes on every open, so the same world reopens after "All worlds".
   useEffect(() => {
     const w = worlds.find((x) => x.id === worldId);
     if (w) setCurrent(w);
-  }, [worldId]);
+  }, [worldId, request]);
 
   if (current) return <WorldView world={current} onBack={() => setCurrent(null)} />;
 
