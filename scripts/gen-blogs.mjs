@@ -793,8 +793,8 @@ function renderPost(p) {
         href="${SITE}/feed.xml">
 
     <!-- Main CSS (loaded asynchronously) -->
-    <link rel="stylesheet" href="../../css/style.4a3a12ca.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="../../css/style.4a3a12ca.css"></noscript>
+    <link rel="stylesheet" href="../../css/style.70264e79.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="../../css/style.70264e79.css"></noscript>
 
     <!-- SEO & Open Graph -->
     <meta name="author" content="Diwakar Ray Yadav">
@@ -921,7 +921,7 @@ ${readNextHtml}
         </div>
     </footer>
 
-    <script src="../../js/script.8687d2a9.js" defer></script>
+    <script src="../../js/script.18984fdc.js" defer></script>
 </body>
 
 </html>
