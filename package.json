@@ -12,7 +12,8 @@
     "test:blogs": "node scripts/verify-blogs.mjs",
     "test:subscribe": "node scripts/verify-subscribe-ui.mjs",
     "test:worker": "npm --prefix worker run test",
-    "test:consent": "node scripts/verify-consent-ui.mjs"
+    "test:consent": "node scripts/verify-consent-ui.mjs",
+    "test:landing": "node scripts/verify-landing.mjs"
   },
   "devDependencies": {
     "playwright": "^1.61.1"

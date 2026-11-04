@@ -11,3 +11,12 @@ ALLOWED_ORIGINS = "https://www.diwakaryadav.com.np,https://diwakaryadav.com.np,h
 binding = "DB"
 database_name = "diwakar-subscribers"
 database_id = "30d48299-7ca7-459d-878d-cc0850cb7a1f"
+
+# Per-network cap on /hit. Nothing is stored about the network address.
+[[ratelimits]]
+name = "HIT_LIMITER"
+namespace_id = "1001"
+
+[ratelimits.simple]
+limit = 60
+period = 60

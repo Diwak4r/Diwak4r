@@ -26,6 +26,19 @@ npx wrangler d1 execute diwakar-subscribers --remote --command "SELECT name, ema
 
 `source` is the page path the person signed up from (a blog post path, or `os` for DiwakarOS).
 
+## Visit counts from your social links
+
+`js/landing.js` (classic site) and `portfolio-os/lib/landing.ts` (DiwakarOS) send one small beacon when a visitor arrives from outside. It carries the campaign tag (`?utm_source=...`) or the name of the site that sent the visitor, plus the page. The Worker adds one to a daily total in the `hits` table. It stores no cookie, no network address, and no id, so it runs whatever the visitor chose about analytics cookies.
+
+Not counted: reloads, back and forward, moves between your own pages and sites, and automated browsers.
+
+```bash
+node stats.mjs        # last 30 days
+node stats.mjs 7      # last 7 days
+```
+
+Use tagged links in your profiles, for example `https://www.diwakaryadav.com.np/?utm_source=x&utm_medium=social&utm_campaign=bio`. Values are lower-cased and cut to safe characters. A visit with no tag and no referrer is counted as `direct`.
+
 ## Change and redeploy
 
 ```bash

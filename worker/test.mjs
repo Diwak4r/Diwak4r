@@ -81,6 +81,26 @@ try {
   list = await admin();
   check("re-signup does not undo an unsubscribe", !list.subscribers.some((s) => s.email === "asha@example.com"));
 
+  // Visit counter: no cookie, no address, one number per combination.
+  const hit = (body, origin = OK_ORIGIN) => fetch(`${BASE}/hit`, { method: "POST", headers: { "Content-Type": "text/plain", Origin: origin }, body: typeof body === "string" ? body : JSON.stringify(body) });
+  const stats = async (query = "") => (await fetch(`${BASE}/stats${query}`, { headers: ADMIN })).json();
+  check("hit from another origin is 403", (await hit({ source: "x" }, BAD_ORIGIN)).status === 403);
+  check("hit with bad JSON is 400", (await hit("not json")).status === 400);
+  check("hit is 204", (await hit({ source: "X", medium: "Social", campaign: "Bio!", path: "/" })).status === 204);
+  check("same hit again is 204", (await hit({ source: "x", medium: "social", campaign: "bio", path: "/" })).status === 204);
+  await hit({}); // no source: a direct visit
+  await hit({ source: "t.co", path: "/blog/free-ai-stack/" }, "https://www.os.diwakaryadav.com.np");
+  check("stats without token is 401", (await fetch(`${BASE}/stats`)).status === 401);
+  const st = await stats("?days=7");
+  const xRow = st.bySource.find((r) => r.source === "x");
+  check("source, medium and campaign are cleaned and joined", xRow?.medium === "social" && xRow.visits === 2, JSON.stringify(st.bySource));
+  check("campaign list shows the cleaned campaign", st.byCampaign.some((r) => r.source === "x" && r.campaign === "bio" && r.visits === 2), JSON.stringify(st.byCampaign));
+  check("a missing source is counted as direct / none", st.bySource.some((r) => r.source === "direct" && r.medium === "none" && r.visits === 1), JSON.stringify(st.bySource));
+  check("a referrer without a campaign is referral", st.bySource.some((r) => r.source === "t.co" && r.medium === "referral"), JSON.stringify(st.bySource));
+  check("the os site is counted apart from the main site", st.bySite.some((r) => r.host === "os" && r.visits === 1) && st.bySite.some((r) => r.host === "site" && r.visits === 3), JSON.stringify(st.bySite));
+  check("total adds up", st.total === 4, String(st.total));
+  check("stats stores no address or cookie column", !JSON.stringify(st).match(/ip|cookie|email/i));
+
   let limited = false;
   for (let i = 0; i < 8 && !limited; i++) limited = (await post(good(`rate${i}@example.com`))).status === 429;
   check("per-IP hourly limit returns 429", limited);

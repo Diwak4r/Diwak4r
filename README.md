@@ -4,13 +4,13 @@
 
 BIT student in Kathmandu. I test new AI models by building things with them.
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-diwakaryadav.com.np-000000?style=for-the-badge&logo=firefoxbrowser&logoColor=FF7139)](https://www.diwakaryadav.com.np/)
-[![DiwakarOS](https://img.shields.io/badge/DiwakarOS-desktop%20version-000000?style=for-the-badge&logo=apple&logoColor=white)](https://www.os.diwakaryadav.com.np/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-diwakaryadav.com.np-000000?style=for-the-badge&logo=firefoxbrowser&logoColor=FF7139)](https://www.diwakaryadav.com.np/?utm_source=github&utm_medium=social&utm_campaign=profile-readme)
+[![DiwakarOS](https://img.shields.io/badge/DiwakarOS-desktop%20version-000000?style=for-the-badge&logo=apple&logoColor=white)](https://www.os.diwakaryadav.com.np/?utm_source=github&utm_medium=social&utm_campaign=profile-readme)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-diwak4r-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diwak4r)
 [![X](https://img.shields.io/badge/X-@Norwakar-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Norwakar)
 [![Email](https://img.shields.io/badge/Email-Diwak4r.comp@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Diwak4r.comp@gmail.com)
 
-<a href="https://www.os.diwakaryadav.com.np/">
+<a href="https://www.os.diwakaryadav.com.np/?utm_source=github&utm_medium=social&utm_campaign=profile-readme">
   <img src="images/readme/diwakaros-desktop.webp" alt="DiwakarOS, my portfolio as a macOS desktop in the browser" width="100%" />
 </a>
 

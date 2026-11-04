@@ -10,7 +10,8 @@
     "test": "node scripts/ci-test.mjs",
     "test:live": "node scripts/verify-checklist.mjs",
     "test:newsletter": "node scripts/verify-newsletter.mjs",
-    "test:consent": "node scripts/verify-consent.mjs"
+    "test:consent": "node scripts/verify-consent.mjs",
+    "test:landing": "node scripts/verify-landing.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
