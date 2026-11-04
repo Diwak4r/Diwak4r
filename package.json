@@ -9,7 +9,10 @@
     "test:os:live": "npm --prefix portfolio-os run test:live",
     "test": "npm run test:main && npm run test:os",
     "seo": "node scripts/gen-seo-files.mjs",
-    "test:blogs": "node scripts/verify-blogs.mjs"
+    "test:blogs": "node scripts/verify-blogs.mjs",
+    "test:subscribe": "node scripts/verify-subscribe-ui.mjs",
+    "test:worker": "npm --prefix worker run test",
+    "test:consent": "node scripts/verify-consent-ui.mjs"
   },
   "devDependencies": {
     "playwright": "^1.61.1"

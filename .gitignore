@@ -9,6 +9,8 @@ portfolio-os/.next/
 portfolio-os/out/
 .qa-screens/
 .live-qa/
+worker/.wrangler/
+worker/.dev.vars
 .playwright-mcp/
 .mimosa/
 docs/
@@ -36,3 +38,4 @@ pin-warm-cream.png
 overview.md
 codebase-assessment.md
 SECURITY.md
+worker/.admin-token

@@ -5,6 +5,7 @@ import {
   CodeSimple,
   Compass,
   Cube,
+  EnvelopeSimple,
   Folder,
   GlobeHemisphereWest,
   GearSix,
@@ -89,6 +90,14 @@ export const APPS: AppDef[] = [
     window: { w: 560, h: 620, x: 420, y: 60 },
     desk: 5,
     dock: 7,
+  },
+  {
+    id: "newsletter",
+    name: "Newsletter",
+    windowTitle: "Newsletter",
+    icon: EnvelopeSimple,
+    tile: "linear-gradient(145deg, #e0a15a, #a8642a)",
+    window: { w: 500, h: 460, x: 400, y: 90 },
   },
   {
     id: "browser",

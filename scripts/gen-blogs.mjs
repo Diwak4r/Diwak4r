@@ -921,6 +921,8 @@ ${readNextHtml}
     </footer>
 
     <script src="../../js/script.18984fdc.js" defer></script>
+    <script src="../../js/consent.js" defer></script>
+    <script src="../../js/subscribe.js" defer></script>
 </body>
 
 </html>

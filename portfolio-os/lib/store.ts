@@ -7,6 +7,7 @@ export type AppId =
   | "journal"
   | "notes"
   | "contact"
+  | "newsletter"
   | "terminal"
   | "browser"
   | "settings"
