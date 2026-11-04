@@ -22,7 +22,9 @@
         if (!script) return;
         var link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = new URL("../css/subscribe.css", script.src).href;
+        // Same ?v= as this script, so a new release also refreshes the stylesheet.
+        var version = script.src.indexOf("?") > -1 ? script.src.slice(script.src.indexOf("?")) : "";
+        link.href = new URL("../css/subscribe.css", script.src).href.split("?")[0] + version;
         document.head.appendChild(link);
     }
 
