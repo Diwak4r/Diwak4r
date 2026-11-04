@@ -52,6 +52,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         {children}
+        {/* Cloudflare Web Analytics. This host is served by GitHub, outside Cloudflare, so the
+            beacon is added by hand. The tag is the one for diwakaryadav.com.np (it covers every
+            host under that domain). It sets no cookies and needs no consent. */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: "f5dee21ba0ce43628f68314d86135b85" })}
+        />
       </body>
     </html>
   );

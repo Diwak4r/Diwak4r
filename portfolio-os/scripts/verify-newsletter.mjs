@@ -53,6 +53,8 @@ async function desktop(initialState = null, status = 200) {
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(e.message));
   await page.route("https://challenges.cloudflare.com/**", (r) => r.fulfill({ contentType: "text/javascript", body: TURNSTILE_STUB }));
+  // Cloudflare Web Analytics refuses a localhost origin, so answer its report request here.
+  await page.route("https://cloudflareinsights.com/**", (r) => r.fulfill({ status: 204, headers: { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "POST, OPTIONS" } }));
   await page.route("https://subscribe.diwakaryadav.com.np/subscribe", (r) => {
     if (r.request().method() === "OPTIONS") return r.fulfill({ status: 204, headers: CORS });
     posts.push(JSON.parse(r.request().postData()));
@@ -62,6 +64,8 @@ async function desktop(initialState = null, status = 200) {
     if (window.top !== window) return;
     sessionStorage.clear();
     localStorage.removeItem("dios-experience-coach-seen");
+    // The cookie question is tested in verify-consent.mjs. Here the visitor has already declined.
+    localStorage.setItem("dios-consent-v1", JSON.stringify({ analytics: false, at: Date.now() }));
     if (state && !sessionStorage.getItem("seeded")) { localStorage.setItem(key, JSON.stringify(state)); sessionStorage.setItem("seeded", "1"); }
   }, [KEY, initialState]);
   await page.goto(BASE, { waitUntil: "networkidle" });

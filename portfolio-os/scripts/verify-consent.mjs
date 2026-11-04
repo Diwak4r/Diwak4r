@@ -48,6 +48,8 @@ async function desktop({ configured = true, state = null } = {}) {
     const body = await res.text();
     await route.fulfill({ response: res, body: body.split("G-VQ46XM74M1").join(configured ? TEST_ID : "G-REPLACE_ME") });
   });
+  // Cloudflare Web Analytics refuses a localhost origin, so answer its report request here.
+  await page.route("https://cloudflareinsights.com/**", (r) => r.fulfill({ status: 204, headers: { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "POST, OPTIONS" } }));
   await page.route("https://www.googletagmanager.com/**", (r) => r.fulfill({ contentType: "text/javascript", body: "window.__gtagLoaded = (window.__gtagLoaded || 0) + 1;" }));
   await page.route("https://www.diwakaryadav.com.np/**", (r) => r.fulfill({ contentType: "text/html", body: "<h1>privacy stub</h1>" }));
   await page.addInitScript(([key, saved]) => {
@@ -70,7 +72,7 @@ const banner = (page) => page.getByRole("dialog", { name: "Analytics cookies" })
 const events = (page) => page.evaluate(() => Array.from(window.dataLayer || [], (a) => Array.from(a)));
 const names = async (page) => (await events(page)).filter((e) => e[0] === "event").map((e) => `${e[1]}:${e[2].app ?? e[2].link_domain ?? e[2].source ?? ""}`);
 const stored = (page) => page.evaluate((k) => JSON.parse(localStorage.getItem(k) || "null"), KEY);
-const openMenu = async (page) => { await page.mouse.click(1000, 720, { button: "right" }); };
+const openMenu = async (page) => { await page.mouse.click(1250, 560, { button: "right" }); };
 const dockOpen = (page, name) => page.locator('nav[aria-label="Dock"]').getByRole("button", { name: new RegExp(`(?:Open|Focus) ${name}$`) }).first().click();
 
 // A: not configured. Banner stays away, menu has Privacy Note only.

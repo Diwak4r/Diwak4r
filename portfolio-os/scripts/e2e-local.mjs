@@ -71,9 +71,17 @@ async function enterDesktop(page) {
 
 const browser = await chromium.launch({ headless: true });
 
+// Cloudflare Web Analytics refuses a localhost origin, so answer its report request here.
+// The beacon is not under test; a real browser on the live host is checked separately.
+async function newContext(options) {
+  const context = await browser.newContext(options);
+  await context.route("https://cloudflareinsights.com/**", (r) => r.fulfill({ status: 204, headers: { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "POST, OPTIONS" } }));
+  return context;
+}
+
 // Mobile expectation-setting and touch launcher.
 {
-  const context = await browser.newContext({
+  const context = await newContext({
     viewport: { width: 390, height: 844 },
     isMobile: true,
     hasTouch: true,
@@ -104,7 +112,7 @@ const browser = await chromium.launch({ headless: true });
 
 // Desktop boot/login, all registered apps, controls, windows, shortcuts, and network hygiene.
 {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const context = await newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   const telemetry = observe(page, "desktop");
   await clearExperienceState(page);
@@ -250,7 +258,7 @@ const browser = await chromium.launch({ headless: true });
 
 // Responsive Dock widths.
 for (const width of [1440, 1280, 1024, 900, 820, 768]) {
-  const context = await browser.newContext({ viewport: { width, height: 900 } });
+  const context = await newContext({ viewport: { width, height: 900 } });
   const page = await context.newPage();
   await page.addInitScript(() => {
     if (window.top === window) sessionStorage.setItem("dios-booted", "1");
@@ -266,7 +274,7 @@ for (const width of [1440, 1280, 1024, 900, 820, 768]) {
 
 // Reduced-motion emulation.
 {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" });
+  const context = await newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" });
   const page = await context.newPage();
   const telemetry = observe(page, "reduced-motion");
   await clearExperienceState(page);
