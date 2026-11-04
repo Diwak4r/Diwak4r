@@ -41,7 +41,7 @@ async function newPage({ configured = true, viewport = { width: 1280, height: 80
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("request", (r) => /googletagmanager|google-analytics|doubleclick/.test(r.url()) && googleRequests.push(r.url()));
-  await page.route("**/js/consent.js", async (route) => {
+  await page.route("**/js/consent.js*", async (route) => {
     const res = await route.fetch();
     const body = await res.text();
     await route.fulfill({ response: res, body: body.replace("G-VQ46XM74M1", configured ? TEST_ID : "G-REPLACE_ME") });
