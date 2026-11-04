@@ -110,9 +110,11 @@
         accept.addEventListener("click", function () { choose(true); });
         decline.addEventListener("click", function () { choose(false); });
         panel = el("section", { class: "cns-panel", role: "dialog", "aria-labelledby": "cns-title" }, [
-            el("h2", { class: "cns-title", id: "cns-title", text: "Analytics cookies" }),
-            el("p", { class: "cns-text", text: "May I use Google Analytics to learn how people use this site? It sets cookies and records the pages you open, your clicks, your device and your country. I do not use it for ads." }),
-            el("p", { class: "cns-text" }, [el("a", { href: PRIVACY_PATH, text: "Read the privacy note" })]),
+            el("div", { class: "cns-copy" }, [
+                el("h2", { class: "cns-title", id: "cns-title", text: "Analytics cookies" }),
+                el("p", { class: "cns-text", text: "May I use Google Analytics to learn how people use this site? It sets cookies and records the pages you open, your clicks, your device and your country. I do not use it for ads." }),
+                el("p", { class: "cns-text" }, [el("a", { href: PRIVACY_PATH, text: "Read the privacy note" })]),
+            ]),
             el("div", { class: "cns-actions" }, [accept, decline]),
         ]);
         document.body.appendChild(panel);

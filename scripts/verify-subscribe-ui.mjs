@@ -56,6 +56,8 @@ async function newPage({ viewport = { width: 1280, height: 800 }, mode = { statu
     posts.push(JSON.parse(r.request().postData()));
     return r.fulfill({ status: mode.status, headers: { ...CORS, "content-type": "application/json" }, body: "{}" });
   });
+  // The consent banner is tested in verify-consent-ui.mjs. Here the visitor has already declined analytics.
+  await page.addInitScript(() => localStorage.setItem("consent.v1", JSON.stringify({ analytics: false, at: Date.now() })));
   if (clock) await page.clock.install();
   return { ctx, page, errors, posts, mode };
 }
