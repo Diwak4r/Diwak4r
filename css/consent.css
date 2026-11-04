@@ -1,0 +1,93 @@
+/* Consent panel and footer links. Colors come from the site variables. */
+.cns-panel {
+    position: fixed;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 910;
+    box-sizing: border-box;
+    width: min(23rem, calc(100vw - 2.5rem));
+    padding: 1.5rem;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 3px 8px -2px rgba(60, 40, 30, 0.22);
+    font: inherit;
+    animation: cns-rise 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes cns-rise {
+    from { transform: translateY(14px); }
+    to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cns-panel { animation: none; }
+}
+
+.cns-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.cns-text {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+.cns-text a { color: var(--text-primary); text-underline-offset: 3px; }
+.cns-text a:hover { color: var(--accent-secondary); }
+
+/* Accept and decline look the same on purpose: neither choice is pushed. */
+.cns-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.cns-btn {
+    padding: 0.7rem 0.5rem;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.cns-btn:hover { background: var(--card-bg); border-color: var(--text-primary); }
+.cns-btn:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
+.cns-footer-line {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+}
+
+.cns-footer-link {
+    padding: 0;
+    font: inherit;
+    color: var(--text-secondary);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.18s ease;
+}
+
+.cns-footer-link:hover { color: var(--text-primary); }
+.cns-footer-link:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
+
+@media (max-width: 640px) {
+    .cns-panel { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; width: auto; }
+}

@@ -1,0 +1,13 @@
+name = "diwakar-subscribe"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+routes = [{ pattern = "subscribe.diwakaryadav.com.np", custom_domain = true }]
+
+[vars]
+ALLOWED_ORIGINS = "https://www.diwakaryadav.com.np,https://diwakaryadav.com.np,https://www.os.diwakaryadav.com.np,https://os.diwakaryadav.com.np"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "diwakar-subscribers"
+database_id = "30d48299-7ca7-459d-878d-cc0850cb7a1f"

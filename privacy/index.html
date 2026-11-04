@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FEFAE0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Privacy and cookies | Diwakar Ray Yadav</title>
+
+    <!-- Theme detection early to avoid color flash -->
+    <script>
+    (function () {
+        try {
+            var saved = localStorage.getItem('theme');
+            if (saved === 'light' || saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', saved);
+            }
+        } catch (e) {}
+    })();
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts loaded asynchronously to unblock first paint -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+            rel="stylesheet">
+    </noscript>
+
+    <!-- Critical CSS -->
+    <style>
+        :root {
+            --bg-primary: #FEFAE0;
+            --bg-secondary: #F4F3EE;
+            --text-primary: #2D3748;
+            --text-secondary: #4A5568;
+            --text-muted: #718096;
+            --accent-primary: #B87A5C;
+            --accent-secondary: #A98467;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --text-primary: #E2E8F0;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+            --accent-primary: #FB923C;
+            --accent-secondary: #F97316;
+        }
+
+
+        /* system dark (critical) */
+
+        @media (prefers-color-scheme: dark) {
+
+            :root:not([data-theme="light"]) {
+                --bg-primary: #121212;
+                --bg-secondary: #1E1E1E;
+                --text-primary: #E2E8F0;
+                --text-secondary: #CBD5E1;
+                --text-muted: #94A3B8;
+                --accent-primary: #FB923C;
+                --accent-secondary: #F97316;
+            }
+
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-optical-sizing: auto;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+        }
+
+        .font-display { font-family: "Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(254, 250, 224, 0.95);
+            z-index: 1000;
+        }
+
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; }
+        .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.925rem; }
+        .logo { font-size: 1.375rem; font-weight: 650; color: var(--accent-secondary); text-decoration: none; letter-spacing: -0.02em; }
+
+        .mobile-menu-btn { display: none; }
+        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu-btn { display: block; } }
+    </style>
+
+    <link rel="stylesheet" href="../css/style.70264e79.css">
+    <noscript><link rel="stylesheet" href="../css/style.70264e79.css"></noscript>
+
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="What this site counts, what it stores, and how to change your choice.">
+    <meta property="og:title" content="Privacy and cookies | Diwakar Ray Yadav">
+    <meta property="og:description" content="What this site counts, what it stores, and how to change your choice.">
+
+    <style>
+        .thank-you-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .thank-you-content {
+            max-width: 600px;
+            padding: 3rem;
+        }
+
+        .thank-you-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--color-primary, #9d4edd) 0%, var(--color-accent, #7b2cbf) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .thank-you-icon svg {
+            width: 50px;
+            height: 50px;
+            color: white;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.4);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(157, 78, 221, 0);
+            }
+        }
+
+        .thank-you-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary, #9d4edd), var(--color-accent, #7b2cbf));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .thank-you-text {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary, #666);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--color-primary, #9d4edd) 0%, var(--color-accent, #7b2cbf) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+        }
+    </style>
+    <style>
+        .privacy { padding: 8rem 0 5rem; min-height: 70vh; }
+        .privacy-wrap { max-width: 44rem; }
+        .privacy h1 { font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.15; margin-bottom: 0.5rem; }
+        .privacy-date { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.9rem; }
+        .privacy h2 { font-size: 1.2rem; margin: 2.25rem 0 0.6rem; color: var(--text-primary); }
+        .privacy p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.9rem; }
+        .privacy a { color: var(--text-primary); text-underline-offset: 3px; }
+        .privacy code { font-size: 0.9em; padding: 0.1em 0.35em; background: var(--bg-secondary); border-radius: 4px; }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo font-display">Diwakar</a>
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/projects/" class="nav-link">Projects</a></li>
+                    <li><a href="/about/" class="nav-link">About</a></li>
+                    <li><a href="/blog/" class="nav-link">Blog</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                    <li><a href="https://www.os.diwakaryadav.com.np/" class="nav-link" target="_blank" rel="noopener">OS ↗</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Privacy -->
+    <main class="privacy" id="main-content">
+        <div class="container privacy-wrap">
+            <h1 class="font-display">Privacy and cookies</h1>
+            <p class="privacy-date">Last updated 4 November 2026</p>
+
+            <h2>What I count without asking</h2>
+            <p>Cloudflare Web Analytics counts page views and how fast pages load. It sets no cookies and stores nothing that can identify you.</p>
+
+            <h2>What I count if you say yes</h2>
+            <p>If you accept analytics, this site loads Google Analytics. It sets two cookies, <code>_ga</code> and one that starts with <code>_ga_</code>. They last up to two years.</p>
+            <p>It records the pages you open, how far you scroll in a blog post, the links you click, your device, browser and operating system, your country and city, and whether you have visited before. It also records which page led you to the newsletter form.</p>
+            <p>Google shortens your network address and does not keep the full one. I turned off Google signals and ad personalization. I do not use this data for ads, and I do not sell it.</p>
+
+            <h2>If you say no, or change your mind</h2>
+            <p>If you say no, nothing from Google loads. You can change your choice at any time with <strong>Cookie settings</strong> in the footer. If you choose no, the Google cookies are deleted from this browser.</p>
+
+            <h2>Newsletter</h2>
+            <p>If you subscribe, I store your name, your email, the page you signed up from, and the date. I also store a scrambled form of your network address. It limits spam and I cannot turn it back into your address.</p>
+            <p>I use this only to email you about new posts. Every email has an unsubscribe link. To have your data deleted, write to me from the <a href="/contact/">contact page</a>.</p>
+
+            <h2>Contact form</h2>
+            <p>Your message goes through formsubmit.co to my inbox. I answer it, and I do not add you to the newsletter.</p>
+
+            <h2>Who holds the data</h2>
+            <p>Cloudflare runs this site's signup form and keeps the subscriber list. Google holds analytics data if you accept it. FormSubmit delivers contact messages.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Diwakar Ray Yadav. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.18984fdc.js" defer></script>
+    <script src="../js/consent.js" defer></script>
+    <script src="../js/subscribe.js" defer></script>
+    <!-- Cloudflare Web Analytics: replace CF_BEACON_TOKEN with your token from dash.cloudflare.com > Web Analytics > Add a site -->
+</body>
+
+</html>

@@ -4,7 +4,8 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { APPS } from "@/lib/apps";
 import { useFocusedWin, useWindows, type AppId, type Win } from "@/lib/store";
-import { openSettings, useSystem, type SettingsPane } from "@/lib/system";
+import { openLink, openSettings, useSystem, type SettingsPane } from "@/lib/system";
+import { PRIVACY_URL, analyticsConfigured, requestConsentPanel } from "@/lib/consent";
 import { useIsMobile } from "@/lib/hooks";
 import Wallpaper from "./Wallpaper";
 import MenuBar from "./MenuBar";
@@ -22,6 +23,9 @@ import DesktopWidgets from "./DesktopWidgets";
 import { BootScreen, LoginScreen } from "./Onboarding";
 import MobileExperienceGate, { wasMobileGuideDismissed } from "./MobileExperienceGate";
 import ExperienceCoach from "./ExperienceCoach";
+import SubscribeNudge from "./SubscribeNudge";
+import ConsentBanner from "./ConsentBanner";
+import AnalyticsBridge from "./AnalyticsBridge";
 
 // Lazy-everything: each app chunks out of the boot bundle.
 const AboutApp = lazy(() => import("./apps/AboutApp"));
@@ -29,6 +33,7 @@ const ProjectsApp = lazy(() => import("./apps/ProjectsApp"));
 const JournalApp = lazy(() => import("./apps/JournalApp"));
 const NotesApp = lazy(() => import("./apps/NotesApp"));
 const ContactApp = lazy(() => import("./apps/ContactApp"));
+const NewsletterApp = lazy(() => import("./apps/NewsletterApp"));
 const TerminalApp = lazy(() => import("./apps/TerminalApp"));
 const BrowserApp = lazy(() => import("./apps/BrowserApp"));
 const SettingsApp = lazy(() => import("./apps/SettingsApp"));
@@ -82,6 +87,7 @@ const APP_RENDER: Record<AppId, (win: Win) => React.ReactNode> = {
   journal: () => <JournalApp />,
   notes: () => <NotesApp />,
   contact: () => <ContactApp />,
+  newsletter: () => <NewsletterApp />,
   terminal: (w) => <TerminalApp winId={w.winId} />,
   browser: (w) => <BrowserApp startUrl={w.props?.url as string | undefined} />,
   settings: (w) => <SettingsApp paneProp={w.props?.pane as SettingsPane | undefined} />,
@@ -266,6 +272,8 @@ export default function Desktop() {
     },
     { label: "Open Terminal Here", action: () => openApp("terminal"), divider: true },
     { label: "About This Portfolio", action: () => openApp("about") },
+    { label: "Privacy Note", action: () => openLink(PRIVACY_URL, "Privacy") },
+    ...(analyticsConfigured ? [{ label: "Cookie Settings", action: () => requestConsentPanel() }] : []),
   ];
 
   const itemEntries = (item: DeskItem): MenuEntry[] => [
@@ -469,9 +477,12 @@ export default function Desktop() {
             <>
               <Dock />
               <ExperienceCoach />
+              <SubscribeNudge />
             </>
           )}
 
+          <ConsentBanner />
+          <AnalyticsBridge />
           <Spotlight open={spotlightOpen} onClose={() => setSpotlightOpen(false)} />
         </>
       )}
