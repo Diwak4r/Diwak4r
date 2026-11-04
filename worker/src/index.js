@@ -2,12 +2,15 @@
 // POST /subscribe        public, protected by Turnstile + per-IP limit
 // GET  /unsubscribe?t=   public, one token per subscriber
 // GET  /subscribers      private, Bearer ADMIN_TOKEN, JSON or ?format=csv
+// POST /hit              public, counts one visit that arrived from outside (no cookie, no address)
+// GET  /stats?days=30    private, Bearer ADMIN_TOKEN, visit totals by source, campaign and page
 
 const NAME_MAX = 100;
 const EMAIL_MAX = 254;
 const SOURCE_MAX = 200;
 const HOURLY_LIMIT_PER_IP = 5;
 const HOUR_MS = 3_600_000;
+const MAX_HIT_ROWS_PER_DAY = 2000; // keeps a flood of made-up campaign names from filling the table
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TURNSTILE_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
@@ -22,6 +25,8 @@ export default {
       if (request.method === "POST" && url.pathname === "/subscribe") return await subscribe(request, env, cors);
       if (request.method === "GET" && url.pathname === "/unsubscribe") return await unsubscribe(url, env);
       if (request.method === "GET" && url.pathname === "/subscribers") return await listSubscribers(request, url, env);
+      if (request.method === "POST" && url.pathname === "/hit") return await recordHit(request, env, cors);
+      if (request.method === "GET" && url.pathname === "/stats") return await stats(request, url, env);
       return json({ error: "not_found" }, 404, cors);
     } catch (err) {
       console.error("worker failure", url.pathname, err.message);
@@ -148,6 +153,69 @@ async function listSubscribers(request, url, env) {
   return new Response(lines.join("\n"), {
     headers: { "Content-Type": "text/csv; charset=utf-8", "Cache-Control": "no-store" },
   });
+}
+
+// Counts a landing by day, site, source, medium, campaign and page. It keeps one number per
+// combination. It never stores an address, a cookie, or anything that points to a person.
+function slug(value, max) {
+  return typeof value === "string" ? value.toLowerCase().replace(/[^a-z0-9._-]/g, "").slice(0, max) : "";
+}
+
+async function recordHit(request, env, cors) {
+  const origin = request.headers.get("Origin");
+  if (!cors["Access-Control-Allow-Origin"] || !origin) return new Response(null, { status: 403 });
+  const host = new URL(origin).hostname.split(".").includes("os") ? "os" : "site";
+
+  const ip = request.headers.get("CF-Connecting-IP") || "";
+  if (env.HIT_LIMITER && !(await env.HIT_LIMITER.limit({ key: ip })).success) {
+    return new Response(null, { status: 429, headers: cors });
+  }
+
+  let body;
+  try {
+    body = JSON.parse(await request.text());
+  } catch {
+    return new Response(null, { status: 400, headers: cors });
+  }
+
+  let source = slug(body.source, 60) || "direct";
+  let medium = slug(body.medium, 40) || (source === "direct" ? "none" : "referral");
+  let campaign = slug(body.campaign, 60);
+  const path = typeof body.path === "string" && body.path.startsWith("/") ? body.path.replace(/[^!-~]/g, "").slice(0, 120) : "/";
+  const day = new Date().toISOString().slice(0, 10);
+
+  const rows = await env.DB.prepare("SELECT COUNT(*) AS n FROM hits WHERE day = ?").bind(day).first();
+  if (rows.n >= MAX_HIT_ROWS_PER_DAY) {
+    source = "other";
+    medium = "other";
+    campaign = "";
+  }
+
+  await env.DB.prepare(
+    "INSERT INTO hits (day, host, source, medium, campaign, path, n) VALUES (?, ?, ?, ?, ?, ?, 1) ON CONFLICT(day, host, source, medium, campaign, path) DO UPDATE SET n = n + 1",
+  )
+    .bind(day, host, source, medium, campaign, path)
+    .run();
+
+  return new Response(null, { status: 204, headers: cors });
+}
+
+async function stats(request, url, env) {
+  if (!(await isAdmin(request, env))) return json({ error: "unauthorized" }, 401);
+
+  const days = Math.min(Math.max(parseInt(url.searchParams.get("days") || "30", 10) || 30, 1), 365);
+  const since = new Date(Date.now() - (days - 1) * 86_400_000).toISOString().slice(0, 10);
+  const run = async (sql) => (await env.DB.prepare(sql).bind(since).all()).results;
+
+  const [bySite, bySource, byCampaign, byPage, byDay] = await Promise.all([
+    run("SELECT host, SUM(n) AS visits FROM hits WHERE day >= ? GROUP BY host ORDER BY visits DESC"),
+    run("SELECT source, medium, SUM(n) AS visits FROM hits WHERE day >= ? GROUP BY source, medium ORDER BY visits DESC LIMIT 30"),
+    run("SELECT source, campaign, SUM(n) AS visits FROM hits WHERE day >= ? AND campaign != '' GROUP BY source, campaign ORDER BY visits DESC LIMIT 30"),
+    run("SELECT host, path, SUM(n) AS visits FROM hits WHERE day >= ? GROUP BY host, path ORDER BY visits DESC LIMIT 20"),
+    run("SELECT day, SUM(n) AS visits FROM hits WHERE day >= ? GROUP BY day ORDER BY day"),
+  ]);
+  const total = bySite.reduce((sum, r) => sum + r.visits, 0);
+  return json({ days, since, total, bySite, bySource, byCampaign, byPage, byDay }, 200);
 }
 
 const UNSUBSCRIBED_PAGE = `<!doctype html>
