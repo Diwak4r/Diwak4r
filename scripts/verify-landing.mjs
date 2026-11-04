@@ -42,12 +42,13 @@ async function visit(url, { referer, automated = false, then } = {}) {
   await page.goto(`${BASE}${url}`, { waitUntil: "load", referer });
   await page.waitForTimeout(700);
   if (then) await then(page);
-  const result = { beacons, cookie: await page.evaluate(() => document.cookie), storage: await page.evaluate(() => localStorage.length + sessionStorage.length) };
+  const result = { beacons, landing: await page.evaluate(() => document.documentElement.getAttribute("data-landing")), cookie: await page.evaluate(() => document.cookie), storage: await page.evaluate(() => localStorage.length + sessionStorage.length) };
   await ctx.close();
   return result;
 }
 
 let v = await visit("/?utm_source=X&utm_medium=Social&utm_campaign=bio");
+check("the decision is recorded on the page: sent", v.landing === "sent", String(v.landing));
 check("a campaign link sends one beacon with source, medium, campaign and path",
   v.beacons.length === 1 && v.beacons[0].body.source === "X" && v.beacons[0].body.medium === "Social" && v.beacons[0].body.campaign === "bio" && v.beacons[0].body.path === "/", JSON.stringify(v.beacons));
 check("the beacon is a plain-text POST, so it needs no preflight", v.beacons[0]?.type?.startsWith("text/plain"), v.beacons[0]?.type);
@@ -63,6 +64,7 @@ v = await visit("/");
 check("a direct visit is counted once with an empty source", v.beacons.length === 1 && v.beacons[0].body.source === "", JSON.stringify(v.beacons));
 
 v = await visit("/", { referer: "https://www.diwakaryadav.com.np/blog/" });
+check("an own-site referrer records skip-own-referrer", v.landing === "skip-own-referrer", String(v.landing));
 check("a move from the main site is not counted", v.beacons.length === 0, JSON.stringify(v.beacons));
 v = await visit("/", { referer: "https://www.os.diwakaryadav.com.np/" });
 check("a move from DiwakarOS is not counted", v.beacons.length === 0, JSON.stringify(v.beacons));
