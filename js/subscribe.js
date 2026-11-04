@@ -94,21 +94,22 @@
         var submit = el("button", { type: "submit", class: "sub-submit", text: "Notify me" });
         var status = el("p", { class: "sub-status", role: "status", "aria-live": "polite" });
         var later = el("button", { type: "button", class: "sub-later", text: "Not now" });
-        var form = el("form", { novalidate: "" }, [
-            field("Name", nameInput),
-            field("Email", emailInput),
-            el("div", { class: "sub-trap", "aria-hidden": "true" }, [trap]),
-            check,
-            submit,
-            status,
-            el("p", { class: "sub-note", text: "I store your name and email only. Every email has an unsubscribe link." }),
+        var row = el("div", { class: "sub-row" }, [field("Name", nameInput), field("Email", emailInput), submit]);
+        var foot = el("div", { class: "sub-foot" }, [
+            el("div", { class: "sub-msg" }, [
+                status,
+                el("p", { class: "sub-note", text: "I store your name and email only. Every email has an unsubscribe link." }),
+            ]),
+            later,
         ]);
+        var form = el("form", { novalidate: "" }, [row, el("div", { class: "sub-trap", "aria-hidden": "true" }, [trap]), check, foot]);
 
         panel = el("section", { class: "sub-panel", role: "dialog", "aria-labelledby": "sub-title" }, [
-            el("h2", { class: "sub-title", id: "sub-title", text: "New posts by email" }),
-            el("p", { class: "sub-text", text: "I write about testing new AI models by building with them. Leave your name and email and I will write to you when a new post is up." }),
+            el("div", { class: "sub-copy" }, [
+                el("h2", { class: "sub-title", id: "sub-title", text: "New posts by email" }),
+                el("p", { class: "sub-text", text: "I write about testing new AI models by building with them. Leave your name and email and I will write to you when a new post is up." }),
+            ]),
             form,
-            later,
         ]);
         document.body.appendChild(panel);
         document.addEventListener("keydown", onKey);
@@ -126,6 +127,7 @@
             widgetId = window.turnstile.render(check, {
                 sitekey: SITEKEY,
                 theme: "auto",
+                appearance: "interaction-only", // stays invisible unless Cloudflare needs a click
                 callback: function (t) { token = t; submit.disabled = false; setStatus(status, "", "info"); },
                 "expired-callback": function () { token = ""; submit.disabled = true; },
                 "error-callback": function () { token = ""; setStatus(status, "The human check failed. Reload the page and try again.", "error"); },
@@ -171,9 +173,12 @@
             track("newsletter_signup", { source: location.pathname });
             var done = el("button", { type: "button", class: "sub-later", text: "Close" });
             done.addEventListener("click", function () { close(false); });
+            panel.setAttribute("data-state", "done");
             panel.replaceChildren(
-                el("h2", { class: "sub-title", id: "sub-title", text: "Thank you, " + name + "." }),
-                el("p", { class: "sub-text", text: "I will write to you when a new post is up." }),
+                el("div", { class: "sub-copy" }, [
+                    el("h2", { class: "sub-title", id: "sub-title", text: "Thank you, " + name + "." }),
+                    el("p", { class: "sub-text", text: "I will write to you when a new post is up." }),
+                ]),
                 done
             );
             done.focus();
