@@ -26,6 +26,16 @@ npx wrangler d1 execute diwakar-subscribers --remote --command "SELECT name, ema
 
 `source` is the page path the person signed up from (a blog post path, or `os` for DiwakarOS).
 
+## Contact messages
+
+The classic `/contact/` form, the DiwakarOS Contact app, and the DiwakarOS Notes app post to `POST /contact`. Each message goes into the `messages` table (`source` is `site-contact`, `os-contact`, or `os-note`).
+
+```bash
+node messages.mjs     # newest 200, needs .admin-token
+```
+
+Each new message also sends one push to your phone through ntfy.sh. The push has the name and the subject only, not the email or the text. The secret topic is in the Worker secret `NTFY_TOPIC` and in the git-ignored file `.ntfy-topic`. Install the ntfy app and subscribe to that topic. To change the topic, run `npx wrangler secret put NTFY_TOPIC`.
+
 ## Visit counts from your social links
 
 `js/landing.js` (classic site) and `portfolio-os/lib/landing.ts` (DiwakarOS) send one small beacon when a visitor arrives from outside. It carries the campaign tag (`?utm_source=...`) or the name of the site that sent the visitor, plus the page. The Worker adds one to a daily total in the `hits` table. It stores no cookie, no network address, and no id, so it runs whatever the visitor chose about analytics cookies.
