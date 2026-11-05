@@ -2,18 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PaperPlaneTilt } from "@phosphor-icons/react";
+import { MESSAGE_MAX, getTurnstileToken, postMessage } from "@/lib/contact";
 
 const NOTES_KEY = "dios-notes";
 const NOTES_DATE_KEY = "dios-notes-date";
 
-type SendState = "idle" | "sending" | "sent" | "error";
+type SendState = "idle" | "sending" | "sent" | "error" | "limited" | "too-long";
 
 /**
  * A small Notes pad. Whatever the visitor writes auto-saves to their browser
  * and is right there the next time they open the app. "Send to Diwakar"
- * delivers the note through the same formsubmit.co backend as the contact form.
+ * sends the note to the same Worker as the contact form.
  */
 export default function NotesApp() {
+  const checkRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState("");
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "saving" | "saved">("idle");
@@ -21,19 +23,13 @@ export default function NotesApp() {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const sendToDiwakar = async () => {
-    if (!text.trim() || send === "sending") return;
+    if (!text.trim() || send === "sending" || !checkRef.current) return;
+    if (text.trim().length > MESSAGE_MAX) return setSend("too-long");
     setSend("sending");
     try {
-      const res = await fetch("https://formsubmit.co/ajax/diwak4r.comp@gmail.com", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: "New Note from Portfolio OS",
-          _template: "table",
-          note: text.trim(),
-        }),
-      });
-      setSend(res.ok ? "sent" : "error");
+      const turnstile = await getTurnstileToken(checkRef.current);
+      const result = await postMessage({ source: "os-note", message: text.trim(), turnstile });
+      setSend(result === "ok" ? "sent" : result === "rate_limited" ? "limited" : "error");
     } catch {
       setSend("error");
     }
@@ -82,20 +78,25 @@ export default function NotesApp() {
         value={text}
         onChange={(e) => {
           onChange(e.target.value);
-          if (send === "sent" || send === "error") setSend("idle");
+          if (send !== "idle" && send !== "sending") setSend("idle");
         }}
         placeholder="Leave a note. It stays right here for your next visit."
         aria-label="Notes"
         spellCheck={false}
         className="min-h-0 flex-1 resize-none bg-transparent p-4 text-[13.5px] leading-relaxed text-[#f5e6a8] outline-none placeholder:text-white/30"
       />
+      <div ref={checkRef} className="shrink-0 border-t border-white/[0.06] px-4 py-2.5 empty:hidden" />
       <div className="flex shrink-0 items-center gap-3 border-t border-white/[0.06] px-4 py-2.5">
         <span className="text-[11.5px] text-white/40">
           {send === "sent"
-            ? "Delivered to Diwakar's inbox"
+            ? "Sent to Diwakar"
             : send === "error"
               ? "Couldn't send. Check the connection and try again."
-              : "Notes stay private unless you send one."}
+              : send === "limited"
+                ? "Too many notes from this network. Try again in an hour."
+                : send === "too-long"
+                  ? `Too long to send. The limit is ${MESSAGE_MAX} characters.`
+                  : "Notes stay private unless you send one."}
         </span>
         <button
           onClick={sendToDiwakar}

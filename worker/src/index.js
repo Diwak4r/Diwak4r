@@ -2,6 +2,8 @@
 // POST /subscribe        public, protected by Turnstile + per-IP limit
 // GET  /unsubscribe?t=   public, one token per subscriber
 // GET  /subscribers      private, Bearer ADMIN_TOKEN, JSON or ?format=csv
+// POST /contact          public, a contact-form or Notes message; Turnstile + per-IP limit
+// GET  /messages         private, Bearer ADMIN_TOKEN, newest first
 // POST /hit              public, counts one visit that arrived from outside (no cookie, no address)
 // GET  /stats?days=30    private, Bearer ADMIN_TOKEN, visit totals by source, campaign and page
 
@@ -9,6 +11,9 @@ const NAME_MAX = 100;
 const EMAIL_MAX = 254;
 const SOURCE_MAX = 200;
 const HOURLY_LIMIT_PER_IP = 5;
+const MESSAGE_MAX = 5000;
+const SHORT_FIELD_MAX = 200;
+const MESSAGE_SOURCES = ["site-contact", "os-contact", "os-note"]; // os-note has no name or email
 const HOUR_MS = 3_600_000;
 const MAX_HIT_ROWS_PER_DAY = 2000; // keeps a flood of made-up campaign names from filling the table
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,6 +30,8 @@ export default {
       if (request.method === "POST" && url.pathname === "/subscribe") return await subscribe(request, env, cors);
       if (request.method === "GET" && url.pathname === "/unsubscribe") return await unsubscribe(url, env);
       if (request.method === "GET" && url.pathname === "/subscribers") return await listSubscribers(request, url, env);
+      if (request.method === "POST" && url.pathname === "/contact") return await contact(request, env, cors);
+      if (request.method === "GET" && url.pathname === "/messages") return await listMessages(request, env);
       if (request.method === "POST" && url.pathname === "/hit") return await recordHit(request, env, cors);
       if (request.method === "GET" && url.pathname === "/stats") return await stats(request, url, env);
       return json({ error: "not_found" }, 404, cors);
@@ -110,6 +117,60 @@ async function subscribe(request, env, cors) {
     .run();
 
   return json({ ok: true }, 200, cors);
+}
+
+// Same as clean(), but a message keeps its line breaks and tabs.
+function cleanMessage(value, max) {
+  if (typeof value !== "string") return "";
+  return value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "").trim().slice(0, max);
+}
+
+async function contact(request, env, cors) {
+  if (!cors["Access-Control-Allow-Origin"]) return json({ error: "forbidden" }, 403, cors);
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: "bad_json" }, 400, cors);
+  }
+
+  // Honeypot: a bot fills the hidden field. Reply with success and store nothing.
+  if (body.website) return json({ ok: true }, 200, cors);
+
+  const source = clean(body.source, 20);
+  if (!MESSAGE_SOURCES.includes(source)) return json({ error: "invalid" }, 400, cors);
+  const message = cleanMessage(body.message, MESSAGE_MAX);
+  const name = clean(body.name, NAME_MAX);
+  const email = clean(body.email, EMAIL_MAX).toLowerCase();
+  const needsSender = source !== "os-note";
+  if (!message || (needsSender && (!name || !EMAIL_RE.test(email)))) return json({ error: "invalid" }, 400, cors);
+
+  const ip = request.headers.get("CF-Connecting-IP") || "";
+  if (!(await verifyTurnstile(body.turnstile, ip, env))) return json({ error: "captcha" }, 400, cors);
+
+  const ipHash = await sha256(ip + env.IP_SALT);
+  const recent = await env.DB.prepare("SELECT COUNT(*) AS n FROM messages WHERE ip_hash = ? AND created_at > ?")
+    .bind(ipHash, Date.now() - HOUR_MS)
+    .first();
+  if (recent.n >= HOURLY_LIMIT_PER_IP) return json({ error: "rate_limited" }, 429, cors);
+
+  await env.DB.prepare(
+    "INSERT INTO messages (source, name, email, purpose, subject, message, ip_hash, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+  )
+    .bind(source, name, needsSender ? email : "", clean(body.purpose, SHORT_FIELD_MAX), clean(body.subject, SHORT_FIELD_MAX), message, ipHash, Date.now())
+    .run();
+
+  return json({ ok: true }, 200, cors);
+}
+
+async function listMessages(request, env) {
+  if (!(await isAdmin(request, env))) return json({ error: "unauthorized" }, 401);
+  const { results } = await env.DB.prepare(
+    "SELECT id, source, name, email, purpose, subject, message, created_at FROM messages ORDER BY created_at DESC LIMIT 200",
+  ).all();
+  const rows = results.map((r) => ({ ...r, created_at: new Date(r.created_at).toISOString() }));
+  return json({ count: rows.length, messages: rows }, 200);
 }
 
 async function unsubscribe(url, env) {

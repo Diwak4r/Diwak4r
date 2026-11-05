@@ -1,0 +1,20 @@
+/* Status line and human-check slot under the contact form. Colors come from style.css. */
+.contact-check:empty { display: none; }
+.contact-check { margin-bottom: 1rem; }
+
+.contact-status {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.contact-status:empty { display: none; }
+.contact-status[data-kind="error"] { color: #A3321F; }
+.contact-status a { color: inherit; text-decoration: underline; }
+
+[data-theme="dark"] .contact-status[data-kind="error"] { color: #FCA5A5; }
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .contact-status[data-kind="error"] { color: #FCA5A5; }
+}

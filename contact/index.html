@@ -142,6 +142,7 @@
     </style>
 
     <link rel="stylesheet" href="../css/style.70264e79.css">
+    <link rel="stylesheet" href="../css/contact.css?v=20261105a">
     <noscript><link rel="stylesheet" href="../css/style.70264e79.css"></noscript>
 
     <!-- SEO & Open Graph -->
@@ -219,20 +220,9 @@
             <div class="contact-content">
                 <div class="card fade-in">
                     <h2 class="text-2xl font-semibold mb-6">Send a Message</h2>
-                    <form action="https://formsubmit.co/diwak4r.comp@gmail.com" method="POST" id="contact-form">
+                    <form id="contact-form">
                         <!-- Honeypot (spam protection) - bots fill this, humans don't see it -->
-                        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-                        <!-- Enable Captcha for additional spam protection -->
-                        <input type="hidden" name="_captcha" value="true">
-                        <!-- Email Subject -->
-                        <input type="hidden" name="_subject" value="New Contact Form Submission - Portfolio">
-                        <!-- Email Template -->
-                        <input type="hidden" name="_template" value="table">
-                        <!-- Redirect after submission -->
-                        <input type="hidden" name="_next" value="https://www.diwakaryadav.com.np/thank-you/">
-                        <!-- Auto-response (optional) -->
-                        <input type="hidden" name="_autoresponse"
-                            value="Thank you for contacting me! I'll get back to you soon.">
+                        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
 
                         <div class="form-group">
                             <label for="name" class="form-label">Name</label>
@@ -267,6 +257,9 @@
                                 placeholder="Tell me about your project…" required minlength="10"
                                 maxlength="5000" autocomplete="off"></textarea>
                         </div>
+                        <noscript><p class="contact-status">This form needs JavaScript. Email me at <a href="mailto:Diwak4r.comp@gmail.com">Diwak4r.comp@gmail.com</a> instead.</p></noscript>
+                        <div class="contact-check" id="contact-check"></div>
+                        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
                         <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                     </form>
                 </div>
@@ -377,6 +370,7 @@
     <script src="../js/consent.js?v=20261104b" defer></script>
     <script src="../js/landing.js?v=20261104d" defer></script>
     <script src="../js/subscribe.js?v=20261104b" defer></script>
+    <script src="../js/contact.js?v=20261105a" defer></script>
     <!-- Cloudflare Web Analytics: replace CF_BEACON_TOKEN with your token from dash.cloudflare.com > Web Analytics > Add a site -->
 </body>
 

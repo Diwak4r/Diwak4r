@@ -11,6 +11,21 @@ CREATE TABLE IF NOT EXISTS subscribers (
 
 CREATE INDEX IF NOT EXISTS idx_subscribers_ip_time ON subscribers (ip_hash, created_at);
 
+-- Messages from the contact forms and the Notes app. Replaces formsubmit.co.
+CREATE TABLE IF NOT EXISTS messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source TEXT NOT NULL,
+  name TEXT NOT NULL DEFAULT '',
+  email TEXT NOT NULL DEFAULT '',
+  purpose TEXT NOT NULL DEFAULT '',
+  subject TEXT NOT NULL DEFAULT '',
+  message TEXT NOT NULL,
+  ip_hash TEXT NOT NULL,
+  created_at INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_messages_ip_time ON messages (ip_hash, created_at);
+
 -- One row per day, site, source, medium, campaign and page. No address, cookie or id.
 CREATE TABLE IF NOT EXISTS hits (
   day TEXT NOT NULL,
