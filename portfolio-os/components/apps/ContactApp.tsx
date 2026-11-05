@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import {
   GithubLogo,
   InstagramLogo,
@@ -9,6 +10,7 @@ import {
 } from "@phosphor-icons/react";
 import { profile, socials } from "@/lib/content";
 import { openLink } from "@/lib/system";
+import { CONTACT_EMAIL, MESSAGE_MAX, getTurnstileToken, postMessage } from "@/lib/contact";
 
 const socialIcons = {
   GitHub: GithubLogo,
@@ -23,22 +25,62 @@ const fieldInput =
   "min-w-0 flex-1 bg-transparent text-[13.5px] text-white/90 outline-none placeholder:text-white/30";
 
 /**
- * Mail-compose style contact window. Posts to the same formsubmit.co
- * endpoint as the previous site, with identical field names and settings,
- * so the existing email pipeline keeps working untouched.
+ * Mail-compose style contact window. Posts to the Worker, which stores the
+ * message. A Turnstile check runs when the visitor presses Send.
  */
 export default function ContactApp() {
+  const checkRef = useRef<HTMLDivElement>(null);
+  const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState({ text: "", error: false });
+  const [doneName, setDoneName] = useState<string | null>(null);
+
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (busy || !checkRef.current) return;
+    const data = new FormData(event.currentTarget);
+    const field = (key: string) => String(data.get(key) ?? "");
+
+    setBusy(true);
+    setStatus({ text: "Checking that you are human.", error: false });
+    try {
+      const turnstile = await getTurnstileToken(checkRef.current);
+      setStatus({ text: "Sending.", error: false });
+      const result = await postMessage({
+        source: "os-contact",
+        name: field("name"),
+        email: field("email"),
+        purpose: field("purpose"),
+        subject: field("subject"),
+        message: field("message"),
+        website: field("website"),
+        turnstile,
+      });
+      if (result === "ok") return setDoneName(field("name").trim());
+      setStatus({
+        text:
+          result === "rate_limited"
+            ? "Too many messages from this network. Try again in an hour."
+            : "The message did not go through.",
+        error: true,
+      });
+    } catch {
+      setStatus({ text: "The message did not go through.", error: true });
+    }
+    setBusy(false);
+  };
+
+  if (doneName !== null) {
+    return (
+      <div role="status" className="flex min-h-full flex-col justify-center px-8 py-10">
+        <p className="text-[17px] font-semibold text-white/90">Thank you{doneName ? `, ${doneName}` : ""}.</p>
+        <p className="mt-2 text-[13px] leading-5 text-white/55">Your message is with Diwakar. He will write back to you.</p>
+      </div>
+    );
+  }
+
   return (
-    <form
-      action="https://formsubmit.co/diwak4r.comp@gmail.com"
-      method="POST"
-      className="flex min-h-full flex-col"
-    >
-      <input type="hidden" name="_captcha" value="true" />
-      <input type="hidden" name="_subject" value="New Contact Form Submission - Portfolio" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="https://diwakaryadav.com.np/thank-you/" />
-      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
+    <form onSubmit={submit} className="flex min-h-full flex-col">
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
       <div className="divide-y divide-white/[0.07] px-5 pt-1.5">
         <div className={fieldRow}>
@@ -119,10 +161,28 @@ export default function ContactApp() {
         id="contact-message"
         name="message"
         required
+        maxLength={MESSAGE_MAX}
         placeholder="Write your message"
         className="min-h-[140px] flex-1 resize-none border-t border-white/[0.07] bg-transparent px-5 py-4 text-[13.5px] leading-relaxed text-white/90 outline-none placeholder:text-white/30"
       />
 
+      <div ref={checkRef} className="border-t border-white/[0.07] px-5 py-3 empty:hidden" />
+      <p
+        role="status"
+        aria-live="polite"
+        className={`border-t border-white/[0.07] px-5 py-2 text-[12px] leading-4 empty:hidden ${status.error ? "text-red-300" : "text-white/55"}`}
+      >
+        {status.text}
+        {status.error && (
+          <>
+            {" "}Or email{" "}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="underline">
+              {CONTACT_EMAIL}
+            </a>
+            .
+          </>
+        )}
+      </p>
       <div className="flex items-center gap-3 border-t border-white/[0.07] px-5 py-3">
         {socials.map((s) => {
           const Icon = socialIcons[s.label];
@@ -140,10 +200,11 @@ export default function ContactApp() {
         })}
         <button
           type="submit"
-          className="ml-auto flex items-center gap-1.5 rounded-lg bg-(--accent-btn) px-4 py-2 text-[13px] font-semibold text-(--accent-contrast) transition hover:brightness-110 active:scale-[0.98]"
+          disabled={busy}
+          className="ml-auto flex items-center gap-1.5 rounded-lg bg-(--accent-btn) px-4 py-2 text-[13px] font-semibold text-(--accent-contrast) transition hover:brightness-110 active:scale-[0.98] disabled:opacity-50"
         >
           <PaperPlaneTilt size={14} weight="fill" />
-          Send Message
+          {busy ? "Sending" : "Send Message"}
         </button>
       </div>
     </form>

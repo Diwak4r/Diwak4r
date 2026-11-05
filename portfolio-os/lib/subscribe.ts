@@ -16,6 +16,7 @@ interface TurnstileApi {
     options: {
       sitekey: string;
       theme: "light" | "dark" | "auto";
+      appearance?: "always" | "execute" | "interaction-only";
       callback: (token: string) => void;
       "expired-callback": () => void;
       "error-callback": () => void;

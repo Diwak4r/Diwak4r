@@ -104,6 +104,35 @@ try {
   let limited = false;
   for (let i = 0; i < 8 && !limited; i++) limited = (await post(good(`rate${i}@example.com`))).status === 429;
   check("per-IP hourly limit returns 429", limited);
+
+  // Contact messages: replace formsubmit.co. Stored in D1, read with the admin token.
+  const send = (body, origin = OK_ORIGIN) =>
+    fetch(`${BASE}/contact`, { method: "POST", headers: { "Content-Type": "application/json", Origin: origin }, body: JSON.stringify(body) });
+  const msg = (extra = {}) => ({ source: "site-contact", name: "Rita", email: "Rita@Example.com", purpose: "Hiring / Job Opportunity", subject: "Hello", message: "Line one\nLine two", turnstile: "token", ...extra });
+  const messages = async () => (await fetch(`${BASE}/messages`, { headers: ADMIN })).json();
+
+  check("contact from other origin is 403", (await send(msg(), BAD_ORIGIN)).status === 403);
+  check("contact with an unknown source is 400", (await send(msg({ source: "other" }))).status === 400);
+  check("contact without a message is 400", (await send(msg({ message: "  " }))).status === 400);
+  check("contact without a name is 400", (await send(msg({ name: "" }))).status === 400);
+  check("contact with a bad email is 400", (await send(msg({ email: "nope" }))).status === 400);
+  check("contact without a Turnstile token is 400", (await send(msg({ turnstile: "" }))).status === 400);
+  check("contact honeypot is 200 and stores nothing", (await send(msg({ website: "http://spam" }))).status === 200);
+  check("messages without token is 401", (await fetch(`${BASE}/messages`)).status === 401);
+  check("nothing stored so far", (await messages()).count === 0);
+
+  check("valid contact is 200", (await send(msg())).status === 200);
+  check("a Notes message needs no name or email", (await send({ source: "os-note", message: "Nice site", turnstile: "token" })).status === 200);
+  const stored = await messages();
+  const rita = stored.messages.find((m) => m.source === "site-contact");
+  check("two messages stored", stored.count === 2, JSON.stringify(stored));
+  check("contact fields stored, email lowercased, line break kept", rita?.email === "rita@example.com" && rita.name === "Rita" && rita.message === "Line one\nLine two" && rita.purpose === "Hiring / Job Opportunity", JSON.stringify(rita));
+  check("a note stores no sender", stored.messages.find((m) => m.source === "os-note")?.email === "");
+  check("messages never expose the network hash", !JSON.stringify(stored).includes("ip_hash"));
+
+  limited = false;
+  for (let i = 0; i < 8 && !limited; i++) limited = (await send(msg({ message: `again ${i}` }))).status === 429;
+  check("contact per-IP hourly limit returns 429", limited);
 } finally {
   execSync(`taskkill /pid ${server.pid} /T /F`, { stdio: "ignore" });
   rmSync(persist, { recursive: true, force: true });

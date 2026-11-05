@@ -105,8 +105,8 @@ components/
     AboutApp.tsx      sidebar (Story/Experience/Skills) via container queries
     ProjectsApp.tsx   featured card w/ live screenshot + project rows
     JournalApp.tsx    post list linking to the live blog
-    ContactApp.tsx    Mail-style compose; posts to the same formsubmit.co
-                      endpoint with identical field names as the old site
+    ContactApp.tsx    Mail-style compose; posts to the subscribe Worker
+                      (/contact) behind a Turnstile check
     TerminalApp.tsx   interactive shell: help/about/projects/skills/social/
                       contact/whoami/clear/open <app>
 ```
