@@ -20,7 +20,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TURNSTILE_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const cors = corsHeaders(request.headers.get("Origin"), env);
 
@@ -30,7 +30,7 @@ export default {
       if (request.method === "POST" && url.pathname === "/subscribe") return await subscribe(request, env, cors);
       if (request.method === "GET" && url.pathname === "/unsubscribe") return await unsubscribe(url, env);
       if (request.method === "GET" && url.pathname === "/subscribers") return await listSubscribers(request, url, env);
-      if (request.method === "POST" && url.pathname === "/contact") return await contact(request, env, cors);
+      if (request.method === "POST" && url.pathname === "/contact") return await contact(request, env, cors, ctx);
       if (request.method === "GET" && url.pathname === "/messages") return await listMessages(request, env);
       if (request.method === "POST" && url.pathname === "/hit") return await recordHit(request, env, cors);
       if (request.method === "GET" && url.pathname === "/stats") return await stats(request, url, env);
@@ -125,7 +125,26 @@ function cleanMessage(value, max) {
   return value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "").trim().slice(0, max);
 }
 
-async function contact(request, env, cors) {
+// One phone push per message through ntfy.sh. It carries the name, the source and the subject only:
+// no email address and no message text, because ntfy.sh is a third-party server. Read the full
+// message with `node messages.mjs`. A failed push never fails the visitor's request.
+async function notify(env, source, name, subject) {
+  if (!env.NTFY_TOPIC) return;
+  const sender = name || "a visitor";
+  const body = subject ? `${sender}: ${subject}` : sender;
+  try {
+    const res = await fetch(`https://ntfy.sh/${env.NTFY_TOPIC}`, {
+      method: "POST",
+      headers: { Title: `New portfolio message (${source})`, Tags: "incoming_envelope" },
+      body: body.slice(0, 200),
+    });
+    if (!res.ok) console.error("ntfy push failed", res.status);
+  } catch (err) {
+    console.error("ntfy push error", err.message);
+  }
+}
+
+async function contact(request, env, cors, ctx) {
   if (!cors["Access-Control-Allow-Origin"]) return json({ error: "forbidden" }, 403, cors);
 
   let body;
@@ -161,6 +180,7 @@ async function contact(request, env, cors) {
     .bind(source, name, needsSender ? email : "", clean(body.purpose, SHORT_FIELD_MAX), clean(body.subject, SHORT_FIELD_MAX), message, ipHash, Date.now())
     .run();
 
+  ctx.waitUntil(notify(env, source, name, clean(body.subject, SHORT_FIELD_MAX)));
   return json({ ok: true }, 200, cors);
 }
 

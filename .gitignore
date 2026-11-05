@@ -39,3 +39,4 @@ overview.md
 codebase-assessment.md
 SECURITY.md
 worker/.admin-token
+worker/.ntfy-topic
